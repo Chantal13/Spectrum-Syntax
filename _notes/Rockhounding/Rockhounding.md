@@ -25,7 +25,7 @@ aliases:
 [[quartz]]
 
 ## Rocks
-[[Agate]]
+[[agate]]
 
 [[Breccia]]
 

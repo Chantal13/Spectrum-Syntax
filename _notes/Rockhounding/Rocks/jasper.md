@@ -18,7 +18,7 @@ Jasper is an opaque chalcedony ([[quartz|quartz]]) coloured by mineral impuritie
 - Opaque, solid colors  
 - Reds, browns, yellows, greens  
 - Patterns: speckled, striped, or brecciated  
-- Lacks translucency (distinguishes it from [[Agate]])  
+- Lacks translucency (distinguishes it from [[agate]])  
 
 > [!tip] Tumbling Qualities  
 > - Hardness: [[Mohs Hardness Scale|Mohs]] 6.5–7  

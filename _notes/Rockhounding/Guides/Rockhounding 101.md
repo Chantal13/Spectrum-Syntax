@@ -7,12 +7,12 @@ tags:
 
 # Rockhounding & Tumbling along Lake Ontario’s Greater Toronto Shoreline
 
-The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure trove of collectible stones. From colourful [[Jasper]] to translucent [[Agate|agates]], many of these beach-worn pebbles are perfect candidates for tumbling and polishing. This guide highlights what to look for, where to go, and how to get started.
+The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure trove of collectible stones. From colourful [[Jasper]] to translucent [[agate|agates]], many of these beach-worn pebbles are perfect candidates for tumbling and polishing. This guide highlights what to look for, where to go, and how to get started.
 
 ---
 ## 🪨 Rock Categories in Context
 
-- **[[Igneous]] Rocks** → Formed from cooled magma/lava. Example: basalt, granite. Connection: [[Agate|Agates]].  
+- **[[Igneous]] Rocks** → Formed from cooled magma/lava. Example: basalt, granite. Connection: [[agate|Agates]].  
 - **[[Sedimentary]] Rocks** → Formed from compressed sediments. Example: limestone, sandstone. Connection: [[Jasper]].  
 - **[[Metamorphic]] Rocks** → Formed by heat and pressure. Example: [[Gneiss]], schist. Connection: [[Unakite]].  
 
@@ -28,7 +28,7 @@ The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure tro
 ## 🧭 Recommended Locations in GTA & Durham
 
 > [!tip] **Best Overall – Scarborough Bluffs / Bluffer’s Park (Toronto)**  
-> Erosion supplies fresh sandstone, shale, and occasional [[Agate]] or [[Jasper]] pebbles. Great mix of [[Sedimentary]] and glacial erratics.  
+> Erosion supplies fresh sandstone, shale, and occasional [[agate]] or [[Jasper]] pebbles. Great mix of [[Sedimentary]] and glacial erratics.  
 
 > [!tip] **Tommy Thompson Park & Cherry Beach (Toronto)**  
 > Pebble-rich shoreline, diverse [[Metamorphic]] and [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]] finds.  
@@ -46,7 +46,7 @@ The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure tro
 > Glacial moraine shoreline — [[Unakite]], [[Jasper]], and [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]] show up here.  
 
 > [!tip] **Pickering Beach / Paradise Beach & Carruthers Creek Mouth (Ajax)**  
-> Sandy-pebble beaches — small [[Agate|agates]] and [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]] often appear after storms.  
+> Sandy-pebble beaches — small [[agate|agates]] and [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]] often appear after storms.  
 
 ---
 ## 🪨 Tips for Collecting
@@ -63,7 +63,7 @@ The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure tro
 
 ## 🔍 Tips for Identifying Stones
 
-- **[[Agate|Agates]]:** Look for translucency and banding (hold to light).
+- **[[agate|Agates]]:** Look for translucency and banding (hold to light).
     
 - **[[Jasper]]:** Opaque, solid colors—reds and greens are most common.
     
@@ -95,7 +95,7 @@ Bring a small **field guide** or use an app like _Rock Identifier_ for on-the-sp
 
 ## ⚙️ Tips for Tumbling Lake Ontario Stones
 
-1. **Sort by hardness** – Tumble [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]], [[Jasper]], and [[Agate]] together ([[Mohs Hardness Scale|Mohs]] 6.5–7). Softer rocks will grind away too quickly.
+1. **Sort by hardness** – Tumble [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]], [[Jasper]], and [[agate]] together ([[Mohs Hardness Scale|Mohs]] 6.5–7). Softer rocks will grind away too quickly.
     
 2. **Start small** – Many Lake Ontario stones are already rounded; use shorter coarse grind cycles.
     
@@ -103,7 +103,7 @@ Bring a small **field guide** or use an app like _Rock Identifier_ for on-the-sp
     
 4. **Fill your barrel** – Use ceramic filler or smaller pebbles to cushion larger stones.
     
-5. **Patience pays** – [[Agate|Agates]] and [[Jasper]] may take longer in coarse grind but reward with brilliant polish.
+5. **Patience pays** – [[agate|Agates]] and [[Jasper]] may take longer in coarse grind but reward with brilliant polish.
     
 6. **Check progress often** – Some glacial stones contain fractures; remove weak pieces early.
 
