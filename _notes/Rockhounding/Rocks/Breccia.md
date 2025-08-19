@@ -4,10 +4,8 @@ draft: false
 tags:
   - rockhounding
 aliases:
-  - breccia
+  - Breccia
 ---
-# Breccia
-
 ## Overview
 Breccia is a **sedimentary rock** (sometimes volcanic) made of **angular fragments** cemented together by a finer-grained material such as calcite, silica, or clay. Unlike **conglomerate**, which contains rounded pebbles, breccia clasts are sharp and jagged, indicating they were broken and deposited without traveling far.  
 
@@ -30,7 +28,7 @@ On the north shores of Lake Ontario, breccia can occasionally be found in glacia
 
 ---
 
-## Tumbling Qualities
+## [[Rock Tumbling|Tumbling]] Qualities
 - **Hardness:** Varies depending on clast composition and cement  
 - **Polishing Notes:**  
   - Like conglomerate, breccia may polish unevenly because clasts and cement differ in hardness.  

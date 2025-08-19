@@ -1,18 +1,18 @@
 ---
 title: Rockhounding 101
-draft: 
+draft: false
 tags:
   - rockhounding
 ---
 
-# Rockhounding & Tumbling along Lake Ontario’s Greater Toronto Shoreline
+# [[Rockhounding]] & [[Rock Tumbling|Tumbling]] along Lake Ontario’s Greater Toronto Shoreline
 
-The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure trove of collectible stones. From colourful [[Jasper]] to translucent [[agate|agates]], many of these beach-worn pebbles are perfect candidates for tumbling and polishing. This guide highlights what to look for, where to go, and how to get started.
+The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure trove of collectible stones. From colourful [[Jasper]] to translucent [[agate|agates]], many of these beach-worn pebbles are perfect candidates for [[Rock Tumbling|tumbling]] and polishing. This guide highlights what to look for, where to go, and how to get started.
 
 ---
 ## 🪨 Rock Categories in Context
 
-- **[[Igneous]] Rocks** → Formed from cooled magma/lava. Example: basalt, granite. Connection: [[agate|Agates]].  
+- **[[Igneous]] Rocks** → Formed from cooled magma/lava. Example: basalt, [[granite]]. Connection: [[agate|Agates]].  
 - **[[Sedimentary]] Rocks** → Formed from compressed sediments. Example: limestone, sandstone. Connection: [[Jasper]].  
 - **[[Metamorphic]] Rocks** → Formed by heat and pressure. Example: [[Gneiss]], schist. Connection: [[Unakite]].  
 
@@ -40,7 +40,7 @@ The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure tro
 > Streams deliver a constant supply of mixed glacial rocks.  
 
 > [!tip] **Lynde Shores Conservation Area (Whitby)**  
-> Gravel barrier beach — excellent for tumbling-size stones.  
+> Gravel barrier beach — excellent for [[Rock Tumbling|tumbling]]-size stones.  
 
 > [!tip] **Darlington Provincial Park (Bowmanville)**  
 > Glacial moraine shoreline — [[Unakite]], [[Jasper]], and [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]] show up here.  
@@ -69,7 +69,7 @@ The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure tro
     
 - **[[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]]:** Glassy appearance, hardness test scratches glass.
     
-- **[[Unakite]]:** Green-pink mottling ([[Feldspar]] + [[Epidote]]).
+- **[[Unakite]]:** Green-pink mottling ([[feldspar]] + [[epidote]]).
     
 - **Conglomerates:** Pebbles cemented together, often with [[Jasper]] chunks.
 
@@ -77,7 +77,7 @@ Bring a small **field guide** or use an app like _Rock Identifier_ for on-the-sp
 
 ---
 
-## 🎒 Recommended Rockhounding Equipment
+## 🎒 Recommended [[Rockhounding]] Equipment
 
 - **Rock hammer & chisel** (for creek beds or breaking larger stones).
     
@@ -93,7 +93,7 @@ Bring a small **field guide** or use an app like _Rock Identifier_ for on-the-sp
 
 ---
 
-## ⚙️ Tips for Tumbling Lake Ontario Stones
+## ⚙️ Tips for [[Rock Tumbling|Tumbling]] Lake Ontario Stones
 
 1. **Sort by hardness** – Tumble [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]], [[Jasper]], and [[agate]] together ([[Mohs Hardness Scale|Mohs]] 6.5–7). Softer rocks will grind away too quickly.
     

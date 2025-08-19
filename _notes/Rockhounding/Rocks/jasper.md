@@ -8,9 +8,8 @@ aliases:
   - jasper
   - jaspers
   - Jaspers
+  - Jasper
 ---
-# 🔴 Jasper
-
 **Formation:**  
 Jasper is an opaque chalcedony ([[quartz|quartz]]) coloured by mineral impurities, usually iron oxides. It often originates in silica-rich [[Sedimentary]] deposits, though glacial action has moved it widely.  
 
@@ -23,7 +22,7 @@ Jasper is an opaque chalcedony ([[quartz|quartz]]) coloured by mineral impuritie
 > [!tip] Tumbling Qualities  
 > - Hardness: [[Mohs Hardness Scale|Mohs]] 6.5–7  
 > - Produces a glossy, smooth polish  
-> - Colors deepen after tumbling  
+> - Colors deepen after [[Rock Tumbling|tumbling]]  
 
 **Rock Category:** **[[Sedimentary]]**, though considered part of the [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]] family.  
 

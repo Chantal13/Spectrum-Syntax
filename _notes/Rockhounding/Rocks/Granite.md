@@ -4,14 +4,12 @@ draft: false
 tags:
   - rockhounding
 aliases:
-  - granite
+  - Granite
 ---
-# Granite
-
 ## Overview
 Granite is a coarse-grained **igneous rock** composed mainly of **[[quartz]], feldspar, and mica**. It forms when magma cools slowly beneath the Earth’s surface, giving its crystals time to grow large and visible.  
 
-Along the north shores of Lake Ontario, granite is common in glacial erratics — stones carried south from the Canadian Shield during the last Ice Age. These rounded granite pebbles are durable, colorful, and often used in rock tumbling.
+Along the north shores of Lake Ontario, granite is common in glacial erratics — stones carried south from the Canadian Shield during the last Ice Age. These rounded granite pebbles are durable, colorful, and often used in [[rock tumbling]].
 
 ---
 
@@ -59,8 +57,8 @@ Granite belongs to the **Igneous Rock family** (intrusive type).
 ## Related Stones
 - **Feldspar** → Pink or white crystals in granite  
 - **[[quartz]]** → Grey, glassy grains  
-- **Gneiss** → The metamorphic cousin of granite, banded instead of speckled  
-- **Unakite** → Granite altered by hydrothermal fluids (feldspar replaced by epidote)  
+- **[[Gneiss]]** → The metamorphic cousin of granite, banded instead of speckled  
+- **[[Unakite]]** → Granite altered by hydrothermal fluids (feldspar replaced by epidote)  
 
 ---
 

@@ -4,14 +4,14 @@ draft: false
 tags:
   - rockhounding
 aliases:
-  - feldspar
+  - Feldspar
 ---
 # Feldspar
 
 ## Overview
 Feldspar is a group of **rock-forming minerals** that make up more than half of the Earth’s crust. They are the primary components of many igneous, metamorphic, and sedimentary rocks, and serve as the “framework” minerals that bind rocks together.  
 
-On the north shores of Lake Ontario, feldspar is most often found as part of **granite, gneiss, and unakite pebbles** brought south from the Canadian Shield by glaciers. While rarely collected as a standalone mineral in beach gravels, it’s an essential part of many tumbling-quality rocks.
+On the north shores of Lake Ontario, feldspar is most often found as part of **[[granite]], [[gneiss]], and [[unakite]] pebbles** brought south from the Canadian Shield by glaciers. While rarely collected as a standalone mineral in beach gravels, it’s an essential part of many [[Rock Tumbling|tumbling]]-quality rocks.
 
 ---
 
@@ -27,7 +27,7 @@ On the north shores of Lake Ontario, feldspar is most often found as part of **g
   - **Microcline:** Green variety, sometimes striking  
 
 > [!tip] Field ID  
-> Feldspar often appears as the pink, white, or green mineral in **granite** or **gneiss**. Look for its flat cleavage planes and pearly luster.  
+> Feldspar often appears as the pink, white, or green mineral in **[[granite]]** or **[[gneiss]]**. Look for its flat cleavage planes and pearly luster.  
 
 ---
 
@@ -35,28 +35,28 @@ On the north shores of Lake Ontario, feldspar is most often found as part of **g
 - **Hardness:** [[Mohs Hardness Scale|Mohs]] 6 (softer than [[quartz]])  
 - **Polishing Notes:**  
   - Polishes less brilliantly than [[quartz]], but can still develop a smooth satin shine.  
-  - Works well when tumbled in combination rocks (granite, unakite).  
-  - Green feldspar in unakite looks striking after polishing.  
+  - Works well when tumbled in combination rocks ([[granite]], [[unakite]]).  
+  - Green feldspar in [[unakite]] looks striking after polishing.  
 - **Lapidary Use:** Sometimes cut into cabochons, decorative stones, or used in ceramics and glass.  
 
-> [!warning] Pure feldspar is softer than [[quartz]] — don’t tumble it with harder stones like agate or [[jasper]], or it may undercut.  
+> [!warning] Pure feldspar is softer than [[quartz]] — don’t tumble it with harder stones like [[agate]] or [[jasper]], or it may undercut.  
 
 ---
 
 ## Connection to Lake Ontario
-- **Origin:** Feldspar crystallizes in igneous rocks like granite, then is reworked into metamorphic rocks like gneiss and unakite.  
+- **Origin:** Feldspar crystallizes in igneous rocks like [[granite]], then is reworked into metamorphic rocks like [[gneiss]] and [[unakite]].  
 - **Transport:** Glaciers carried feldspar-bearing rocks from the Canadian Shield to Southern Ontario.  
 - **Where to Find:**  
-  - **Granite pebbles** (pink feldspar visible) on Toronto and Durham beaches  
-  - **Unakite pebbles** (pink feldspar + green epidote + [[quartz]])  
-  - **Gneiss** with alternating feldspar and [[quartz]] bands  
+  - **[[Granite]] pebbles** (pink feldspar visible) on Toronto and Durham beaches  
+  - **[[Unakite]] pebbles** (pink feldspar + green epidote + [[quartz]])  
+  - **[[Gneiss]]** with alternating feldspar and [[quartz]] bands  
 
 ---
 
 ## Rock Family
 Feldspar is a **mineral group**, not a rock. It is most closely tied to:  
-- **Igneous Rocks** → Granite, basalt (plagioclase feldspar)  
-- **Metamorphic Rocks** → Gneiss, schist, unakite  
+- **Igneous Rocks** → [[Granite]], basalt (plagioclase feldspar)  
+- **Metamorphic Rocks** → [[Gneiss]], schist, [[unakite]]  
 - **Sedimentary Rocks** → Sandstone often contains feldspar grains  
 
 > [!info] Learn more about feldspar’s role in the **Igneous Rock family** here → [[Igneous|Igneous Rocks]]  
@@ -64,9 +64,9 @@ Feldspar is a **mineral group**, not a rock. It is most closely tied to:
 ---
 
 ## Related Stones
-- **Granite** → Made of [[quartz]], feldspar, and mica  
-- **Unakite** → Pink feldspar, green epidote, and [[quartz]]  
-- **Gneiss** → Banded rock often alternating feldspar and [[quartz]]  
+- **[[Granite]]** → Made of [[quartz]], feldspar, and mica  
+- **[[Unakite]]** → Pink feldspar, green epidote, and [[quartz]]  
+- **[[Gneiss]]** → Banded rock often alternating feldspar and [[quartz]]  
 - **[[quartz]]** → Often found alongside feldspar in many rocks  
 
 ---

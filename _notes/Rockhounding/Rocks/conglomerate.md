@@ -6,16 +6,13 @@ tags:
 aliases:
   - conglomerate
   - puddingstone
-  - Puddingstone
 ---
-# Conglomerate (Puddingstone)
-
 ## Overview
-Conglomerate is a **sedimentary rock** made of rounded pebbles and cobbles cemented together by finer materials such as sand, silt, or silica. It often looks like a “rock made of rocks,” with colourful fragments locked in a natural matrix.  
+Conglomerate, or puddingstone, is a **sedimentary rock** made of rounded pebbles and cobbles cemented together by finer materials such as sand, silt, or silica. It often looks like a “rock made of rocks,” with colourful fragments locked in a natural matrix.  
 
-One of the most famous varieties is **Puddingstone**, a type of conglomerate that contains bright red [[jasper]] pebbles within a lighter [[quartz]] or sand matrix. Glaciers have scattered puddingstone and other conglomerates across Southern Ontario, and they can sometimes be found along the **north shores of Lake Ontario** as glacial erratics.
+One of the most famous varieties is **puddingstone**, a type of conglomerate that contains bright red [[jasper]] pebbles within a lighter [[quartz]] or sand matrix. Glaciers have scattered puddingstone and other conglomerates across Southern Ontario, and they can sometimes be found along the **north shores of Lake Ontario** as glacial erratics.
 
-> [!info] Confused between Conglomerate and Breccia?  
+> [!info] Confused between conglomerate and [[breccia]]?  
 > Both are sedimentary rocks with larger clasts, but they look very different in the field.  
 > 👉 See the side-by-side comparison here → [[Conglomerate vs Breccia]]
 
@@ -34,7 +31,7 @@ One of the most famous varieties is **Puddingstone**, a type of conglomerate tha
 
 ---
 
-## Tumbling Qualities
+## [[Rock Tumbling|Tumbling]] Qualities
 - **Hardness:** Varies depending on clasts (typically [[Mohs Hardness Scale|Mohs]] 6–7 if [[quartz]]- or [[jasper]]-rich)  
 - **Polishing Notes:**  
   - Clasts and matrix may polish unevenly because they have different hardnesses.  
@@ -59,7 +56,7 @@ One of the most famous varieties is **Puddingstone**, a type of conglomerate tha
 ## Rock Family
 Conglomerate belongs to the **Sedimentary Rock family**. It is closely related to:  
 - **Sandstone** → finer-grained, made of sand-sized particles  
-- **Breccia** → similar to conglomerate but with angular, not rounded, clasts  
+- **[[Breccia]]** → similar to conglomerate but with angular, not rounded, clasts  
 
 > [!info] Learn more about the **Sedimentary Rock family** here → [[Sedimentary|Sedimentary Rocks]]  
 
@@ -68,7 +65,7 @@ Conglomerate belongs to the **Sedimentary Rock family**. It is closely related t
 ## Related Stones
 - **[[Jasper]]** → Often occurs as clasts inside puddingstone  
 - **[[quartz]]** → Common pebble within conglomerates  
-- **Breccia** → The angular cousin of conglomerate  
+- **[[Breccia]]** → The angular cousin of conglomerate  
 
 ---
 

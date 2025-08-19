@@ -18,16 +18,16 @@ aliases:
 [[Sedimentary]]
 
 ## Minerals
-[[Epidote]]
+[[epidote]]
 
-[[Feldspar]]
+[[feldspar]]
 
 [[quartz]]
 
 ## Rocks
 [[agate]]
 
-[[Breccia]]
+[[breccia]]
 
 [[Conglomerate]]
 

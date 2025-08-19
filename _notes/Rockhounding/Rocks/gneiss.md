@@ -5,12 +5,10 @@ tags:
   - rockhounding
   - tumbling
 aliases:
-  - gneiss
+  - Gneiss
 ---
-# Gneiss
-
 ## Overview
-Gneiss (pronounced “nice”) is a **[[Metamorphic]] rock** characterized by its distinctive light-and-dark banding. It forms when pre-existing rocks such as granite, sandstone, or shale are subjected to intense heat and pressure, causing the minerals to re-crystallize and separate into layers.  
+Gneiss (pronounced “nice”) is a **[[Metamorphic]] rock** characterized by its distinctive light-and-dark banding. It forms when pre-existing rocks such as [[granite]], sandstone, or shale are subjected to intense heat and pressure, causing the minerals to re-crystallize and separate into layers.  
 
 On the north shores of Lake Ontario, gneiss is most commonly found as **glacial erratics** — stones carried south from the ancient Canadian Shield by glaciers during the last Ice Age. Today, they can be found as rounded pebbles and cobbles scattered along the beaches.
 
@@ -18,23 +16,23 @@ On the north shores of Lake Ontario, gneiss is most commonly found as **glacial 
 
 ## Appearance & Identification
 - **Texture:** Banded, striped, or layered  
-- **Minerals:** [[quartz]], [[Feldspar]], mica, amphibole  
+- **Minerals:** [[quartz]], [[feldspar]], mica, amphibole  
 - **Colors:** Grey, white, black, with occasional pink or green tones  
-- **Special Feature:** Some gneisses contain red **garnet crystals**, which stand out as small, rounded inclusions  
+- **Special Feature:** Some gneisses contain red **[[garnet]] crystals**, which stand out as small, rounded inclusions  
 
 > [!tip] Field ID Tip  
-> Look for a rock with a “striped” or “zebra” pattern. If it looks like granite but with parallel bands, it’s probably gneiss.  
+> Look for a rock with a “striped” or “zebra” pattern. If it looks like [[granite]] but with parallel bands, it’s probably gneiss.  
 
 ---
 
 ## Tumbling Qualities
 - **Hardness:** [[Mohs Hardness Scale|Mohs]] 6–7  
-- **Tumbling Notes:**  
+- **[[Rock Tumbling|Tumbling]] Notes:**  
   - Polishes fairly well, though banding can sometimes undercut slightly.  
-  - Garnet-bearing gneiss produces especially attractive results.  
+  - [[Garnet]]-bearing gneiss produces especially attractive results.  
 - **Best Use:** Decorative polished stones, display pieces, or cabochons.  
 
-> [!warning] Not all gneiss is suitable for tumbling. Avoid crumbly specimens, as softer mica-rich layers may break down in the tumbler.  
+> [!warning] Not all gneiss is suitable for [[Rock Tumbling|tumbling]]. Avoid crumbly specimens, as softer mica-rich layers may break down in the tumbler.  
 
 ---
 
@@ -56,7 +54,7 @@ Gneiss belongs to the **[[Metamorphic]] Rock family**, formed through the transf
 ## Related Stones
 - **[[Unakite]]** → Another [[Metamorphic]] rock, often green and pink, found along Lake Ontario.  
 - **[[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]]** → A common mineral within gneiss, also found as separate pebbles on the shoreline.  
-- **Granite** → The [[Igneous]] parent rock that often transforms into gneiss.  
+- **[[Granite]]** → The [[Igneous]] parent rock that often transforms into gneiss.  
 
 ---
 
