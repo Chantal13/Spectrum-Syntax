@@ -5,7 +5,7 @@ id: home
 permalink: /
 ---
 
-# Welcome to Spectrum Syntax! 🧿
+# 🧿 Welcome to Spectrum Syntax!
 
 This site is my working notebook—mostly rockhounding (Ontario-focused but useful anywhere), a bit of Python programming, and, for now, one humble blog post. I like doing lots of different things—aviation, guitar, and whatever else catches my curiosity—so expect the topics to wander as I do.
 
