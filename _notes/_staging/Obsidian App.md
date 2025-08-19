@@ -1,5 +1,5 @@
 ---
-title: 
+title: Obsidian App
 draft: "true"
 ---
 
