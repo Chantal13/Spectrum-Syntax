@@ -8,12 +8,7 @@ aliases:
   - Mohs
   - Mohs Hardness Scale
 ---
-# Lake Ontario Rocks
-
-The **Mohs Hardness Scale** ranks minerals from 1 (softest) to 10 (hardest).  
-This chart shows the common [[Rock Tumbling|tumbling]] stones found along the north shores of Lake Ontario.
-
----
+The Mohs hardness scale ranks minerals by their resistance to scratching, from **1 (talc)** to **10 (diamond)**. It’s an **ordinal**, **non-linear** field test: if mineral A scratches mineral B, then A is harder. You identify an unknown by trying to scratch it with reference minerals (or everyday items with known hardness) and narrowing the range. Because the steps aren’t equal—diamond is far harder than corundum even though they’re only one step apart—the scale is best for quick comparisons, not precise engineering values. Hardness also differs from **toughness** (resistance to breaking) and **cleavage** (how a mineral splits), so a hard mineral can still chip or shatter.
 
 ## Hardness 3 – 4 (Soft Stones)
 - **Marble** → Mohs ~3 (calcite-based, scratches easily)  

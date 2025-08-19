@@ -31,30 +31,6 @@ The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure tro
 4. **Cliff erosion** (e.g., Scarborough Bluffs) adds new material.  
 
 ---
-## 🧭 Recommended Locations in GTA & Durham
-
-> [!tip] **Best Overall – Scarborough Bluffs / Bluffer’s Park (Toronto)**  
-> Erosion supplies fresh sandstone, shale, and occasional [[agate]] or [[Jasper]] pebbles. Great mix of [[Sedimentary]] and glacial erratics.  
-
-> [!tip] **Tommy Thompson Park & Cherry Beach (Toronto)**  
-> Pebble-rich shoreline, diverse [[Metamorphic]] and [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]] finds.  
-
-> [!tip] **Ashbridge’s Bay & The Beaches (Toronto)**  
-> Smooth, rounded glacial pebbles — good for [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]] and [[Jasper]].  
-
-> [!tip] **Rouge River & Don Valley Outflows (Toronto)**  
-> Streams deliver a constant supply of mixed glacial rocks.  
-
-> [!tip] **Lynde Shores Conservation Area (Whitby)**  
-> Gravel barrier beach — excellent for [[Rock Tumbling|tumbling]]-size stones.  
-
-> [!tip] **Darlington Provincial Park (Bowmanville)**  
-> Glacial moraine shoreline — [[Unakite]], [[Jasper]], and [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]] show up here.  
-
-> [!tip] **Pickering Beach / Paradise Beach & Carruthers Creek Mouth (Ajax)**  
-> Sandy-pebble beaches — small [[agate|agates]] and [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]] often appear after storms.  
-
----
 ## 🪨 Tips for Collecting
 
 - **Timing matters:** After storms or high winds, waves churn up fresh material.
@@ -79,7 +55,7 @@ The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure tro
     
 - **Conglomerates:** Pebbles cemented together, often with [[Jasper]] chunks.
 
-Bring a small **field guide** or use an app like _Rock Identifier_ for on-the-spot help.
+> **Tip:** Bring a small **field guide** or use an app like _Rock Identifier_ for on-the-spot help.
 
 ---
 
@@ -112,54 +88,3 @@ Bring a small **field guide** or use an app like _Rock Identifier_ for on-the-sp
 5. **Patience pays** – [[agate|Agates]] and [[Jasper]] may take longer in coarse grind but reward with brilliant polish.
     
 6. **Check progress often** – Some glacial stones contain fractures; remove weak pieces early.
-
----
-
-# 🔗 References & Resources 
-
-## Forums & Social Media
-[Great Lakes Rocks & Minerals \| A Small bowl of rough lake stones from Lake Ontario \| Facebook](https://www.facebook.com/groups/106675549490547/posts/2435959739895438/)
-
-[RockNerds Ontario \| Facebook](https://www.facebook.com/groups/2374179776176676)
-
-[Aidan de Haan (@ontario\_rockhound) • Instagram](https://www.instagram.com/ontario_rockhound/)
-
-[Planet Rocks (@planet\_rocks\_utsc) • Instagram photos and videos](https://www.instagram.com/planet_rocks_utsc/)
-
-## Guides
-[Minerals \| Earth Sciences Museum \| University of Waterloo](https://uwaterloo.ca/earth-sciences-museum/educational-resources/minerals)
-
-[Rockhounding 101 – Lakeside Gems Inc.](https://lakesidegems.com/blogs/news/rockhounding-101)
-
-[Rockhounding Checklist | Hastings County](https://hastingscounty.com/adventures/rockhounding-checklist)
-
-[Minerals \| Fred Haynes](https://fredmhaynes.com/category/minerals/)
-
-[Jolyon Ralph - The Most Common Minerals on the Earth](https://www.mindat.org/a/common_minerals)
-
-### Video
-[How to Identify Rocks - YouTube](https://www.youtube.com/watch?v=cyBLmW5k06c&t=612s)
-
-[Rockhounding 101 - YouTube](https://youtube.com/playlist?list=PLnFAl_1x4xMqxKk_ZuWNuCnyGc6UtuiPI&si=NQ9xauTyVt8WN91R)
-
-## Ontario-Specific
-[Let's Rock](https://planetrocks.utsc.utoronto.ca/index.html)
-
-[Hobby Mineral Collecting - Ministry of Energy and Mines](https://www.geologyontario.mndm.gov.on.ca/mines/lands/policies/hobby_mineral_collecting_policy_e.html)
-
-[Find Hidden Gems: Rockhounding for Beginners \| Come Wander](https://comewander.ca/story/find-hidden-gems-rockhounding-beginners)
-
-### Sites
-[Mineral Collecting - Bancroft Ontario](http://www.bancroftontario.com/rock-collecting-sites/)
-
-[Where to go rockhounding \| Destination Ontario](https://www.destinationontario.com/en-ca/articles/rockhounding-ontario)
-
-### Video
-
-[Lake Ontario Rocks! \| Rockhounding for Lake Ontario Beach Stones - YouTube](https://www.youtube.com/watch?v=COgDojKiyjA)
-
-[Collecting in the Ontario Grenville Geological Province - YouTube](https://www.youtube.com/watch?v=AhnF4zZQpcU)
-
-
-
-
