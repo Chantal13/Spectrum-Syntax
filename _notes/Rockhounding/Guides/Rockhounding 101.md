@@ -5,8 +5,6 @@ tags:
   - rockhounding
 ---
 
-# Rockhounding & Rock Tumbling
-
 The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure trove of collectible stones. From colourful [[jasper]] to translucent [[agate|agates]], many of these beach-worn pebbles are perfect candidates for [[Rock Tumbling|tumbling]] and polishing. This guide highlights what to look for, where to go, and how to get started.
 
 ---
@@ -49,17 +47,17 @@ The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure tro
     
 - **[[Jasper]]:** Opaque, solid colors—reds and greens are most common.
     
-- **[[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]]:** Glassy appearance, hardness test scratches glass.
+- **[[quartz|Quartz]]:** Glassy appearance, hardness test scratches glass.
     
 - **[[Unakite]]:** Green-pink mottling ([[feldspar]] + [[epidote]]).
     
-- **Conglomerates:** Pebbles cemented together, often with [[Jasper]] chunks.
+- **[[conglomerate|Conglomerates]]:** Pebbles cemented together, often with [[Jasper]] chunks.
 
 > **Tip:** Bring a small **field guide** or use an app like _Rock Identifier_ for on-the-spot help.
 
 ---
 
-## 🎒 Recommended [[Rockhounding]] Equipment
+## 🎒 Recommended Rockhounding Equipment
 
 - **Rock hammer & chisel** (for creek beds or breaking larger stones).
     
@@ -75,9 +73,9 @@ The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure tro
 
 ---
 
-## ⚙️ Tips for [[Rock Tumbling|Tumbling]] Lake Ontario Stones
+## ⚙️ Tips for Rock Tumbling|Tumbling Lake Ontario Stones
 
-1. **Sort by hardness** – Tumble [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]], [[Jasper]], and [[agate]] together ([[Mohs Hardness Scale|Mohs]] 6.5–7). Softer rocks will grind away too quickly.
+1. **Sort by hardness** – Tumble [[quartz]], [[jasper]], and [[agate]] together ([[Mohs Hardness Scale|Mohs]] 6.5–7). Softer rocks will grind away too quickly.
     
 2. **Start small** – Many Lake Ontario stones are already rounded; use shorter coarse grind cycles.
     
@@ -85,6 +83,6 @@ The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure tro
     
 4. **Fill your barrel** – Use ceramic filler or smaller pebbles to cushion larger stones.
     
-5. **Patience pays** – [[agate|Agates]] and [[Jasper]] may take longer in coarse grind but reward with brilliant polish.
+5. **Patience pays** – [[agate|Agates]] and [[jasper]] may take longer in coarse grind but reward with brilliant polish.
     
 6. **Check progress often** – Some glacial stones contain fractures; remove weak pieces early.

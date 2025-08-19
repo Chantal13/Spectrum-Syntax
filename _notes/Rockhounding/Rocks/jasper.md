@@ -5,7 +5,6 @@ tags:
   - rockhounding
   - tumbling
 aliases:
-  - jasper
   - jaspers
   - Jaspers
   - Jasper
