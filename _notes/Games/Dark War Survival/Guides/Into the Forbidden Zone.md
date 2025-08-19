@@ -11,12 +11,12 @@ In play, you build/upgrade turrets and basic income sources to survive waves; ea
 
 ## Core Strategy Flow
 
-1. **Economy First** — Build [[coin generator|💰 coin generators]] early; the more coins you produce, the faster you can upgrade.
+1. **Economy First** — Build [[coin generator|💰coin generators]] early; the more coins you produce, the faster you can upgrade.
 2. **Upgrade the [[bed|🛏 bed]]** — Do this early to boost coin production.
 3. **Defensive [[weapon|🔫 weapons]]** — Place **3 [[weapon|weapons]]** near the [[bed]] and upgrade them to **Level 4** quickly.
 4. **Add a Fourth [[weapon]]** — Gives extra firepower when waves get harder.
 5. **Upgrade [[weapon|Weapons]] Further** — Push main [[weapon|weapons]] to **Level 7** (or as high as you can).
-6. **[[door|🚪 Door Upgrade Timing]]** — Only upgrade the [[door]] **when [[zombie|zombies]] are attacking it**, ideally from **Level 5 → Level 6**.
+6. **[[door|🚪 Door Upgrade Timing]]** — Only upgrade the [[door]] **when [[🧟‍♀️zombies]] are attacking it**, ideally from **Level 5 → Level 6**.
 
 ## Placement Diagram
 
@@ -57,7 +57,7 @@ In play, you build/upgrade turrets and basic income sources to survive waves; ea
 
 - Focus on **economy → defense → reactive reinforcement**.
 - Avoid overspending; only upgrade what’s necessary for the stage.
-- Watch [[zombie]] movement and adjust your layout or upgrade timing.
+- Watch [[🧟‍♀️zombies]] movement and adjust your layout or upgrade timing.
 
 ## Sources
 

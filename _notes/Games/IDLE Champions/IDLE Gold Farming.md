@@ -13,9 +13,9 @@ _Last Updated: January 13, 2025 (Nixie, Mehen, Eric, Stoki update)_
 
 Hi everyone!
 
-This is a **basic-level introduction** to efficiently earning gold while playing **Idle Champions**.
+This is a **basic-level introduction** to efficiently earning gold while playing **[[Idle Champions]]**.
 
-You can find **all 180+ Idle Champions guides** by me here.
+You can find **all 180+ [[Idle Champions]] guides** by me here.
 
 **Support Options:**
 
@@ -55,7 +55,7 @@ This post is **not a definitive guide**. Instead, it answers common beginner que
 
 ## ❓ Why Do We Need to Farm Gold?
 
-Gold farming matters for **progression at all stages** of Idle Champions:
+Gold farming matters for **progression at all stages** of [[Idle Champions]]:
 
 1. **Adding/Leveling Champions** – Gold lets you build stronger formations.
     

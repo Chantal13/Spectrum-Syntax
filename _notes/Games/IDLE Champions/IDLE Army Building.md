@@ -36,7 +36,7 @@ layout:
     
 2. **Join an active alliance.** Rallies, help timers, and shared advice accelerate growth—and make shields/heals more affordable.
     
-3. **Into the Forbidden Zone** (mini-game): quick stages, steady **ruby** trickle as you climb; higher levels = more rubies/speedups. Make it part of your routine.
+3. **[[Into the Forbidden Zone]]** (mini-game): quick stages, steady **ruby** trickle as you climb; higher levels = more rubies/speedups. Make it part of your routine.
     
 4. **Resource use.** Don’t hoard so hard that buildings stall—use packs to keep **Watchtower, Radar, troop camps** moving. Save bigger bursts for point events once you’re competitive.
     

@@ -65,7 +65,7 @@ Feldspar is a **mineral group**, not a rock. It is most closely tied to:
 - **[[Granite]]** → Made of [[quartz]], feldspar, and mica  
 - **[[Unakite]]** → Pink feldspar, green epidote, and [[quartz]]  
 - **[[Gneiss]]** → Banded rock often alternating feldspar and [[quartz]]  
-- **[[Quartz]]** → Often found alongside feldspar in many rocks  
+- **[[quartz]]** → Often found alongside feldspar in many rocks  
 
 ---
 
