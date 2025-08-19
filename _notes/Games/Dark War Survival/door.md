@@ -5,7 +5,7 @@ aliases:
   - doors
   - Door
 ---
-# 🚪 Door
+# 🚪Door
 
 The final line of defense before [[zombies|zombies]] reach your [[bed]].
 
