@@ -2,6 +2,7 @@
 title: Blog
 aliases:
   - blog
+layout: page
 ---
 There isn't much here yet, but I wrote something about the Air Canada flight attendant strike: 
 
