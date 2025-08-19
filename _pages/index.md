@@ -15,9 +15,9 @@ Here is what I am currently interested in:
   <ul>
     <li><span style="font-weight: bold">[[Python]]</span></li>
     <li><span style="font-weight: bold">[[Rockhounding]]</span></li>
-    
+    <p>
     I also play games like these:
-    
+    </p>
     <li><span style="font-weight: bold">[[IDLE Champions]]</span></li>
     <li><span style="font-weight: bold">[[Dark War Survival]]</span></li>
   </ul>
