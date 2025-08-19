@@ -28,7 +28,7 @@ On the north shores of Lake Ontario, gneiss is most commonly found as **glacial 
 - **Hardness:** [[Mohs Hardness Scale|Mohs]] 6–7  
 - **[[Rock Tumbling|Tumbling]] Notes:**  
   - Polishes fairly well, though banding can sometimes undercut slightly.  
-  - [[Garnet]]-bearing gneiss produces especially attractive results.  
+  - [[garnet]]-bearing gneiss produces especially attractive results.  
 - **Best Use:** Decorative polished stones, display pieces, or cabochons.  
 
 > [!warning] Not all gneiss is suitable for [[Rock Tumbling|tumbling]]. Avoid crumbly specimens, as softer mica-rich layers may break down in the tumbler.  

@@ -45,13 +45,13 @@ The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure tro
 
 - **[[agate|Agates]]:** Look for translucency and banding (hold to light).
     
-- **[[Jasper]]:** Opaque, solid colors—reds and greens are most common.
+- **[[jasper]]:** Opaque, solid colors—reds and greens are most common.
     
 - **[[quartz|Quartz]]:** Glassy appearance, hardness test scratches glass.
     
 - **[[Unakite]]:** Green-pink mottling ([[feldspar]] + [[epidote]]).
     
-- **[[conglomerate|Conglomerates]]:** Pebbles cemented together, often with [[Jasper]] chunks.
+- **[[conglomerate|Conglomerates]]:** Pebbles cemented together, often with [[jasper]] chunks.
 
 > **Tip:** Bring a small **field guide** or use an app like _Rock Identifier_ for on-the-spot help.
 

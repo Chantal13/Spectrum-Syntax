@@ -63,7 +63,7 @@ Conglomerate belongs to the **Sedimentary Rock family**. It is closely related t
 ---
 
 ## Related Stones
-- **[[Jasper]]** → Often occurs as clasts inside puddingstone  
+- **[[jasper]]** → Often occurs as clasts inside puddingstone  
 - **[[quartz]]** → Common pebble within conglomerates  
 - **[[Breccia]]** → The angular cousin of conglomerate  
 

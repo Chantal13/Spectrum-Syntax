@@ -16,28 +16,28 @@ Rockhounding is the hobby of searching for, identifying, and collecting rocks, m
 # Rocks & Minerals
 [[Rocks and Minerals]] Index
 
-## Rock Categories
-- [[igneous|Igneous Rocks]]
-- [[metamorphic|Metamorphic Rocks]]
-- [[sedimentary|Sedimentary Rocks]]
-
 ## Minerals
+- [[agate]]
 - [[calcite]]
 - [[epidote]]
 - [[feldspar]]
 - [[fluorite]]
+- [[garnet]]
+- [[jasper]]
 - [[pyrite]]
 - [[quartz]]
 
 ## Rocks
-- [[agate]]
-- [[breccia]]
-- [[conglomerate]]
-- [[garnet]]
-- [[gneiss]]
-- [[jasper]]
-- [[limestone]]
-- [[unakite]]
+- [[igneous|Igneous Rocks]]
+	- [[granite]]
+- [[metamorphic|Metamorphic Rocks]]
+	- [[gneiss]]
+	- [[unakite]]
+- [[sedimentary|Sedimentary Rocks]]
+	- [[Conglomerate vs Breccia]]
+	- [[breccia]]
+	- [[conglomerate]]
+	- [[limestone]]
 
 # Local Notes
 - [[Collection Log]]

@@ -61,7 +61,7 @@ It is closely related to:
 
 ## Related Stones
 - **Conglomerate ([[conglomerate|Puddingstone]])** → Rounded pebbles instead of angular fragments  
-- **[[Jasper]]** → Can appear as clasts in breccia  
+- **[[jasper]]** → Can appear as clasts in breccia  
 - **[[quartz]]** → Common in both breccia and [[conglomerate]]  
 
 ---

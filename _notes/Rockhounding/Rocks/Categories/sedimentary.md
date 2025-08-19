@@ -21,5 +21,5 @@ Sedimentary rocks form from the accumulation and compaction of sediments such as
 - Softer than [[igneous]]/[[metamorphic]] rocks  
 
 
->  Soft sedimentary rocks like shale and limestone will not polish well in a tumbler. Stick to harder varieties like [[Jasper]].  
+>  Soft sedimentary rocks like shale and limestone will not polish well in a tumbler. Stick to harder varieties like [[jasper]].  
 

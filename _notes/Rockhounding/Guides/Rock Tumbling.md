@@ -40,7 +40,7 @@ Here are the most common stones suitable for tumbling in the Lake Ontario region
 
 ### Microcrystalline [[quartz]] Varieties
 - [[agate]] → Banded, translucent [[quartz]]. Rare but possible along Lake Ontario. Excellent polish.  
-- [[Jasper]] → Opaque red, brown, or yellow [[quartz]]. Durable and great for tumbling.  
+- [[jasper]] → Opaque red, brown, or yellow [[quartz]]. Durable and great for tumbling.  
 - [[Chert / Flint]] → Hard, smooth cryptocrystalline [[quartz]], often grey or brown. Takes a glossy finish.  
 
 ---

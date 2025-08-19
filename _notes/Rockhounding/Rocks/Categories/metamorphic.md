@@ -20,7 +20,7 @@ Metamorphic rocks form when existing rocks are transformed by heat, pressure, or
 
 **Connection to [[Rockhounding]]:**  
 - [[Unakite]] is a metamorphic [[granite]] altered by hydrothermal fluids.  
-- [[Garnet]]-bearing [[Gneiss]] is also found in Lake Ontario pebbles.  
+- [[garnet]]-bearing [[Gneiss]] is also found in Lake Ontario pebbles.  
 
 Metamorphic rocks are among the best candidates for [[Rock Tumbling|tumbling]] due to their durability and striking colours.  
 
