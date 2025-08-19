@@ -21,14 +21,14 @@ Many of these stones are durable enough for **rock tumbling**, polishing up into
 Here are the most common stones suitable for tumbling in the Lake Ontario region. Each links to a standalone page with more detail.
 
 ### Igneous Rocks
-- [[granite]] → Speckled rock of [[quartz]], feldspar, and mica. Polishes well in smaller-grained pieces.  
+- [[granite]] → Speckled rock of [[quartz]], [[feldspar]], and mica. Polishes well in smaller-grained pieces.  
 - [[basalt]] → Dark, fine-grained volcanic rock. Often dull after tumbling but smooth.  
 - [[feldspar]] → Found within [[granite]] and [[unakite]]. Pink, white, or green crystals can take a satin polish.  
 - [[quartz]] → Grey, white, or translucent. A classic tumbling stone with excellent shine.  
 
 ### Metamorphic Rocks
 - [[gneiss]] → Banded cousin of [[granite]]. Tumbling can highlight its wavy layers.  
-- [[unakite]] → A mix of green epidote, pink feldspar, and [[quartz]]. One of the most striking Lake Ontario tumbling stones.  
+- [[unakite]] → A mix of green epidote, pink [[feldspar]], and [[quartz]]. One of the most striking Lake Ontario tumbling stones.  
 - [[epidote]] → Green mineral usually seen within [[unakite]]. Satin polish with rich colour.  
 - [[marble]] → Crystalline metamorphosed limestone. Softer ([[Mohs Hardness Scale|Mohs]] 3), so requires special care.  
 
@@ -77,7 +77,7 @@ Here are the most common stones suitable for tumbling in the Lake Ontario region
 1. **Sort by Hardness** → Don’t tumble soft marble with hard [[quartz]]. Keep similar hardnesses together.  
 2. **Use Stages Properly** → Each grit stage (coarse, medium, fine, polish) should run for at least a week.  
 3. **Check Frequently** → Remove cracked or undercut stones before advancing stages.  
-4. **Finish Strong** → [[quartz]], [[jasper]], and [[agate]] will take a glass-like polish. Feldspar-rich rocks (like [[granite]]) may have a softer sheen.  
+4. **Finish Strong** → [[quartz]], [[jasper]], and [[agate]] will take a glass-like polish. [[Feldspar]]-rich rocks (like [[granite]]) may have a softer sheen.  
 
 ---
 

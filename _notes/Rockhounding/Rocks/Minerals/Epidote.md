@@ -10,7 +10,7 @@ aliases:
   - Epidote
 ---
 ## Overview
-Epidote is a green **silicate mineral** that often forms during metamorphism when other minerals are altered by heat, pressure, and hydrothermal fluids. It is best known for giving **[[unakite]]** its striking green color (alongside pink feldspar and [[quartz]]).  
+Epidote is a green **silicate mineral** that often forms during metamorphism when other minerals are altered by heat, pressure, and hydrothermal fluids. It is best known for giving **[[unakite]]** its striking green color (alongside pink [[feldspar]] and [[quartz]]).  
 
 While epidote rarely appears as large standalone crystals along Lake Ontario’s beaches, it is an important mineral to recognize because of its role in [[unakite]] and some metamorphic rocks.
 
@@ -30,7 +30,7 @@ While epidote rarely appears as large standalone crystals along Lake Ontario’s
 ---
 
 ## [[Rock Tumbling|Tumbling]] Qualities
-- **Hardness:** [[Mohs Hardness Scale|Mohs]] 6–7 (similar to [[quartz]] and feldspar)  
+- **Hardness:** [[Mohs Hardness Scale|Mohs]] 6–7 (similar to [[quartz]] and [[feldspar]])  
 - **Polishing Notes:**  
   - Epidote alone is not often tumbled, but in [[unakite]] it polishes well.  
   - Produces a smooth, satin-like finish with rich green tones.  
@@ -41,7 +41,7 @@ While epidote rarely appears as large standalone crystals along Lake Ontario’s
 ---
 
 ## Connection to Lake Ontario
-- **Origin:** Forms during metamorphism of feldspar-rich rocks (like [[granite]]).  
+- **Origin:** Forms during metamorphism of [[feldspar]]-rich rocks (like [[granite]]).  
 - **Transport:** Epidote-rich rocks (like [[unakite]] and [[gneiss]]) were carried south from the Canadian Shield by glaciers.  
 - **Where to Find:**  
   - Primarily in **[[unakite]] pebbles** on GTA & Durham beaches (Scarborough, Rouge River, Lynde Shores, Darlington).  
@@ -57,7 +57,7 @@ Epidote is part of the **silicate mineral group** and commonly occurs in metamor
 ---
 
 ## Related Stones
-- **[[Unakite]]** → Epidote + feldspar + [[quartz]]  
+- **[[Unakite]]** → Epidote + [[feldspar]] + [[quartz]]  
 - **[[Gneiss]]** → May contain small epidote inclusions  
 - **Feldspar** → Often altered to epidote during metamorphism  
 

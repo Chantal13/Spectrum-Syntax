@@ -8,7 +8,7 @@ aliases:
   - Feldspar
 ---
 ## Overview
-Feldspar is a group of **rock-forming minerals** that make up more than half of the Earth’s crust. They are the primary components of many [[igneous]], metamorphic, and sedimentary rocks, and serve as the “framework” minerals that bind rocks together.  
+Feldspar is a group of **rock-forming minerals** that make up more than half of the Earth’s crust. They are the primary components of many [[igneous]], [[metamorphic]], and [[sedimentary]] rocks, and serve as the “framework” minerals that bind rocks together.  
 
 On the north shores of Lake Ontario, feldspar is most often found as part of **[[granite]], [[gneiss]], and [[unakite]] pebbles** brought south from the Canadian Shield by glaciers. While rarely collected as a standalone mineral in beach gravels, it’s an essential part of many [[Rock Tumbling|tumbling]]-quality rocks.
 
@@ -66,7 +66,7 @@ Feldspar is a **mineral group**, not a rock. It is most closely tied to:
 - **[[Granite]]** → Made of [[quartz]], feldspar, and mica  
 - **[[Unakite]]** → Pink feldspar, green epidote, and [[quartz]]  
 - **[[Gneiss]]** → Banded rock often alternating feldspar and [[quartz]]  
-- **[[quartz]]** → Often found alongside feldspar in many rocks  
+- **[[Quartz]]** → Often found alongside feldspar in many rocks  
 
 ---
 

@@ -26,13 +26,13 @@ This chart shows the common [[Rock Tumbling|tumbling]] stones found along the no
 ## Hardness 5 – 6 (Medium Hard Stones)
 - **Feldspar** → Mohs 6 (pink, white, or green crystals in [[granite]], [[unakite]], [[gneiss]])  
 - **Epidote** → Mohs 6–7 (green mineral, takes a satin polish)  
-- **[[Unakite]]** → Mohs 6 (composite rock of feldspar, epidote, [[quartz]] – hardness varies)  
+- **[[Unakite]]** → Mohs 6 (composite rock of [[feldspar]], epidote, [[quartz]] – hardness varies)  
 - **Conglomerate** → Mohs 5–6 (depends on cement and pebbles inside)  
 - **[[Breccia]]** → Mohs 5–6 (similar to conglomerate but with angular fragments)  
-- **[[Granite]]** → Mohs 6–7 (mix of feldspar and [[quartz]], usually solid enough for [[Rock Tumbling|tumbling]])  
-- **[[Gneiss]]** → Mohs 6–7 (metamorphic, alternating feldspar and [[quartz]] bands)  
+- **[[Granite]]** → Mohs 6–7 (mix of [[feldspar]] and [[quartz]], usually solid enough for [[Rock Tumbling|tumbling]])  
+- **[[Gneiss]]** → Mohs 6–7 (metamorphic, alternating [[feldspar]] and [[quartz]] bands)  
 
-> [!tip] Medium hardness stones can be tumbled together. Expect mixed results with polish — feldspar surfaces may look satin while [[quartz]] shines.
+> [!tip] Medium hardness stones can be tumbled together. Expect mixed results with polish — [[feldspar]] surfaces may look satin while [[quartz]] shines.
 
 ---
 

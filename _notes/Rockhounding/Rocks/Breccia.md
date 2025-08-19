@@ -7,11 +7,11 @@ aliases:
   - Breccia
 ---
 ## Overview
-Breccia is a **sedimentary rock** (sometimes volcanic) made of **angular fragments** cemented together by a finer-grained material such as calcite, silica, or clay. Unlike **conglomerate**, which contains rounded pebbles, breccia clasts are sharp and jagged, indicating they were broken and deposited without traveling far.  
+Breccia is a **sedimentary rock** (sometimes volcanic) made of **angular fragments** cemented together by a finer-grained material such as calcite, silica, or clay. Unlike **[[conglomerate]]**, which contains rounded pebbles, breccia clasts are sharp and jagged, indicating they were broken and deposited without traveling far.  
 
-On the north shores of Lake Ontario, breccia can occasionally be found in glacial gravels and erratics. Though less common than conglomerate, it’s still worth keeping an eye out for these “jagged puzzle rocks.”
+On the north shores of Lake Ontario, breccia can occasionally be found in glacial gravels and erratics. Though less common than [[conglomerate]], it’s still worth keeping an eye out for these “jagged puzzle rocks.”
 
-> [!info] Unsure if you’ve found Breccia or Conglomerate?  
+> [!info] Unsure if you’ve found Breccia or [[Conglomerate]]?  
 > The difference comes down to **clast shape** — rounded vs. angular.  
 > 👉 Learn how to tell them apart here → [[Conglomerate vs Breccia]]
 
@@ -31,7 +31,7 @@ On the north shores of Lake Ontario, breccia can occasionally be found in glacia
 ## [[Rock Tumbling|Tumbling]] Qualities
 - **Hardness:** Varies depending on clast composition and cement  
 - **Polishing Notes:**  
-  - Like conglomerate, breccia may polish unevenly because clasts and cement differ in hardness.  
+  - Like [[conglomerate]], breccia may polish unevenly because clasts and cement differ in hardness.  
   - Best results come from dense, silica-cemented specimens.  
   - Polished breccia reveals dramatic contrast between fragments and matrix.  
 - **Lapidary Use:** Often cut into slabs or cabochons for decorative use.  
@@ -44,7 +44,7 @@ On the north shores of Lake Ontario, breccia can occasionally be found in glacia
 - **Origin:** Formed in areas of faulting, landslides, or volcanic activity where rocks fracture and are quickly cemented together.  
 - **Transport:** Glaciers carried breccia erratics into Southern Ontario during the Ice Age.  
 - **Where to Find:**  
-  - Less common than conglomerate, but may appear in mixed gravels along Toronto’s beaches  
+  - Less common than [[conglomerate]], but may appear in mixed gravels along Toronto’s beaches  
   - Possible in Durham Region beaches (Lynde Shores, Darlington) after storms  
 
 ---
@@ -61,9 +61,9 @@ It is closely related to:
 ---
 
 ## Related Stones
-- **Conglomerate (Puddingstone)** → Rounded pebbles instead of angular fragments  
+- **Conglomerate ([[conglomerate|Puddingstone]])** → Rounded pebbles instead of angular fragments  
 - **[[Jasper]]** → Can appear as clasts in breccia  
-- **[[quartz]]** → Common in both breccia and conglomerate  
+- **[[quartz]]** → Common in both breccia and [[conglomerate]]  
 
 ---
 

@@ -7,7 +7,7 @@ aliases:
   - Granite
 ---
 ## Overview
-Granite is a coarse-grained **[[igneous]] rock** composed mainly of **[[quartz]], feldspar, and mica**. It forms when magma cools slowly beneath the Earth’s surface, giving its crystals time to grow large and visible.  
+Granite is a coarse-grained **[[igneous]] rock** composed mainly of **[[quartz]], [[feldspar]], and mica**. It forms when magma cools slowly beneath the Earth’s surface, giving its crystals time to grow large and visible.  
 
 Along the north shores of Lake Ontario, granite is common in glacial erratics — stones carried south from the Canadian Shield during the last Ice Age. These rounded granite pebbles are durable, colorful, and often used in [[rock tumbling]].
 
@@ -15,9 +15,9 @@ Along the north shores of Lake Ontario, granite is common in glacial erratics �
 
 ## Appearance & Identification
 - **Texture:** Coarse-grained, interlocking crystals  
-- **Color:** Pink, white, or grey background (feldspar + [[quartz]]) with black specks (mica, hornblende)  
+- **Color:** Pink, white, or grey background ([[feldspar]] + [[quartz]]) with black specks (mica, hornblende)  
 - **Minerals:**  
-  - Pink or white → Feldspar  
+  - Pink or white → [[Feldspar]]  
   - Glassy grey → [[quartz]]  
   - Black flakes → Biotite or hornblende  
 - **Hardness:** [[Mohs Hardness Scale|Mohs]] 6–7 (depends on [[quartz]] content)  
@@ -30,11 +30,11 @@ Along the north shores of Lake Ontario, granite is common in glacial erratics �
 ## Tumbling Qualities
 - **Hardness:** [[Mohs Hardness Scale|Mohs]] 6–7  
 - **Polishing Notes:**  
-  - Granite can polish, but softer feldspar and mica may undercut compared to [[quartz]].  
+  - Granite can polish, but softer [[feldspar]] and mica may undercut compared to [[quartz]].  
   - Best results with small, dense, fine-grained granite.  
   - Produces a speckled, glossy finish when successful.  
 
-> [!warning] Large-grained granite doesn’t tumble evenly — feldspar and mica may pit while [[quartz]] stays glossy.  
+> [!warning] Large-grained granite doesn’t tumble evenly — [[feldspar]] and mica may pit while [[quartz]] stays glossy.  
 
 ---
 
@@ -58,7 +58,7 @@ Granite belongs to the **[[Igneous]] Rock family** (intrusive type).
 - **Feldspar** → Pink or white crystals in granite  
 - **[[quartz]]** → Grey, glassy grains  
 - **[[Gneiss]]** → The metamorphic cousin of granite, banded instead of speckled  
-- **[[Unakite]]** → Granite altered by hydrothermal fluids (feldspar replaced by epidote)  
+- **[[Unakite]]** → Granite altered by hydrothermal fluids ([[feldspar]] replaced by epidote)  
 
 ---
 

@@ -23,8 +23,6 @@ Igneous rocks form when molten rock (magma or lava) cools and solidifies. They a
 - [[agate|Agates]] often form inside cavities (vesicles) of volcanic rocks.  
 - [[Granite]] erratics transported by glaciers can be found along Lake Ontario.  
 
-> Examples along Lake Ontario include [[agate|agates]] in glacial gravels and [[granite]] pebbles.  
 
-> Example connection:  
 > Many **[[agate|agates]]** found along Lake Ontario originated in igneous rocks before glaciers carried them south.  
 > Explore agates here → [[agate|Agate]]

@@ -4,18 +4,18 @@ aliases:
   - rockhounding
 ---
 
-# Rockhounding Resources
 [[Rockhounding 101]]
 
 [[Conglomerate vs Breccia]]
 
 [[Mohs Hardness Scale]]
+
 ## Categories
-[[Igneous]]
+[[igneous|Igneous Rocks]]
 
-[[Metamorphic]]
+[[metamorphic|Metamorphic Rocks]]
 
-[[Sedimentary]]
+[[sedimentary|Sedimentary Rocks]]
 
 ## Minerals
 [[epidote]]
@@ -29,15 +29,15 @@ aliases:
 
 [[breccia]]
 
-[[Conglomerate]]
+[[conglomerate]]
 
-[[Garnet]]
+[[garnet]]
 
-[[Gneiss]]
+[[gneiss]]
 
-[[Jasper]]
+[[jasper]]
 
-[[Unakite]]
+[[unakite]]
 
 ## Rock Tumbling
-[[Rock Tumbling]]
+[[Rock Tumbling|Tumbling]]
