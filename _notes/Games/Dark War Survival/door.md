@@ -7,24 +7,24 @@ aliases:
 ---
 # 🚪 Door
 
-The final line of defense before [[🧟‍♀️zombies|zombies]] reach your [[bed]].
+The final line of defense before [[zombies|zombies]] reach your [[bed]].
 
 ---
 
 ## Function
-- Blocks [[🧟‍♀️zombies|zombies]] temporarily.
+- Blocks [[zombies|zombies]] temporarily.
 - Can be upgraded to increase durability.
 
 ---
 
 ## Importance
-- Buys time for [[weapon|weapons]] to kill [[🧟‍♀️zombies|zombies]].
+- Buys time for [[weapon|weapons]] to kill [[zombies|zombies]].
 - Critical for holding off large waves.
 
 ---
 
 ## Upgrade Timing
-- Only upgrade when [[🧟‍♀️zombies|zombies]] are attacking.
+- Only upgrade when [[zombies|zombies]] are attacking.
 - Common timing: Level 5 → Level 6 during attack for maximum stall.
 
 ---

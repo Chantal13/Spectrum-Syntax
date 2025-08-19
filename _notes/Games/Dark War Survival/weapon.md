@@ -6,7 +6,7 @@ aliases:
 ---
 # 🔫 Weapon
 
-Defensive structures that attack [[🧟‍♀️zombies|zombies]] in *[[Into the Forbidden Zone]]*.
+Defensive structures that attack [[zombies|zombies]] in *[[Into the Forbidden Zone]]*.
 
 ---
 
@@ -17,7 +17,7 @@ Defensive structures that attack [[🧟‍♀️zombies|zombies]] in *[[Into the
 ---
 
 ## Importance
-- Prevent [[🧟‍♀️zombies|zombies]] from reaching the [[bed]] and [[door]].
+- Prevent [[zombies|zombies]] from reaching the [[bed]] and [[door]].
 - Stronger weapons delay the need for costly [[door]] upgrades.
 
 ---
