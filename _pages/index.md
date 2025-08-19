@@ -9,7 +9,7 @@ permalink: /
 
 This site is my working notebook—mostly rockhounding (Ontario-focused but useful anywhere), a bit of Python programming, and, for now, one humble blog post. I like doing lots of different things—aviation, guitar, and whatever else catches my curiosity—so expect the topics to wander as I do.
 
-Take a look at my <span style="font-weight: bold">[[blog]]</span> while you are here, too.
+Take a look at my blog <span style="font-weight: bold">[[Inside My Mind]]</span> while you are here.
 
 Here is what I am currently interested in:
   <ul>
