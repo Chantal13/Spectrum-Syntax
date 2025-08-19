@@ -1,3 +1,7 @@
+---
+title:
+layout:
+---
 
 ### (F2P-first, with optional small spends)
 

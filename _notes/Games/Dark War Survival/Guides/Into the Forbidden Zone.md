@@ -1,7 +1,12 @@
 ---
 title: Into the Forbidden Zone
+layout: note
 draft: false
 ---
+**Into the Forbidden Zone** is Dark War Survival’s short, tower-defence-style side mode that unlocks as you progress through Adventure. You access it from your city (look for the small **ghost icon** above the Warehouse). Each stage asks you to protect your survivor by placing and upgrading defences while managing a simple economy; clears award a steady drip of **rubies**, **speedups**, and some resources, with payouts increasing at higher levels. 
+
+In play, you build/upgrade turrets and basic income sources to survive waves; early levels are quick, later ones (e.g., the much-discussed level 28) spike in difficulty but pay more—players report rewards like ~200 rubies and ~90×1-minute speedups on that stage. It’s a reliable F2P routine: short sessions, meaningful premium-currency trickle, and no spending required—though it rewards careful placement and timely upgrades.
+
 # Build & Upgrade Guide
 
 ## Core Strategy Flow
