@@ -1,0 +1,70 @@
+---
+title: Granite
+draft: false
+tags:
+  - rockhounding
+aliases:
+  - granite
+---
+# Granite
+
+## Overview
+Granite is a coarse-grained **igneous rock** composed mainly of **quartz, feldspar, and mica**. It forms when magma cools slowly beneath the Earth’s surface, giving its crystals time to grow large and visible.  
+
+Along the north shores of Lake Ontario, granite is common in glacial erratics — stones carried south from the Canadian Shield during the last Ice Age. These rounded granite pebbles are durable, colorful, and often used in rock tumbling.
+
+---
+
+## Appearance & Identification
+- **Texture:** Coarse-grained, interlocking crystals  
+- **Color:** Pink, white, or grey background (feldspar + quartz) with black specks (mica, hornblende)  
+- **Minerals:**  
+  - Pink or white → Feldspar  
+  - Glassy grey → Quartz  
+  - Black flakes → Biotite or hornblende  
+- **Hardness:** Mohs 6–7 (depends on quartz content)  
+
+> [!tip] Field ID  
+> If you see a speckled rock with pink/white and black crystals, it’s probably granite.  
+
+---
+
+## Tumbling Qualities
+- **Hardness:** Mohs 6–7  
+- **Polishing Notes:**  
+  - Granite can polish, but softer feldspar and mica may undercut compared to quartz.  
+  - Best results with small, dense, fine-grained granite.  
+  - Produces a speckled, glossy finish when successful.  
+
+> [!warning] Large-grained granite doesn’t tumble evenly — feldspar and mica may pit while quartz stays glossy.  
+
+---
+
+## Connection to Lake Ontario
+- **Origin:** From the ancient Canadian Shield (over 1 billion years old).  
+- **Transport:** Glaciers carried granite boulders and cobbles south into Southern Ontario.  
+- **Where to Find:**  
+  - Beaches near Scarborough Bluffs, Rouge River, Cherry Beach  
+  - Durham Region beaches (Lynde Shores, Darlington, Pickering)  
+
+---
+
+## Rock Family
+Granite belongs to the **Igneous Rock family** (intrusive type).  
+
+> [!info] Learn more about the **Igneous Rock family** here → [[Igneous Rocks]]  
+
+---
+
+## Related Stones
+- **Feldspar** → Pink or white crystals in granite  
+- **Quartz** → Grey, glassy grains  
+- **Gneiss** → The metamorphic cousin of granite, banded instead of speckled  
+- **Unakite** → Granite altered by hydrothermal fluids (feldspar replaced by epidote)  
+
+---
+
+## References
+- [Granite (Wikipedia)](https://en.wikipedia.org/wiki/Granite)  
+- [Ontario Geological Survey – Geology of Ontario](https://www.ontario.ca/page/geology-ontario)  
+- [Igneous Rocks (Wikipedia)](https://en.wikipedia.org/wiki/Igneous_rock)  
