@@ -5,15 +5,18 @@ id: home
 permalink: /
 ---
 
-# Welcome! 🌱
+# Welcome to Spectrum Syntax! 🧿
 
 <p style="padding: 3em 1em; background: #f5f7ff; border-radius: 4px;">
-  Take a look at <span style="font-weight: bold">[[Your first note]]</span> to get started on your exploration.
+  Take a look at my <span style="font-weight: bold">[[Blog]]</span> to get started.
 </p>
 
-This digital garden template is free, open-source, and [available on GitHub here](https://github.com/maximevaillancourt/digital-garden-jekyll-template).
+Here is what I am currently interested in:
 
-The easiest way to get started is to read this [step-by-step guide explaining how to set this up from scratch](https://maximevaillancourt.com/blog/setting-up-your-own-digital-garden-with-jekyll).
+<ul>
+  <li><span style="font-weight: bold">[[Python]]</span></li>
+  <li><span style="font-weight: bold">[[Rockhounding]]</span></li>
+</ul>
 
 <strong>Recently updated notes</strong>
 
