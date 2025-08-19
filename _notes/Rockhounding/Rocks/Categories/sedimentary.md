@@ -8,9 +8,6 @@ aliases:
   - sedimentary
   - Sedimentary
 ---
-# Sedimentary Rocks
-
-**Definition:**  
 Sedimentary rocks form from the accumulation and compaction of sediments such as sand, clay, or organic material.
 
 **Types:**  

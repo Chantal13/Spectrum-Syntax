@@ -9,7 +9,6 @@ aliases:
   - Quartzes
   - Quartz
 ---
-**Formation:**  
 Quartz (SiO₂) is one of the most common minerals. It forms in **[[Igneous]]** ([[granite]]), **[[Metamorphic]]** ([[gneiss]], schist), and **[[Sedimentary]]** (cement, veins) contexts.  
 
 **Appearance & Identification:**  

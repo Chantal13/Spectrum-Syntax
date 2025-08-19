@@ -5,7 +5,7 @@ tags:
   - rockhounding
 ---
 
-# [[Rockhounding]] & [[Rock Tumbling|Tumbling]] along Lake Ontario’s Greater Toronto Shoreline
+# Rockhounding & Rock Tumbling
 
 The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure trove of collectible stones. From colourful [[jasper]] to translucent [[agate|agates]], many of these beach-worn pebbles are perfect candidates for [[Rock Tumbling|tumbling]] and polishing. This guide highlights what to look for, where to go, and how to get started.
 

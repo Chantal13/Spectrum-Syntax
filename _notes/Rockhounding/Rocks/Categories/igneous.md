@@ -8,7 +8,6 @@ aliases:
   - igneous
   - Igneous
 ---
-**Definition:**  
 Igneous rocks form when molten rock (magma or lava) cools and solidifies. They are the “fire-born” rocks of Earth’s crust.
 
 **Types:**  

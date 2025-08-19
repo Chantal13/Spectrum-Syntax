@@ -7,7 +7,6 @@ tags:
 aliases:
   - unakite
 ---
-**Formation:**  
 Unakite is a [[Metamorphic]] rock created when [[granite]] is altered by hydrothermal fluids, replacing [[feldspar]] with green [[epidote]].  
 
 **Appearance & Identification:**  

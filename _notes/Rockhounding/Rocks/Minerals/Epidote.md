@@ -9,7 +9,6 @@ aliases:
   - Epidotes
   - Epidote
 ---
-## Overview
 Epidote is a green **silicate mineral** that often forms during metamorphism when other minerals are altered by heat, pressure, and hydrothermal fluids. It is best known for giving **[[unakite]]** its striking green color (alongside pink [[feldspar]] and [[quartz]]).  
 
 While epidote rarely appears as large standalone crystals along Lake Ontario’s beaches, it is an important mineral to recognize because of its role in [[unakite]] and some metamorphic rocks.

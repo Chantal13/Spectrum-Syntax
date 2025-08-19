@@ -1,13 +1,11 @@
-# Python Programming Language: An Overview
-
-> [!NOTE] Python 101
-> Check out [[Python 101]] for recommendations on courses and IDEs.
-
 ## What is Python?
 
 Python is a **high-level programming language** created by **Guido van Rossum** in 1991. Designed to be **easy to learn and simple to read**, Python allows developers to write powerful programs with fewer lines of code compared to many other languages. Interestingly, the name _Python_ comes not from the snake but from the comedy group _Monty Python’s Flying Circus_.
 
 Because of its focus on readability and flexibility, Python is often recommended as the **best programming language for beginners**. At the same time, it is also powerful enough for professional developers working on advanced projects.
+
+> [!NOTE] [[Python 101]]
+> Check out [[Python 101]] for recommendations on courses and IDEs.
 
 ---
 

@@ -7,9 +7,6 @@ aliases:
   - Metamorphic Rocks
   - Metamorphic
 ---
-# Metamorphic Rocks
-
-**Definition:**  
 Metamorphic rocks form when existing rocks are transformed by heat, pressure, or chemical processes without melting.
 
 **Types:**  
