@@ -7,10 +7,6 @@ tags:
   - CUPE
 date: 2025-08-18T17:00:00
 ---
-# Air Canada Strike
-
-![[2025-08-18-NofAir Canada.png]]
-
 Air Canada’s 10,000 flight attendants, represented by CUPE, have been without a collective agreement since March 31, 2024, when their previous contract expired. Negotiations for a new agreement began in late 2023 but stalled after nine months of what CUPE describes as stonewalling by the airline. During this time, flight attendants—who are only paid once the aircraft doors are closed—continued to face poverty wages and unpaid hours, while Air Canada reported billions in profit. With no progress at the bargaining table and members having already waited more than a year without a contract, flight attendants voted overwhelmingly to strike with a **99% strike mandate**, setting the stage for the current work stoppage.
 
 > [!summary] Air Canada Flight Attendants – At a Glance
