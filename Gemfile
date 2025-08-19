@@ -8,3 +8,7 @@ gem "jekyll", "~> 4.4"
 gem "jekyll-last-modified-at", git: "https://github.com/maximevaillancourt/jekyll-last-modified-at", branch: "add-support-for-files-in-git-submodules"
 gem "webrick", "~> 1.9"
 gem "nokogiri"
+
+# Gemfile
+# If you have a json line, prefer:
+gem "json", ">= 2.9.2"
