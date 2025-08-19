@@ -16,7 +16,7 @@ Here is what I am currently interested in:
     <li><span style="font-weight: bold">[[Python]]</span></li>
     <li><span style="font-weight: bold">[[Rockhounding]]</span></li>
   </ul>
-    I also play games like these:
+I also play games like these:
   <ul>
     <li><span style="font-weight: bold">[[IDLE Champions]]</span></li>
     <li><span style="font-weight: bold">[[Dark War Survival]]</span></li>
