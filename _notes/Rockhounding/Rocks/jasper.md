@@ -12,7 +12,7 @@ aliases:
 # 🔴 Jasper
 
 **Formation:**  
-Jasper is an opaque chalcedony ([[Quartz|quartz]]) coloured by mineral impurities, usually iron oxides. It often originates in silica-rich [[Sedimentary]] deposits, though glacial action has moved it widely.  
+Jasper is an opaque chalcedony ([[quartz|quartz]]) coloured by mineral impurities, usually iron oxides. It often originates in silica-rich [[Sedimentary]] deposits, though glacial action has moved it widely.  
 
 **Appearance & Identification:**  
 - Opaque, solid colors  
@@ -21,7 +21,7 @@ Jasper is an opaque chalcedony ([[Quartz|quartz]]) coloured by mineral impuritie
 - Lacks translucency (distinguishes it from [[Agate]])  
 
 > [!tip] Tumbling Qualities  
-> - Hardness: Mohs 6.5–7  
+> - Hardness: [[Mohs Hardness Scale|Mohs]] 6.5–7  
 > - Produces a glossy, smooth polish  
 > - Colors deepen after tumbling  
 

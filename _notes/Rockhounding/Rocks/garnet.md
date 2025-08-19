@@ -23,7 +23,7 @@ On the north shores of Lake Ontario, garnets are most often found embedded in **
 - **Colour:** Most common in deep red, but can also be orange, brown, green, or black  
 - **Luster:** Glassy to resinous  
 - **Transparency:** Transparent to opaque  
-- **Hardness:** Mohs 6.5–7.5  
+- **Hardness:** [[Mohs Hardness Scale|Mohs]] 6.5–7.5  
 
 > [!tip] Field ID Tip  
 > Look for small, dark red “spots” in banded gneiss pebbles — these are usually garnets. Hold them in the light to see their glassy shine.  
@@ -31,7 +31,7 @@ On the north shores of Lake Ontario, garnets are most often found embedded in **
 ---
 
 ## Tumbling & Lapidary Qualities
-- **Hardness:** Mohs 6.5–7.5 (comparable to quartz)  
+- **Hardness:** [[Mohs Hardness Scale|Mohs]] 6.5–7.5 (comparable to [[quartz]])  
 - **Tumbling Notes:**  
   - Garnets embedded in gneiss polish best when the whole stone is tumbled.  
   - Loose garnet crystals may fracture; cabbing or faceting works better than tumbling for individual crystals.  

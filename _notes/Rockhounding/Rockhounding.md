@@ -22,7 +22,7 @@ aliases:
 
 [[Feldspar]]
 
-[[Quartz]]
+[[quartz]]
 
 ## Rocks
 [[Agate]]

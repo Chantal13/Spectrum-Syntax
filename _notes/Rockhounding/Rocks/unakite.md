@@ -18,7 +18,7 @@ Unakite is a [[Metamorphic]] rock created when granite is altered by hydrotherma
 - Opaque, with [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]] areas sometimes translucent  
 
 > [!tip] Tumbling Qualities  
-> - Hardness: Mohs 6–7  
+> - Hardness: [[Mohs Hardness Scale|Mohs]] 6–7  
 > - Colors brighten dramatically when polished  
 > - Popular for beads and cabochons  
 

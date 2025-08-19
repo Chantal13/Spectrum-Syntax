@@ -5,14 +5,14 @@ tags:
   - rockhounding
   - tumbling
 aliases:
-  - quartz
   - quartzes
   - Quartzes
+  - Quartz
 ---
 ## ❄️ Quartz (Milky, Smoky, Chalcedony)
 
 **Formation:**  
-Quartz (SiO₂) is one of the most common minerals. It forms in **[[Igneous]]** (granite), **[[Metamorphic]]** ([[Gneiss]], schist), and **[[Sedimentary]]** (cement, veins) contexts.  
+Quartz (SiO₂) is one of the most common minerals. It forms in **[[Igneous]]** (granite), **[[Metamorphic]]** ([[gneiss]], schist), and **[[Sedimentary]]** (cement, veins) contexts.  
 
 **Appearance & Identification:**  
 - Milky quartz: opaque white  
@@ -21,7 +21,7 @@ Quartz (SiO₂) is one of the most common minerals. It forms in **[[Igneous]]** 
 - Hardness test: scratches glass  
 
 > [!tip] Tumbling Qualities  
-> - Hardness: Mohs 7  
+> - Hardness: [[Mohs Hardness Scale|Mohs]] 7  
 > - Very durable  
 > - Polishes to a reflective, glass-like finish  
 

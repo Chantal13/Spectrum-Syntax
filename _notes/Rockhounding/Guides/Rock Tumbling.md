@@ -20,27 +20,27 @@ Many of these stones are durable enough for **rock tumbling**, polishing up into
 Here are the most common stones suitable for tumbling in the Lake Ontario region. Each links to a standalone page with more detail.
 
 ### Igneous Rocks
-- [[Granite]] → Speckled rock of quartz, feldspar, and mica. Polishes well in smaller-grained pieces.  
+- [[Granite]] → Speckled rock of [[quartz]], feldspar, and mica. Polishes well in smaller-grained pieces.  
 - [[Basalt]] → Dark, fine-grained volcanic rock. Often dull after tumbling but smooth.  
 - [[Feldspar]] → Found within granite and unakite. Pink, white, or green crystals can take a satin polish.  
 - [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]] → Grey, white, or translucent. A classic tumbling stone with excellent shine.  
 
 ### Metamorphic Rocks
 - [[Gneiss]] → Banded cousin of granite. Tumbling can highlight its wavy layers.  
-- [[Unakite]] → A mix of green epidote, pink feldspar, and quartz. One of the most striking Lake Ontario tumbling stones.  
+- [[Unakite]] → A mix of green epidote, pink feldspar, and [[quartz]]. One of the most striking Lake Ontario tumbling stones.  
 - [[Epidote]] → Green mineral usually seen within unakite. Satin polish with rich colour.  
-- [[Marble]] → Crystalline metamorphosed limestone. Softer (Mohs 3), so requires special care.  
+- [[Marble]] → Crystalline metamorphosed limestone. Softer ([[Mohs Hardness Scale|Mohs]] 3), so requires special care.  
 
 ### Sedimentary Rocks
-- [[Conglomerate]] → Pebble-rich stone with quartz and other clasts. Polishes into unique patterned stones.  
+- [[Conglomerate]] → Pebble-rich stone with [[quartz]] and other clasts. Polishes into unique patterned stones.  
 - [[Breccia]] → Similar to conglomerate but with sharp, angular fragments.  
-- [[Sandstone]] → Often too soft for tumbling, but quartz-rich varieties can smooth nicely.  
+- [[Sandstone]] → Often too soft for tumbling, but [[quartz]]-rich varieties can smooth nicely.  
 - [[Petrified Wood]] (rare) → Ancient fossilized wood replaced with silica. Can polish beautifully if found.  
 
-### Microcrystalline Quartz Varieties
-- [[Agate]] → Banded, translucent quartz. Rare but possible along Lake Ontario. Excellent polish.  
-- [[Jasper]] → Opaque red, brown, or yellow quartz. Durable and great for tumbling.  
-- [[Chert / Flint]] → Hard, smooth cryptocrystalline quartz, often grey or brown. Takes a glossy finish.  
+### Microcrystalline [[quartz]] Varieties
+- [[Agate]] → Banded, translucent [[quartz]]. Rare but possible along Lake Ontario. Excellent polish.  
+- [[Jasper]] → Opaque red, brown, or yellow [[quartz]]. Durable and great for tumbling.  
+- [[Chert / Flint]] → Hard, smooth cryptocrystalline [[quartz]], often grey or brown. Takes a glossy finish.  
 
 ---
 ## Why These Rocks Wash Up
@@ -65,7 +65,7 @@ Here are the most common stones suitable for tumbling in the Lake Ontario region
 ## Equipment for Rock Tumbling
 - **Basic Tools:** Bucket, sieve, gloves, and sturdy shoes for shoreline hunting.  
 - **Tumbler Setup:** Rotary or vibratory tumbler, grit stages (coarse, medium, fine, polish).  
-- **Additional Supplies:** Plastic pellets for cushioning softer stones, dedicated polish for quartz-based rocks.  
+- **Additional Supplies:** Plastic pellets for cushioning softer stones, dedicated polish for [[quartz]]-based rocks.  
 
 > [!tip] Rock Size  
 > Collect stones between **1–5 cm (½ inch to 2 inches)** for best tumbling results. Avoid heavily fractured pieces.  
@@ -73,15 +73,15 @@ Here are the most common stones suitable for tumbling in the Lake Ontario region
 ---
 
 ## Tumbling Tips
-1. **Sort by Hardness** → Don’t tumble soft marble with hard quartz. Keep similar hardnesses together.  
+1. **Sort by Hardness** → Don’t tumble soft marble with hard [[quartz]]. Keep similar hardnesses together.  
 2. **Use Stages Properly** → Each grit stage (coarse, medium, fine, polish) should run for at least a week.  
 3. **Check Frequently** → Remove cracked or undercut stones before advancing stages.  
-4. **Finish Strong** → Quartz, jasper, and agate will take a glass-like polish. Feldspar-rich rocks (like granite) may have a softer sheen.  
+4. **Finish Strong** → [[quartz]], [[jasper]], and agate will take a glass-like polish. Feldspar-rich rocks (like granite) may have a softer sheen.  
 
 ---
 
 ## Final Thoughts
-The shores of [Lake Ontario](https://www.wikiwand.com/en/articles/Lake_Ontario) are a natural rock tumbler, but with patience and the right equipment, you can take home polished stones that highlight the region’s rich geological history. Each piece you collect carries a story — from billion-year-old Canadian Shield granite to rare glimpses of jasper and agate.  
+The shores of [Lake Ontario](https://www.wikiwand.com/en/articles/Lake_Ontario) are a natural rock tumbler, but with patience and the right equipment, you can take home polished stones that highlight the region’s rich geological history. Each piece you collect carries a story — from billion-year-old Canadian Shield granite to rare glimpses of [[jasper]] and agate.  
 
 Explore the linked pages to learn more about each stone in detail: composition, tumbling qualities, and where to find them locally.  
 

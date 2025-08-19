@@ -22,7 +22,7 @@ Agates form in volcanic or [[Sedimentary]] cavities where silica-rich water depo
 - *Wet test*: colours and banding become vivid when wet  
 
 > [!tip] Tumbling Qualities  
-> - Hardness: Mohs 7  
+> - Hardness: [[Mohs Hardness Scale|Mohs]] 7  
 > - Polishes to a glassy shine  
 > - Reveals intricate banding  
 

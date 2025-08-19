@@ -95,7 +95,7 @@ Bring a small **field guide** or use an app like _Rock Identifier_ for on-the-sp
 
 ## ⚙️ Tips for Tumbling Lake Ontario Stones
 
-1. **Sort by hardness** – Tumble [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]], [[Jasper]], and [[Agate]] together (Mohs 6.5–7). Softer rocks will grind away too quickly.
+1. **Sort by hardness** – Tumble [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]], [[Jasper]], and [[Agate]] together ([[Mohs Hardness Scale|Mohs]] 6.5–7). Softer rocks will grind away too quickly.
     
 2. **Start small** – Many Lake Ontario stones are already rounded; use shorter coarse grind cycles.
     

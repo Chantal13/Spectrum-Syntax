@@ -18,7 +18,7 @@ On the north shores of Lake Ontario, gneiss is most commonly found as **glacial 
 
 ## Appearance & Identification
 - **Texture:** Banded, striped, or layered  
-- **Minerals:** [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]], [[Feldspar]], mica, amphibole  
+- **Minerals:** [[quartz]], [[Feldspar]], mica, amphibole  
 - **Colors:** Grey, white, black, with occasional pink or green tones  
 - **Special Feature:** Some gneisses contain red **garnet crystals**, which stand out as small, rounded inclusions  
 
@@ -28,7 +28,7 @@ On the north shores of Lake Ontario, gneiss is most commonly found as **glacial 
 ---
 
 ## Tumbling Qualities
-- **Hardness:** Mohs 6–7  
+- **Hardness:** [[Mohs Hardness Scale|Mohs]] 6–7  
 - **Tumbling Notes:**  
   - Polishes fairly well, though banding can sometimes undercut slightly.  
   - Garnet-bearing gneiss produces especially attractive results.  
