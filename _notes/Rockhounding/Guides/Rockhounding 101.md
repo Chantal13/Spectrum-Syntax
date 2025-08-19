@@ -7,14 +7,20 @@ tags:
 
 # [[Rockhounding]] & [[Rock Tumbling|Tumbling]] along Lake Ontario’s Greater Toronto Shoreline
 
-The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure trove of collectible stones. From colourful [[Jasper]] to translucent [[agate|agates]], many of these beach-worn pebbles are perfect candidates for [[Rock Tumbling|tumbling]] and polishing. This guide highlights what to look for, where to go, and how to get started.
+The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure trove of collectible stones. From colourful [[jasper]] to translucent [[agate|agates]], many of these beach-worn pebbles are perfect candidates for [[Rock Tumbling|tumbling]] and polishing. This guide highlights what to look for, where to go, and how to get started.
 
 ---
 ## 🪨 Rock Categories in Context
 
-- **[[Igneous]] Rocks** → Formed from cooled magma/lava. Example: basalt, [[granite]]. Connection: [[agate|Agates]].  
-- **[[Sedimentary]] Rocks** → Formed from compressed sediments. Example: limestone, sandstone. Connection: [[Jasper]].  
-- **[[Metamorphic]] Rocks** → Formed by heat and pressure. Example: [[Gneiss]], schist. Connection: [[Unakite]].  
+- **[[Igneous]] Rocks** → Formed from cooled magma/lava. 
+	- Example: Basalt, [[granite]]. 
+	- Connection: [[agate|Agate]].  
+- **[[Sedimentary]] Rocks** → Formed from compressed sediments. 
+	- Example: Limestone, sandstone. 
+	- Connection: [[jasper|Jasper]].  
+- **[[Metamorphic]] Rocks** → Formed by heat and pressure. 
+	- Example: [[Gneiss]], schist. 
+	- Connection: [[Unakite]].  
 
 ---
 ## 🌊 Why These Rocks Wash Up

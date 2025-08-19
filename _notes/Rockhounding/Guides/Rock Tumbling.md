@@ -11,7 +11,7 @@ aliases:
 # Rock Tumbling on the North Shores of Lake Ontario
 
 ## Introduction
-The north shores of **[Lake Ontario](https://www.wikiwand.com/en/articles/Lake_Ontario)** — stretching from Toronto through Durham Region — are an excellent place for casual [[rockhounding]] and rock tumbling. Glaciers carried stones from the Canadian Shield southward during the last Ice Age, leaving a rich mix of **igneous, sedimentary, and metamorphic rocks** on today’s beaches.  
+The north shores of **[Lake Ontario](https://www.wikiwand.com/en/articles/Lake_Ontario)** — stretching from Toronto through Durham Region — are an excellent place for casual [[rockhounding]] and rock tumbling. Glaciers carried stones from the Canadian Shield southward during the last Ice Age, leaving a rich mix of **[[igneous]], sedimentary, and metamorphic rocks** on today’s beaches.  
 
 Many of these stones are durable enough for **rock tumbling**, polishing up into beautiful specimens for display, jewellery, or collections.  
 

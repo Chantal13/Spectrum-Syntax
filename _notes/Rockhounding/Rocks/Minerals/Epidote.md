@@ -3,13 +3,12 @@ title: Epidote
 draft: false
 tags:
   - rockhounding
+  - minerals
 aliases:
   - epidotes
   - Epidotes
   - Epidote
 ---
-# Epidote
-
 ## Overview
 Epidote is a green **silicate mineral** that often forms during metamorphism when other minerals are altered by heat, pressure, and hydrothermal fluids. It is best known for giving **[[unakite]]** its striking green color (alongside pink feldspar and [[quartz]]).  
 

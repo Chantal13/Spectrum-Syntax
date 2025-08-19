@@ -7,7 +7,7 @@ aliases:
   - Granite
 ---
 ## Overview
-Granite is a coarse-grained **igneous rock** composed mainly of **[[quartz]], feldspar, and mica**. It forms when magma cools slowly beneath the Earth’s surface, giving its crystals time to grow large and visible.  
+Granite is a coarse-grained **[[igneous]] rock** composed mainly of **[[quartz]], feldspar, and mica**. It forms when magma cools slowly beneath the Earth’s surface, giving its crystals time to grow large and visible.  
 
 Along the north shores of Lake Ontario, granite is common in glacial erratics — stones carried south from the Canadian Shield during the last Ice Age. These rounded granite pebbles are durable, colorful, and often used in [[rock tumbling]].
 
@@ -48,7 +48,7 @@ Along the north shores of Lake Ontario, granite is common in glacial erratics �
 ---
 
 ## Rock Family
-Granite belongs to the **Igneous Rock family** (intrusive type).  
+Granite belongs to the **[[Igneous]] Rock family** (intrusive type).  
 
 > [!info] Learn more about the **Igneous Rock family** here → [[Igneous Rocks]]  
 
