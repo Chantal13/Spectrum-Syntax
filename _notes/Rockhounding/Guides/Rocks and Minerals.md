@@ -2,8 +2,6 @@
 title: Rocks and Minerals
 layout: note
 ---
-
-
 ## A
 - [[agate]]
 

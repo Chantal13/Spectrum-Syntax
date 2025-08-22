@@ -4,7 +4,7 @@ draft: false
 tags:
   - rockhounding
 ---
-Here is a list of some of the resources I have found helpful, while I learn about rockhounding.
+Here is a list of some of the resources I have found helpful, while I learn about rockhounding. I will clean this up eventually.
 
 # 🔗 References & Resources 
 
@@ -46,7 +46,6 @@ Here is a list of some of the resources I have found helpful, while I learn abou
 [Where to go rockhounding \| Destination Ontario](https://www.destinationontario.com/en-ca/articles/rockhounding-ontario)
 
 ### Video
-
 [Lake Ontario Rocks! \| Rockhounding for Lake Ontario Beach Stones - YouTube](https://www.youtube.com/watch?v=COgDojKiyjA)
 
 [Collecting in the Ontario Grenville Geological Province - YouTube](https://www.youtube.com/watch?v=AhnF4zZQpcU)
