@@ -17,6 +17,8 @@ Here is a list of some of the resources I have found helpful, while I learn abou
 
 [Planet Rocks (@planet\_rocks\_utsc) • Instagram photos and videos](https://www.instagram.com/planet_rocks_utsc/)
 
+[Rock Tumbling Knowledge Base /r/RockTumbling](https://www.reddit.com/r/RockTumbling/comments/vrzx1f/rrocktumbling_knowledge_base/)
+
 ## Guides
 [Minerals \| Earth Sciences Museum \| University of Waterloo](https://uwaterloo.ca/earth-sciences-museum/educational-resources/minerals)
 
