@@ -25,7 +25,13 @@ layout: default
   {% if page.tumbler or page.rocks or page.origin %}
   <ul>
     {% if page.tumbler %}<li><strong>Tumbler:</strong> {{ page.tumbler }}</li>{% endif %}
-    {% if page.rocks and page.rocks.size > 0 %}<li><strong>Rocks:</strong> {{ page.rocks | join: ", " }}</li>{% endif %}
+    {% if page.rocks and page.rocks.size > 0 %}
+    <li><strong>Rocks:</strong>
+      {% for r in page.rocks %}
+      <span class="badge rock r-{{ r | slugify }}">{{ r }}</span>
+      {% endfor %}
+    </li>
+    {% endif %}
     {% if page.origin %}<li><strong>Origin:</strong> {{ page.origin }}</li>{% endif %}
   </ul>
   {% endif %}

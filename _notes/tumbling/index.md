@@ -55,15 +55,15 @@ Here is a list of my rock tumbling batches to date. I wasn't tracking things con
             <span class="muted">—</span>
           {% endif %}
         </td>
-        <td data-label="Rocks">
-          {% if t.rocks %}
-            {% if t.rocks.size > 0 %}{{ t.rocks | join: ", " }}{% else %}<span class="muted">—</span>{% endif %}
-          {% elsif t.rocks_string %}
-            {{ t.rocks_string }}
-          {% else %}
-            <span class="muted">—</span>
-          {% endif %}
-        </td>
+		<td>
+		  {%- if t.rocks and t.rocks.size > 0 -%}
+		    {%- for r in t.rocks -%}
+		      <span class="badge rock r-{{ r | slugify }}">{{ r }}</span>
+		    {%- endfor -%}
+		  {%- else -%}
+		    —
+		  {%- endif -%}
+		</td>
         <td data-label="Duration (days)" class="num mono">
           {% if days != "" %}{{ days }}{% else %}<span class="muted">—</span>{% endif %}
         </td>
