@@ -1,15 +1,15 @@
 ---
-title: Batch 001
-batch: "001"
-layout: tumble
-date_started:
-date_finished:
-status: In Progress
-tumbler: National Geographic Professional Rock Tumbler
+title: "Batch ___"
+batch: "___"
+date_started: 
+date_finished: 
+status: "In Progress"    # In Progress / Completed / Abandoned
+tumbler: "National Geographic Professional Rock Tumbler"
 rocks:
   - 
-origin:
+origin: 
 notes: ""
+layout: tumble
 ---
 
 # Rock Tumbling Log — Batch ___
