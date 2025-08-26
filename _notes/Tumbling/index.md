@@ -8,6 +8,17 @@ layout: default
 
 Whee!
 
+<p>Collections: {% for c in site.collections %}{{ c.label }} {% endfor %}</p>
+<p>tumbles exists? {% if site.collections.tumbles %}yes{% else %}no{% endif %}</p>
+<p>tumbles size: {% if site.collections.tumbles %}{{ site.collections.tumbles.docs | size }}{% else %}0{% endif %}</p>
+<ul>
+{% if site.collections.tumbles %}
+  {% for d in site.collections.tumbles.docs %}
+    <li>{{ d.relative_path }} — {{ d.title }}</li>
+  {% endfor %}
+{% endif %}
+</ul>
+
 <div class="tumble">
 <table>
   <thead>
