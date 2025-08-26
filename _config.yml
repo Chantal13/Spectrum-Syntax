@@ -62,7 +62,7 @@ defaults:
       path: "_notes/tumble_logs"
     values:
       layout: "tumble"
-      permalink: "/tumbling/:basename/"
+      permalink: "/tumbling/:name/"
 
 # (Remove multilingual keys since plugin is disabled)
 # languages:
