@@ -2,9 +2,6 @@
 title: Tumbling Batches
 permalink: /tumbling/
 layout: default
-aliases:
-  - Tumbling Batches
-  - tumbling batches
 ---
 
 # Tumbling Batches
