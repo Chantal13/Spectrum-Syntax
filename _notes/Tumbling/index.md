@@ -16,6 +16,7 @@ layout: default
 
 ```
 
+```html
 <div class="tumble">
 <table>
   <thead>
@@ -55,3 +56,4 @@ layout: default
   </tbody>
 </table>
 </div>
+```
