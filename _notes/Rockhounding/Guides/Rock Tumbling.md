@@ -9,7 +9,7 @@ aliases:
   - Tumbling
 ---
 
- If you are interested in my rock tumbling batches, check them out here: [[index|Tumbling Batches]]
+ If you are interested in my rock tumbling batches, check them out here: [[tumbles|Tumbling Batches]]
 
 ---
 ## Rocks & Minerals to Collect
