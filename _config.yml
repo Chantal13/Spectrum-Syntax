@@ -35,8 +35,10 @@ collections:
     permalink: /:slug
 
   tumbles:
-    output: true           # publish each batch as its own page
+    output: true
     permalink: /tumbling/:name/
+  timezone: America/Toronto
+  baseurl: ""   # Netlify root
         
     # Optional: default layout for the collection
     defaults:
