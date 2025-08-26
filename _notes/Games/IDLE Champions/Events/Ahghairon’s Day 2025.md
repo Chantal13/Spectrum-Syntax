@@ -50,7 +50,7 @@ Ahghairon's Day commemorates the birthday of Ahghairon, the first Open Lord of W
 
 👉 [Official Ahghairon’s Day blog post](#)
 
-> **Note from Gaar:** Ahghairon's Day is August's event in the [[Idle Champions]] Event Calendar.
+> **Note from Gaar:** Ahghairon's Day is August's event in the [[IDLE Champions]] Event Calendar.
 
 ---
 
