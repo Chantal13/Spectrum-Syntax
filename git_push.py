@@ -1,34 +1,34 @@
-import subprocess
+import subprocess as sp
 
-def run_command(command):
-    """Run a shell command and print its output."""
-    try:
-        result = subprocess.run(command, check=True, text=True, capture_output=True)
-        print(result.stdout)
-        if result.stderr:
-            print(result.stderr)
-    except subprocess.CalledProcessError as e:
-        print(f"Error running command: {' '.join(command)}")
-        print(e.stderr)
+def run(cmd, check=True):
+    print(">", " ".join(cmd))
+    return sp.run(cmd, check=check)
+
+def changed():
+    r = sp.run(["git", "status", "--porcelain"], capture_output=True, text=True)
+    return bool(r.stdout.strip())
 
 def main():
-    # Step 1: Add all changes
-    print("Adding all changes...")
-    run_command(["git", "add", "--all"])
-    
-    # Step 2: Prompt for commit message
-    commit_message = input("Enter commit message: ").strip()
-    if not commit_message:
-        print("Commit message cannot be empty.")
+    # Show what changed
+    run(["git", "status"], check=False)
+
+    if not changed():
+        print("No changes detected. Nothing to commit.")
         return
-    
-    # Step 3: Commit
-    print(f"Committing with message: {commit_message}")
-    run_command(["git", "commit", "-m", commit_message])
-    
-    # Step 4: Push
-    print("Pushing to origin main...")
-    run_command(["git", "push", "origin", "main"])
+
+    msg = input("Enter commit message: ").strip()
+    if not msg:
+        msg = "Update"
+
+    run(["git", "add", "-A"])
+    # IMPORTANT: pass the message as a separate arg, not in a single string
+    run(["git", "commit", "-m", msg])
+    run(["git", "push", "origin", "main"])
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except sp.CalledProcessError as e:
+        print("Command failed:", e)
+        print("Output:", (e.stdout or b"").decode(errors="ignore"))
+        print("Error:", (e.stderr or b"").decode(errors="ignore"))
