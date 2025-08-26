@@ -6,18 +6,10 @@ layout: default
 
 # Tumbling Batches
 
-Whee!
-
-<p>Collections: {% for c in site.collections %}{{ c.label }} {% endfor %}</p>
-<p>tumbles exists? {% if site.collections.tumbles %}yes{% else %}no{% endif %}</p>
-<p>tumbles size: {% if site.collections.tumbles %}{{ site.collections.tumbles.docs | size }}{% else %}0{% endif %}</p>
-<ul>
-{% if site.collections.tumbles %}
-  {% for d in site.collections.tumbles.docs %}
-    <li>{{ d.relative_path }} — {{ d.title }}</li>
-  {% endfor %}
-{% endif %}
-</ul>
+{% assign items = site.notes 
+  | where_exp: "d", "d.relative_path contains '/_tumbles/'" 
+  | sort: "date_started" 
+  | reverse %}
 
 <div class="tumble">
 <table>
@@ -32,7 +24,6 @@ Whee!
     </tr>
   </thead>
   <tbody>
-  {% assign items = site.tumbles | sort: "date_started" | reverse %}
   {% if items and items.size > 0 %}
     {% for t in items %}
       {% assign days = "" %}
@@ -52,7 +43,9 @@ Whee!
       </tr>
     {% endfor %}
   {% else %}
-    <tr><td colspan="6">No batches found. Put markdown files in <code>_tumbles/</code> with frontmatter.</td></tr>
+    <tr><td colspan="6">
+      No batches found. Put markdown files in <code>_notes/_tumbles/</code> with frontmatter and <code>layout: tumble</code>.
+    </td></tr>
   {% endif %}
   </tbody>
 </table>

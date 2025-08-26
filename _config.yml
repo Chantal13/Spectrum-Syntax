@@ -55,6 +55,14 @@ defaults:
       type: "tumbles"
     values:
       layout: "tumble"
+  
+  # Tumbles inside _notes should publish under /tumbling/:basename/
+  - scope:
+      path: "_notes/_tumbles"
+    values:
+      layout: "tumble"
+      permalink: "/tumbling/:basename/"
+      
 
 # (Remove multilingual keys since plugin is disabled)
 # languages:
