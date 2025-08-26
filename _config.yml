@@ -22,15 +22,33 @@ relative_permalinks: false
 
 plugins:
   - jekyll-last-modified-at
+  - jekyll-multiple-languages-plugin
 
 sass:
   sass_dir:          _sass
   style:            :compressed
 
+# --- Collections ---
 collections:
   notes:
     output: true
     permalink: /:slug
+
+  tumbles:
+    output: true           # publish each batch as its own page
+    permalink: /tumbling/:name/
+        
+    # Optional: default layout for the collection
+    defaults:
+      - scope:
+          path: ""
+          type: tumbles
+        values:
+          layout: tumble
+          
+    # If you keep your site in a subfolder on GitHub Pages, set baseurl accordingly.
+    # baseurl: "/your-repo-name"
+    
 
 defaults:
   - scope:
@@ -41,3 +59,9 @@ defaults:
       path: "_notes/**/*.md"
     values:
       layout: "note"
+
+languages:
+ - en
+ - pt
+ - fr
+default_lang: en
