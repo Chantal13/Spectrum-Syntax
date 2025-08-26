@@ -13,3 +13,13 @@ _includes/notes_graph.json
 
 # Obsidian config
 .obsidian/
+
+# macOS junk
+.DS_Store
+
+# Local helper scripts (don’t commit)
+git_push.py
+
+# Local-only folders
+_staging/
+_templates/
