@@ -6,7 +6,7 @@ layout: default
 
 # Tumbling Batches
 
-```html
+```liquid
 <p><strong>Debug:</strong> site.tumbles size = {{ site.tumbles | size }}</p>
 <ul>
 {% for doc in site.tumbles %}
@@ -16,7 +16,7 @@ layout: default
 
 ```
 
-```html
+```liquid
 <div class="tumble">
 <table>
   <thead>
