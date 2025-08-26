@@ -6,6 +6,8 @@ layout: default
 
 # Tumbling Batches
 
+Here is a list of my rock tumbling batches to date. I wasn't tracking things consistently in the first two batches, but I will try my best with upcoming tumbles.
+
 {% assign items = site.notes
   | where_exp: "d", "d.relative_path contains '/tumble_logs/'"
   | sort: "date_started" | reverse %}
