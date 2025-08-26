@@ -234,3 +234,47 @@ code {
 
   .tumble-table td.num { justify-content: end; }
 }
+/* Mobile card spacing + subtle polish */
+@media (max-width: 640px) {
+  .tumble-table tr {
+    padding: 0.35rem 0.6rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid #e8ebf0;
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  /* tighter label/value layout */
+  .tumble-table td:nth-child(2) {
+    grid-template-columns: 8.5ch 1fr; /* label | value */
+    gap: 0.35rem;
+    padding: 0.25rem 0;
+  }
+
+  .tumble-table td:nth-child(2)::before {
+    font-size: 0.92em;
+    color: #6b7280;
+  }
+
+  /* trim inner spacing on the last line in a card */
+  .tumble-table tr > td:last-child { padding-bottom: 0.1rem; }
+
+  /* gentler hover on touch devices */
+  .tumble-table tbody tr:hover { background: #fafbff; }
+}
+/* Mobile: hide the left "Field" column; show only values with labels */
+@media (max-width: 640px) {
+  .tumble-table td:first-child { display: none; }
+
+  .tumble-table td:nth-child(2) {
+    display: grid;
+    grid-template-columns: 9.5ch 1fr; /* label | value */
+    gap: 0.5rem;
+  }
+
+  .tumble-table td:nth-child(2)::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #6b7280;
+  }
+}
