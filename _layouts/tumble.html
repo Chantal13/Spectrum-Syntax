@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<article class="tumble">
+  <header>
+    <h1>{{ page.title | escape }}</h1>
+    <p>
+      <strong>Batch:</strong> {{ page.batch }}
+      {% if page.status %} • <strong>Status:</strong> {{ page.status }}{% endif %}
+      {% if page.date_started %} • <strong>Started:</strong> {{ page.date_started }}{% endif %}
+      {% if page.date_finished %} • <strong>Finished:</strong> {{ page.date_finished }}{% endif %}
+    </p>
+    {% if page.rocks %}<p><strong>Rocks:</strong> {{ page.rocks | join: ", " }}</p>{% endif %}
+    {% if page.origin %}<p><strong>Origin:</strong> {{ page.origin }}</p>{% endif %}
+    {% if page.tumbler %}<p><strong>Tumbler:</strong> {{ page.tumbler }}</p>{% endif %}
+  </header>
+  
+  <div class="content">
+    {{ content }}
+  </div>
+</article>
