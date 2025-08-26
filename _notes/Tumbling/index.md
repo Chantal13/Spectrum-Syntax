@@ -8,8 +8,41 @@ layout: default
 
 Whee!
 
-{% include tumbles-table.html %}
-
-<p>Collections: {% for c in site.collections %}{{ c.label }} {% endfor %}</p>
-<p>site.tumbles size = {{ site.tumbles | size }}</p>
-<p>site.notes size = {{ site.collections["notes"] ? site.collections["notes"].docs | size : 0 }}</p>
+<div class="tumble">
+<table>
+  <thead>
+    <tr>
+      <th>Batch</th>
+      <th>Started</th>
+      <th>Finished</th>
+      <th>Status</th>
+      <th>Rocks</th>
+      <th>Duration (days)</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% assign items = site.tumbles | sort: "date_started" | reverse %}
+  {% if items and items.size > 0 %}
+    {% for t in items %}
+      {% assign days = "" %}
+      {% if t.date_started and t.date_finished %}
+        {% assign started_s  = t.date_started  | date: "%s" %}
+        {% assign finished_s = t.date_finished | date: "%s" %}
+        {% assign seconds = finished_s | minus: started_s %}
+        {% assign days = seconds | divided_by: 86400 %}
+      {% endif %}
+      <tr>
+        <td><a href="{{ t.url | relative_url }}">{{ t.batch | default: t.title }}</a></td>
+        <td>{{ t.date_started | default: "—" }}</td>
+        <td>{{ t.date_finished | default: "—" }}</td>
+        <td>{{ t.status | default: "—" }}</td>
+        <td>{% if t.rocks %}{{ t.rocks | join: ", " }}{% else %}—{% endif %}</td>
+        <td>{% if days != "" %}{{ days }}{% else %}—{% endif %}</td>
+      </tr>
+    {% endfor %}
+  {% else %}
+    <tr><td colspan="6">No batches found. Put markdown files in <code>_tumbles/</code> with frontmatter.</td></tr>
+  {% endif %}
+  </tbody>
+</table>
+</div>
