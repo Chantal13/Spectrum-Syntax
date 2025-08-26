@@ -1,0 +1,103 @@
+/* ===============================
+   Tumbling Tables — Solarized Theme
+   Light + Dark (auto via prefers-color-scheme)
+   =============================== */
+
+/* Palette as CSS variables for easy tweaking */
+:root {
+  --base3:    #fdf6e3; /* light bg */
+  --base2:    #eee8d5;
+  --base1:    #93a1a1; /* borders */
+  --base00:   #586e75; /* text */
+  --base02:   #073642; /* headers */
+  --blue:     #268bd2;
+  --cyan:     #2aa198;
+  --yellow:   #b58900;
+  --green:    #859900;
+  --red:      #dc322f;
+
+  --card-bg:  var(--base3);
+  --thead-bg: var(--base2);
+  --text:     var(--base00);
+  --thead-tx: var(--base02);
+  --row-alt:  var(--base2);
+  --border:   var(--base1);
+  --link:     var(--blue);
+  --link-h:   var(--cyan);
+  --shadow:   rgba(0,0,0,0.08);
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Solarized dark-ish mapping */
+    --base03:   #002b36; /* darkest */
+    --base02:   #073642; /* dark bg */
+    --base01:   #586e75; /* border-ish in dark */
+    --base0:    #839496; /* text */
+    --base1:    #93a1a1; /* muted text */
+
+    --card-bg:  var(--base02);
+    --thead-bg: #003241;
+    --text:     var(--base0);
+    --thead-tx: var(--base1);
+    --row-alt:  #083b4a;
+    --border:   var(--base01);
+    --link:     #5ab3e1; /* lighter blue for dark bg */
+    --link-h:   #35c4bd; /* cyan-ish hover */
+    --shadow:   rgba(0,0,0,0.35);
+  }
+}
+
+/* Container that wraps batch content */
+.tumble {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px var(--shadow);
+}
+
+/* Tables */
+.tumble table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.tumble table thead {
+  background: var(--thead-bg);
+  color: var(--thead-tx);
+  font-weight: 600;
+}
+
+.tumble th, 
+.tumble td {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+.tumble tbody tr:nth-child(even) {
+  background: var(--row-alt);
+}
+
+/* Links inside tables */
+.tumble a {
+  color: var(--link);
+  text-decoration: none;
+}
+.tumble a:hover {
+  text-decoration: underline;
+  color: var(--link-h);
+}
+
+/* Status labels */
+.tumble-status {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  bord
