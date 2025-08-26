@@ -15,7 +15,3 @@ gem "jekyll-last-modified-at", "~> 1.3"
 gem "webrick", "~> 1.9"
 gem "nokogiri"
 gem "json", ">= 2.9.2"
-
-bundle lock --normalize-platforms
-git add Gemfile.lock
-git commit -m "Normalize platforms in Gemfile.lock"
