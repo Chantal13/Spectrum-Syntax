@@ -1,21 +1,101 @@
 ---
 layout: default
 ---
-<article class="tumble">
-  <header>
-    <h1>{{ page.title | escape }}</h1>
-    <p>
-      <strong>Batch:</strong> {{ page.batch }}
-      {% if page.status %} • <strong>Status:</strong> {{ page.status }}{% endif %}
-      {% if page.date_started %} • <strong>Started:</strong> {{ page.date_started }}{% endif %}
-      {% if page.date_finished %} • <strong>Finished:</strong> {{ page.date_finished }}{% endif %}
-    </p>
-    {% if page.rocks %}<p><strong>Rocks:</strong> {{ page.rocks | join: ", " }}</p>{% endif %}
-    {% if page.origin %}<p><strong>Origin:</strong> {{ page.origin }}</p>{% endif %}
-    {% if page.tumbler %}<p><strong>Tumbler:</strong> {{ page.tumbler }}</p>{% endif %}
-  </header>
-  
-  <div class="content">
-    {{ content }}
-  </div>
+
+<article class="tumble-entry">
+  <h1>{{ page.title }}</h1>
+
+  {% assign badge_class = page.status_class | default: page.status | downcase | replace: ' ', '-' %}
+  {% if page.status %}
+    <p><span class="badge {{ badge_class }}">{{ page.status }}</span></p>
+  {% endif %}
+
+  <p class="mono">
+    {% if page.date_started %}<strong>Started:</strong> {{ page.date_started }}{% endif %}
+    {% if page.date_finished %} &nbsp; <strong>Finished:</strong> {{ page.date_finished }}{% endif %}
+    {% if page.date_started and page.date_finished %}
+      {% assign s = page.date_started | date: "%s" %}
+      {% assign e = page.date_finished | date: "%s" %}
+      {% assign sec = e | minus: s %}
+      {% assign days = sec | divided_by: 86400 %}
+      &nbsp; <strong>Duration:</strong> {{ days }} days
+    {% endif %}
+  </p>
+
+  {% if page.tumbler or page.rocks or page.origin %}
+  <ul>
+    {% if page.tumbler %}<li><strong>Tumbler:</strong> {{ page.tumbler }}</li>{% endif %}
+    {% if page.rocks and page.rocks.size > 0 %}<li><strong>Rocks:</strong> {{ page.rocks | join: ", " }}</li>{% endif %}
+    {% if page.origin %}<li><strong>Origin:</strong> {{ page.origin }}</li>{% endif %}
+  </ul>
+  {% endif %}
+
+  {% if page.notes and page.notes != "" %}
+    <p>{{ page.notes }}</p>
+  {% endif %}
+
+  {% if page.stages and page.stages.size > 0 %}
+    {% for st in page.stages %}
+      <hr>
+      <h3>Stage {{ st.stage }} — {{ st.name }}</h3>
+      <div class="tumble">
+        <table class="tumble-table">
+          <thead>
+            <tr><th>Field</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            {% if st.grit %}
+              <tr>
+                <td>Grit</td>
+                <td data-label="Grit">
+                  {{ st.grit }}{% if page.consumables_brand %} ({{ page.consumables_brand }}){% endif %}
+                </td>
+              </tr>
+            {% endif %}
+            {% if st.polish %}
+              <tr>
+                <td>Polish</td>
+                <td data-label="Polish">
+                  {{ st.polish }}{% if page.consumables_brand %} ({{ page.consumables_brand }}){% endif %}
+                </td>
+              </tr>
+            {% endif %}
+
+            <tr><td>Start Date</td><td data-label="Start Date">{{ st.start | default: "—" }}</td></tr>
+            <tr><td>End Date</td><td data-label="End Date">{{ st.end | default: "—" }}</td></tr>
+
+            {% if st.start and st.end %}
+              {% assign st_s = st.start | date: "%s" %}
+              {% assign st_e = st.end   | date: "%s" %}
+              {% assign st_sec = st_e | minus: st_s %}
+              {% assign st_days = st_sec | divided_by: 86400 %}
+              <tr><td>Duration (days)</td><td class="mono" data-label="Duration (days)">{{ st_days }}</td></tr>
+            {% else %}
+              <tr><td>Duration (days)</td><td data-label="Duration (days)">—</td></tr>
+            {% endif %}
+
+            {% if st.barrel_fill_pct %}<tr><td>Barrel Fill %</td><td class="mono" data-label="Barrel Fill %">{{ st.barrel_fill_pct }}</td></tr>{% endif %}
+            {% if st.water_level %}<tr><td>Water Level</td><td data-label="Water Level">{{ st.water_level }}</td></tr>{% endif %}
+            {% if st.media_used %}<tr><td>Media Used</td><td data-label="Media Used">{{ st.media_used }}</td></tr>{% endif %}
+            {% if st.amount_tbsp %}<tr><td>Amount (Tbsp)</td><td class="mono" data-label="Amount (Tbsp)">{{ st.amount_tbsp }}</td></tr>{% endif %}
+            {% if st.maintenance %}<tr><td>Maintenance</td><td data-label="Maintenance">{{ st.maintenance }}</td></tr>{% endif %}
+            {% if st.observations %}<tr><td>Observations</td><td data-label="Observations">{{ st.observations }}</td></tr>{% endif %}
+
+            {% assign has_decision = st.decision and (st.decision.repeat != nil or st.decision.why) %}
+            {% if has_decision %}
+              <tr>
+                <td>Decision</td>
+                <td data-label="Decision">
+                  {% if st.decision.repeat == true %}Repeat{% elsif st.decision.repeat == false %}Do not repeat{% else %}—{% endif %}
+                  {% if st.decision.why %} — {{ st.decision.why }}{% endif %}
+                </td>
+              </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p><em>No stages defined.</em></p>
+  {% endif %}
 </article>
