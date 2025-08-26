@@ -1,69 +1,130 @@
 #!/usr/bin/env python3
-import os
-import subprocess as sp
-import sys
+# -*- coding: utf-8 -*-
 
-def run(args, **kw):
+import os
+import sys
+import subprocess as sp
+
+def run(args, check=True, capture=False):
     print(">", " ".join(args))
-    return sp.run(args, **kw)
+    if capture:
+        return sp.run(args, check=check, text=True, capture_output=True)
+    return sp.run(args, check=check)
 
 def out(args):
-    r = run(args, capture_output=True, text=True, check=True)
-    return r.stdout.strip()
+    return run(args, capture=True).stdout.strip()
 
-def main():
-    # Ensure we’re at the repo root
+def in_repo_root():
     try:
         root = out(["git", "rev-parse", "--show-toplevel"])
     except sp.CalledProcessError:
-        print("Not inside a git repo. Abort.")
+        print("Not inside a git repository. Abort.")
         sys.exit(1)
     os.chdir(root)
     print(f"# repo: {root}")
 
-    # Show current status (working tree)
+def staged_names():
+    return out(["git", "diff", "--cached", "--name-only"])
+
+def working_tree_dirty():
+    return bool(out(["git", "status", "--porcelain"]))
+
+def current_branch():
+    return out(["git", "rev-parse", "--abbrev-ref", "HEAD"])
+
+def upstream_branch():
+    try:
+        return out(["git", "rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{u}"])
+    except sp.CalledProcessError:
+        return None
+
+def ahead_behind(upstream, branch):
+    """
+    Returns (behind, ahead) counts vs upstream.
+    upstream...branch with --left-right --count prints: "<behind>\t<ahead>"
+    """
+    try:
+        s = out(["git", "rev-list", "--left-right", "--count", f"{upstream}...{branch}"])
+        left, right = s.split()
+        return int(left), int(right)
+    except Exception:
+        return (0, 0)
+
+def main():
+    in_repo_root()
     run(["git", "status"], check=False)
 
-    # ALWAYS stage everything first
-    run(["git", "add", "-A"], check=True)
+    # Always stage everything first
+    run(["git", "add", "-A"])
 
-    # What’s staged?
-    staged = out(["git", "diff", "--cached", "--name-status"])
-    if not staged:
-        # Nothing staged—print extra diagnostics and exit nicely
-        wt = out(["git", "status", "--porcelain"])
-        print("\nNo staged changes. (Nothing to commit.)")
-        if wt:
-            print("\nWorking tree has changes but they may be ignored or outside the repo root:")
-            print(wt)
-            print("\nCommon gotchas:")
-            print(" • You edited files under _site/ (ignored). Edit source files instead.")
-            print(" • File path case mismatch (macOS is case-insensitive).")
-            print(" • You saved to a different folder than the repo.")
+    # Commit if something is staged
+    if staged_names():
+        msg = sys.argv[1] if len(sys.argv) > 1 else input("Commit message: ").strip() or "Update"
+        run(["git", "commit", "-m", msg])
+    else:
+        if working_tree_dirty():
+            print("\nWorking tree has changes but none are staged (maybe ignored paths like _site/).")
         else:
-            print("\nWorking tree is clean.")
-        return
+            print("\nNothing to commit.")
 
-    print("\nStaged changes:")
-    print(staged)
+    # Ensure we know the branch & upstream
+    branch = current_branch()
+    up = upstream_branch()
 
-    # Commit
-    msg = input("\nCommit message: ").strip() or "Update"
-    run(["git", "commit", "-m", msg], check=True)
+    # Fetch remote state
+    run(["git", "fetch", "origin"])
 
-    # Push to current branch
-    branch = out(["git", "rev-parse", "--abbrev-ref", "HEAD"])
-    run(["git", "push", "origin", branch], check=True)
-    print(f"\nPushed to origin/{branch} ✓")
+    # If we have an upstream, rebase onto it to resolve divergence
+    if up:
+        try:
+            run(["git", "rebase", up])
+        except sp.CalledProcessError as e:
+            print("\nRebase stopped due to conflicts.")
+            print("Resolve conflicts in your editor, then:")
+            print("  git add -A")
+            print("  git rebase --continue")
+            print("When done, run this script again to push.")
+            sys.exit(e.returncode)
+    else:
+        # No upstream yet (first push)
+        print(f"\nNo upstream set for {branch}. Will set upstream to origin/{branch} on push.")
+
+    # Decide whether a push is needed
+    if up:
+        behind, ahead = ahead_behind(up, branch)
+        print(f"\nStatus vs {up}: behind {behind}, ahead {ahead}")
+        need_push = ahead > 0
+    else:
+        need_push = True  # first push
+
+    # Push
+    try:
+        if up:
+            if need_push:
+                run(["git", "push", "origin", branch])
+                print(f"\nPushed to origin/{branch} ✓")
+            else:
+                print("\nNothing to push (branch is up to date).")
+        else:
+            # First push sets upstream
+            run(["git", "push", "-u", "origin", branch])
+            print(f"\nPushed and set upstream to origin/{branch} ✓")
+    except sp.CalledProcessError as e:
+        # Common hint for non-fast-forward
+        print("\nPush failed. Try resolving with:")
+        print("  git fetch origin")
+        print(f"  git rebase origin/{branch}")
+        print("  # resolve conflicts → git add -A → git rebase --continue")
+        print(f"  git push origin {branch}")
+        sys.exit(e.returncode)
 
 if __name__ == "__main__":
     try:
         main()
     except sp.CalledProcessError as e:
-        print("\nCommand failed:")
-        print(" ", " ".join(e.cmd if isinstance(e.cmd, list) else [str(e.cmd)]))
+        print("\nCommand failed:", e)
         if e.stdout:
-            print("\nSTDOUT:\n", e.stdout.decode() if isinstance(e.stdout, bytes) else e.stdout)
+            print("\nSTDOUT:\n", e.stdout)
         if e.stderr:
-            print("\nSTDERR:\n", e.stderr.decode() if isinstance(e.stderr, bytes) else e.stderr)
+            print("\nSTDERR:\n", e.stderr)
         sys.exit(e.returncode)
