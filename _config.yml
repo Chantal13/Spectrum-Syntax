@@ -31,9 +31,12 @@ collections:
   notes:
     output: true
     permalink: /:slug
+    
+collections:
   tumbles:
     output: true
     permalink: /tumbling/:name/
+    
 
 # --- Defaults (layouts, etc.) ---
 defaults:
