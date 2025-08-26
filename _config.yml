@@ -1,69 +1,64 @@
-title:               Spectrum Syntax
-include:             ['_pages']
-exclude:             ['_includes/notes_graph.json']
-# You may need to change the base URL depending on your deploy configuration.
-baseurl:             ''
+title: Spectrum Syntax
 
-# If you are using a host that cannot resolve URLs that do
-# not end with .html (such as Neocities), set this to 'true'.
-use_html_extension:  false
+# Site URLs (Netlify root)
+url: "https://spectrumsyntax.netlify.app"
+baseurl: ""                     # keep blank on Netlify root
 
-# Set to `true` to open non-internal links in new tabs, or
-# set to `false` to open non-internal links in current tab.
+# Build/behaviour
+permalink: pretty
+timezone: America/Toronto
+relative_permalinks: false      # harmless, but unused by Jekyll 4
+
+include:
+  - "_pages"
+
+exclude:
+  - "_includes/notes_graph.json"
+
+use_html_extension: false
 open_external_links_in_new_tab: true
-
-# Set to `true` to replace tweet URLs with Twitter embeds.
-# Note that doing so will negatively the reader's privacy
-# as their browser will communicate with Twitter's servers.
 embed_tweets: false
 
-permalink:           pretty
-relative_permalinks: false
-
 plugins:
-  - jekyll-last-modified-at
-#  - jekyll-multiple-languages-plugin
+  - jekyll-last-modified-at     # ensure it's in your Gemfile
 
 sass:
-  sass_dir:          _sass
-  style:            :compressed
+  sass_dir: _sass
+  style: "compressed"
 
 # --- Collections ---
 collections:
   notes:
     output: true
     permalink: /:slug
-
   tumbles:
     output: true
     permalink: /tumbling/:name/
-  timezone: America/Toronto
-  baseurl: ""   # Netlify root
-        
-    # Optional: default layout for the collection
-    defaults:
-      - scope:
-          path: ""
-          type: tumbles
-        values:
-          layout: tumble
-          
-    # If you keep your site in a subfolder on GitHub Pages, set baseurl accordingly.
-    # baseurl: "/your-repo-name"
-    
 
+# --- Defaults (layouts, etc.) ---
 defaults:
+  # Default layout for everything (fallback)
   - scope:
       path: "**/*"
     values:
       layout: "default"
+
+  # Notes get the 'note' layout
   - scope:
       path: "_notes/**/*.md"
     values:
       layout: "note"
 
-languages:
- - en
- - pt
- - fr
-default_lang: en
+  # Tumble collection items use the 'tumble' layout
+  - scope:
+      path: ""
+      type: "tumbles"
+    values:
+      layout: "tumble"
+
+# (Remove multilingual keys since plugin is disabled)
+# languages:
+#  - en
+#  - pt
+#  - fr
+# default_lang: en

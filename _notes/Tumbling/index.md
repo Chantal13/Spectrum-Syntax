@@ -6,6 +6,16 @@ layout: default
 
 # Tumbling Batches
 
+```html
+<p><strong>Debug:</strong> site.tumbles size = {{ site.tumbles | size }}</p>
+<ul>
+{% for doc in site.tumbles %}
+  <li>{{ doc.relative_path }} — title: {{ doc.title | default: "(no title)" }}</li>
+{% endfor %}
+</ul>
+
+```
+
 <div class="tumble">
 <table>
   <thead>
