@@ -31,9 +31,10 @@ collections:
   notes:
     output: true
     permalink: /:slug
-  tumbles:
-    output: true
-    permalink: /tumbling/:name/
+  # Remove this block if you keep tumbles under _notes
+  # tumbles:
+  #   output: true
+  #   permalink: /tumbling/:name/
 
 # --- Defaults (layouts, etc.) ---
 defaults:
