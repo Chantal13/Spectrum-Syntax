@@ -7,7 +7,7 @@ layout: default
 # Tumbling Batches
 
 {% assign items = site.notes 
-  | where_exp: "d", "d.relative_path contains '/_tumbles/'" 
+  | where_exp: "d", "d.relative_path contains '/tumble_logs/'" 
   | sort: "date_started" 
   | reverse %}
 
@@ -44,7 +44,7 @@ layout: default
     {% endfor %}
   {% else %}
     <tr><td colspan="6">
-      No batches found. Put markdown files in <code>_notes/_tumbles/</code> with frontmatter and <code>layout: tumble</code>.
+      No batches found. Put markdown files in <code>/tumble_logs/</code> with frontmatter and <code>layout: tumble</code>.
     </td></tr>
   {% endif %}
   </tbody>
