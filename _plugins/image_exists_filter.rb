@@ -5,14 +5,16 @@ module Jekyll
     PLACEHOLDER = '/assets/tumbling/coming_soon.jpg'
 
     def ensure_image(input)
+      return PLACEHOLDER if input.to_s.empty?
+
       path = case input
              when Hash
                input['src'] || input[:src]
              else
                input
-             end
+             end.to_s
 
-      return PLACEHOLDER unless path.is_a?(String) && !path.empty?
+      return PLACEHOLDER if path.empty?
       return path if path.start_with?('http://', 'https://')
 
       site_source = @context.registers[:site].source
