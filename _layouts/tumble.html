@@ -5,7 +5,6 @@ layout: default
 {% comment %}
 Helpers
 {% endcomment %}
-{% assign placeholder = "/assets/tumbling/coming_soon.jpg" | relative_url %}
 {% assign brand = page.consumables_brand | default: "National Geographic" %}
 
 {% assign cover =
@@ -13,15 +12,13 @@ Helpers
   | default: page.images.after_stage_4
   | default: page.images.after_burnish
   | default: page.images.rough
-  | default: "/assets/tumbling/coming_soon.jpg"
-  | relative_url
 %}
 
 <h1>{{ page.title }}</h1>
 
 <div class="tumble-meta">
   <div class="tumble-cover">
-    <img src="{{ cover }}" alt="{{ page.title }} cover image">
+    <img src="{{ cover | ensure_image | relative_url }}" alt="{{ page.title }} cover image">
   </div>
 
   <ul class="tumble-details">
@@ -74,11 +71,9 @@ Helpers
     {% assign primary = page.images.rough %}
   {% endif %}
 
-  {% assign primary = primary | default: "/assets/tumbling/coming_soon.jpg" | relative_url %}
-
   <section class="stage-card" id="stage-{{ st.stage }}">
     <div class="stage-media">
-      <img src="{{ primary }}" alt="Stage {{ st.stage }} image">
+      <img src="{{ primary | ensure_image | relative_url }}" alt="Stage {{ st.stage }} image">
     </div>
     <div class="stage-body">
       <h3>Stage {{ st.stage }} — {{ st.name }}</h3>
@@ -118,7 +113,7 @@ Helpers
       {% if imgs and imgs.size > 1 %}
         <div class="stage-gallery">
           {% for extra in imgs offset:1 %}
-            <img src="{{ extra | relative_url }}" alt="Stage {{ st.stage }} extra image {{ forloop.index }}">
+            <img src="{{ extra | ensure_image | relative_url }}" alt="Stage {{ st.stage }} extra image {{ forloop.index }}">
           {% endfor %}
         </div>
       {% endif %}
@@ -132,12 +127,12 @@ Helpers
     {% for g in page.images.gallery %}
       {% if g.src %}
         <figure>
-          <img src="{{ g.src | relative_url }}" alt="{{ g.alt | default: "" }}">
+          <img src="{{ g.src | ensure_image | relative_url }}" alt="{{ g.alt | default: "" }}">
           {% if g.caption %}<figcaption>{{ g.caption }}</figcaption>{% endif %}
         </figure>
       {% else %}
         <figure>
-          <img src="{{ g | relative_url }}" alt="">
+          <img src="{{ g | ensure_image | relative_url }}" alt="">
         </figure>
       {% endif %}
     {% endfor %}
