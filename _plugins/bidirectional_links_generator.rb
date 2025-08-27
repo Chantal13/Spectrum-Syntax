@@ -26,11 +26,12 @@ class BidirectionalLinksGenerator < Jekyll::Generator
 
         # title pattern (if present)
         title_from_data = note_potentially_linked_to.data["title"]
-        title_rx = if title_from_data && !title_from_data.to_s.strip.empty?
-                     Regexp.escape(title_from_data.to_s)
-                   else
-                     nil
-                   end
+        note_title_regexp_pattern =
+          if title_from_data && !title_from_data.to_s.strip.empty?
+            Regexp.escape(title_from_data.to_s)
+          else
+            nil
+          end
 
         new_href   = "#{site.baseurl}#{note_potentially_linked_to.url}#{link_extension}"
         anchor_tag = "<a class='internal-link' href='#{new_href}'>\\1</a>"
@@ -42,17 +43,17 @@ class BidirectionalLinksGenerator < Jekyll::Generator
         )
 
         # [[title|label]]
-        if title_rx
+        if note_title_regexp_pattern
           current_note.content.gsub!(
-            /\[\[(?:#{title_rx})\|(.+?)(?=\])\]\]/i,
+            /\[\[(?:#{note_title_regexp_pattern})\|(.+?)(?=\])\]\]/i,
             anchor_tag
           )
         end
 
         # [[title]]
-        if title_rx
+        if note_title_regexp_pattern
           current_note.content.gsub!(
-            /\[\[(#{title_rx})\]\]/i,
+            /\[\[(#{note_title_regexp_pattern})\]\]/i,
             anchor_tag
           )
         end
