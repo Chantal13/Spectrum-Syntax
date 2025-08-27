@@ -4,12 +4,20 @@ module Jekyll
   module ImageExistsFilter
     PLACEHOLDER = '/assets/tumbling/coming_soon.jpg'
 
-    def ensure_image(input)
+    # Returns the image path if it exists, otherwise returns a placeholder.
+    # Accepts a raw path String, an HTML tag String, or a Hash containing :src or 'src'.
+    def image_exists(input)
       path = case input
              when Hash
                input['src'] || input[:src]
+             when String
+               if input.lstrip.start_with?('<')
+                 input[/src\s*=\s*['"]([^'"]+)['"]/i, 1]
+               else
+                 input
+               end
              else
-               input
+               input.to_s
              end
 
       return PLACEHOLDER unless path.is_a?(String) && !path.empty?
