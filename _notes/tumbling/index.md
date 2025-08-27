@@ -6,7 +6,8 @@ layout: default
 
 # Tumbling Batches
 
-{% assign placeholder = '/assets/tumbling/coming_soon.jpg' %}
+{% assign PLACEHOLDER = '/assets/tumbling/coming_soon.jpg' %}
+{% assign _all_static = site.static_files | map: 'relative_path' %}
 
 <div class="tumble">
 <table class="tumble-index">
@@ -24,7 +25,6 @@ layout: default
   <tbody>
   {% assign items = site.tumbles | sort: "date_started" | reverse %}
   {% for t in items %}
-    {%- comment -%} Duration (only if both dates exist) {%- endcomment -%}
     {% assign days = "" %}
     {% if t.date_started and t.date_finished %}
       {% assign started_s  = t.date_started  | date: "%s" %}
@@ -35,19 +35,20 @@ layout: default
       {% endif %}
     {% endif %}
 
-    {%- comment -%} Thumbnail with file-exists checks {%- endcomment -%}
-    {% assign thumb = placeholder %}
+    {%- comment -%} Thumbnail: prefer after_stage_4, then after_burnish, then rough; normalise + exists check {%- endcomment -%}
+    {% assign thumb = PLACEHOLDER %}
     {% assign c1 = t.images.after_stage_4 %}
     {% assign c2 = t.images.after_burnish %}
     {% assign c3 = t.images.rough %}
     {% assign cands = c1 | append: '|' | append: c2 | append: '|' | append: c3 | split: '|' %}
     {% for c in cands %}
-      {% if c and c != '' %}
-        {% assign f = site.static_files | where: "path", c | first %}
-        {% if f %}{% assign thumb = c %}{% break %}{% endif %}
+      {% assign url = c %}
+      {% if url and url != '' %}
+        {% if url | slice: 0,1 != '/' %}{% assign url = '/' | append: url %}{% endif %}
+        {% if _all_static contains url %}{% assign thumb = url %}{% break %}{% endif %}
       {% endif %}
     {% endfor %}
-    {% assign is_ph = thumb == placeholder %}
+    {% assign is_ph = thumb == PLACEHOLDER %}
 
     <tr>
       <td class="td-thumb">
