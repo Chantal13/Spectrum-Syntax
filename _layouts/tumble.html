@@ -2,282 +2,180 @@
 layout: default
 ---
 
-<article class="tumble-entry">
-  {%- comment -%} ---------- Helpers ---------- {%- endcomment -%}
-  {%- assign PLACEHOLDER = '/assets/tumbling/coming_soon.jpg' -%}
-  {%- assign status = page.status | default: 'Pending' -%}
+{% comment %}
+Helpers
+{% endcomment %}
+{% assign placeholder = "/assets/tumbling/coming_soon.jpg" | relative_url %}
+{% assign brand = page.consumables_brand | default: "National Geographic" %}
 
-  {%- comment -%}
-  Normalise a path to begin with "/" and test existence in site.static_files by relative_path.
-  Usage:
-    {% assign img = '/assets/x.jpg' | strip | normalize_path | file_or_placeholder: PLACEHOLDER %}
-  {%- endcomment -%}
-  {% capture _filters %}
-  {% raw %}
-  {% assign __ = 0 %}
-  {% endraw %}
-  {% endcapture %}
+{% assign cover =
+  page.images.cover
+  | default: page.images.after_stage_4
+  | default: page.images.after_burnish
+  | default: page.images.rough
+  | default: "/assets/tumbling/coming_soon.jpg"
+  | relative_url
+%}
 
-  {% assign _ = nil %}
+<h1>{{ page.title }}</h1>
 
-  {% comment %}
-  Filter: normalize_path
-  {% endcomment %}
-  {% assign normalize_path = nil %}
-
-  {% capture normalize_path %}
-  {% raw %}{{ include.arg }}{% endraw %}
-  {% endcapture %}
-
-  {% comment %} (We’ll emulate filters inline via captures below) {% endcomment %}
-
-  {%- comment -%} ---------- Title & meta ---------- {%- endcomment -%}
-  <header class="tumble-header">
-    <h1 class="tumble-title">{{ page.title | default: page.batch }}</h1>
-
-    <div class="tumble-meta">
-      <span class="chip chip-status chip-status--{{ status | downcase | replace: ' ', '-' }}">{{ status }}</span>
-
-      {%- if page.rocks and page.rocks.size > 0 -%}
-        <span class="meta-sep">•</span>
-        <span class="chip-row">
-          {%- for rock in page.rocks -%}
-            {%- assign rock_cls = rock | downcase | replace: ' ', '-' -%}
-            <span class="chip chip-rock rock-{{ rock_cls }}">{{ rock }}</span>
-          {%- endfor -%}
-        </span>
-      {%- endif -%}
-
-      <div class="tumble-dates">
-        {%- if page.date_started -%}<span><strong>Start:</strong> {{ page.date_started }}</span>{%- endif -%}
-        {%- if page.date_finished -%}<span><strong>Finish:</strong> {{ page.date_finished }}</span>{%- endif -%}
-      </div>
-
-      <div class="tumble-gear">
-        {%- if page.tumbler -%}<span><strong>Tumbler:</strong> {{ page.tumbler }}</span>{%- endif -%}
-        {%- if page.origin -%}<span><strong>Origin:</strong> {{ page.origin }}</span>{%- endif -%}
-      </div>
-    </div>
-  </header>
-
-  {%- comment -%} ---------- Overall progress ---------- {%- endcomment -%}
-  {%- assign pct = 0 -%}
-  {%- assign total = 4 -%}
-  {%- if page.stages and page.stages.size > 0 -%}
-    {%- assign total = page.stages.size -%}
-    {%- assign done = 0 -%}
-    {%- for st in page.stages -%}
-      {%- if st.end -%}{%- assign done = done | plus: 1 -%}{%- endif -%}
-    {%- endfor -%}
-    {%- assign pct = done | times: 100 | divided_by: total -%}
-  {%- endif -%}
-  {%- if page.status == 'Completed' or page.date_finished -%}{%- assign pct = 100 -%}{%- endif -%}
-
-  <div class="tumble-progress">
-    <div class="tumble-progress__bar">
-      <span class="tumble-progress__fill" style="width: {{ pct }}%"></span>
-    </div>
-    <div class="tumble-progress__label">{{ pct }}%</div>
+<div class="tumble-meta">
+  <div class="tumble-cover">
+    <img src="{{ cover }}" alt="{{ page.title }} cover image">
   </div>
 
-  {%- comment -%} ---------- Image helpers (real logic) ---------- {%- endcomment -%}
-  {%- assign _all_static = site.static_files | map: 'relative_path' -%}
+  <ul class="tumble-details">
+    <li><strong>Batch:</strong> {{ page.batch }}</li>
+    <li><strong>Status:</strong> {{ page.status | default: "Pending" }}</li>
+    <li><strong>Started:</strong> {{ page.date_started | default: "—" }}</li>
+    <li><strong>Finished:</strong> {{ page.date_finished | default: "—" }}</li>
+    <li><strong>Tumbler:</strong> {{ page.tumbler | default: "—" }}</li>
+    <li><strong>Origin:</strong> {{ page.origin | default: "—" }}</li>
+    {% if page.rocks and page.rocks.size > 0 %}
+    <li>
+      <strong>Rocks:</strong>
+      <span class="chips">
+        {% for rock in page.rocks %}
+          {% assign rk = rock | downcase | strip | replace: " ", "-" | replace: "_", "-" | replace: "/", "-" %}
+          <span class="chip chip--{{ rk }}">{{ rock }}</span>
+        {% endfor %}
+      </span>
+    </li>
+    {% endif %}
+  </ul>
+</div>
 
-  {%- assign rough_url = PLACEHOLDER -%}
-  {%- assign rough_candidate = page.images.rough | default: page.images.cover -%}
-  {%- if rough_candidate and rough_candidate != '' -%}
-    {%- assign rc = rough_candidate -%}
-    {%- if rc | slice: 0,1 != '/' -%}{%- assign rc = '/' | append: rc -%}{%- endif -%}
-    {%- if _all_static contains rc -%}{%- assign rough_url = rc -%}{%- endif -%}
-  {%- endif -%}
+{% if page.notes %}
+<div class="tumble-notes">
+  <h2>Notes</h2>
+  <p>{{ page.notes }}</p>
+</div>
+{% endif %}
 
-  <figure class="tumble-rough{%- if rough_url == PLACEHOLDER -%} is-placeholder{%- endif -%}">
-    <img src="{{ rough_url | relative_url }}" alt="{{ page.title }} – rough load" loading="lazy" decoding="async">
-    <figcaption>Rough load{%- if rough_url == PLACEHOLDER -%} (placeholder){%- endif -%}</figcaption>
-  </figure>
+<hr>
 
-  {%- assign cover_url = nil -%}
-  {%- if page.images and page.images.cover -%}
-    {%- assign cu = page.images.cover -%}
-    {%- if cu | slice: 0,1 != '/' -%}{%- assign cu = '/' | append: cu -%}{%- endif -%}
-    {%- if _all_static contains cu -%}{%- assign cover_url = cu -%}{%- endif -%}
-  {%- elsif page.images and page.images.gallery and page.images.gallery.size > 0 -%}
-    {%- assign first = page.images.gallery[0] -%}
-    {%- assign first_url = first.src | default: first -%}
-    {%- if first_url -%}
-      {%- if first_url | slice: 0,1 != '/' -%}{%- assign first_url = '/' | append: first_url -%}{%- endif -%}
-      {%- if _all_static contains first_url -%}{%- assign cover_url = first_url -%}{%- endif -%}
-    {%- endif -%}
-  {%- endif -%}
+<h2>Stages</h2>
 
-  {%- if cover_url and cover_url != rough_url -%}
-    <figure class="tumble-cover">
-      <img src="{{ cover_url | relative_url }}" alt="{{ page.title }} – cover" loading="lazy" decoding="async">
-    </figure>
-  {%- endif -%}
+{% assign empty_array = "" | split: "," %}
+{% for st in page.stages %}
+  {% assign imgs = st.images | default: empty_array %}
+  {% assign primary = nil %}
 
-  {%- if page.images and page.images.gallery and page.images.gallery.size > 0 -%}
-    <div class="tumble-gallery">
-      {%- for shot in page.images.gallery -%}
-        {%- assign url = shot.src | default: shot -%}
-        {%- if url -%}
-          {%- if url | slice: 0,1 != '/' -%}{%- assign url = '/' | append: url -%}{%- endif -%}
-          {%- if _all_static contains url -%}
-            <a class="t-shot" href="{{ url | relative_url }}" target="_blank" rel="noopener">
-              <img src="{{ url | relative_url }}" alt="{{ shot.alt | default: page.title }}" loading="lazy" decoding="async">
-            </a>
-          {%- endif -%}
-        {%- endif -%}
-      {%- endfor -%}
+  {% if imgs and imgs.size > 0 %}
+    {% assign primary = imgs[0] %}
+  {% endif %}
+
+  {% if primary == nil %}
+    {% assign k = "after_stage_" | append: st.stage %}
+    {% assign primary = page.images[k] %}
+  {% endif %}
+
+  {% if primary == nil %}
+    {% assign primary = page.images.rough %}
+  {% endif %}
+
+  {% assign primary = primary | default: "/assets/tumbling/coming_soon.jpg" | relative_url %}
+
+  <section class="stage-card" id="stage-{{ st.stage }}">
+    <div class="stage-media">
+      <img src="{{ primary }}" alt="Stage {{ st.stage }} image">
     </div>
-  {%- endif -%}
+    <div class="stage-body">
+      <h3>Stage {{ st.stage }} — {{ st.name }}</h3>
 
-  {%- if page.notes -%}
-    <div class="tumble-notes">
-      <h2>Notes</h2>
-      <p>{{ page.notes }}</p>
+      <div class="kv">
+        {% if st.grit %}
+          <div><span>Grit/Polish</span><span>{{ st.grit }} ({{ brand }})</span></div>
+        {% elsif st.polish %}
+          <div><span>Polish</span><span>{{ st.polish }} ({{ brand }})</span></div>
+        {% endif %}
+
+        <div><span>Start</span><span>{{ st.start | default: "—" }}</span></div>
+        <div><span>End</span><span>{{ st.end   | default: "—" }}</span></div>
+        <div><span>Barrel fill</span><span>{{ st.barrel_fill_pct | default: "—" }}</span></div>
+        <div><span>Water level</span><span>{{ st.water_level | default: "—" }}</span></div>
+        <div><span>Media used</span><span>{{ st.media_used | default: "—" }}</span></div>
+        <div><span>Amount (Tbsp)</span><span>{{ st.amount_tbsp | default: "—" }}</span></div>
+
+        {% if st.maintenance %}
+          <div><span>Maintenance</span><span>{{ st.maintenance }}</span></div>
+        {% endif %}
+      </div>
+
+      {% if st.observations %}
+        <p class="obs"><strong>Observations:</strong> {{ st.observations }}</p>
+      {% endif %}
+
+      {% assign dec = st.decision %}
+      {% if dec %}
+        {% if dec.repeat %}
+          <p class="decision"><strong>Decision:</strong> Repeat{% if dec.why %} — {{ dec.why }}{% endif %}</p>
+        {% elsif dec.why %}
+          <p class="decision"><strong>Decision:</strong> {{ dec.why }}</p>
+        {% endif %}
+      {% endif %}
+
+      {% if imgs and imgs.size > 1 %}
+        <div class="stage-gallery">
+          {% for extra in imgs offset:1 %}
+            <img src="{{ extra | relative_url }}" alt="Stage {{ st.stage }} extra image {{ forloop.index }}">
+          {% endfor %}
+        </div>
+      {% endif %}
     </div>
-  {%- endif -%}
+  </section>
+{% endfor %}
 
-  {%- comment -%} ---------- Stages ---------- {%- endcomment -%}
-  {%- if page.stages and page.stages.size > 0 -%}
-    {%- for st in page.stages -%}
-      {%- assign s = st.stage | default: forloop.index -%}
-      <section class="tumble-stage-block" id="stage-{{ s }}">
-        <h3>Stage {{ s }} — {{ st.name | default: 'Stage' }}</h3>
-
-        {%- assign after_url = PLACEHOLDER -%}
-        {%- assign key = '' -%}
-        {%- if s == 1 -%}{%- assign key = page.images.after_stage_1 -%}
-        {%- elsif s == 2 -%}{%- assign key = page.images.after_stage_2 -%}
-        {%- elsif s == 3 -%}{%- assign key = page.images.after_stage_3 -%}
-        {%- elsif s == 4 -%}{%- assign key = page.images.after_stage_4 -%}{%- endif -%}
-        {%- if key and key != '' -%}
-          {%- assign k = key -%}
-          {%- if k | slice: 0,1 != '/' -%}{%- assign k = '/' | append: k -%}{%- endif -%}
-          {%- if _all_static contains k -%}{%- assign after_url = k -%}{%- endif -%}
-        {%- endif -%}
-
-        <figure class="stage-after{%- if after_url == PLACEHOLDER -%} is-placeholder{%- endif -%}">
-          <img src="{{ after_url | relative_url }}" alt="After Stage {{ s }}" loading="lazy" decoding="async">
-          <figcaption>After Stage {{ s }}{%- if after_url == PLACEHOLDER -%} (placeholder){%- endif -%}</figcaption>
+{% if page.images.gallery and page.images.gallery.size > 0 %}
+  <h2>Gallery</h2>
+  <div class="grid gallery">
+    {% for g in page.images.gallery %}
+      {% if g.src %}
+        <figure>
+          <img src="{{ g.src | relative_url }}" alt="{{ g.alt | default: "" }}">
+          {% if g.caption %}<figcaption>{{ g.caption }}</figcaption>{% endif %}
         </figure>
-
-        {%- if s == 4 -%}
-          {%- assign burnish_url = PLACEHOLDER -%}
-          {%- if page.images.after_burnish -%}
-            {%- assign bu = page.images.after_burnish -%}
-            {%- if bu | slice: 0,1 != '/' -%}{%- assign bu = '/' | append: bu -%}{%- endif -%}
-            {%- if _all_static contains bu -%}{%- assign burnish_url = bu -%}{%- endif -%}
-          {%- endif -%}
-          <figure class="stage-after{%- if burnish_url == PLACEHOLDER -%} is-placeholder{%- endif -%}">
-            <img src="{{ burnish_url | relative_url }}" alt="After Burnish" loading="lazy" decoding="async">
-            <figcaption>After Burnish{%- if burnish_url == PLACEHOLDER -%} (placeholder){%- endif -%}</figcaption>
-          </figure>
-        {%- endif -%}
-
-        <table class="tumble-stage">
-          <tbody>
-            <tr>
-              <th>{% if s == 4 %}Polish{% else %}Grit{% endif %}</th>
-              <td>
-                {%- if s == 4 -%}
-                  {{ st.polish | default: '—' }}
-                {%- else -%}
-                  {{ st.grit | default: '—' }}
-                {%- endif -%}
-                {%- if page.consumables_brand -%}
-                  <span class="subtext">({{ page.consumables_brand }})</span>
-                {%- endif -%}
-              </td>
-            </tr>
-            <tr><th>Start</th><td>{{ st.start | default: '—' }}</td></tr>
-            <tr><th>End</th><td>{{ st.end | default: '—' }}</td></tr>
-            {%- assign sd = st.start | date: "%s" -%}
-            {%- assign ed = st.end | date: "%s" -%}
-            {%- if st.start and st.end and sd and ed -%}
-              {%- assign ssec = ed | minus: sd -%}
-              {%- assign sdays = ssec | divided_by: 86400 -%}
-              <tr><th>Duration (days)</th><td>{{ sdays }}</td></tr>
-            {%- else -%}
-              <tr><th>Duration (days)</th><td>—</td></tr>
-            {%- endif -%}
-            <tr><th>Barrel fill %</th><td>{{ st.barrel_fill_pct | default: '—' }}</td></tr>
-            <tr><th>Water level</th><td>{{ st.water_level | default: '—' }}</td></tr>
-            <tr><th>Media used</th><td>{{ st.media_used | default: '—' }}</td></tr>
-            <tr><th>Amount (Tbsp)</th><td>{{ st.amount_tbsp | default: '—' }}</td></tr>
-            {%- if st.maintenance -%}<tr><th>Maintenance</th><td>{{ st.maintenance }}</td></tr>{%- endif -%}
-            <tr><th>Observations</th><td>{{ st.observations | default: '—' }}</td></tr>
-            {%- if st.decision and (st.decision.repeat or st.decision.why) -%}
-              <tr>
-                <th>Decision</th>
-                <td>
-                  {%- if st.decision.repeat == true -%}Repeat (why: {{ st.decision.why | default: '—' }})
-                  {%- elsif st.decision.repeat == false -%}Don’t repeat
-                  {%- else -%}—{%- endif -%}
-                </td>
-              </tr>
-            {%- endif -%}
-          </tbody>
-        </table>
-      </section>
-    {%- endfor -%}
-  {%- endif -%}
-
-  {%- comment -%} ---------- Lightbox ---------- {%- endcomment -%}
-  <div id="lb" class="lightbox" hidden>
-    <button class="lb-close" aria-label="Close">×</button>
-    <img class="lb-img" alt="">
-    <div class="lb-cap"></div>
+      {% else %}
+        <figure>
+          <img src="{{ g | relative_url }}" alt="">
+        </figure>
+      {% endif %}
+    {% endfor %}
   </div>
+{% endif %}
 
-  <script>
-  (function () {
-    const lb = document.getElementById('lb');
-    if (!lb) return;
-    const imgEl = lb.querySelector('.lb-img');
-    const capEl = lb.querySelector('.lb-cap');
-    const closeBtn = lb.querySelector('.lb-close');
+<style>
+/* Minimal page-local styles; your main stylesheet can refine these */
+.tumble-meta{display:grid;gap:1rem;grid-template-columns:1fr}
+.tumble-cover img{width:100%;max-height:280px;object-fit:cover;border-radius:8px}
+.tumble-details{list-style:none;padding:0;margin:0}
+.tumble-details li{margin:.25rem 0}
 
-    function openLB(url, alt, caption) {
-      imgEl.src = url;
-      imgEl.alt = alt || '';
-      capEl.textContent = caption || '';
-      document.documentElement.style.overflow = 'hidden';
-      lb.hidden = false;
-    }
-    function closeLB() {
-      lb.hidden = true;
-      imgEl.src = '';
-      capEl.textContent = '';
-      document.documentElement.style.overflow = '';
-    }
+.chips{display:inline-flex;gap:.35rem;flex-wrap:wrap}
+.chip{display:inline-block;padding:.15rem .5rem;border-radius:999px;font-size:.85em;border:1px solid rgba(0,0,0,.1)}
 
-    closeBtn.addEventListener('click', closeLB);
-    lb.addEventListener('click', (e) => { if (e.target === lb) closeLB(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLB(); });
+/* Rock colour chips (extend as needed) */
+.chip--agate{background:#f6efe9}
+.chip--jasper{background:#f2e6e1}
+.chip--sodalite{background:#e8eef9}
+.chip--quartz{background:#f4f4f4}
+.chip--dalmatian-jasper{background:repeating-linear-gradient(45deg,#f2e6e1,#f2e6e1 6px,#e8d9d2 6px,#e8d9d2 12px)}
+/* generic fallback */
+[class^="chip--"]:not(.chip--agate):not(.chip--jasper):not(.chip--sodalite):not(.chip--quartz):not(.chip--dalmatian-jasper){background:#eef3ff}
 
-    document.querySelector('.tumble-entry')?.addEventListener('click', (e) => {
-      const link = e.target.closest('a.t-shot');
-      const img  = e.target.closest('.tumble-cover img, .tumble-rough img, .stage-after img');
-      if (link) {
-        e.preventDefault();
-        const url = link.getAttribute('href');
-        const alt = link.querySelector('img')?.getAttribute('alt') || '';
-        openLB(url, alt, '');
-      } else if (img) {
-        e.preventDefault();
-        const url = img.getAttribute('src');
-        const alt = img.getAttribute('alt') || '';
-        let caption = '';
-        const fig = img.closest('figure');
-        if (fig) {
-          const cap = fig.querySelector('figcaption');
-          caption = cap ? cap.textContent.trim() : '';
-        }
-        openLB(url, alt, caption);
-      }
-    });
-  })();
-  </script>
-</article>
+.stage-card{display:grid;gap:1rem;grid-template-columns:1fr;align-items:start;margin:1.5rem 0;padding:1rem;border:1px solid rgba(0,0,0,.06);border-radius:8px;background:#fafafa}
+.stage-media img{width:100%;border-radius:6px}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:.35rem .75rem;margin:.5rem 0}
+.kv > div{display:contents}
+.kv > div > span:first-child{color:#555}
+.kv > div > span:last-child{text-align:right}
+.obs{margin:.5rem 0}
+.stage-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.5rem;margin-top:.5rem}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem}
+.gallery figure{margin:0}
+.gallery img{width:100%;border-radius:6px}
+@media (min-width: 820px){
+  .tumble-meta{grid-template-columns: 320px 1fr}
+  .stage-card{grid-template-columns: 260px 1fr}
+}
+</style>

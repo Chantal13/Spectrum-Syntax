@@ -6,85 +6,110 @@ layout: default
 
 # Tumbling Batches
 
-{% assign PLACEHOLDER = '/assets/tumbling/coming_soon.jpg' %}
-{% assign _all_static = site.static_files | map: 'relative_path' %}
+{% assign coll = site.tumble_logs | default: site.tumbles %}
+{% if coll %}
+  {% assign items = coll | sort: "date_started" | reverse %}
+{% else %}
+  {% assign items = "" | split: "," %}
+{% endif %}
 
-<div class="tumble">
-<table class="tumble-index">
-  <thead>
-    <tr>
-      <th>Photo</th>
-      <th>Batch</th>
-      <th>Started</th>
-      <th>Finished</th>
-      <th>Status</th>
-      <th>Rocks</th>
-      <th>Duration (days)</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% assign items = site.tumbles | sort: "date_started" | reverse %}
-  {% for t in items %}
-    {% assign days = "" %}
-    {% if t.date_started and t.date_finished %}
-      {% assign started_s  = t.date_started  | date: "%s" %}
-      {% assign finished_s = t.date_finished | date: "%s" %}
-      {% if started_s and finished_s %}
-        {% assign seconds = finished_s | minus: started_s %}
-        {% assign days = seconds | divided_by: 86400 %}
+{% assign PLACEHOLDER = "/assets/tumbling/coming_soon.jpg" | relative_url %}
+
+<div class="tumble-index">
+  <table class="nice-table">
+    <thead>
+      <tr>
+        <th>Batch</th>
+        <th>Started</th>
+        <th>Finished</th>
+        <th>Status</th>
+        <th>Rocks</th>
+        <th>Duration (days)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if items and items.size > 0 %}
+        {% for d in items %}
+          {% assign thumb =
+            d.images.after_stage_4
+            | default: d.images.after_burnish
+            | default: d.images.cover
+            | default: d.images.rough
+            | default: "/assets/tumbling/coming_soon.jpg"
+            | relative_url
+          %}
+
+          {% assign days = "" %}
+          {% if d.date_started and d.date_finished %}
+            {% assign started_s  = d.date_started  | date: "%s" %}
+            {% assign finished_s = d.date_finished | date: "%s" %}
+            {% assign seconds = finished_s | minus: started_s %}
+            {% assign days = seconds | divided_by: 86400 %}
+          {% endif %}
+
+          <tr>
+            <td class="batch-cell">
+              <a class="thumb" href="{{ d.url | relative_url }}">
+                <img src="{{ thumb }}" alt="{{ d.title | default: d.batch }}">
+              </a>
+              <div class="batch-meta">
+                <a href="{{ d.url | relative_url }}"><strong>{{ d.batch | default: d.title }}</strong></a>
+                {% if d.rocks and d.rocks.size > 0 %}
+                  <div class="chips">
+                    {% for rock in d.rocks %}
+                      {% assign rk = rock | downcase | strip | replace: " ", "-" | replace: "_", "-" | replace: "/", "-" %}
+                      <span class="chip chip--{{ rk }}">{{ rock }}</span>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            </td>
+            <td>{{ d.date_started | default: "—" }}</td>
+            <td>{{ d.date_finished | default: "—" }}</td>
+            <td>
+              {% assign st = d.status | default: "Pending" | downcase %}
+              <span class="status status--{{ st | replace: ' ', '-' }}">
+                {{ d.status | default: "Pending" }}
+              </span>
+            </td>
+            <td>
+              {% if d.rocks and d.rocks.size > 0 %}
+                {{ d.rocks | join: ", " }}
+              {% else %}—{% endif %}
+            </td>
+            <td>{% if days != "" %}{{ days }}{% else %}—{% endif %}</td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+          <td colspan="6">No batches found. Put markdown files in your tumbling collection with front matter.</td>
+        </tr>
       {% endif %}
-    {% endif %}
-
-    {%- comment -%} Thumbnail: prefer after_stage_4, then after_burnish, then rough; normalise + exists check {%- endcomment -%}
-    {% assign thumb = PLACEHOLDER %}
-    {% assign c1 = t.images.after_stage_4 %}
-    {% assign c2 = t.images.after_burnish %}
-    {% assign c3 = t.images.rough %}
-    {% assign cands = c1 | append: '|' | append: c2 | append: '|' | append: c3 | split: '|' %}
-    {% for c in cands %}
-      {% assign url = c %}
-      {% if url and url != '' %}
-        {% if url | slice: 0,1 != '/' %}{% assign url = '/' | append: url %}{% endif %}
-        {% if _all_static contains url %}{% assign thumb = url %}{% break %}{% endif %}
-      {% endif %}
-    {% endfor %}
-    {% assign is_ph = thumb == PLACEHOLDER %}
-
-    <tr>
-      <td class="td-thumb">
-        <a href="{{ t.url | relative_url }}" class="thumb-link">
-          <img class="t-thumb{% if is_ph %} is-placeholder{% endif %}"
-               src="{{ thumb | relative_url }}"
-               alt="Batch {{ t.batch | default: t.title }} thumbnail"
-               loading="lazy" decoding="async">
-        </a>
-      </td>
-
-      <td><a class="internal-link" href="{{ t.url | relative_url }}">{{ t.batch | default: t.title }}</a></td>
-      <td>{{ t.date_started | default: "—" }}</td>
-      <td>{{ t.date_finished | default: "—" }}</td>
-
-      <td>
-        {% assign st = t.status | default: 'Pending' %}
-        <span class="chip chip-status chip-status--{{ st | downcase | replace: ' ', '-' }}">{{ st }}</span>
-      </td>
-
-      <td>
-        {% if t.rocks and t.rocks.size > 0 %}
-          <span class="chip-row">
-            {% for rock in t.rocks %}
-              {% assign rock_cls = rock | downcase | replace: ' ', '-' %}
-              <span class="chip chip-rock rock-{{ rock_cls }}">{{ rock }}</span>
-            {% endfor %}
-          </span>
-        {% else %}
-          —
-        {% endif %}
-      </td>
-
-      <td>{% if days != "" %}{{ days }}{% else %}—{% endif %}</td>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
+    </tbody>
+  </table>
 </div>
+
+<style>
+.tumble-index .nice-table{width:100%;border-collapse:collapse}
+.tumble-index thead th{font-weight:600;border-bottom:1px solid rgba(0,0,0,.12);text-align:left;padding:.5rem}
+.tumble-index tbody td{border-bottom:1px solid rgba(0,0,0,.06);padding:.5rem;vertical-align:middle}
+.batch-cell{display:flex;gap:.75rem;align-items:center}
+.thumb{display:block;width:64px;min-width:64px;height:48px;border-radius:6px;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.batch-meta{display:flex;flex-direction:column;gap:.25rem}
+.chips{display:flex;gap:.25rem;flex-wrap:wrap}
+.chip{display:inline-block;padding:.1rem .45rem;border-radius:999px;font-size:.75em;border:1px solid rgba(0,0,0,.1)}
+/* rock colours (same as layout, extend as needed) */
+.chip--agate{background:#f6efe9}
+.chip--jasper{background:#f2e6e1}
+.chip--sodalite{background:#e8eef9}
+.chip--quartz{background:#f4f4f4}
+.chip--dalmatian-jasper{background:repeating-linear-gradient(45deg,#f2e6e1,#f2e6e1 6px,#e8d9d2 6px,#e8d9d2 12px)}
+[class^="chip--"]:not(.chip--agate):not(.chip--jasper):not(.chip--sodalite):not(.chip--quartz):not(.chip--dalmatian-jasper){background:#eef3ff}
+
+/* status pills */
+.status{padding:.15rem .5rem;border-radius:999px;font-size:.8em;border:1px solid rgba(0,0,0,.08)}
+.status--pending{background:#fff7d6}
+.status--in-progress{background:#e8f4ff}
+.status--completed{background:#e9f7ec}
+</style>
