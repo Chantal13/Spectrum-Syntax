@@ -29,6 +29,12 @@ https://spectrumsyntax.netlify.app/
    ```
    The development server runs at http://localhost:4000.
 
+3. Check for missing assets:
+   ```bash
+   ruby scripts/check_assets.rb
+   ```
+   The script scans front matter for image paths and fails if any referenced file is missing.
+
 ## Deployment
 
 This site relies on custom Jekyll plugins, so GitHub Pages cannot build it directly. The project is deployed to Netlify using the configuration in [`netlify.toml`](netlify.toml). Pushing to the main branch triggers a production build.
