@@ -6,7 +6,7 @@ layout: default
 
 # Tumbling Batches
 
-{% assign coll = site.tumble_logs | default: site.tumbles %}
+{% assign coll = site.tumble_logs %}
 {% if coll %}
   {% assign items = coll | sort: "date_started" | reverse %}
 {% else %}
