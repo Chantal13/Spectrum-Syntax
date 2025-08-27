@@ -367,3 +367,8 @@ code {
   transform: scale(1.03);
   filter: saturate(1.06);
 }
+/* Placeholder cue (dim a bit) */
+.is-placeholder img,
+.t-thumb.is-placeholder {
+  filter: grayscale(0.25) opacity(0.9);
+}

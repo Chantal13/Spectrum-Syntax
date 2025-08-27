@@ -3,190 +3,237 @@ layout: default
 ---
 
 <article class="tumble-entry">
-  <h1>{{ page.title }}</h1>
 
-  {%- assign badge_class = page.status_class | default: page.status | downcase | replace: ' ', '-' -%}
-  {%- if page.status or (page.rocks and page.rocks.size > 0) -%}
+  {%- comment -%} ---------- Constants / helpers ---------- {%- endcomment -%}
+  {%- assign placeholder = '/assets/tumbling/coming-soon.jpg' -%}
+  {%- assign status = page.status | default: 'Pending' -%}
+
+  {%- comment -%} ---------- Title & meta ---------- {%- endcomment -%}
+  <header class="tumble-header">
+    <h1 class="tumble-title">{{ page.title | default: page.batch }}</h1>
+
     <div class="tumble-meta">
-      {%- if page.status -%}
-        <span class="badge {{ badge_class }}">{{ page.status }}</span>
-      {%- endif -%}
+      <span class="chip chip-status chip-status--{{ status | downcase | replace: ' ', '-' }}">{{ status }}</span>
+
       {%- if page.rocks and page.rocks.size > 0 -%}
-        {%- for r in page.rocks -%}
-          <span class="badge rock r-{{ r | slugify }}">{{ r }}</span>
-        {%- endfor -%}
+        <span class="meta-sep">•</span>
+        <span class="chip-row">
+          {%- for rock in page.rocks -%}
+            {%- assign rock_cls = rock | downcase | replace: ' ', '-' -%}
+            <span class="chip chip-rock rock-{{ rock_cls }}">{{ rock }}</span>
+          {%- endfor -%}
+        </span>
       {%- endif -%}
+
+      <div class="tumble-dates">
+        {%- if page.date_started -%}<span><strong>Start:</strong> {{ page.date_started }}</span>{%- endif -%}
+        {%- if page.date_finished -%}<span><strong>Finish:</strong> {{ page.date_finished }}</span>{%- endif -%}
+      </div>
+
+      <div class="tumble-gear">
+        {%- if page.tumbler -%}<span><strong>Tumbler:</strong> {{ page.tumbler }}</span>{%- endif -%}
+        {%- if page.origin -%}<span><strong>Origin:</strong> {{ page.origin }}</span>{%- endif -%}
+      </div>
     </div>
-  {%- comment -%} Batch photos (cover + gallery) {%- endcomment -%}
-  {%- assign cover = nil -%}
-  {%- if page.images and page.images.cover -%}
-  {%- assign cover = page.images.cover -%}
-  {%- elsif page.images and page.images.gallery and page.images.gallery.size > 0 -%}
-  {%- assign first = page.images.gallery[0] -%}
-  {%- assign cover = first.src | default: first -%}
-  {%- endif -%}
-  
-  {%- if cover -%}
-  <figure class="tumble-cover">
-    <img src="{{ cover | relative_url }}" alt="{{ page.title }} – cover" loading="lazy" decoding="async">
-  </figure>
-  {%- endif -%}
-  
-  {%- if page.images and page.images.gallery and page.images.gallery.size > 0 -%}
-  <div class="tumble-gallery">
-    {%- for shot in page.images.gallery -%}
-    {%- assign url = shot.src | default: shot -%}
-    {%- assign alt = shot.alt | default: page.title -%}
-    <a class="t-shot" href="{{ url | relative_url }}" target="_blank" rel="noopener">
-      <img src="{{ url | relative_url }}" alt="{{ alt }}" loading="lazy" decoding="async">
-    </a>
-    {%- endfor -%}
-  </div>
-  {%- endif -%}
+  </header>
 
-  {%- endif -%}
-
-  <p class="mono">
-    {%- if page.date_started -%}<strong>Started:</strong> {{ page.date_started }}{%- endif -%}
-    {%- if page.date_finished -%} &nbsp; <strong>Finished:</strong> {{ page.date_finished }}{%- endif -%}
-    {%- if page.date_started and page.date_finished -%}
-      {%- assign s = page.date_started | date: "%s" -%}
-      {%- assign e = page.date_finished | date: "%s" -%}
-      {%- assign sec = e | minus: s -%}
-      {%- assign days = sec | divided_by: 86400 -%}
-      &nbsp; <strong>Duration:</strong> {{ days }} days
-    {%- endif -%}
-  </p>
-
-  {%- if page.tumbler or page.origin -%}
-  <ul>
-    {%- if page.tumbler -%}<li><strong>Tumbler:</strong> {{ page.tumbler }}</li>{%- endif -%}
-    {%- if page.origin -%}<li><strong>Origin:</strong> {{ page.origin }}</li>{%- endif -%}
-  </ul>
-  {%- endif -%}
-
-  {%- if page.notes and page.notes != "" -%}
-    <p>{{ page.notes }}</p>
-  {%- endif -%}
-
-  {%- comment -%} Auto stage progress (stage-based preferred, batch dates fallback) {%- endcomment -%}
-  {%- assign total = 0 -%}
-  {%- assign completed = 0 -%}
-  {%- assign active_index = nil -%}
-
-  {%- if page.stages -%}
+  {%- comment -%} ---------- Overall progress (auto) ---------- {%- endcomment -%}
+  {%- assign pct = 0 -%}
+  {%- assign total = 4 -%}
+  {%- if page.stages and page.stages.size > 0 -%}
+    {%- assign total = page.stages.size -%}
+    {%- assign done = 0 -%}
     {%- for st in page.stages -%}
-      {%- if st.name -%}{%- assign total = total | plus: 1 -%}{%- endif -%}
-      {%- if st.end -%}{%- assign completed = completed | plus: 1 -%}{%- endif -%}
-      {%- if active_index == nil and st.start and st.end == nil -%}
-        {%- assign active_index = forloop.index -%}
-      {%- endif -%}
+      {%- if st.end -%}{%- assign done = done | plus: 1 -%}{%- endif -%}
     {%- endfor -%}
+    {%- assign pct = done | times: 100 | divided_by: total -%}
+  {%- endif -%}
+  {%- if page.status == 'Completed' or page.date_finished -%}{%- assign pct = 100 -%}{%- endif -%}
+
+  <div class="tumble-progress">
+    <div class="tumble-progress__bar">
+      <span class="tumble-progress__fill" style="width: {{ pct }}%"></span>
+    </div>
+    <div class="tumble-progress__label">{{ pct }}%</div>
+  </div>
+
+  {%- comment -%} ---------- Photos: rough + optional cover + gallery ---------- {%- endcomment -%}
+  {%- assign rough_url = page.images.rough | default: page.images.cover | default: placeholder -%}
+  <figure class="tumble-rough{%- if rough_url == placeholder -%} is-placeholder{%- endif -%}">
+    <img src="{{ rough_url | relative_url }}" alt="{{ page.title }} – rough load" loading="lazy" decoding="async">
+    <figcaption>Rough load{%- if rough_url == placeholder -%} (placeholder){%- endif -%}</figcaption>
+  </figure>
+
+  {%- assign cover_url = nil -%}
+  {%- if page.images and page.images.cover -%}
+    {%- assign cover_url = page.images.cover -%}
+  {%- elsif page.images and page.images.gallery and page.images.gallery.size > 0 -%}
+    {%- assign first = page.images.gallery[0] -%}
+    {%- assign cover_url = first.src | default: first -%}
   {%- endif -%}
 
-  {%- assign percent = nil -%}
-  {%- if total > 0 -%}
-    {%- assign percent = completed | times: 100 | divided_by: total -%}
-  {%- else -%}
-    {%- if page.date_started and page.date_finished -%}
-      {%- assign s = page.date_started | date: "%s" -%}
-      {%- assign e = page.date_finished | date: "%s" -%}
-      {%- assign now = site.time | date: "%s" -%}
-      {%- assign dur = e | minus: s -%}
-      {%- assign elapsed = now | minus: s -%}
-      {%- if elapsed < 0 -%}{%- assign elapsed = 0 -%}{%- endif -%}
-      {%- if elapsed > dur -%}{%- assign elapsed = dur -%}{%- endif -%}
-      {%- if dur > 0 -%}
-        {%- assign percent = elapsed | times: 100 | divided_by: dur -%}
-      {%- endif -%}
-    {%- endif -%}
+  {%- if cover_url and cover_url != rough_url -%}
+    <figure class="tumble-cover">
+      <img src="{{ cover_url | relative_url }}" alt="{{ page.title }} – cover" loading="lazy" decoding="async">
+    </figure>
   {%- endif -%}
 
-  {%- if total > 0 -%}
-    <p class="progressline">
-      {%- if completed == total -%}
-        <strong>Progress:</strong> Completed ({{ total }} stages) — 100%
-      {%- elsif active_index -%}
-        <strong>Progress:</strong> Stage {{ active_index }} of {{ total }} — {{ percent | default: 0 }}%
-      {%- else -%}
-        <strong>Progress:</strong> Stage {{ completed | plus: 1 }} of {{ total }} — {{ percent | default: 0 }}%
-      {%- endif -%}
-    </p>
-  {%- elsif percent -%}
-    <p class="progressline"><strong>Progress:</strong> {{ percent }}%</p>
-  {%- endif -%}
-
-  {%- if percent -%}
-    <div class="progress {{ badge_class }}" role="progressbar"
-         aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ percent }}">
-      <div class="bar" style="width: {{ percent }}%"></div>
+  {%- if page.images and page.images.gallery and page.images.gallery.size > 0 -%}
+    <div class="tumble-gallery">
+      {%- for shot in page.images.gallery -%}
+        {%- assign url = shot.src | default: shot -%}
+        {%- assign alt = shot.alt | default: page.title -%}
+        <a class="t-shot" href="{{ url | relative_url }}" target="_blank" rel="noopener">
+          <img src="{{ url | relative_url }}" alt="{{ alt }}" loading="lazy" decoding="async">
+        </a>
+      {%- endfor -%}
     </div>
   {%- endif -%}
 
+  {%- comment -%} ---------- Notes (optional) ---------- {%- endcomment -%}
+  {%- if page.notes -%}
+    <div class="tumble-notes">
+      <h2>Notes</h2>
+      <p>{{ page.notes }}</p>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} ---------- Stages ---------- {%- endcomment -%}
   {%- if page.stages and page.stages.size > 0 -%}
     {%- for st in page.stages -%}
-      <hr>
-      <h3>Stage {{ st.stage }} — {{ st.name }}</h3>
-      <div class="tumble">
-        <table class="tumble-table">
-          <thead>
-            <tr><th>Field</th><th>Notes</th></tr>
-          </thead>
+      {%- assign s = st.stage | default: forloop.index -%}
+      <section class="tumble-stage-block" id="stage-{{ s }}">
+        <h3>Stage {{ s }} — {{ st.name | default: 'Stage' }}</h3>
+
+        {%- comment -%} Stage “after” image (1–4) with placeholder {%- endcomment -%}
+        {%- assign after_url = nil -%}
+        {%- if s == 1 -%}
+          {%- assign after_url = page.images.after_stage_1 -%}
+        {%- elsif s == 2 -%}
+          {%- assign after_url = page.images.after_stage_2 -%}
+        {%- elsif s == 3 -%}
+          {%- assign after_url = page.images.after_stage_3 -%}
+        {%- elsif s == 4 -%}
+          {%- assign after_url = page.images.after_stage_4 -%}
+        {%- endif -%}
+        {%- assign after_url = after_url | default: placeholder -%}
+
+        <figure class="stage-after{%- if after_url == placeholder -%} is-placeholder{%- endif -%}">
+          <img src="{{ after_url | relative_url }}" alt="After Stage {{ s }}" loading="lazy" decoding="async">
+          <figcaption>After Stage {{ s }}{%- if after_url == placeholder -%} (placeholder){%- endif -%}</figcaption>
+        </figure>
+
+        {%- if s == 4 -%}
+          {%- assign burnish_url = page.images.after_burnish | default: placeholder -%}
+          <figure class="stage-after{%- if burnish_url == placeholder -%} is-placeholder{%- endif -%}">
+            <img src="{{ burnish_url | relative_url }}" alt="After Burnish" loading="lazy" decoding="async">
+            <figcaption>After Burnish{%- if burnish_url == placeholder -%} (placeholder){%- endif -%}</figcaption>
+          </figure>
+        {%- endif -%}
+
+        {%- comment -%} Stage table (compact two-col) {%- endcomment -%}
+        <table class="tumble-stage">
           <tbody>
-            {%- if st.grit -%}
-              <tr>
-                <td>Grit</td>
-                <td data-label="Grit">
-                  {{ st.grit }}{%- if page.consumables_brand -%} ({{ page.consumables_brand }}){%- endif -%}
-                </td>
-              </tr>
-            {%- endif -%}
-            {%- if st.polish -%}
-              <tr>
-                <td>Polish</td>
-                <td data-label="Polish">
-                  {{ st.polish }}{%- if page.consumables_brand -%} ({{ page.consumables_brand }}){%- endif -%}
-                </td>
-              </tr>
-            {%- endif -%}
-
-            <tr><td>Start Date</td><td data-label="Start Date">{{ st.start | default: "—" }}</td></tr>
-            <tr><td>End Date</td><td data-label="End Date">{{ st.end | default: "—" }}</td></tr>
-
-            {%- if st.start and st.end -%}
-              {%- assign st_s = st.start | date: "%s" -%}
-              {%- assign st_e = st.end   | date: "%s" -%}
-              {%- assign st_sec = st_e | minus: st_s -%}
-              {%- assign st_days = st_sec | divided_by: 86400 -%}
-              <tr><td>Duration (days)</td><td class="mono" data-label="Duration (days)">{{ st_days }}</td></tr>
+            <tr>
+              <th>{% if s == 4 %}Polish{% else %}Grit{% endif %}</th>
+              <td>
+                {%- if s == 4 -%}
+                  {{ st.polish | default: '—' }}
+                {%- else -%}
+                  {{ st.grit | default: '—' }}
+                {%- endif -%}
+                {%- if page.consumables_brand -%}
+                  <span class="subtext">({{ page.consumables_brand }})</span>
+                {%- endif -%}
+              </td>
+            </tr>
+            <tr><th>Start</th><td>{{ st.start | default: '—' }}</td></tr>
+            <tr><th>End</th><td>{{ st.end | default: '—' }}</td></tr>
+            {%- assign sd = st.start | date: "%s" -%}
+            {%- assign ed = st.end | date: "%s" -%}
+            {%- if st.start and st.end and sd and ed -%}
+              {%- assign ssec = ed | minus: sd -%}
+              {%- assign sdays = ssec | divided_by: 86400 -%}
+              <tr><th>Duration (days)</th><td>{{ sdays }}</td></tr>
             {%- else -%}
-              <tr><td>Duration (days)</td><td data-label="Duration (days)">—</td></tr>
+              <tr><th>Duration (days)</th><td>—</td></tr>
             {%- endif -%}
-
-            {%- if st.barrel_fill_pct -%}<tr><td>Barrel Fill %</td><td class="mono" data-label="Barrel Fill %">{{ st.barrel_fill_pct }}</td></tr>{%- endif -%}
-            {%- if st.water_level -%}<tr><td>Water Level</td><td data-label="Water Level">{{ st.water_level }}</td></tr>{%- endif -%}
-            {%- if st.media_used -%}<tr><td>Media Used</td><td data-label="Media Used">{{ st.media_used }}</td></tr>{%- endif -%}
-            {%- if st.amount_tbsp -%}<tr><td>Amount (Tbsp)</td><td class="mono" data-label="Amount (Tbsp)">{{ st.amount_tbsp }}</td></tr>{%- endif -%}
-            {%- if st.maintenance -%}<tr><td>Maintenance</td><td data-label="Maintenance">{{ st.maintenance }}</td></tr>{%- endif -%}
-            {%- if st.observations -%}<tr><td>Observations</td><td data-label="Observations">{{ st.observations }}</td></tr>{%- endif -%}
-
-            {%- assign has_decision = st.decision and (st.decision.repeat != nil or st.decision.why) -%}
-            {%- if has_decision -%}
+            <tr><th>Barrel fill %</th><td>{{ st.barrel_fill_pct | default: '—' }}</td></tr>
+            <tr><th>Water level</th><td>{{ st.water_level | default: '—' }}</td></tr>
+            <tr><th>Media used</th><td>{{ st.media_used | default: '—' }}</td></tr>
+            <tr><th>Amount (Tbsp)</th><td>{{ st.amount_tbsp | default: '—' }}</td></tr>
+            {%- if st.maintenance -%}<tr><th>Maintenance</th><td>{{ st.maintenance }}</td></tr>{%- endif -%}
+            <tr><th>Observations</th><td>{{ st.observations | default: '—' }}</td></tr>
+            {%- if st.decision and (st.decision.repeat or st.decision.why) -%}
               <tr>
-                <td>Decision</td>
-                <td data-label="Decision">
-                  {%- if st.decision.repeat == true -%}Repeat
-                  {%- elsif st.decision.repeat == false -%}Do not repeat
+                <th>Decision</th>
+                <td>
+                  {%- if st.decision.repeat == true -%}Repeat (why: {{ st.decision.why | default: '—' }})
+                  {%- elsif st.decision.repeat == false -%}Don’t repeat
                   {%- else -%}—{%- endif -%}
-                  {%- if st.decision.why -%} — {{ st.decision.why }}{%- endif -%}
                 </td>
               </tr>
             {%- endif -%}
           </tbody>
         </table>
-      </div>
+      </section>
     {%- endfor -%}
-  {%- else -%}
-    <p><em>No stages defined.</em></p>
   {%- endif -%}
+
+  {%- comment -%} ---------- Lightbox (minimal) ---------- {%- endcomment -%}
+  <div id="lb" class="lightbox" hidden>
+    <button class="lb-close" aria-label="Close">×</button>
+    <img class="lb-img" alt="">
+    <div class="lb-cap"></div>
+  </div>
+
+  <script>
+  (function () {
+    const lb = document.getElementById('lb');
+    if (!lb) return;
+    const imgEl = lb.querySelector('.lb-img');
+    const capEl = lb.querySelector('.lb-cap');
+    const closeBtn = lb.querySelector('.lb-close');
+
+    function openLB(url, alt, caption) {
+      imgEl.src = url;
+      imgEl.alt = alt || '';
+      capEl.textContent = caption || '';
+      lb.hidden = false;
+      document.documentElement.style.overflow = 'hidden';
+    }
+    function closeLB() {
+      lb.hidden = true;
+      imgEl.src = '';
+      capEl.textContent = '';
+      document.documentElement.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeLB);
+    lb.addEventListener('click', (e) => { if (e.target === lb) closeLB(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLB(); });
+
+    document.querySelector('.tumble-entry')?.addEventListener('click', (e) => {
+      const link = e.target.closest('a.t-shot');
+      const img  = e.target.closest('.tumble-cover img, .tumble-rough img, .stage-after img');
+      if (link) {
+        e.preventDefault();
+        const url = link.getAttribute('href');
+        const alt = link.querySelector('img')?.getAttribute('alt') || '';
+        openLB(url, alt, '');
+      } else if (img) {
+        e.preventDefault();
+        const url = img.getAttribute('src');
+        const alt = img.getAttribute('alt') || '';
+        let caption = '';
+        const fig = img.closest('figure');
+        if (fig) {
+          const cap = fig.querySelector('figcaption');
+          caption = cap ? cap.textContent.trim() : '';
+        }
+        openLB(url, alt, caption);
+      }
+    });
+  })();
+  </script>
 </article>
