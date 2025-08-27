@@ -35,6 +35,11 @@ https://spectrumsyntax.netlify.app/
    ```
    The script scans front matter for image paths and fails if any referenced file is missing.
 
+4. Run the test suite:
+   ```bash
+   bundle exec rake test
+   ```
+
 ## Deployment
 
 This site relies on custom Jekyll plugins, so GitHub Pages cannot build it directly. The project is deployed to Netlify using the configuration in [`netlify.toml`](netlify.toml). Pushing to the main branch triggers a production build.
