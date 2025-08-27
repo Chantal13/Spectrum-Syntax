@@ -1,3 +1,6 @@
+/* =========================
+   Base design tokens
+   ========================= */
 $color-primary: hsl(0, 0%, 10%);
 $color-text: hsl(0, 0%, 20%);
 $color-subtext: hsl(0, 0%, 30%);
@@ -7,6 +10,9 @@ $border-radius: 4px;
 $font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
   sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 
+/* =========================
+   Typography & layout
+   ========================= */
 body {
   box-sizing: content-box;
   font-family: $font-family;
@@ -21,6 +27,10 @@ body {
   @media (min-width: 820px) {
     font-size: 1.2rem;
   }
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 time {
@@ -68,6 +78,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 0;
 }
 
+/* Links */
 a {
   transition: background 300ms;
   padding: 0 0.1em;
@@ -95,19 +106,19 @@ a {
   }
 }
 
+/* Focus outline aid */
 *:focus {
   background: #ffe8bc !important;
   color: black !important;
 }
 
+/* Nav & layout shells */
 nav { margin: 1em 0 3em; }
 
 #notes-entry-container {
   display: grid;
   grid-gap: 2em;
-  grid-template-areas:
-    "content"
-    "side";
+  grid-template-areas: "content" "side";
 
   @media (min-width: 700px) {
     grid-template-columns: 3fr 1fr;
@@ -133,181 +144,68 @@ code {
   background: #fafafa;
   padding: 0 0.1em;
 }
-
 .invalid-link-brackets {
   color: #ccc;
   cursor: help;
 }
 
-/* --------------------------------
-   Tumbling table polish
-   -------------------------------- */
-.tumble-table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  overflow: hidden; /* round outer border */
-  background: #fff;
-  font-size: 0.95rem;
+/* =========================
+   Tumble: meta row
+   ========================= */
+.tumble-entry .tumble-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem; /* row gap | column gap */
+  margin: 0.25rem 0 1rem;
 }
+.tumble-entry .tumble-meta .badge { line-height: 1; }
 
-.tumble-table thead th {
-  position: sticky;
-  top: 0;
-  background: #f8fafc;
-  text-align: left;
-  font-weight: 600;
-  padding: 0.65rem 0.8rem;
-  border-bottom: 1px solid #e5e7eb;
-  letter-spacing: 0.01em;
-}
-
-.tumble-table td {
-  padding: 0.6rem 0.8rem;
-  border-bottom: 1px solid #f1f5f9;
-  vertical-align: top;
-}
-
-.tumble-table tbody tr:nth-child(even) { background: #fcfcfd; }
-.tumble-table tbody tr:hover { background: #f6f7fb; }
-
-.tumble-table td.num,
-.tumble-table th.num { text-align: right; }
-
-.tumble-table .mono { font-variant-numeric: tabular-nums; }
-.tumble-table .muted { color: #9aa3af; }
-
-/* Status badges */
+/* =========================
+   Badges (status + rocks)
+   ========================= */
 .badge {
   display: inline-block;
   padding: 0.15rem 0.5rem;
   border-radius: 9999px;
-  font-size: 0.85em;
+  font-size: .85em;
   font-weight: 600;
   border: 1px solid transparent;
 }
-.badge.in-progress { background: #fff6d8; color: #7a5a00; border-color: #ffe7a0; }
-.badge.done,
-.badge.completed { background: #e9f8ef; color: #216a44; border-color: #c4ecd3; }
-.badge.paused { background: #f3f4f6; color: #4b5563; border-color: #e5e7eb; }
-.badge.failed,
-.badge.stopped { background: #fde8e8; color: #7a1f1f; border-color: #f8b4b4; }
 
-/* Mobile: turn rows into cards */
-@media (max-width: 640px) {
-  .tumble-table,
-  .tumble-table thead,
-  .tumble-table tbody,
-  .tumble-table th,
-  .tumble-table td,
-  .tumble-table tr { display: block; }
+/* Status badges aligned with progress colours */
+.badge.pending     { background:#fff8e1; color:#7a5a00; border-color:#ffe7a0; }
+.badge.in-progress { background:#eef2ff; color:#3730a3; border-color:#c7d2fe; }
+.badge.completed   { background:#e9f8ef; color:#216a44; border-color:#c4ecd3; }
 
-  .tumble-table thead {
-    position: absolute;
-    width: 1px; height: 1px;
-    margin: -1px; border: 0; padding: 0;
-    clip: rect(0 0 0 0); overflow: hidden; /* a11y-friendly hide */
-  }
-
-  .tumble-table tr {
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 0.4rem 0.6rem;
-    margin-bottom: 0.9rem;
-    background: #fff;
-  }
-
-  .tumble-table td {
-    display: grid;
-    grid-template-columns: 9.5ch 1fr; /* label | value */
-    gap: 0.5rem;
-    border-bottom: none;
-    padding: 0.35rem 0.2rem;
-  }
-
-  .tumble-table td::before {
-    content: attr(data-label);
-    font-weight: 600;
-    color: #6b7280;
-  }
-
-  .tumble-table td.num { justify-content: end; }
-}
-/* Mobile card spacing + subtle polish */
-@media (max-width: 640px) {
-  .tumble-table tr {
-    padding: 0.35rem 0.6rem;
-    margin-bottom: 0.75rem;
-    border: 1px solid #e8ebf0;
-    border-radius: 12px;
-    background: #fff;
-  }
-
-  /* tighter label/value layout */
-  .tumble-table td:nth-child(2) {
-    grid-template-columns: 8.5ch 1fr; /* label | value */
-    gap: 0.35rem;
-    padding: 0.25rem 0;
-  }
-
-  .tumble-table td:nth-child(2)::before {
-    font-size: 0.92em;
-    color: #6b7280;
-  }
-
-  /* trim inner spacing on the last line in a card */
-  .tumble-table tr > td:last-child { padding-bottom: 0.1rem; }
-
-  /* gentler hover on touch devices */
-  .tumble-table tbody tr:hover { background: #fafbff; }
-}
-/* Mobile: hide the left "Field" column; show only values with labels */
-@media (max-width: 640px) {
-  .tumble-table td:first-child { display: none; }
-
-  .tumble-table td:nth-child(2) {
-    display: grid;
-    grid-template-columns: 9.5ch 1fr; /* label | value */
-    gap: 0.5rem;
-  }
-
-  .tumble-table td:nth-child(2)::before {
-    content: attr(data-label);
-    font-weight: 600;
-    color: #6b7280;
-  }
-}
 /* Rock chips (base + fallback) */
 .badge.rock {
-  display: inline-block;
-  padding: 0.15rem 0.5rem;
-  border-radius: 9999px;
-  font-size: 0.85em;
   font-weight: 500;
-  border: 1px solid #e2e8f0;
   background: #f1f5f9;
   color: #0f172a;
+  border-color: #e2e8f0;
   margin-right: .25rem;
   margin-bottom: .25rem;
 }
 
-/* Common tumbling types + Southern Ontario/Bancroft-friendly finds */
+/* Colour map for common tumbling types + Southern Ontario/Bancroft finds */
 .badge.rock.r-agate,
 .badge.rock.r-carnelian        { background:#fdebd3; border-color:#f6c690; color:#7a3e00; }
 
 .badge.rock.r-jasper           { background:#f6ebdd; border-color:#e9d1b5; color:#6b3e16; }
 .badge.rock.r-dalmatian-jasper { background:#fff7e8; border-color:#f0e2c4; color:#594a2c; }
+.badge.rock.r-picture-jasper   { background:#f3e6d6; border-color:#e5cfb3; color:#6a4a2b; }
+.badge.rock.r-brecciated-jasper{ background:#f5ddd8; border-color:#ebc0b6; color:#7a2e22; }
 
 .badge.rock.r-quartz           { background:#eef2f7; border-color:#d7dee8; color:#334155; }
-.badge.rock.r-amethyst         { background:#f1e9ff; border-color:#dac7ff; color:#5b2e90; }
 .badge.rock.r-rose-quartz      { background:#ffe8f0; border-color:#f9c6d6; color:#8a3256; }
+.badge.rock.r-amethyst         { background:#f1e9ff; border-color:#dac7ff; color:#5b2e90; }
 
 .badge.rock.r-aventurine       { background:#e7f5ec; border-color:#c7ead5; color:#1f6a3c; }
 .badge.rock.r-unakite          { background:#eaf3e5; border-color:#cfe4c8; color:#365231; }
 .badge.rock.r-amazonite        { background:#e3f7f5; border-color:#c6eeea; color:#0f6c6c; }
 
-.badge.rock.r-sodalite         { background:#e8f0ff; border-color:#c7dafc; color:#1c3e8a; }  /* Bancroft classic */
+.badge.rock.r-sodalite         { background:#e8f0ff; border-color:#c7dafc; color:#1c3e8a; } /* Bancroft */
 .badge.rock.r-labradorite      { background:#eaf1f7; border-color:#cfddea; color:#223b50; }
 
 .badge.rock.r-obsidian         { background:#16181b; border-color:#2a2f36; color:#ffffff; }
@@ -329,6 +227,143 @@ code {
 .badge.rock.r-gneiss           { background:#eff2f6; border-color:#dde3ea; color:#414b57; }
 .badge.rock.r-basalt           { background:#e9ecef; border-color:#d3d9df; color:#2a2f36; }
 
-/* Extra jasper varieties you might see in kits */
-.badge.rock.r-picture-jasper   { background:#f3e6d6; border-color:#e5cfb3; color:#6a4a2b; }
-.badge.rock.r-brecciated-jasper{ background:#f5ddd8; border-color:#ebc0b6; color:#7a2e22; }
+/* =========================
+   Tumble tables
+   ========================= */
+.tumble { overflow-x: auto; }
+
+.tumble-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.tumble-table thead th {
+  background: #f8fafc;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 1px solid $color-border;
+}
+
+.tumble-table th,
+.tumble-table td {
+  padding: .5rem .75rem;
+  border-bottom: 1px solid $color-border;
+  vertical-align: top;
+}
+
+.tumble-table tbody tr:hover { background: #fafbff; }
+
+/* Mobile: hide the left "Field" column; show only value with label */
+@media (max-width: 640px) {
+  .tumble-table td:first-child { display: none; }
+
+  .tumble-table td:nth-child(2) {
+    display: grid;
+    grid-template-columns: 9ch 1fr; /* label | value */
+    gap: 0.5rem;
+  }
+
+  .tumble-table td:nth-child(2)::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #6b7280;
+  }
+
+  /* Mobile card spacing + subtle polish */
+  .tumble-table tr {
+    padding: 0.35rem 0.6rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid #e8ebf0;
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  .tumble-table td:nth-child(2) {
+    grid-template-columns: 8.5ch 1fr;
+    gap: 0.35rem;
+    padding: 0.25rem 0;
+  }
+
+  .tumble-table tr > td:last-child { padding-bottom: 0.1rem; }
+  .tumble-table tbody tr:hover { background: #fafbff; }
+}
+
+/* =========================
+   Progress bar
+   ========================= */
+.progress {
+  height: 10px;
+  border-radius: 9999px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  margin: 0.25rem 0 1rem;
+}
+.progress .bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #a5b4fc, #60a5fa);
+  transition: width 300ms ease-in-out;
+}
+
+/* Status-coloured progress bar */
+.progress.pending .bar {
+  background: linear-gradient(90deg, #ffe59a, #ffd56a);
+}
+.progress.in-progress .bar {
+  background: linear-gradient(90deg, #a5b4fc, #60a5fa);
+}
+.progress.completed .bar {
+  background: linear-gradient(90deg, #9ae6b4, #34d399);
+}
+
+/* Optional: track tint per status */
+.progress.pending    { background: #fff8e1; border-color: #ffe7a0; }
+.progress.completed  { background: #eefaf2; border-color: #c4ecd3; }
+/* ---- Tumble cover & gallery ---- */
+.tumble-cover {
+  margin: 0.25rem 0 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+.tumble-cover img {
+  display: block;
+  width: 100%;
+  max-height: 380px;
+  object-fit: cover;
+}
+
+/* Responsive grid of shots */
+.tumble-gallery {
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  margin: 0.25rem 0 1rem;
+}
+@media (min-width: 720px) {
+  .tumble-gallery { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+}
+
+.t-shot {
+  display: block;
+  position: relative;
+  aspect-ratio: 4 / 3; /* nice thumbs without knowing size */
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+}
+.t-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.001);
+  transition: transform 180ms ease, filter 180ms ease;
+}
+.t-shot:hover img {
+  transform: scale(1.03);
+  filter: saturate(1.06);
+}
