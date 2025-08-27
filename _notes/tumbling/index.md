@@ -6,7 +6,7 @@ layout: default
 
 # Tumbling Batches
 
-{% assign placeholder = '/assets/tumbling/coming-soon.jpg' %}
+{% assign placeholder = '/assets/tumbling/coming_soon.jpg' %}
 
 <div class="tumble">
 <table class="tumble-index">
@@ -35,8 +35,18 @@ layout: default
       {% endif %}
     {% endif %}
 
-    {%- comment -%} Thumbnail: prefer after Stage 4, then burnish, then rough, else placeholder {%- endcomment -%}
-    {% assign thumb = t.images.after_stage_4 | default: t.images.after_burnish | default: t.images.rough | default: placeholder %}
+    {%- comment -%} Thumbnail with file-exists checks {%- endcomment -%}
+    {% assign thumb = placeholder %}
+    {% assign c1 = t.images.after_stage_4 %}
+    {% assign c2 = t.images.after_burnish %}
+    {% assign c3 = t.images.rough %}
+    {% assign cands = c1 | append: '|' | append: c2 | append: '|' | append: c3 | split: '|' %}
+    {% for c in cands %}
+      {% if c and c != '' %}
+        {% assign f = site.static_files | where: "path", c | first %}
+        {% if f %}{% assign thumb = c %}{% break %}{% endif %}
+      {% endif %}
+    {% endfor %}
     {% assign is_ph = thumb == placeholder %}
 
     <tr>

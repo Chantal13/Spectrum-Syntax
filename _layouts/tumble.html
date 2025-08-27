@@ -3,10 +3,33 @@ layout: default
 ---
 
 <article class="tumble-entry">
-
-  {%- comment -%} ---------- Constants / helpers ---------- {%- endcomment -%}
-  {%- assign placeholder = '/assets/tumbling/coming-soon.jpg' -%}
+  {%- comment -%} ---------- Helpers ---------- {%- endcomment -%}
+  {%- assign PLACEHOLDER = '/assets/tumbling/coming_soon.jpg' -%}
   {%- assign status = page.status | default: 'Pending' -%}
+
+  {%- comment -%}
+  Normalise a path to begin with "/" and test existence in site.static_files by relative_path.
+  Usage:
+    {% assign img = '/assets/x.jpg' | strip | normalize_path | file_or_placeholder: PLACEHOLDER %}
+  {%- endcomment -%}
+  {% capture _filters %}
+  {% raw %}
+  {% assign __ = 0 %}
+  {% endraw %}
+  {% endcapture %}
+
+  {% assign _ = nil %}
+
+  {% comment %}
+  Filter: normalize_path
+  {% endcomment %}
+  {% assign normalize_path = nil %}
+
+  {% capture normalize_path %}
+  {% raw %}{{ include.arg }}{% endraw %}
+  {% endcapture %}
+
+  {% comment %} (We’ll emulate filters inline via captures below) {% endcomment %}
 
   {%- comment -%} ---------- Title & meta ---------- {%- endcomment -%}
   <header class="tumble-header">
@@ -37,7 +60,7 @@ layout: default
     </div>
   </header>
 
-  {%- comment -%} ---------- Overall progress (auto) ---------- {%- endcomment -%}
+  {%- comment -%} ---------- Overall progress ---------- {%- endcomment -%}
   {%- assign pct = 0 -%}
   {%- assign total = 4 -%}
   {%- if page.stages and page.stages.size > 0 -%}
@@ -57,19 +80,34 @@ layout: default
     <div class="tumble-progress__label">{{ pct }}%</div>
   </div>
 
-  {%- comment -%} ---------- Photos: rough + optional cover + gallery ---------- {%- endcomment -%}
-  {%- assign rough_url = page.images.rough | default: page.images.cover | default: placeholder -%}
-  <figure class="tumble-rough{%- if rough_url == placeholder -%} is-placeholder{%- endif -%}">
+  {%- comment -%} ---------- Image helpers (real logic) ---------- {%- endcomment -%}
+  {%- assign _all_static = site.static_files | map: 'relative_path' -%}
+
+  {%- assign rough_url = PLACEHOLDER -%}
+  {%- assign rough_candidate = page.images.rough | default: page.images.cover -%}
+  {%- if rough_candidate and rough_candidate != '' -%}
+    {%- assign rc = rough_candidate -%}
+    {%- if rc | slice: 0,1 != '/' -%}{%- assign rc = '/' | append: rc -%}{%- endif -%}
+    {%- if _all_static contains rc -%}{%- assign rough_url = rc -%}{%- endif -%}
+  {%- endif -%}
+
+  <figure class="tumble-rough{%- if rough_url == PLACEHOLDER -%} is-placeholder{%- endif -%}">
     <img src="{{ rough_url | relative_url }}" alt="{{ page.title }} – rough load" loading="lazy" decoding="async">
-    <figcaption>Rough load{%- if rough_url == placeholder -%} (placeholder){%- endif -%}</figcaption>
+    <figcaption>Rough load{%- if rough_url == PLACEHOLDER -%} (placeholder){%- endif -%}</figcaption>
   </figure>
 
   {%- assign cover_url = nil -%}
   {%- if page.images and page.images.cover -%}
-    {%- assign cover_url = page.images.cover -%}
+    {%- assign cu = page.images.cover -%}
+    {%- if cu | slice: 0,1 != '/' -%}{%- assign cu = '/' | append: cu -%}{%- endif -%}
+    {%- if _all_static contains cu -%}{%- assign cover_url = cu -%}{%- endif -%}
   {%- elsif page.images and page.images.gallery and page.images.gallery.size > 0 -%}
     {%- assign first = page.images.gallery[0] -%}
-    {%- assign cover_url = first.src | default: first -%}
+    {%- assign first_url = first.src | default: first -%}
+    {%- if first_url -%}
+      {%- if first_url | slice: 0,1 != '/' -%}{%- assign first_url = '/' | append: first_url -%}{%- endif -%}
+      {%- if _all_static contains first_url -%}{%- assign cover_url = first_url -%}{%- endif -%}
+    {%- endif -%}
   {%- endif -%}
 
   {%- if cover_url and cover_url != rough_url -%}
@@ -82,15 +120,18 @@ layout: default
     <div class="tumble-gallery">
       {%- for shot in page.images.gallery -%}
         {%- assign url = shot.src | default: shot -%}
-        {%- assign alt = shot.alt | default: page.title -%}
-        <a class="t-shot" href="{{ url | relative_url }}" target="_blank" rel="noopener">
-          <img src="{{ url | relative_url }}" alt="{{ alt }}" loading="lazy" decoding="async">
-        </a>
+        {%- if url -%}
+          {%- if url | slice: 0,1 != '/' -%}{%- assign url = '/' | append: url -%}{%- endif -%}
+          {%- if _all_static contains url -%}
+            <a class="t-shot" href="{{ url | relative_url }}" target="_blank" rel="noopener">
+              <img src="{{ url | relative_url }}" alt="{{ shot.alt | default: page.title }}" loading="lazy" decoding="async">
+            </a>
+          {%- endif -%}
+        {%- endif -%}
       {%- endfor -%}
     </div>
   {%- endif -%}
 
-  {%- comment -%} ---------- Notes (optional) ---------- {%- endcomment -%}
   {%- if page.notes -%}
     <div class="tumble-notes">
       <h2>Notes</h2>
@@ -105,33 +146,36 @@ layout: default
       <section class="tumble-stage-block" id="stage-{{ s }}">
         <h3>Stage {{ s }} — {{ st.name | default: 'Stage' }}</h3>
 
-        {%- comment -%} Stage “after” image (1–4) with placeholder {%- endcomment -%}
-        {%- assign after_url = nil -%}
-        {%- if s == 1 -%}
-          {%- assign after_url = page.images.after_stage_1 -%}
-        {%- elsif s == 2 -%}
-          {%- assign after_url = page.images.after_stage_2 -%}
-        {%- elsif s == 3 -%}
-          {%- assign after_url = page.images.after_stage_3 -%}
-        {%- elsif s == 4 -%}
-          {%- assign after_url = page.images.after_stage_4 -%}
+        {%- assign after_url = PLACEHOLDER -%}
+        {%- assign key = '' -%}
+        {%- if s == 1 -%}{%- assign key = page.images.after_stage_1 -%}
+        {%- elsif s == 2 -%}{%- assign key = page.images.after_stage_2 -%}
+        {%- elsif s == 3 -%}{%- assign key = page.images.after_stage_3 -%}
+        {%- elsif s == 4 -%}{%- assign key = page.images.after_stage_4 -%}{%- endif -%}
+        {%- if key and key != '' -%}
+          {%- assign k = key -%}
+          {%- if k | slice: 0,1 != '/' -%}{%- assign k = '/' | append: k -%}{%- endif -%}
+          {%- if _all_static contains k -%}{%- assign after_url = k -%}{%- endif -%}
         {%- endif -%}
-        {%- assign after_url = after_url | default: placeholder -%}
 
-        <figure class="stage-after{%- if after_url == placeholder -%} is-placeholder{%- endif -%}">
+        <figure class="stage-after{%- if after_url == PLACEHOLDER -%} is-placeholder{%- endif -%}">
           <img src="{{ after_url | relative_url }}" alt="After Stage {{ s }}" loading="lazy" decoding="async">
-          <figcaption>After Stage {{ s }}{%- if after_url == placeholder -%} (placeholder){%- endif -%}</figcaption>
+          <figcaption>After Stage {{ s }}{%- if after_url == PLACEHOLDER -%} (placeholder){%- endif -%}</figcaption>
         </figure>
 
         {%- if s == 4 -%}
-          {%- assign burnish_url = page.images.after_burnish | default: placeholder -%}
-          <figure class="stage-after{%- if burnish_url == placeholder -%} is-placeholder{%- endif -%}">
+          {%- assign burnish_url = PLACEHOLDER -%}
+          {%- if page.images.after_burnish -%}
+            {%- assign bu = page.images.after_burnish -%}
+            {%- if bu | slice: 0,1 != '/' -%}{%- assign bu = '/' | append: bu -%}{%- endif -%}
+            {%- if _all_static contains bu -%}{%- assign burnish_url = bu -%}{%- endif -%}
+          {%- endif -%}
+          <figure class="stage-after{%- if burnish_url == PLACEHOLDER -%} is-placeholder{%- endif -%}">
             <img src="{{ burnish_url | relative_url }}" alt="After Burnish" loading="lazy" decoding="async">
-            <figcaption>After Burnish{%- if burnish_url == placeholder -%} (placeholder){%- endif -%}</figcaption>
+            <figcaption>After Burnish{%- if burnish_url == PLACEHOLDER -%} (placeholder){%- endif -%}</figcaption>
           </figure>
         {%- endif -%}
 
-        {%- comment -%} Stage table (compact two-col) {%- endcomment -%}
         <table class="tumble-stage">
           <tbody>
             <tr>
@@ -180,7 +224,7 @@ layout: default
     {%- endfor -%}
   {%- endif -%}
 
-  {%- comment -%} ---------- Lightbox (minimal) ---------- {%- endcomment -%}
+  {%- comment -%} ---------- Lightbox ---------- {%- endcomment -%}
   <div id="lb" class="lightbox" hidden>
     <button class="lb-close" aria-label="Close">×</button>
     <img class="lb-img" alt="">
@@ -199,8 +243,8 @@ layout: default
       imgEl.src = url;
       imgEl.alt = alt || '';
       capEl.textContent = caption || '';
-      lb.hidden = false;
       document.documentElement.style.overflow = 'hidden';
+      lb.hidden = false;
     }
     function closeLB() {
       lb.hidden = true;
