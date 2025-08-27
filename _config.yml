@@ -31,10 +31,9 @@ collections:
   notes:
     output: true
     permalink: /:slug
-  # Remove this block if you keep tumbles under _notes
-  # tumbles:
-  #   output: true
-  #   permalink: /tumbling/:name/
+  tumble_logs:
+    output: true
+    permalink: /tumbling/:name/
 
 # --- Defaults (layouts, etc.) ---
 defaults:
@@ -53,16 +52,9 @@ defaults:
   # Tumble collection items use the 'tumble' layout
   - scope:
       path: ""
-      type: "tumbles"
+      type: "tumble_logs"
     values:
       layout: "tumble"
-  
-  # Tumbles inside _notes should publish under /tumbling/:basename/
-  - scope:
-      path: "_notes/tumble_logs"
-    values:
-      layout: "tumble"
-      permalink: "/tumbling/:name/"
 
 # (Remove multilingual keys since plugin is disabled)
 # languages:
