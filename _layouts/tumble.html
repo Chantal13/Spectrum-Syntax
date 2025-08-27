@@ -118,7 +118,11 @@ Helpers
       {% if imgs and imgs.size > 1 %}
         <div class="stage-gallery">
           {% for extra in imgs offset:1 %}
-            <img src="{{ extra | relative_url }}" alt="Stage {{ st.stage }} extra image {{ forloop.index }}">
+            {% if extra.alt != nil %}
+              <img src="{{ extra.src | default: extra | relative_url }}" alt="{{ extra.alt }}">
+            {% else %}
+              <img src="{{ extra | relative_url }}" alt="Stage {{ st.stage }} extra image {{ forloop.index }}">
+            {% endif %}
           {% endfor %}
         </div>
       {% endif %}
