@@ -18,7 +18,7 @@ _includes/notes_graph.json
 .DS_Store
 
 # Local helper scripts (don’t commit)
-git_push.py
+# git_push.py
 
 # Local-only folders
 _staging/
