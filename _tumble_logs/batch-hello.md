@@ -88,3 +88,4 @@ stages:
 ---
 
 This is a stub batch to verify the collection is working.
+
