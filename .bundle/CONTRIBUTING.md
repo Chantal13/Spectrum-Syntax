@@ -1,18 +1,19 @@
-Contributing to Spectrum Syntax
+# Contributing to Spectrum Syntax
 
 Thanks for helping! This site is a Jekyll project deployed on Netlify. I write in Obsidian, so Markdown (with a bit of Liquid) is the main interface. This doc explains how to add content—especially tumbling batches—and how to work locally.
 
-TL;DR
+## TL;DR
 
 bundle install → bundle exec jekyll serve
 
-Add a batch MD file under _notes/tumble_logs/ (use the template below)
+Add a batch MD file under `_notes/tumble_logs/` (use the template below)
 
-Put images in assets/tumbling/<batch-id>/
+Put images in `assets/tumbling/<batch-id>/`
 
 Commit → git pull --rebase → git push
 
-Project shape
+## Project shape
+```
 /_config.yml
 /_layouts/
   default.html
@@ -29,8 +30,9 @@ Project shape
 /assets/tumbling/        # images by batch (e.g., 001/, 002/)
 Gemfile, Gemfile.lock
 netlify.toml
+```
 
-Collections
+## Collections
 
 notes → general notes (layout: note via defaults)
 
@@ -38,32 +40,36 @@ tumble_logs → tumbling batches (layout: tumble)
 
 The site also tolerates a legacy tumbles collection, but please use tumble_logs.
 
-Local setup
+## Local setup
 
-Prereqs
+### Prereqs
 
 Ruby 3.2.x, Bundler 2.7.x
 
 (Optional) Netlify CLI if you want to proxy production environment
 
-Install & run
+### Install & run
 
+```
 bundle install
 bundle exec jekyll serve
 # open http://127.0.0.1:4000
-
+```
 
 If Bundler complains about platform-specific gems, you can run:
 
+```
 bundle lock --normalize-platforms
+```
 
-Adding a new tumbling batch
+## Adding a new tumbling batch
 
 Create the file in _notes/tumble_logs/
-Suggested name: YYYY-MM-DD-batch-<id>.md (e.g., 2025-08-21-batch-001.md)
+Suggested name: `YYYY-MM-DD-batch-<id>.md` (e.g., 2025-08-21-batch-001.md)
 
 Paste this front matter (adjust as needed):
 
+```yaml
 ---
 layout: tumble
 title: "Batch 001 – Baby’s First Tumble"
@@ -180,57 +186,61 @@ stages:
       why:
     images: []
 ---
+```
 
-
-Add images under assets/tumbling/<batch-id>/
+Add images under `assets/tumbling/<batch-id>/`
 Examples:
 
+```
 assets/tumbling/001/rough.jpg
 assets/tumbling/001/after-s1.jpg
 assets/tumbling/001/after-s4.jpg
 assets/tumbling/001/after-burnish.jpg
+```
 
+If any are missing, the UI automatically uses `/assets/tumbling/coming_soon.jpg`.
 
-If any are missing, the UI automatically uses /assets/tumbling/coming_soon.jpg.
+Preview locally. Your batch will appear on `/tumbling/`.
 
-Preview locally. Your batch will appear on /tumbling/.
-
-Writing notes (Obsidian)
+## Writing notes (Obsidian)
 
 Wiki-style links like [[Some Note]] are converted to internal links by a custom plugin during build.
 
 If you need to show Liquid in a note (not execute it), wrap with:
 
+```liquid
 {% raw %}
 {{ site.whatever }}
 {% endraw %}
+```
 
-Status & rocks
+## Status & rocks
 
 Status pills: Pending, In Progress, Completed
 
 Rocks: common tumbler types (agate, jasper, quartz, sodalite, dalmatian jasper, aventurine, obsidian, onyx, petrified wood, amethyst, fluorite, carnelian, tiger’s eye, labradorite, unakite, etc.). Unknowns get a neutral chip automatically.
 
-Styles
+## Styles
 
 Edit SCSS in _sass/ (_style.scss, _tumbling.scss) and import via styles.scss.
 
-Jekyll compiles to /styles.css. Colours, spacing, and chips/pills are themeable via SCSS variables.
+Jekyll compiles to `/styles.css`. Colours, spacing, and chips/pills are themeable via SCSS variables.
 
-Custom plugin notes
+## Custom plugin notes
 
-_plugins/bidirectional_links_generator.rb:
+`_plugins/bidirectional_links_generator.rb`:
 
-Converts [[links]] → <a class="internal-link">.
+Converts [[links]] → `<a class="internal-link">`.
 
-Generates _includes/notes_graph.json.
+Generates `_includes/notes_graph.json`.
 
 Safe if a note has no title; it falls back to batch → slug → filename.
 
-Git workflow
+## Git workflow
 
 Use rebase by default (keeps history tidy):
 
+```
 # stage & commit
 git add -A
 git commit -m "Add batch 001 with images"
@@ -240,10 +250,13 @@ git pull --rebase origin main
 
 # then push
 git push origin main
-
+```
 
 If you hit conflicts during rebase:
 
+```
 # fix files, then
 git add <fixed-files>
 git rebase --continue
+```
+
