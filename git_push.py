@@ -50,7 +50,58 @@ def ahead_behind(upstream, branch):
     except Exception:
         return (0, 0)
 
+def ensure_on_branch(branch: str, *, auto_branch: bool = False) -> str:
+    """
+    If currently in detached HEAD (branch == 'HEAD' or empty), prompt to create
+    a new branch at the current commit and switch to it. Returns the branch name.
+    """
+    if branch and branch != "HEAD":
+        return branch
+
+    short = out(["git", "rev-parse", "--short", "HEAD"]) or "unknown"
+    default_name = f"wip-{short}"
+    if auto_branch:
+        name = default_name
+        print(f"\nDetached HEAD detected. Auto-creating branch {name}.")
+    else:
+        name = input(
+            f"\nYou are on a detached HEAD. Enter a new branch name to create [{default_name}]: "
+        ).strip() or default_name
+    # Try modern switch first, then fallback to checkout
+    try:
+        run(["git", "switch", "-c", name])
+    except sp.CalledProcessError:
+        run(["git", "checkout", "-b", name])
+    print(f"\nCreated and switched to branch {name}")
+    return name
+
+
+def parse_cli(argv):
+    """Very small CLI parser to support flags without external deps.
+
+    Supported:
+      -m, --message <msg>   Commit message
+      --auto-branch         Auto-create branch when in detached HEAD
+    Any lone argument (without -m/--message) is treated as commit message.
+    """
+    opts = {"message": None, "auto_branch": False}
+    i = 1
+    while i < len(argv):
+        a = argv[i]
+        if a in ("--auto-branch", "--no-prompt"):
+            opts["auto_branch"] = True
+        elif a in ("-m", "--message"):
+            if i + 1 < len(argv):
+                opts["message"] = argv[i + 1]
+                i += 1
+        else:
+            if opts["message"] is None:
+                opts["message"] = a
+        i += 1
+    return opts
+
 def main():
+    opts = parse_cli(sys.argv)
     in_repo_root()
     run(["git", "status"], check=False)
 
@@ -59,7 +110,11 @@ def main():
 
     # Commit if something is staged
     if staged_names():
-        msg = sys.argv[1] if len(sys.argv) > 1 else input("Commit message: ").strip() or "Update"
+        msg = (
+            opts["message"]
+            if opts["message"] is not None
+            else input("Commit message: ").strip() or "Update"
+        )
         run(["git", "commit", "-m", msg])
     else:
         if working_tree_dirty():
@@ -67,8 +122,8 @@ def main():
         else:
             print("\nNothing to commit.")
 
-    # Ensure we know the branch & upstream
-    branch = current_branch()
+    # Ensure we are on a branch (not detached) and know upstream
+    branch = ensure_on_branch(current_branch(), auto_branch=opts["auto_branch"])
     up = upstream_branch()
 
     # Fetch remote state
