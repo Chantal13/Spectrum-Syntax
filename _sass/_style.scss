@@ -31,7 +31,7 @@ $color-box-background: mix($tiffany-blue, white, 92%); /* soft panel bg */
   --card-b: #e9edc9;
   --panel-bg: var(--card-a);
   --panel-border: #{mix($rich-black, white, 88%)};
-  --table-header-bg: var(--card-a); /* tumbling batch table header */
+  --table-header-bg: #d4a373; /* tumbling batch table header */
   --table-row-hover: var(--card-b);
 
   /* Chips */
@@ -49,6 +49,10 @@ $font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif,
 /* =========================
    Typography & layout
    ========================= */
+html {
+  /* Additive bump: increase base font size by 1pt site-wide */
+  font-size: calc(100% + 1pt);
+}
 body {
   box-sizing: content-box;
   font-family: $font-family;
