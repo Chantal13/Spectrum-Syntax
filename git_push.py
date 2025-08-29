@@ -82,14 +82,53 @@ def parse_cli(argv):
     Supported:
       -m, --message <msg>   Commit message
       --auto-branch         Auto-create branch when in detached HEAD
+      --rebase-flow         Use pull --rebase workflow (origin/<branch>)
+      --remote <name>       Remote name (default: origin)
+      --branch <name>       Branch to pull/push (default: current)
+      --autostash           Add --autostash to pull --rebase
+      --fetch-tags          Run 'git fetch --tags'
+      --push-tags           Run 'git push --tags' after push
+      --set-pull-rebase     Run 'git config pull.rebase true' (add --global to make global)
+      --global              Use with --set-pull-rebase to set globally
     Any lone argument (without -m/--message) is treated as commit message.
     """
-    opts = {"message": None, "auto_branch": False}
+    opts = {
+        "message": None,
+        "auto_branch": False,
+        "rebase_flow": False,
+        "remote": "origin",
+        "branch": None,
+        "autostash": False,
+        "fetch_tags": False,
+        "push_tags": False,
+        "set_pull_rebase": False,
+        "global": False,
+    }
     i = 1
     while i < len(argv):
         a = argv[i]
         if a in ("--auto-branch", "--no-prompt"):
             opts["auto_branch"] = True
+        elif a == "--rebase-flow":
+            opts["rebase_flow"] = True
+        elif a == "--remote":
+            if i + 1 < len(argv):
+                opts["remote"] = argv[i + 1]
+                i += 1
+        elif a == "--branch":
+            if i + 1 < len(argv):
+                opts["branch"] = argv[i + 1]
+                i += 1
+        elif a == "--autostash":
+            opts["autostash"] = True
+        elif a == "--fetch-tags":
+            opts["fetch_tags"] = True
+        elif a == "--push-tags":
+            opts["push_tags"] = True
+        elif a == "--set-pull-rebase":
+            opts["set_pull_rebase"] = True
+        elif a == "--global":
+            opts["global"] = True
         elif a in ("-m", "--message"):
             if i + 1 < len(argv):
                 opts["message"] = argv[i + 1]
@@ -122,14 +161,59 @@ def main():
         else:
             print("\nNothing to commit.")
 
-    # Ensure we are on a branch (not detached) and know upstream
-    branch = ensure_on_branch(current_branch(), auto_branch=opts["auto_branch"])
+    # Ensure we are on a branch (not detached)
+    curr_branch = ensure_on_branch(current_branch(), auto_branch=opts["auto_branch"])
+
+    if opts["rebase_flow"]:
+        branch = opts["branch"] or curr_branch
+        remote = opts["remote"]
+        if opts["fetch_tags"]:
+            run(["git", "fetch", "--tags"]) 
+        # Pull with rebase (and optional autostash)
+        pull_cmd = ["git", "pull", "--rebase"]
+        if opts["autostash"]:
+            pull_cmd.append("--autostash")
+        pull_cmd.extend([remote, branch])
+        try:
+            run(pull_cmd)
+        except sp.CalledProcessError as e:
+            print("\nRebase stopped due to conflicts.")
+            print("Resolve conflicts, then:")
+            print("  git add -A")
+            print("  git rebase --continue")
+            print("Or abort:")
+            print("  git rebase --abort")
+            sys.exit(e.returncode)
+
+        # Push updated branch
+        try:
+            up = upstream_branch()
+            if up is None:
+                run(["git", "push", "-u", remote, branch])
+                print(f"\nPushed and set upstream to {remote}/{branch} ✓")
+            else:
+                run(["git", "push", remote, branch])
+                print(f"\nPushed to {remote}/{branch} ✓")
+        except sp.CalledProcessError as e:
+            print("\nPush failed. After resolving, try:")
+            print(f"  git push {remote} {branch}")
+            sys.exit(e.returncode)
+
+        if opts["push_tags"]:
+            run(["git", "push", "--tags"]) 
+
+        if opts["set_pull_rebase"]:
+            cfg = ["git", "config"]
+            if opts["global"]:
+                cfg.append("--global")
+            cfg.extend(["pull.rebase", "true"])
+            run(cfg)
+        return
+
+    # Default behavior (upstream-aware rebase & push)
+    branch = curr_branch
     up = upstream_branch()
-
-    # Fetch remote state
-    run(["git", "fetch", "origin"])
-
-    # If we have an upstream, rebase onto it to resolve divergence
+    run(["git", "fetch", "origin"])  # fetch remote state
     if up:
         try:
             run(["git", "rebase", up])
@@ -141,18 +225,9 @@ def main():
             print("When done, run this script again to push.")
             sys.exit(e.returncode)
     else:
-        # No upstream yet (first push)
         print(f"\nNo upstream set for {branch}. Will set upstream to origin/{branch} on push.")
 
-    # Decide whether a push is needed
-    if up:
-        behind, ahead = ahead_behind(up, branch)
-        print(f"\nStatus vs {up}: behind {behind}, ahead {ahead}")
-        need_push = ahead > 0
-    else:
-        need_push = True  # first push
-
-    # Push
+    need_push = True if not up else ahead_behind(up, branch)[1] > 0
     try:
         if up:
             if need_push:
@@ -161,11 +236,9 @@ def main():
             else:
                 print("\nNothing to push (branch is up to date).")
         else:
-            # First push sets upstream
             run(["git", "push", "-u", "origin", branch])
             print(f"\nPushed and set upstream to origin/{branch} ✓")
     except sp.CalledProcessError as e:
-        # Common hint for non-fast-forward
         print("\nPush failed. Try resolving with:")
         print("  git fetch origin")
         print(f"  git rebase origin/{branch}")
