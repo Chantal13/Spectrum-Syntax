@@ -219,7 +219,7 @@ Helpers
 <style>
 /* Minimal page-local styles; your main stylesheet can refine these */
 .tumble-meta{display:grid;gap:1rem;grid-template-columns:1fr}
-.tumble-cover img{width:100%;max-height:280px;object-fit:cover;border-radius:8px;border:1px solid var(--panel-border);background:#fff}
+.tumble-cover img{width:100%;max-height:280px;object-fit:cover;border-radius:8px;border:1px solid var(--panel-border);background:var(--color-bg)}
 .tumble-details{list-style:none;padding:0;margin:0}
 .tumble-details li{margin:.25rem 0}
 /* When no cover image, keep spacing tidy */
@@ -228,10 +228,10 @@ Helpers
 .tumble-cover{align-self:center}
 
 /* Pre-tumbling section */
-.pre-tumble{margin:1rem 0;padding:.5rem;border:1px solid var(--panel-border);border-radius:8px;background:#fff}
+.pre-tumble{margin:1rem 0;padding:.5rem;border:1px solid var(--panel-border);border-radius:8px;background:var(--color-bg)}
 .pre-tumble img{width:100%;max-height:320px;object-fit:cover;border-radius:6px}
 .post-tumble{margin:1rem 0}
-.post-tumble{margin:1rem 0;padding:.5rem;border:1px solid var(--panel-border);border-radius:8px;background:#fff}
+.post-tumble{margin:1rem 0;padding:.5rem;border:1px solid var(--panel-border);border-radius:8px;background:var(--color-bg)}
 .post-tumble img{width:100%;max-height:320px;object-fit:cover;border-radius:6px}
 
 .chips{display:inline-flex;gap:.35rem;flex-wrap:nowrap;overflow-x:auto;max-width:100%}
@@ -247,7 +247,7 @@ Helpers
 /* generic fallback */
 [class^="chip--"]:not(.chip--agate):not(.chip--jasper):not(.chip--sodalite):not(.chip--quartz):not(.chip--dalmatian-jasper){background:var(--chip-fallback-bg)}
 
-.stage-card{display:grid;gap:1rem;grid-template-columns:1fr;align-items:start;margin:1.5rem 0;padding:1rem;border:1px solid var(--panel-border);border-radius:8px;background:#fff}
+.stage-card{display:grid;gap:1rem;grid-template-columns:1fr;align-items:start;margin:1.5rem 0;padding:1rem;border:1px solid var(--panel-border);border-radius:8px;background:var(--color-bg)}
 /* If a stage has no media, collapse to single column at all sizes */
 .stage-card.no-media{grid-template-columns:1fr}
 /* Vertically center stage image column relative to content */
@@ -261,7 +261,7 @@ Helpers
 .stage-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.5rem;margin-top:.5rem}
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem}
 .gallery figure{margin:0}
-.gallery img{width:100%;border-radius:6px;border:1px solid var(--panel-border);background:#fff}
+.gallery img{width:100%;border-radius:6px;border:1px solid var(--panel-border);background:var(--color-bg)}
 @media (min-width: 820px){
   .tumble-meta{grid-template-columns: 320px 1fr}
   .tumble-meta.no-cover{grid-template-columns: 1fr}

@@ -23,8 +23,8 @@ $color-box-background: mix($tiffany-blue, white, 92%); /* soft panel bg */
 /* CSS variables for templates and inline styles */
 :root {
   /* Core */
-  /* Much lighter background than header */
-  --color-bg: #{mix($tiffany-blue, white, 20%)};
+  /* Page background matches tumbling header */
+  --color-bg: #{$tiffany-blue};
   --color-text: #{$rich-black};
   --panel-bg: #{mix($tiffany-blue, white, 94%)};
   --panel-border: #{mix($rich-black, white, 88%)};
@@ -95,7 +95,7 @@ blockquote {
   padding: 1.5em;
   margin: 0;
   font-size: 0.88em;
-  background: mix($seal-brown, white, 93%);
+  background: var(--color-bg);
   border-radius: $border-radius;
 
   p { margin: 0; }
@@ -164,7 +164,7 @@ nav { margin: 1em 0 3em; }
 }
 
 .backlink-box {
-  background: mix($seal-brown, white, 93%);
+  background: var(--color-bg);
   padding: 1em;
   border-radius: $border-radius;
 }
@@ -366,7 +366,7 @@ code {
   margin: 0.25rem 0 1rem;
   border-radius: 12px;
   overflow: hidden;
-  background: mix($tiffany-blue, white, 94%);
+  background: var(--color-bg);
   border: 1px solid mix($rich-black, white, 88%);
 }
 .tumble-cover img {

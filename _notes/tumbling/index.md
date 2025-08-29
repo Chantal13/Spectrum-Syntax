@@ -124,12 +124,12 @@ layout: default
 </div>
 
 <style>
-.tumble-index .nice-table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--panel-border);border-radius:8px;overflow:hidden}
+.tumble-index .nice-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--color-bg);border:1px solid var(--panel-border);border-radius:8px;overflow:hidden}
 .tumble-index thead th{font-weight:600;text-align:left;padding:.6rem;border-bottom:1px solid var(--panel-border);background:var(--table-header-bg);color:var(--color-text)}
 .tumble-index tbody td{border-bottom:1px solid #eee2; padding:.55rem;vertical-align:middle}
 .tumble-index tbody tr:nth-child(even){background:var(--table-row-hover)}
 .batch-cell{display:flex;gap:.75rem;align-items:center}
-.thumb{display:block;width:128px;min-width:128px;height:96px;border-radius:6px;overflow:hidden;border:1px solid var(--panel-border);background:#fff}
+.thumb{display:block;width:128px;min-width:128px;height:96px;border-radius:6px;overflow:hidden;border:1px solid var(--panel-border);background:var(--color-bg)}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .thumb .label{display:none}
 .thumb--empty .label{display:block}
