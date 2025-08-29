@@ -147,15 +147,16 @@ a {
   }
 }
 
-/* Obsidian-style internal links */
+/* Obsidian-style internal links (bidirectional links, wiki links) */
 a.internal-link {
-  color: #faedcd; /* requested link colour */
+  color: #000000;           /* readable text */
+  background: #faedcd;      /* requested background */
   border-bottom-color: $color-border; /* keep same underline style as page */
 }
 
 a.internal-link:hover {
-  color: #faedcd !important; /* keep same colour on hover */
-  background: transparent;    /* avoid hover background tint */
+  color: #000000 !important; /* keep text readable on hover */
+  background: #d4a373;       /* requested hover background */
 }
 
 /* Focus outline aid */
