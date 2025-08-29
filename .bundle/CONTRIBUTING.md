@@ -64,7 +64,7 @@ bundle lock --normalize-platforms
 
 ## Adding a new tumbling batch
 
-Create the file in `_notes/_tumble_logs/`
+Create the file in `_tumble_logs/`
 Suggested name: `YYYY-MM-DD-batch-<id>.md` (e.g., 2025-08-21-batch-001.md)
 
 Paste this front matter (adjust as needed):
