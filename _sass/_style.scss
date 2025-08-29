@@ -179,11 +179,7 @@ nav { margin: 1em 0 3em; }
   }
 }
 
-.backlink-box {
-  background: var(--color-bg);
-  padding: 1em;
-  border-radius: $border-radius;
-}
+/* .backlink-box removed; backlinks now flow like regular content */
 
 code {
   background: #f5f5f5;
