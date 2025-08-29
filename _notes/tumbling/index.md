@@ -148,7 +148,7 @@ layout: default
 
 /* status pills */
 .status{padding:.15rem .5rem;border-radius:999px;font-size:.8em;border:1px solid rgba(0,0,0,.08)}
-.status--pending{background:#fff7d6}
-.status--in-progress{background:#e8f4ff}
-.status--completed{background:#e9f7ec}
+.status--pending{background:#f3eadf}
+.status--in-progress{background:#e7ecdf}
+.status--completed{background:#e8efe6}
 </style>

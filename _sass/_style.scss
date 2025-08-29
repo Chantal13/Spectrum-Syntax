@@ -187,9 +187,10 @@ code {
 }
 
 /* Status badges aligned with progress colours */
-.badge.pending     { background:#fff8e1; color:#7a5a00; border-color:#ffe7a0; }
-.badge.in-progress { background:#eef2ff; color:#3730a3; border-color:#c7d2fe; }
-.badge.completed   { background:#e9f8ef; color:#216a44; border-color:#c4ecd3; }
+/* Earthy status colours */
+.badge.pending     { background: mix($lion, white, 88%); color: mix($seal-brown, black, 30%); border-color: mix($lion, white, 70%); }
+.badge.in-progress { background: mix($sage-2, white, 82%); color: mix($reseda, black, 30%); border-color: mix($sage-2, white, 65%); }
+.badge.completed   { background: mix($reseda, white, 85%); color: mix($black-olive, black, 20%); border-color: mix($reseda, white, 65%); }
 
 /* Rock chips (base + fallback) */
 .badge.rock {
@@ -252,7 +253,7 @@ code {
 }
 
 .tumble-table thead th {
-  background: #f8fafc;
+  background: mix($sage, white, 90%);
   text-align: left;
   font-weight: 600;
   border-bottom: 1px solid $color-border;
@@ -265,7 +266,7 @@ code {
   vertical-align: top;
 }
 
-.tumble-table tbody tr:hover { background: #fafbff; }
+.tumble-table tbody tr:hover { background: mix($sage, white, 94%); }
 
 /* Mobile: hide the left "Field" column; show only value with label */
 @media (max-width: 640px) {
@@ -308,39 +309,39 @@ code {
 .progress {
   height: 10px;
   border-radius: 9999px;
-  background: #f1f5f9;
-  border: 1px solid #e2e8f0;
+  background: mix($sage, white, 92%);
+  border: 1px solid mix($ebony, white, 88%);
   overflow: hidden;
   margin: 0.25rem 0 1rem;
 }
 .progress .bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #a5b4fc, #60a5fa);
+  background: linear-gradient(90deg, mix($sage-2, white, 35%), mix($reseda, white, 35%));
   transition: width 300ms ease-in-out;
 }
 
 /* Status-coloured progress bar */
 .progress.pending .bar {
-  background: linear-gradient(90deg, #ffe59a, #ffd56a);
+  background: linear-gradient(90deg, mix($lion, white, 40%), mix($khaki, white, 30%));
 }
 .progress.in-progress .bar {
-  background: linear-gradient(90deg, #a5b4fc, #60a5fa);
+  background: linear-gradient(90deg, mix($sage-2, white, 35%), mix($reseda, white, 35%));
 }
 .progress.completed .bar {
-  background: linear-gradient(90deg, #9ae6b4, #34d399);
+  background: linear-gradient(90deg, mix($reseda, white, 30%), mix($sage, white, 30%));
 }
 
 /* Optional: track tint per status */
-.progress.pending    { background: #fff8e1; border-color: #ffe7a0; }
-.progress.completed  { background: #eefaf2; border-color: #c4ecd3; }
+.progress.pending    { background: mix($lion, white, 88%); border-color: mix($lion, white, 70%); }
+.progress.completed  { background: mix($reseda, white, 88%); border-color: mix($reseda, white, 70%); }
 /* ---- Tumble cover & gallery ---- */
 .tumble-cover {
   margin: 0.25rem 0 1rem;
   border-radius: 12px;
   overflow: hidden;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: mix($sage, white, 92%);
+  border: 1px solid mix($ebony, white, 88%);
 }
 .tumble-cover img {
   display: block;
