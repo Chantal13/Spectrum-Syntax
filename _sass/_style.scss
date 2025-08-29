@@ -35,7 +35,7 @@ $color-box-background: mix($tiffany-blue, white, 92%); /* soft panel bg */
   --table-row-hover: var(--card-b);
 
   /* Chips */
-  --chip-text: #{mix($rich-black, white, 15%)};
+  --chip-text: #{$color-text};
   --chip-border: var(--panel-border);
   --chip-a: #d4a373;
   --chip-b: #faedcd;
@@ -43,8 +43,8 @@ $color-box-background: mix($tiffany-blue, white, 92%); /* soft panel bg */
   --chip-d: #ccd5ae;
 }
 $border-radius: 4px;
-$font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
-  sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+$font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif,
+  Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 
 /* =========================
    Typography & layout
