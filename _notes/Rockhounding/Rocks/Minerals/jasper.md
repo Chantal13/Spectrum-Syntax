@@ -22,8 +22,8 @@ Jasper is an opaque chalcedony ([[quartz|quartz]]) coloured by mineral impuritie
 > - Produces a glossy, smooth polish  
 > - Colors deepen after [[Rock Tumbling|tumbling]]  
 
-**Rock Category:** **[[Sedimentary]]**, though considered part of the [[quartz]] family.  
+**Rock Category:** **[[sedimentary]]**, though considered part of the [[quartz]] family.  
 
 > [!info] Did you know?  
 > Jasper is a silica-rich stone that comes from **[[sedimentary]] environments**.  
-> Learn more here → [[Sedimentary|Sedimentary Rocks]]
+> Learn more here → [[sedimentary|Sedimentary Rocks]]

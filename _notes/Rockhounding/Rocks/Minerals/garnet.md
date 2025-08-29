@@ -52,8 +52,8 @@ On the north shores of Lake Ontario, garnets are most often found embedded in **
 Garnet is a **mineral**, not a rock, but is most commonly associated with **metamorphic rocks** like [[gneiss]] and schist.  
 
 > [!info] Related content:  
-> - [[Gneiss|Gneiss]] → Learn about the metamorphic rock that often contains garnet.  
-> - [[Metamorphic|Metamorphic Rocks]] → See how garnet forms under heat and pressure.  
+> - [[gneiss|Gneiss]] → Learn about the metamorphic rock that often contains garnet.  
+> - [[metamorphic|Metamorphic Rocks]] → See how garnet forms under heat and pressure.  
 
 ---
 

@@ -18,9 +18,9 @@ Igneous rocks form when molten rock (magma or lava) cools and solidifies. They a
 - Often hard and dense  
 - May contain visible crystals ([[granite]]) or glassy textures ([[obsidian]])  
 
-**Connection to [[Rockhounding]]:**  
+**Connection to [[rockhounding]]:**  
 - [[agate|Agates]] often form inside cavities (vesicles) of volcanic rocks.  
-- [[Granite]] erratics transported by glaciers can be found along Lake Ontario.  
+- [[granite]] erratics transported by glaciers can be found along Lake Ontario.  
 
 
 > Many **[[agate|agates]]** found along Lake Ontario originated in igneous rocks before glaciers carried them south.  

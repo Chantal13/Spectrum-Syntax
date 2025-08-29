@@ -21,11 +21,11 @@ The Mohs hardness scale ranks minerals by their resistance to scratching, from *
 ## Hardness 5 – 6 (Medium Hard Stones)
 - **Feldspar** → Mohs 6 (pink, white, or green crystals in [[granite]], [[unakite]], [[gneiss]])  
 - **Epidote** → Mohs 6–7 (green mineral, takes a satin polish)  
-- **[[Unakite]]** → Mohs 6 (composite rock of [[feldspar]], epidote, [[quartz]] – hardness varies)  
+- **[[unakite]]** → Mohs 6 (composite rock of [[feldspar]], epidote, [[quartz]] – hardness varies)  
 - **Conglomerate** → Mohs 5–6 (depends on cement and pebbles inside)  
-- **[[Breccia]]** → Mohs 5–6 (similar to conglomerate but with angular fragments)  
-- **[[Granite]]** → Mohs 6–7 (mix of [[feldspar]] and [[quartz]], usually solid enough for [[Rock Tumbling|tumbling]])  
-- **[[Gneiss]]** → Mohs 6–7 (metamorphic, alternating [[feldspar]] and [[quartz]] bands)  
+- **[[breccia]]** → Mohs 5–6 (similar to conglomerate but with angular fragments)  
+- **[[granite]]** → Mohs 6–7 (mix of [[feldspar]] and [[quartz]], usually solid enough for [[Rock Tumbling|tumbling]])  
+- **[[gneiss]]** → Mohs 6–7 (metamorphic, alternating [[feldspar]] and [[quartz]] bands)  
 
 > [!tip] Medium hardness stones can be tumbled together. Expect mixed results with polish — [[feldspar]] surfaces may look satin while [[quartz]] shines.
 
@@ -49,9 +49,9 @@ The Mohs hardness scale ranks minerals by their resistance to scratching, from *
 |----------|--------|
 | **3** | Marble |
 | **3–4** | Sandstone |
-| **5–6** | Conglomerate, [[Breccia]] |
-| **6** | Feldspar, [[Unakite]], Epidote |
-| **6–7** | [[Granite]], [[Gneiss]], Basalt |
+| **5–6** | Conglomerate, [[breccia]] |
+| **6** | Feldspar, [[unakite]], Epidote |
+| **6–7** | [[granite]], [[gneiss]], Basalt |
 | **6.5–7** | [[jasper]], Petrified Wood |
 | **7** | [[quartz]], [[agate]], Chert/Flint |
 

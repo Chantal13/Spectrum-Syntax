@@ -7,7 +7,7 @@ tags:
 aliases:
   - unakite
 ---
-Unakite is a [[Metamorphic]] rock created when [[granite]] is altered by hydrothermal fluids, replacing [[feldspar]] with green [[epidote]].  
+Unakite is a [[metamorphic]] rock created when [[granite]] is altered by hydrothermal fluids, replacing [[feldspar]] with green [[epidote]].  
 
 **Appearance & Identification:**  
 - Mottled green ([[epidote]]), pink ([[feldspar]]), and clear [[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]]  
@@ -19,8 +19,8 @@ Unakite is a [[Metamorphic]] rock created when [[granite]] is altered by hydroth
 > - Colors brighten dramatically when polished  
 > - Popular for beads and cabochons  
 
-**Rock Category:** **[[Metamorphic]]**, altered [[granite]].
+**Rock Category:** **[[metamorphic]]**, altered [[granite]].
 
 > [!info] Curious about unakite’s origins?  
-> This pink-and-green stone is created when [[granite]] is transformed under heat and pressure, making it a **[[Metamorphic]] rock**.  
-> Learn more here → [[Metamorphic|Metamorphic Rocks]]
+> This pink-and-green stone is created when [[granite]] is transformed under heat and pressure, making it a **[[metamorphic]] rock**.  
+> Learn more here → [[metamorphic|Metamorphic Rocks]]

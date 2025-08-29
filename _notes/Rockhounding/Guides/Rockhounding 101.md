@@ -10,15 +10,15 @@ The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure tro
 ---
 ## 🪨 Rock Categories in Context
 
-- **[[Igneous]] Rocks** → Formed from cooled magma/lava. 
+- **[[igneous]] Rocks** → Formed from cooled magma/lava. 
 	- Example: Basalt, [[granite]]. 
 	- Connection: [[agate|Agate]].  
-- **[[Sedimentary]] Rocks** → Formed from compressed sediments. 
+- **[[sedimentary]] Rocks** → Formed from compressed sediments. 
 	- Example: Limestone, sandstone. 
 	- Connection: [[jasper|Jasper]].  
-- **[[Metamorphic]] Rocks** → Formed by heat and pressure. 
-	- Example: [[Gneiss]], schist. 
-	- Connection: [[Unakite]].  
+- **[[metamorphic]] Rocks** → Formed by heat and pressure. 
+	- Example: [[gneiss]], schist. 
+	- Connection: [[unakite]].  
 
 ---
 ## 🌊 Why These Rocks Wash Up
@@ -49,7 +49,7 @@ The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure tro
     
 - **[[quartz|Quartz]]:** Glassy appearance, hardness test scratches glass.
     
-- **[[Unakite]]:** Green-pink mottling ([[feldspar]] + [[epidote]]).
+- **[[unakite]]:** Green-pink mottling ([[feldspar]] + [[epidote]]).
     
 - **[[conglomerate|Conglomerates]]:** Pebbles cemented together, often with [[jasper]] chunks.
 

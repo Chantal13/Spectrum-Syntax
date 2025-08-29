@@ -8,7 +8,7 @@ aliases:
 ---
 Granite is a coarse-grained **[[igneous]] rock** composed mainly of **[[quartz]], [[feldspar]], and mica**. It forms when magma cools slowly beneath the Earth’s surface, giving its crystals time to grow large and visible.  
 
-Along the north shores of Lake Ontario, granite is common in glacial erratics — stones carried south from the Canadian Shield during the last Ice Age. These rounded granite pebbles are durable, colorful, and often used in [[rock tumbling]].
+Along the north shores of Lake Ontario, granite is common in glacial erratics — stones carried south from the Canadian Shield during the last Ice Age. These rounded granite pebbles are durable, colorful, and often used in [[Rock Tumbling]].
 
 ---
 
@@ -16,7 +16,7 @@ Along the north shores of Lake Ontario, granite is common in glacial erratics �
 - **Texture:** Coarse-grained, interlocking crystals  
 - **Color:** Pink, white, or grey background ([[feldspar]] + [[quartz]]) with black specks (mica, hornblende)  
 - **Minerals:**  
-  - Pink or white → [[Feldspar]]  
+  - Pink or white → [[feldspar]]  
   - Glassy grey → [[quartz]]  
   - Black flakes → Biotite or hornblende  
 - **Hardness:** [[Mohs Hardness Scale|Mohs]] 6–7 (depends on [[quartz]] content)  
@@ -47,7 +47,7 @@ Along the north shores of Lake Ontario, granite is common in glacial erratics �
 ---
 
 ## Rock Family
-Granite belongs to the **[[Igneous]] Rock family** (intrusive type).  
+Granite belongs to the **[[igneous]] Rock family** (intrusive type).  
 
 > [!info] Learn more about the **Igneous Rock family** here → [[Igneous Rocks]]  
 
@@ -56,8 +56,8 @@ Granite belongs to the **[[Igneous]] Rock family** (intrusive type).
 ## Related Stones
 - **Feldspar** → Pink or white crystals in granite  
 - **[[quartz]]** → Grey, glassy grains  
-- **[[Gneiss]]** → The metamorphic cousin of granite, banded instead of speckled  
-- **[[Unakite]]** → Granite altered by hydrothermal fluids ([[feldspar]] replaced by epidote)  
+- **[[gneiss]]** → The metamorphic cousin of granite, banded instead of speckled  
+- **[[unakite]]** → Granite altered by hydrothermal fluids ([[feldspar]] replaced by epidote)  
 
 ---
 

@@ -27,7 +27,7 @@ aliases:
 - [[marble]] → Crystalline metamorphosed limestone. Softer ([[Mohs Hardness Scale|Mohs]] 3), so requires special care.  
 
 ### Sedimentary Rocks
-- [[Conglomerate]] → Pebble-rich stone with [[quartz]] and other clasts. Polishes into unique patterned stones.  
+- [[conglomerate]] → Pebble-rich stone with [[quartz]] and other clasts. Polishes into unique patterned stones.  
 - [[breccia]] → Similar to conglomerate but with sharp, angular fragments.  
 - [[Sandstone]] → Often too soft for tumbling, but [[quartz]]-rich varieties can smooth nicely.  
 - [[Petrified Wood]] (rare) → Ancient fossilized wood replaced with silica. Can polish beautifully if found.  
@@ -53,4 +53,4 @@ aliases:
 1. **Sort by Hardness** → Don’t tumble soft marble with hard [[quartz]]. Keep similar hardnesses together.  
 2. **Use Stages Properly** → Each grit stage (coarse, medium, fine, polish) should run for at least a week.  
 3. **Check Frequently** → Remove cracked or undercut stones before advancing stages.  
-4. **Finish Strong** → [[quartz]], [[jasper]], and [[agate]] will take a glass-like polish. [[Feldspar]]-rich rocks (like [[granite]]) may have a softer sheen.  
+4. **Finish Strong** → [[quartz]], [[jasper]], and [[agate]] will take a glass-like polish. [[feldspar]]-rich rocks (like [[granite]]) may have a softer sheen.  

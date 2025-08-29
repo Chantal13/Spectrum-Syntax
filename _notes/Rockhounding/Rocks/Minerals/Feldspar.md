@@ -45,26 +45,26 @@ On the north shores of Lake Ontario, feldspar is most often found as part of **[
 - **Origin:** Feldspar crystallizes in [[igneous|igneous rocks]] like [[granite]], then is reworked into metamorphic rocks like [[gneiss]] and [[unakite]].  
 - **Transport:** Glaciers carried feldspar-bearing rocks from the Canadian Shield to Southern Ontario.  
 - **Where to Find:**  
-  - **[[Granite]] pebbles** (pink feldspar visible) on Toronto and Durham beaches  
-  - **[[Unakite]] pebbles** (pink feldspar + green epidote + [[quartz]])  
-  - **[[Gneiss]]** with alternating feldspar and [[quartz]] bands  
+  - **[[granite]] pebbles** (pink feldspar visible) on Toronto and Durham beaches  
+  - **[[unakite]] pebbles** (pink feldspar + green epidote + [[quartz]])  
+  - **[[gneiss]]** with alternating feldspar and [[quartz]] bands  
 
 ---
 
 ## Rock Family
 Feldspar is a **mineral group**, not a rock. It is most closely tied to:  
-- **Igneous Rocks** → [[Granite]], basalt (plagioclase feldspar)  
-- **Metamorphic Rocks** → [[Gneiss]], schist, [[unakite]]  
+- **Igneous Rocks** → [[granite]], basalt (plagioclase feldspar)  
+- **Metamorphic Rocks** → [[gneiss]], schist, [[unakite]]  
 - **Sedimentary Rocks** → Sandstone often contains feldspar grains  
 
-> [!info] Learn more about feldspar’s role in the **Igneous Rock family** here → [[Igneous|Igneous Rocks]]  
+> [!info] Learn more about feldspar’s role in the **Igneous Rock family** here → [[igneous|Igneous Rocks]]  
 
 ---
 
 ## Related Stones
-- **[[Granite]]** → Made of [[quartz]], feldspar, and mica  
-- **[[Unakite]]** → Pink feldspar, green epidote, and [[quartz]]  
-- **[[Gneiss]]** → Banded rock often alternating feldspar and [[quartz]]  
+- **[[granite]]** → Made of [[quartz]], feldspar, and mica  
+- **[[unakite]]** → Pink feldspar, green epidote, and [[quartz]]  
+- **[[gneiss]]** → Banded rock often alternating feldspar and [[quartz]]  
 - **[[quartz]]** → Often found alongside feldspar in many rocks  
 
 ---

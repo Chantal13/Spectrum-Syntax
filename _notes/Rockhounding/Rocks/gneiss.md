@@ -7,7 +7,7 @@ tags:
 aliases:
   - Gneiss
 ---
-Gneiss (pronounced “nice”) is a **[[Metamorphic]] rock** characterized by its distinctive light-and-dark banding. It forms when pre-existing rocks such as [[granite]], sandstone, or shale are subjected to intense heat and pressure, causing the minerals to re-crystallize and separate into layers.  
+Gneiss (pronounced “nice”) is a **[[metamorphic]] rock** characterized by its distinctive light-and-dark banding. It forms when pre-existing rocks such as [[granite]], sandstone, or shale are subjected to intense heat and pressure, causing the minerals to re-crystallize and separate into layers.  
 
 On the north shores of Lake Ontario, gneiss is most commonly found as **glacial erratics** — stones carried south from the ancient Canadian Shield by glaciers during the last Ice Age. Today, they can be found as rounded pebbles and cobbles scattered along the beaches.
 
@@ -43,17 +43,17 @@ On the north shores of Lake Ontario, gneiss is most commonly found as **glacial 
 ---
 
 ## Rock Family
-Gneiss belongs to the **[[Metamorphic]] Rock family**, formed through the transformation of pre-existing rocks under heat and pressure.  
+Gneiss belongs to the **[[metamorphic]] Rock family**, formed through the transformation of pre-existing rocks under heat and pressure.  
 
 > [!info] Want to learn more?  
-> Read about the broader **[[Metamorphic]] Rock family** here → [[Metamorphic|Metamorphic Rocks]]  
+> Read about the broader **[[metamorphic]] Rock family** here → [[metamorphic|Metamorphic Rocks]]  
 
 ---
 
 ## Related Stones
-- **[[Unakite]]** → Another [[Metamorphic]] rock, often green and pink, found along Lake Ontario.  
+- **[[unakite]]** → Another [[metamorphic]] rock, often green and pink, found along Lake Ontario.  
 - **[[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]]** → A common mineral within gneiss, also found as separate pebbles on the shoreline.  
-- **[[Granite]]** → The [[Igneous]] parent rock that often transforms into gneiss.  
+- **[[granite]]** → The [[igneous]] parent rock that often transforms into gneiss.  
 
 ---
 

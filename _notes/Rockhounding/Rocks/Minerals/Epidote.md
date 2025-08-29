@@ -51,13 +51,13 @@ While epidote rarely appears as large standalone crystals along Lake Ontario’s
 ## Mineral Family
 Epidote is part of the **silicate mineral group** and commonly occurs in metamorphic environments.  
 
-> [!info] Learn more about its metamorphic context here → [[Metamorphic|Metamorphic Rocks]]  
+> [!info] Learn more about its metamorphic context here → [[metamorphic|Metamorphic Rocks]]  
 
 ---
 
 ## Related Stones
-- **[[Unakite]]** → Epidote + [[feldspar]] + [[quartz]]  
-- **[[Gneiss]]** → May contain small epidote inclusions  
+- **[[unakite]]** → Epidote + [[feldspar]] + [[quartz]]  
+- **[[gneiss]]** → May contain small epidote inclusions  
 - **Feldspar** → Often altered to epidote during metamorphism  
 
 ---

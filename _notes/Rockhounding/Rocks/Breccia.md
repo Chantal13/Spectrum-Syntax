@@ -10,7 +10,7 @@ Breccia is a **sedimentary rock** (sometimes volcanic) made of **angular fragmen
 
 On the north shores of Lake Ontario, breccia can occasionally be found in glacial gravels and erratics. Though less common than [[conglomerate]], it’s still worth keeping an eye out for these “jagged puzzle rocks.”
 
-> [!info] Unsure if you’ve found Breccia or [[Conglomerate]]?  
+> [!info] Unsure if you’ve found Breccia or [[conglomerate]]?  
 > The difference comes down to **clast shape** — rounded vs. angular.  
 > 👉 Learn how to tell them apart here → [[Conglomerate vs Breccia]]
 
@@ -55,7 +55,7 @@ It is closely related to:
 - **Conglomerate** → made of rounded clasts, transported farther by water  
 - **Tuff** → a volcanic rock formed of ash and angular fragments  
 
-> [!info] Learn more about the **Sedimentary Rock family** here → [[Sedimentary|Sedimentary Rocks]]  
+> [!info] Learn more about the **Sedimentary Rock family** here → [[sedimentary|Sedimentary Rocks]]  
 
 ---
 

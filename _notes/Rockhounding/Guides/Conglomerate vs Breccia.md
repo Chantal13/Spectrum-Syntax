@@ -5,7 +5,7 @@ tags:
   - rockhounding
 aliases:
 ---
-[[Conglomerate]] and breccia are both coarse-grained sedimentary rocks made of fragments (clasts) cemented by a finer matrix, but they differ in clast shape: [[conglomerate]] has rounded, water-worn pebbles while breccia has sharp, angular pieces. [[Conglomerate]] usually forms where transport and abrasion round clasts—think rivers, beaches, and alluvial fans—so it’s often better sorted and feels “pebbly” in the hand. 
+[[conglomerate]] and breccia are both coarse-grained sedimentary rocks made of fragments (clasts) cemented by a finer matrix, but they differ in clast shape: [[conglomerate]] has rounded, water-worn pebbles while breccia has sharp, angular pieces. [[conglomerate]] usually forms where transport and abrasion round clasts—think rivers, beaches, and alluvial fans—so it’s often better sorted and feels “pebbly” in the hand. 
 
 Breccia forms near the source of breakage—fault zones, landslides, karst collapse, volcanic or impact events—so it’s commonly poorly sorted with jigsaw-like fits between fragments. Both can be clast- or matrix-supported, with silica, calcite, or iron oxide cement. 
 
