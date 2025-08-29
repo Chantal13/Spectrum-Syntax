@@ -23,11 +23,12 @@ $color-box-background: mix($tiffany-blue, white, 92%); /* soft panel bg */
 /* CSS variables for templates and inline styles */
 :root {
   /* Core */
-  --color-bg: #{mix($vanilla, white, 96%)}; /* lighter vanilla for higher contrast */
+  /* Much lighter background than header */
+  --color-bg: #{mix($tiffany-blue, white, 20%)};
   --color-text: #{$rich-black};
   --panel-bg: #{mix($tiffany-blue, white, 94%)};
   --panel-border: #{mix($rich-black, white, 88%)};
-  --table-header-bg: #{mix($tiffany-blue, white, 90%)};
+  --table-header-bg: #{$tiffany-blue}; /* tumbling batch table header */
   --table-row-hover: #{mix($tiffany-blue, white, 96%)};
 
   /* Chips */
