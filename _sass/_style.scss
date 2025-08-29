@@ -192,11 +192,16 @@ code {
 }
 
 .invalid-link {
-  color: #faedcd; /* match internal-link colour */
+  color: #000000; /* readable text for invalid links */
   cursor: help;
   background: transparent;
   padding: 0 0.1em;
   border-bottom: 1px dotted currentColor; /* dotted underline to differentiate */
+}
+
+.invalid-link:hover {
+  background: #faedcd; /* subtle hover background */
+  color: #000000;      /* keep text readable */
 }
 .invalid-link-brackets {
   color: #ccc;

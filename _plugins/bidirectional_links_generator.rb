@@ -69,7 +69,7 @@ class BidirectionalLinksGenerator < Jekyll::Generator
       current_note.content = current_note.content.gsub(
         /\[\[([^\]]+)\]\]/i,
         <<~HTML.delete("\n")
-          <span title='Either coming soon or broken (ha ha)' class='invalid-link'>
+          <span title='Coming Soon™' class='invalid-link'>
             <span class='invalid-link-brackets'>[[</span>
             \\1
             <span class='invalid-link-brackets'>]]</span>
