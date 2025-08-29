@@ -177,6 +177,21 @@ Helpers
   </section>
 {% endfor %}
 
+{%- assign after_candidate =
+  page.images.after_burnish
+  | default: page.images.after_stage_4
+  | default: page.images.after_stage_3
+  | default: page.images.after_stage_2
+  | default: page.images.after_stage_1
+-%}
+{%- assign after_img = after_candidate | image_exists -%}
+{%- if after_img -%}
+  <div class="post-tumble">
+    <h2>After Tumbling</h2>
+    <img src="{{ after_img | relative_url }}" alt="After tumbling">
+  </div>
+{%- endif -%}
+
 {% if page.images.gallery and page.images.gallery.size > 0 %}
   <h2>Gallery</h2>
   <div class="grid gallery">
@@ -215,6 +230,8 @@ Helpers
 /* Pre-tumbling section */
 .pre-tumble{margin:1rem 0}
 .pre-tumble img{width:100%;max-height:320px;object-fit:cover;border-radius:8px}
+.post-tumble{margin:1rem 0}
+.post-tumble img{width:100%;max-height:320px;object-fit:cover;border-radius:8px}
 
 .chips{display:inline-flex;gap:.35rem;flex-wrap:wrap}
 .chip{display:inline-block;padding:.15rem .5rem;border-radius:999px;font-size:.85em;border:1px solid rgba(0,0,0,.1)}
