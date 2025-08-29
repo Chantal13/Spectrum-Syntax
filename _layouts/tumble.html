@@ -45,6 +45,14 @@ Helpers
   </ul>
 </div>
 
+{%- assign before = page.images.rough | image_exists -%}
+{%- if before -%}
+<div class="pre-tumble">
+  <h2>Before Tumbling</h2>
+  <img src="{{ before | relative_url }}" alt="Before tumbling (rough)">
+</div>
+{%- endif -%}
+
 {% if page.notes %}
 <div class="tumble-notes">
   <h2>Notes</h2>
@@ -203,6 +211,10 @@ Helpers
 .tumble-meta.no-cover{grid-template-columns:1fr; gap: .75rem}
 /* Vertically center cover against details */
 .tumble-cover{align-self:center}
+
+/* Pre-tumbling section */
+.pre-tumble{margin:1rem 0}
+.pre-tumble img{width:100%;max-height:320px;object-fit:cover;border-radius:8px}
 
 .chips{display:inline-flex;gap:.35rem;flex-wrap:wrap}
 .chip{display:inline-block;padding:.15rem .5rem;border-radius:999px;font-size:.85em;border:1px solid rgba(0,0,0,.1)}
