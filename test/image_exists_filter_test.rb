@@ -4,7 +4,6 @@ require 'liquid'
 require_relative '../_plugins/image_exists_filter'
 
 class ImageExistsFilterTest < Minitest::Test
-  PLACEHOLDER = Jekyll::ImageExistsFilter::PLACEHOLDER
 
   def setup
     @filter = Object.new.extend(Jekyll::ImageExistsFilter)
@@ -15,21 +14,21 @@ class ImageExistsFilterTest < Minitest::Test
 
   def test_remote_url_is_returned
     url = 'https://example.com/image.jpg'
-    assert_equal url, @filter.ensure_image(url)
+    assert_equal url, @filter.image_exists(url)
   end
 
-  def test_missing_local_file_returns_placeholder
+  def test_missing_local_file_returns_nil
     path = '/assets/missing.jpg'
-    assert_equal PLACEHOLDER, @filter.ensure_image(path)
+    assert_nil @filter.image_exists(path)
   end
 
   def test_existing_local_file_returns_same_path
     path = '/assets/image.jpg'
-    assert_equal path, @filter.ensure_image(path)
+    assert_equal path, @filter.image_exists(path)
   end
 
   def test_html_tag_with_src_uses_path
     tag = { 'src' => '/assets/image.jpg' }
-    assert_equal '/assets/image.jpg', @filter.ensure_image(tag)
+    assert_equal '/assets/image.jpg', @filter.image_exists(tag)
   end
 end

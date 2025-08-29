@@ -2,9 +2,7 @@
 
 module Jekyll
   module ImageExistsFilter
-    PLACEHOLDER = '/assets/tumbling/coming_soon.jpg'
-
-    # Returns the image path if it exists, otherwise returns a placeholder.
+    # Returns the image path if it exists. Returns nil/blank if missing.
     # Accepts a raw path String, an HTML tag String, or a Hash containing :src or 'src'.
     def image_exists(input)
       path = case input
@@ -20,13 +18,13 @@ module Jekyll
                input.to_s
              end
 
-      return PLACEHOLDER unless path.is_a?(String) && !path.empty?
+      return nil unless path.is_a?(String) && !path.empty?
       return path if path.start_with?('http://', 'https://')
 
       site_source = @context.registers[:site].source
       relative = path.sub(%r{^/}, '')
       absolute = File.expand_path(relative, site_source)
-      File.exist?(absolute) ? path : PLACEHOLDER
+      File.exist?(absolute) ? path : nil
     end
   end
 end

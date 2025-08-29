@@ -5,24 +5,24 @@ layout: default
 {% comment %}
 Helpers
 {% endcomment %}
-{% assign placeholder = "/assets/tumbling/coming_soon.jpg" | relative_url %}
 {% assign brand = page.consumables_brand | default: "National Geographic" %}
 
-{% assign cover =
+{% assign cover_candidate =
   page.images.cover
   | default: page.images.after_stage_4
   | default: page.images.after_burnish
   | default: page.images.rough
-  | default: "/assets/tumbling/coming_soon.jpg"
-  | relative_url
 %}
+{% assign cover = cover_candidate | image_exists %}
 
 <h1>{{ page.title }}</h1>
 
 <div class="tumble-meta">
-  <div class="tumble-cover">
-    <img src="{{ cover }}" alt="{{ page.title }} cover image">
-  </div>
+  {% if cover %}
+    <div class="tumble-cover">
+      <img src="{{ cover | relative_url }}" alt="{{ page.title }} cover image">
+    </div>
+  {% endif %}
 
   <ul class="tumble-details">
     <li><strong>Batch:</strong> {{ page.batch }}</li>
@@ -74,12 +74,14 @@ Helpers
     {% assign primary = page.images.rough %}
   {% endif %}
 
-  {% assign primary = primary | default: "/assets/tumbling/coming_soon.jpg" | relative_url %}
+  {% assign primary = primary | image_exists %}
 
   <section class="stage-card" id="stage-{{ st.stage }}">
-    <div class="stage-media">
-      <img src="{{ primary }}" alt="Stage {{ st.stage }} image">
-    </div>
+    {% if primary %}
+      <div class="stage-media">
+        <img src="{{ primary | relative_url }}" alt="Stage {{ st.stage }} image">
+      </div>
+    {% endif %}
     <div class="stage-body">
       <h3>Stage {{ st.stage }} — {{ st.name }}</h3>
 
@@ -119,9 +121,11 @@ Helpers
         <div class="stage-gallery">
           {% for extra in imgs offset:1 %}
             {% if extra.alt != nil %}
-              <img src="{{ extra.src | default: extra | relative_url }}" alt="{{ extra.alt }}">
+              {% assign ex = extra.src | default: extra | image_exists %}
+              {% if ex %}<img src="{{ ex | relative_url }}" alt="{{ extra.alt }}">{% endif %}
             {% else %}
-              <img src="{{ extra | relative_url }}" alt="Stage {{ st.stage }} extra image {{ forloop.index }}">
+              {% assign ex = extra | image_exists %}
+              {% if ex %}<img src="{{ ex | relative_url }}" alt="Stage {{ st.stage }} extra image {{ forloop.index }}">{% endif %}
             {% endif %}
           {% endfor %}
         </div>
@@ -135,14 +139,20 @@ Helpers
   <div class="grid gallery">
     {% for g in page.images.gallery %}
       {% if g.src %}
-        <figure>
-          <img src="{{ g.src | relative_url }}" alt="{{ g.alt | default: "" }}">
-          {% if g.caption %}<figcaption>{{ g.caption }}</figcaption>{% endif %}
-        </figure>
+        {% assign gs = g.src | image_exists %}
+        {% if gs %}
+          <figure>
+            <img src="{{ gs | relative_url }}" alt="{{ g.alt | default: "" }}">
+            {% if g.caption %}<figcaption>{{ g.caption }}</figcaption>{% endif %}
+          </figure>
+        {% endif %}
       {% else %}
-        <figure>
-          <img src="{{ g | relative_url }}" alt="">
-        </figure>
+        {% assign g1 = g | image_exists %}
+        {% if g1 %}
+          <figure>
+            <img src="{{ g1 | relative_url }}" alt="">
+          </figure>
+        {% endif %}
       {% endif %}
     {% endfor %}
   </div>

@@ -101,7 +101,7 @@ notes: >-
 consumables_brand: "National Geographic"
 
 # Milestone photos (any can be omitted)
-# Missing entries fall back automatically to: /assets/tumbling/coming_soon.jpg
+# Any image fields are optional; missing ones simply won't render.
 images:
   rough: "/assets/tumbling/001/rough.jpg"
   cover: "/assets/tumbling/001/cover.jpg"
@@ -198,7 +198,7 @@ assets/tumbling/001/after-s4.jpg
 assets/tumbling/001/after-burnish.jpg
 ```
 
-If any are missing, the UI automatically uses `/assets/tumbling/coming_soon.jpg`.
+If any are missing, they are simply omitted from the UI (no placeholder displayed).
 
 Preview locally. Your batch will appear on `/tumbling/`.
 
@@ -259,4 +259,3 @@ If you hit conflicts during rebase:
 git add <fixed-files>
 git rebase --continue
 ```
-

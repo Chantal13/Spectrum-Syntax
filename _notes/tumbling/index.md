@@ -13,8 +13,6 @@ layout: default
   {% assign items = "" | split: "," %}
 {% endif %}
 
-{% assign PLACEHOLDER = "/assets/tumbling/coming_soon.jpg" | relative_url %}
-
 <div class="tumble-index">
   <table class="nice-table">
     <thead>
@@ -30,14 +28,13 @@ layout: default
     <tbody>
       {% if items and items.size > 0 %}
         {% for d in items %}
-          {% assign thumb =
+          {% assign thumb_candidate =
             d.images.after_stage_4
             | default: d.images.after_burnish
             | default: d.images.cover
             | default: d.images.rough
-            | default: "/assets/tumbling/coming_soon.jpg"
-            | relative_url
           %}
+          {% assign thumb = thumb_candidate | image_exists %}
 
           {% assign days = "" %}
           {% if d.date_started and d.date_finished %}
@@ -49,9 +46,11 @@ layout: default
 
           <tr>
             <td class="batch-cell">
-              <a class="thumb" href="{{ d.url | relative_url }}">
-                <img src="{{ thumb }}" alt="{{ d.title | default: d.batch }}">
-              </a>
+              {% if thumb %}
+                <a class="thumb" href="{{ d.url | relative_url }}">
+                  <img src="{{ thumb | relative_url }}" alt="{{ d.title | default: d.batch }}">
+                </a>
+              {% endif %}
               <div class="batch-meta">
                 <a href="{{ d.url | relative_url }}"><strong>{{ d.batch | default: d.title }}</strong></a>
                 {% if d.rocks and d.rocks.size > 0 %}
