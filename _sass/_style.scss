@@ -192,7 +192,7 @@ code {
 }
 
 .invalid-link {
-  color: #000000; /* readable text for invalid links */
+  color: mix($color-text, white, 60%); /* faded text */
   cursor: help;
   background: transparent;
   padding: 0 0.1em;
