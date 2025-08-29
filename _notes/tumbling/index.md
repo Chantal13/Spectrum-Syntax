@@ -93,6 +93,15 @@ layout: default
                 <a class="thumb" href="{{ d.url | relative_url }}">
                   <img src="{{ thumb | relative_url }}" alt="{{ d.title | default: d.batch }}">
                 </a>
+              {% else %}
+                <a class="thumb thumb--empty" href="{{ d.url | relative_url }}" aria-label="Open {{ d.title | default: d.batch }}">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <rect x="2" y="4" width="20" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="8" cy="10" r="2" fill="currentColor"/>
+                    <path d="M5 18l5-6 4 5 3-3 3 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="label">{{ d.batch | default: d.title }}</span>
+                </a>
               {% endif %}
               <div class="batch-meta">
                 <a href="{{ d.url | relative_url }}"><strong>{{ d.batch | default: d.title }}</strong></a>
@@ -138,6 +147,9 @@ layout: default
 .batch-cell{display:flex;gap:.75rem;align-items:center}
 .thumb{display:block;width:128px;min-width:128px;height:96px;border-radius:6px;overflow:hidden}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb--empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.25rem;background:repeating-linear-gradient(45deg,#f6f7f9,#f6f7f9 8px,#eef1f4 8px,#eef1f4 16px);color:#5b6770;border:1px solid rgba(0,0,0,.08);text-decoration:none;font-weight:600;font-size:.9rem}
+.thumb--empty .icon{width:28px;height:28px;opacity:.7}
+.thumb--empty .label{line-height:1}
 .batch-meta{display:flex;flex-direction:column;gap:.25rem}
 .chips{display:flex;gap:.25rem;flex-wrap:wrap}
 .chip{display:inline-block;padding:.1rem .45rem;border-radius:999px;font-size:.75em;border:1px solid rgba(0,0,0,.1)}
