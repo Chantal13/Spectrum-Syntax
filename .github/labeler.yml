@@ -1,0 +1,20 @@
+docs:
+  - '.bundle/CONTRIBUTING.md'
+  - 'README.md'
+
+tumbling-log:
+  - '_tumble_logs/**'
+
+assets:
+  - 'assets/tumbling/**'
+
+theme:
+  - '_layouts/**'
+  - '_sass/**'
+
+plugins:
+  - '_plugins/**'
+
+ci:
+  - '.github/workflows/**'
+

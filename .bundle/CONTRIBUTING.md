@@ -6,7 +6,7 @@ Thanks for helping! This site is a Jekyll project deployed on Netlify. I write i
 
 bundle install → bundle exec jekyll serve
 
-Add a batch MD file under `_notes/tumble_logs/` (use the template below)
+Add a batch MD file under `_tumble_logs/` (use the template below)
 
 Put images in `assets/tumbling/<batch-id>/`
 
@@ -20,7 +20,7 @@ Commit → git pull --rebase → git push
   tumble.html            # single-batch page
 /_notes/
   tumbling/index.md      # batches index (/tumbling/)
-  tumble_logs/           # individual batch files live here
+/_tumble_logs/           # individual batch files live here
 /_plugins/
   bidirectional_links_generator.rb
 /_sass/
@@ -102,6 +102,10 @@ consumables_brand: "National Geographic"
 
 # Milestone photos (any can be omitted)
 # Any image fields are optional; missing ones simply won't render.
+# Notes:
+# - `images.rough` shows in a "Before Tumbling" section at the top.
+# - `images.after_burnish` (or the latest available stage image) shows in an "After Tumbling" section.
+# - Zero-byte files are ignored (treated as missing).
 images:
   rough: "/assets/tumbling/001/rough.jpg"
   cover: "/assets/tumbling/001/cover.jpg"
@@ -247,7 +251,34 @@ Edit SCSS in _sass/ (_style.scss, _tumbling.scss) and import via styles.scss.
 
 Jekyll compiles to `/styles.css`. Colours, spacing, and chips/pills are themeable via SCSS variables.
 
+## Troubleshooting images
+
+- Path format: Use a leading slash, e.g. `/assets/tumbling/001/after-s4.jpg`.
+- Case‑sensitive: Netlify/Linux paths are case‑sensitive; match filenames exactly.
+- File size: Zero‑byte files are ignored. Ensure the image contains real data.
+- Location: Put files under `assets/tumbling/<batch-id>/` and reference that same `<batch-id>` in front matter.
+- Front matter mapping:
+  - Stage cover keys: `images.after_stage_1` … `images.after_stage_5`, `images.after_burnish`, `images.cover`, `images.rough`.
+  - Per‑stage images: `stages[n].images` can be a list of strings or objects (`{ src, alt, caption }`). The first valid entry displays.
+- Pre/Post sections: `images.rough` shows under “Before Tumbling”; `images.after_burnish` (or latest stage image) shows under “After Tumbling”.
+- Index thumbnail: Chooses the first existing file from `cover → after_stage_5 → 4 → 3 → 2 → 1 → after_burnish → rough`.
+- Filters: The site skips missing and zero‑byte images automatically; broken paths won’t render a tag.
+- CI: Pull requests fail if any zero‑byte images are found under `assets/tumbling/`. Fix or remove them before merging.
+- Cache/build:
+  - Hard refresh the browser.
+  - Local: restart Jekyll after config/collection changes; optionally `rm -rf _site .jekyll-cache`.
+  - Netlify: trigger a redeploy if assets were replaced.
+
 ## Custom plugin notes
+
+## Submission checklist
+
+- Paths: Image files live under `assets/tumbling/<batch-id>/` and use leading slashes in front matter.
+- Valid images: No zero‑byte files; verify images open locally before pushing.
+- Front matter: `batch`, `status`, `date_started`, and `stages` defined; optional `date_finished` when done.
+- Key images: Add `images.rough` (before), latest stage images as available, and `images.after_burnish` when finished.
+- Stage content: Include concise `observations`; fill `barrel_fill_pct`, `water_level`, and `media_used` hints as needed.
+- Local preview: Run `bundle exec jekyll serve` and verify `/tumbling/` shows your new batch thumbnail and log details.
 
 `_plugins/bidirectional_links_generator.rb`:
 
