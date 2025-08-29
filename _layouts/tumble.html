@@ -70,11 +70,41 @@ Helpers
     {% assign primary = page.images[k] %}
   {% endif %}
 
+  {%- comment -%} Fallbacks: prefer nearest previous stage image before using rough {%- endcomment -%}
   {% if primary == nil %}
-    {% if st.stage == 5 %}
+    {% assign s = st.stage | plus: 0 %}
+    {% if s == 5 %}
       {% assign primary = page.images.after_burnish %}
+      {% if primary == nil %}
+        {% assign primary = page.images.after_stage_4 %}
+      {% endif %}
+      {% if primary == nil %}
+        {% assign primary = page.images.after_stage_3 %}
+      {% endif %}
+      {% if primary == nil %}
+        {% assign primary = page.images.after_stage_2 %}
+      {% endif %}
+      {% if primary == nil %}
+        {% assign primary = page.images.after_stage_1 %}
+      {% endif %}
+    {% elsif s == 4 %}
+      {% assign primary = page.images.after_stage_3 %}
+      {% if primary == nil %}
+        {% assign primary = page.images.after_stage_2 %}
+      {% endif %}
+      {% if primary == nil %}
+        {% assign primary = page.images.after_stage_1 %}
+      {% endif %}
+    {% elsif s == 3 %}
+      {% assign primary = page.images.after_stage_2 %}
+      {% if primary == nil %}
+        {% assign primary = page.images.after_stage_1 %}
+      {% endif %}
+    {% elsif s == 2 %}
+      {% assign primary = page.images.after_stage_1 %}
     {% endif %}
   {% endif %}
+
   {% if primary == nil %}
     {% assign primary = page.images.rough %}
   {% endif %}
