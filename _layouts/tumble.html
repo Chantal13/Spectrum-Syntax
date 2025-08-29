@@ -171,6 +171,8 @@ Helpers
 .tumble-details li{margin:.25rem 0}
 /* When no cover image, keep spacing tidy */
 .tumble-meta.no-cover{grid-template-columns:1fr; gap: .75rem}
+/* Vertically center cover against details */
+.tumble-cover{align-self:center}
 
 .chips{display:inline-flex;gap:.35rem;flex-wrap:wrap}
 .chip{display:inline-block;padding:.15rem .5rem;border-radius:999px;font-size:.85em;border:1px solid rgba(0,0,0,.1)}
@@ -187,6 +189,8 @@ Helpers
 .stage-card{display:grid;gap:1rem;grid-template-columns:1fr;align-items:start;margin:1.5rem 0;padding:1rem;border:1px solid rgba(0,0,0,.06);border-radius:8px;background:#fafafa}
 /* If a stage has no media, collapse to single column at all sizes */
 .stage-card.no-media{grid-template-columns:1fr}
+/* Vertically center stage image column relative to content */
+.stage-media{align-self:center}
 .stage-media img{width:100%;border-radius:6px}
 .kv{display:grid;grid-template-columns:1fr 1fr;gap:.35rem .75rem;margin:.5rem 0}
 .kv > div{display:contents}
