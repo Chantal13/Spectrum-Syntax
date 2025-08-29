@@ -29,7 +29,7 @@ layout: default
       {% if items and items.size > 0 %}
         {% for d in items %}
           {% assign thumb = nil %}
-          {% assign cover = d.images.cover | image_exists %}
+          {% assign cover = d.images.cover %}
           {% if cover %}
             {% assign thumb = cover %}
           {% endif %}
@@ -45,7 +45,6 @@ layout: default
                   {% if cand.alt != nil %}
                     {% assign cand = cand.src | default: cand %}
                   {% endif %}
-                  {% assign cand = cand | image_exists %}
                   {% if cand %}
                     {% assign thumb = cand %}
                     {% break %}
@@ -56,27 +55,27 @@ layout: default
           {% endif %}
 
           {% if thumb == nil %}
-            {% assign cand = d.images.after_burnish | image_exists %}
+            {% assign cand = d.images.after_burnish %}
             {% if cand %}{% assign thumb = cand %}{% endif %}
           {% endif %}
           {% if thumb == nil %}
-            {% assign cand = d.images.after_stage_4 | image_exists %}
+            {% assign cand = d.images.after_stage_4 %}
             {% if cand %}{% assign thumb = cand %}{% endif %}
           {% endif %}
           {% if thumb == nil %}
-            {% assign cand = d.images.after_stage_3 | image_exists %}
+            {% assign cand = d.images.after_stage_3 %}
             {% if cand %}{% assign thumb = cand %}{% endif %}
           {% endif %}
           {% if thumb == nil %}
-            {% assign cand = d.images.after_stage_2 | image_exists %}
+            {% assign cand = d.images.after_stage_2 %}
             {% if cand %}{% assign thumb = cand %}{% endif %}
           {% endif %}
           {% if thumb == nil %}
-            {% assign cand = d.images.after_stage_1 | image_exists %}
+            {% assign cand = d.images.after_stage_1 %}
             {% if cand %}{% assign thumb = cand %}{% endif %}
           {% endif %}
           {% if thumb == nil %}
-            {% assign thumb = d.images.rough | image_exists %}
+            {% assign thumb = d.images.rough %}
           {% endif %}
 
           {% assign days = "" %}
