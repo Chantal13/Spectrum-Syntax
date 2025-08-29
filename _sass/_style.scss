@@ -147,6 +147,17 @@ a {
   }
 }
 
+/* Obsidian-style internal links */
+a.internal-link {
+  color: #faedcd; /* requested link colour */
+  border-bottom-color: $color-border; /* keep same underline style as page */
+}
+
+a.internal-link:hover {
+  color: #faedcd !important; /* keep same colour on hover */
+  background: transparent;    /* avoid hover background tint */
+}
+
 /* Focus outline aid */
 *:focus {
   background: mix($gamboge, white, 68%) !important;
@@ -180,10 +191,11 @@ code {
 }
 
 .invalid-link {
-  color: #444444;
+  color: #faedcd; /* match internal-link colour */
   cursor: help;
-  background: #fafafa;
+  background: transparent;
   padding: 0 0.1em;
+  border-bottom: 1px dotted currentColor; /* dotted underline to differentiate */
 }
 .invalid-link-brackets {
   color: #ccc;
