@@ -144,7 +144,7 @@ layout: default
 .chips .chip:nth-child(4n+3){background:var(--chip-c)}
 .chips .chip:nth-child(4n+4){background:var(--chip-d)}
 /* rock colours (same as layout, extend as needed) */
-[class^="chip--"]{color:#2b2b26}
+[class^="chip--"]{color:var(--chip-text)}
 /* override any rock-specific backgrounds */
 
 /* status pills */
