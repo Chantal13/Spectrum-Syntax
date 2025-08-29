@@ -1,24 +1,46 @@
 /* =========================
    Base design tokens
    ========================= */
-/* Earthy palette (trial) */
-$seal-brown:  #582f0eff;
-$russet:      #7f4f24ff;
-$raw-umber:   #936639ff;
-$lion:        #a68a64ff;
-$khaki:       #b6ad90ff;
-$sage:        #c2c5aaff;
-$sage-2:      #a4ac86ff;
-$reseda:      #656d4aff;
-$ebony:       #414833ff;
-$black-olive: #333d29ff;
+/* Oceanic palette (trial) */
+$rich-black:     #001219ff;
+$midnight-green: #005f73ff;
+$dark-cyan:      #0a9396ff;
+$tiffany-blue:   #94d2bdff;
+$vanilla:        #e9d8a6ff;
+$gamboge:        #ee9b00ff;
+$alloy-orange:   #ca6702ff;
+$rust:           #bb3e03ff;
+$rufous:         #ae2012ff;
+$auburn:         #9b2226ff;
 
 /* Map palette to site tokens */
-$color-primary: $ebony;                           /* link/base accents */
-$color-text:    $black-olive;                     /* body text */
-$color-subtext: mix($black-olive, white, 45%);    /* subdued text */
-$color-border:  mix($ebony, white, 86%);          /* subtle borders */
-$color-box-background: mix($seal-brown, white, 97%); /* soft panel bg */
+$color-primary: $midnight-green;                    /* links/accents */
+$color-text:    $rich-black;                        /* body text */
+$color-subtext: mix($rich-black, white, 40%);       /* subdued text */
+$color-border:  mix($rich-black, white, 85%);       /* subtle borders */
+$color-box-background: mix($tiffany-blue, white, 92%); /* soft panel bg */
+
+/* CSS variables for templates and inline styles */
+:root {
+  /* Core */
+  --color-bg: #{$vanilla};
+  --color-text: #{$rich-black};
+  --panel-bg: #{mix($tiffany-blue, white, 94%)};
+  --panel-border: #{mix($rich-black, white, 88%)};
+  --table-header-bg: #{mix($tiffany-blue, white, 90%)};
+  --table-row-hover: #{mix($tiffany-blue, white, 96%)};
+
+  /* Chips */
+  --chip-text: #{mix($rich-black, white, 15%)};
+  --chip-border: var(--panel-border);
+  --chip-fallback-bg: #{mix($tiffany-blue, white, 97%)};
+  --chip-agate-bg: #{mix($tiffany-blue, white, 85%)};
+  --chip-jasper-bg: #{mix($gamboge, white, 85%)};
+  --chip-sodalite-bg: #{mix($dark-cyan, white, 88%)};
+  --chip-quartz-bg: #{mix($vanilla, white, 88%)};
+  --chip-dalmatian-a: #{mix($vanilla, white, 85%)};
+  --chip-dalmatian-b: #{mix($gamboge, white, 88%)};
+}
 $border-radius: 4px;
 $font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
   sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
@@ -36,7 +58,7 @@ body {
   color: $color-text;
   font-size: 1rem;
   max-width: 63em;
-  background: #b6ad90;
+  background: var(--color-bg);
 
   @media (min-width: 820px) {
     font-size: 1.2rem;
@@ -102,7 +124,7 @@ a {
 
   &:hover {
     color: black !important;
-    background: mix($lion, white, 85%);
+    background: mix($tiffany-blue, white, 78%);
   }
 
   &:after {
@@ -122,7 +144,7 @@ a {
 
 /* Focus outline aid */
 *:focus {
-  background: mix($lion, white, 72%) !important;
+  background: mix($gamboge, white, 68%) !important;
   color: black !important;
 }
 
@@ -189,9 +211,9 @@ code {
 
 /* Status badges aligned with progress colours */
 /* Earthy status colours */
-.badge.pending     { background: mix($lion, white, 88%); color: mix($seal-brown, black, 30%); border-color: mix($lion, white, 70%); }
-.badge.in-progress { background: mix($sage-2, white, 82%); color: mix($reseda, black, 30%); border-color: mix($sage-2, white, 65%); }
-.badge.completed   { background: mix($reseda, white, 85%); color: mix($black-olive, black, 20%); border-color: mix($reseda, white, 65%); }
+.badge.pending     { background: mix($vanilla, white, 85%); color: mix($rich-black, white, 15%); border-color: mix($vanilla, white, 65%); }
+.badge.in-progress { background: mix($tiffany-blue, white, 85%); color: mix($midnight-green, white, 10%); border-color: mix($tiffany-blue, white, 65%); }
+.badge.completed   { background: mix($dark-cyan, white, 88%); color: mix($rich-black, white, 20%); border-color: mix($dark-cyan, white, 65%); }
 
 /* Rock chips (base + fallback) */
 .badge.rock {
@@ -256,7 +278,7 @@ code {
 }
 
 .tumble-table thead th {
-  background: mix($sage, white, 90%);
+  background: mix($tiffany-blue, white, 90%);
   text-align: left;
   font-weight: 600;
   border-bottom: 1px solid $color-border;
@@ -269,7 +291,7 @@ code {
   vertical-align: top;
 }
 
-.tumble-table tbody tr:hover { background: mix($sage, white, 94%); }
+.tumble-table tbody tr:hover { background: mix($tiffany-blue, white, 94%); }
 
 /* Mobile: hide the left "Field" column; show only value with label */
 @media (max-width: 640px) {
@@ -312,39 +334,39 @@ code {
 .progress {
   height: 10px;
   border-radius: 9999px;
-  background: mix($sage, white, 92%);
-  border: 1px solid mix($ebony, white, 88%);
+  background: mix($tiffany-blue, white, 94%);
+  border: 1px solid mix($rich-black, white, 88%);
   overflow: hidden;
   margin: 0.25rem 0 1rem;
 }
 .progress .bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, mix($sage-2, white, 35%), mix($reseda, white, 35%));
+  background: linear-gradient(90deg, mix($tiffany-blue, white, 35%), mix($midnight-green, white, 35%));
   transition: width 300ms ease-in-out;
 }
 
 /* Status-coloured progress bar */
 .progress.pending .bar {
-  background: linear-gradient(90deg, mix($lion, white, 40%), mix($khaki, white, 30%));
+  background: linear-gradient(90deg, mix($vanilla, white, 40%), mix($gamboge, white, 30%));
 }
 .progress.in-progress .bar {
-  background: linear-gradient(90deg, mix($sage-2, white, 35%), mix($reseda, white, 35%));
+  background: linear-gradient(90deg, mix($tiffany-blue, white, 35%), mix($midnight-green, white, 35%));
 }
 .progress.completed .bar {
-  background: linear-gradient(90deg, mix($reseda, white, 30%), mix($sage, white, 30%));
+  background: linear-gradient(90deg, mix($dark-cyan, white, 35%), mix($tiffany-blue, white, 35%));
 }
 
 /* Optional: track tint per status */
-.progress.pending    { background: mix($lion, white, 88%); border-color: mix($lion, white, 70%); }
-.progress.completed  { background: mix($reseda, white, 88%); border-color: mix($reseda, white, 70%); }
+.progress.pending    { background: mix($vanilla, white, 88%); border-color: mix($vanilla, white, 70%); }
+.progress.completed  { background: mix($dark-cyan, white, 90%); border-color: mix($dark-cyan, white, 70%); }
 /* ---- Tumble cover & gallery ---- */
 .tumble-cover {
   margin: 0.25rem 0 1rem;
   border-radius: 12px;
   overflow: hidden;
-  background: mix($sage, white, 92%);
-  border: 1px solid mix($ebony, white, 88%);
+  background: mix($tiffany-blue, white, 94%);
+  border: 1px solid mix($rich-black, white, 88%);
 }
 .tumble-cover img {
   display: block;
