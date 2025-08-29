@@ -124,11 +124,12 @@ layout: default
 </div>
 
 <style>
-.tumble-index .nice-table{width:100%;border-collapse:collapse}
-.tumble-index thead th{font-weight:600;border-bottom:1px solid rgba(0,0,0,.12);text-align:left;padding:.5rem}
-.tumble-index tbody td{border-bottom:1px solid rgba(0,0,0,.06);padding:.5rem;vertical-align:middle}
+.tumble-index .nice-table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid #d9d2c4;border-radius:8px;overflow:hidden}
+.tumble-index thead th{font-weight:600;text-align:left;padding:.6rem;border-bottom:1px solid #d9d2c4;background:#ede8df;color:#333d29}
+.tumble-index tbody td{border-bottom:1px solid #eee2; padding:.55rem;vertical-align:middle}
+.tumble-index tbody tr:nth-child(even){background:#faf7f1}
 .batch-cell{display:flex;gap:.75rem;align-items:center}
-.thumb{display:block;width:128px;min-width:128px;height:96px;border-radius:6px;overflow:hidden}
+.thumb{display:block;width:128px;min-width:128px;height:96px;border-radius:6px;overflow:hidden;border:1px solid #d9d2c4;background:#fff}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .thumb .label{display:none}
 .thumb--empty .label{display:block}
@@ -136,18 +137,19 @@ layout: default
 .thumb--empty .icon{width:28px;height:28px;opacity:.7}
 .thumb--empty .label{line-height:1}
 .batch-meta{display:flex;flex-direction:column;gap:.25rem}
-.chips{display:flex;gap:.25rem;flex-wrap:wrap}
-.chip{display:inline-block;padding:.1rem .45rem;border-radius:999px;font-size:.75em;border:1px solid rgba(0,0,0,.1)}
+.chips{display:flex;gap:.25rem;flex-wrap:nowrap;overflow-x:auto;max-width:100%}
+.chip{display:inline-block;padding:.1rem .45rem;border-radius:999px;font-size:.75em;border:1px solid #d9d2c4;white-space:nowrap}
 /* rock colours (same as layout, extend as needed) */
-.chip--agate{background:#f6efe9}
-.chip--jasper{background:#f2e6e1}
-.chip--sodalite{background:#e8eef9}
-.chip--quartz{background:#f4f4f4}
-.chip--dalmatian-jasper{background:repeating-linear-gradient(45deg,#f2e6e1,#f2e6e1 6px,#e8d9d2 6px,#e8d9d2 12px)}
-[class^="chip--"]:not(.chip--agate):not(.chip--jasper):not(.chip--sodalite):not(.chip--quartz):not(.chip--dalmatian-jasper){background:#eef3ff}
+[class^="chip--"]{color:#2b2b26}
+.chip--agate{background:#f1e6d8}
+.chip--jasper{background:#ead7c8}
+.chip--sodalite{background:#e5ecf5}
+.chip--quartz{background:#f6f6f3}
+.chip--dalmatian-jasper{background:repeating-linear-gradient(45deg,#efe3d5,#efe3d5 6px,#e5d6c5 6px,#e5d6c5 12px)}
+[class^="chip--"]:not(.chip--agate):not(.chip--jasper):not(.chip--sodalite):not(.chip--quartz):not(.chip--dalmatian-jasper){background:#eef1e8}
 
 /* status pills */
-.status{padding:.15rem .5rem;border-radius:999px;font-size:.8em;border:1px solid rgba(0,0,0,.08)}
+.status{padding:.15rem .5rem;border-radius:999px;font-size:.8em;border:1px solid #d9d2c4;color:#333d29}
 .status--pending{background:#f3eadf}
 .status--in-progress{background:#e7ecdf}
 .status--completed{background:#e8efe6}

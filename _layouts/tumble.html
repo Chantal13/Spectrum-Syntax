@@ -219,7 +219,7 @@ Helpers
 <style>
 /* Minimal page-local styles; your main stylesheet can refine these */
 .tumble-meta{display:grid;gap:1rem;grid-template-columns:1fr}
-.tumble-cover img{width:100%;max-height:280px;object-fit:cover;border-radius:8px}
+.tumble-cover img{width:100%;max-height:280px;object-fit:cover;border-radius:8px;border:1px solid #d9d2c4;background:#fff}
 .tumble-details{list-style:none;padding:0;margin:0}
 .tumble-details li{margin:.25rem 0}
 /* When no cover image, keep spacing tidy */
@@ -228,24 +228,26 @@ Helpers
 .tumble-cover{align-self:center}
 
 /* Pre-tumbling section */
-.pre-tumble{margin:1rem 0}
-.pre-tumble img{width:100%;max-height:320px;object-fit:cover;border-radius:8px}
+.pre-tumble{margin:1rem 0;padding:.5rem;border:1px solid #d9d2c4;border-radius:8px;background:#fff}
+.pre-tumble img{width:100%;max-height:320px;object-fit:cover;border-radius:6px}
 .post-tumble{margin:1rem 0}
-.post-tumble img{width:100%;max-height:320px;object-fit:cover;border-radius:8px}
+.post-tumble{margin:1rem 0;padding:.5rem;border:1px solid #d9d2c4;border-radius:8px;background:#fff}
+.post-tumble img{width:100%;max-height:320px;object-fit:cover;border-radius:6px}
 
-.chips{display:inline-flex;gap:.35rem;flex-wrap:wrap}
-.chip{display:inline-block;padding:.15rem .5rem;border-radius:999px;font-size:.85em;border:1px solid rgba(0,0,0,.1)}
+.chips{display:inline-flex;gap:.35rem;flex-wrap:nowrap;overflow-x:auto;max-width:100%}
+.chip{display:inline-block;padding:.15rem .5rem;border-radius:999px;font-size:.85em;border:1px solid #d9d2c4;white-space:nowrap}
 
 /* Rock colour chips (extend as needed) */
-.chip--agate{background:#f6efe9}
-.chip--jasper{background:#f2e6e1}
-.chip--sodalite{background:#e8eef9}
-.chip--quartz{background:#f4f4f4}
-.chip--dalmatian-jasper{background:repeating-linear-gradient(45deg,#f2e6e1,#f2e6e1 6px,#e8d9d2 6px,#e8d9d2 12px)}
+[class^="chip--"]{color:#2b2b26}
+.chip--agate{background:#f1e6d8}
+.chip--jasper{background:#ead7c8}
+.chip--sodalite{background:#e5ecf5}
+.chip--quartz{background:#f6f6f3}
+.chip--dalmatian-jasper{background:repeating-linear-gradient(45deg,#efe3d5,#efe3d5 6px,#e5d6c5 6px,#e5d6c5 12px)}
 /* generic fallback */
-[class^="chip--"]:not(.chip--agate):not(.chip--jasper):not(.chip--sodalite):not(.chip--quartz):not(.chip--dalmatian-jasper){background:#eef3ff}
+[class^="chip--"]:not(.chip--agate):not(.chip--jasper):not(.chip--sodalite):not(.chip--quartz):not(.chip--dalmatian-jasper){background:#eef1e8}
 
-.stage-card{display:grid;gap:1rem;grid-template-columns:1fr;align-items:start;margin:1.5rem 0;padding:1rem;border:1px solid rgba(0,0,0,.06);border-radius:8px;background:#fafafa}
+.stage-card{display:grid;gap:1rem;grid-template-columns:1fr;align-items:start;margin:1.5rem 0;padding:1rem;border:1px solid #d9d2c4;border-radius:8px;background:#fff}
 /* If a stage has no media, collapse to single column at all sizes */
 .stage-card.no-media{grid-template-columns:1fr}
 /* Vertically center stage image column relative to content */
@@ -253,13 +255,13 @@ Helpers
 .stage-media img{width:100%;border-radius:6px}
 .kv{display:grid;grid-template-columns:1fr 1fr;gap:.35rem .75rem;margin:.5rem 0}
 .kv > div{display:contents}
-.kv > div > span:first-child{color:#555}
+.kv > div > span:first-child{color:#5b5b53}
 .kv > div > span:last-child{text-align:right}
 .obs{margin:.5rem 0}
 .stage-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.5rem;margin-top:.5rem}
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem}
 .gallery figure{margin:0}
-.gallery img{width:100%;border-radius:6px}
+.gallery img{width:100%;border-radius:6px;border:1px solid #d9d2c4;background:#fff}
 @media (min-width: 820px){
   .tumble-meta{grid-template-columns: 320px 1fr}
   .tumble-meta.no-cover{grid-template-columns: 1fr}

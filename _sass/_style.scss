@@ -36,6 +36,7 @@ body {
   color: $color-text;
   font-size: 1rem;
   max-width: 63em;
+  background: mix($khaki, white, 96%);
 
   @media (min-width: 820px) {
     font-size: 1.2rem;
@@ -71,7 +72,7 @@ blockquote {
   padding: 1.5em;
   margin: 0;
   font-size: 0.88em;
-  background: $color-box-background;
+  background: mix($seal-brown, white, 93%);
   border-radius: $border-radius;
 
   p { margin: 0; }
@@ -140,7 +141,7 @@ nav { margin: 1em 0 3em; }
 }
 
 .backlink-box {
-  background: $color-box-background;
+  background: mix($seal-brown, white, 93%);
   padding: 1em;
   border-radius: $border-radius;
 }
@@ -195,51 +196,53 @@ code {
 /* Rock chips (base + fallback) */
 .badge.rock {
   font-weight: 500;
-  background: #f1f5f9;
-  color: #0f172a;
-  border-color: #e2e8f0;
+  background: #f6f6f3; /* quartz-like neutral */
+  color: #2b2b26;
+  border-color: #d9d2c4;
   margin-right: .25rem;
   margin-bottom: .25rem;
+  white-space: nowrap;
 }
 
 /* Colour map for common tumbling types + Southern Ontario/Bancroft finds */
+/* Earthy chip palette for common rocks */
 .badge.rock.r-agate,
-.badge.rock.r-carnelian        { background:#fdebd3; border-color:#f6c690; color:#7a3e00; }
+.badge.rock.r-carnelian        { background:#f1e6d8; border-color:#d9d2c4; color:#2b2b26; }
 
-.badge.rock.r-jasper           { background:#f6ebdd; border-color:#e9d1b5; color:#6b3e16; }
-.badge.rock.r-dalmatian-jasper { background:#fff7e8; border-color:#f0e2c4; color:#594a2c; }
-.badge.rock.r-picture-jasper   { background:#f3e6d6; border-color:#e5cfb3; color:#6a4a2b; }
-.badge.rock.r-brecciated-jasper{ background:#f5ddd8; border-color:#ebc0b6; color:#7a2e22; }
+.badge.rock.r-jasper           { background:#ead7c8; border-color:#d9d2c4; color:#2b2b26; }
+.badge.rock.r-dalmatian-jasper { background:repeating-linear-gradient(45deg,#efe3d5,#efe3d5 6px,#e5d6c5 6px,#e5d6c5 12px); border-color:#d9d2c4; color:#2b2b26; }
+.badge.rock.r-picture-jasper   { background:#ead7c8; border-color:#d9d2c4; color:#2b2b26; }
+.badge.rock.r-brecciated-jasper{ background:#ead7c8; border-color:#d9d2c4; color:#2b2b26; }
 
-.badge.rock.r-quartz           { background:#eef2f7; border-color:#d7dee8; color:#334155; }
+.badge.rock.r-quartz           { background:#f6f6f3; border-color:#d9d2c4; color:#2b2b26; }
 .badge.rock.r-rose-quartz      { background:#ffe8f0; border-color:#f9c6d6; color:#8a3256; }
 .badge.rock.r-amethyst         { background:#f1e9ff; border-color:#dac7ff; color:#5b2e90; }
 
-.badge.rock.r-aventurine       { background:#e7f5ec; border-color:#c7ead5; color:#1f6a3c; }
-.badge.rock.r-unakite          { background:#eaf3e5; border-color:#cfe4c8; color:#365231; }
-.badge.rock.r-amazonite        { background:#e3f7f5; border-color:#c6eeea; color:#0f6c6c; }
+.badge.rock.r-aventurine       { background:#e7f0e6; border-color:#d9d2c4; color:#2b2b26; }
+.badge.rock.r-unakite          { background:#e9efe6; border-color:#d9d2c4; color:#2b2b26; }
+.badge.rock.r-amazonite        { background:#e7efe9; border-color:#d9d2c4; color:#2b2b26; }
 
-.badge.rock.r-sodalite         { background:#e8f0ff; border-color:#c7dafc; color:#1c3e8a; } /* Bancroft */
+.badge.rock.r-sodalite         { background:#e5ecf5; border-color:#d9d2c4; color:#2b2b26; } /* Bancroft */
 .badge.rock.r-labradorite      { background:#eaf1f7; border-color:#cfddea; color:#223b50; }
 
 .badge.rock.r-obsidian         { background:#16181b; border-color:#2a2f36; color:#ffffff; }
-.badge.rock.r-tigers-eye       { background:#fff3d6; border-color:#ffe1a3; color:#7a5a00; }
-.badge.rock.r-petrified-wood   { background:#efe6dd; border-color:#e0d0be; color:#5b3a18; }
-.badge.rock.r-hematite         { background:#eceff1; border-color:#d6dce1; color:#2e3a44; }
+.badge.rock.r-tigers-eye       { background:#f1e6d8; border-color:#d9d2c4; color:#2b2b26; }
+.badge.rock.r-petrified-wood   { background:#ead7c8; border-color:#d9d2c4; color:#2b2b26; }
+.badge.rock.r-hematite         { background:#eceee9; border-color:#d9d2c4; color:#2b2b26; }
 
-.badge.rock.r-fluorite         { background:#eafbf6; border-color:#c9efe6; color:#246b5c; }
+.badge.rock.r-fluorite         { background:#e9f1ee; border-color:#d9d2c4; color:#2b2b26; }
 .badge.rock.r-onyx             { background:#222;    border-color:#333;    color:#fff; }
-.badge.rock.r-rhodonite        { background:#fce4ec; border-color:#f5c1d1; color:#6a1b35; }
-.badge.rock.r-howlite          { background:#f7f7f7; border-color:#e6e6e6; color:#3b3b3b; }
-.badge.rock.r-apatite          { background:#e6f6ff; border-color:#c7e9ff; color:#0b5e8a; }
+.badge.rock.r-rhodonite        { background:#f2e3e7; border-color:#d9d2c4; color:#2b2b26; }
+.badge.rock.r-howlite          { background:#f6f6f3; border-color:#d9d2c4; color:#2b2b26; }
+.badge.rock.r-apatite          { background:#e5ecf5; border-color:#d9d2c4; color:#2b2b26; }
 
-.badge.rock.r-chert            { background:#f1f5f9; border-color:#e2e8f0; color:#334155; }  /* Lake Ontario beaches */
-.badge.rock.r-quartzite        { background:#f8f5e9; border-color:#ebdfb8; color:#574e2a; }
-.badge.rock.r-limestone        { background:#f7f7f2; border-color:#e6e6dc; color:#525252; }  /* not ideal to tumble but may appear */
-.badge.rock.r-dolostone        { background:#f4f1ec; border-color:#e4ded4; color:#5a5344; }
-.badge.rock.r-granite          { background:#f2f4f7; border-color:#dfe5eb; color:#3e4a59; }
-.badge.rock.r-gneiss           { background:#eff2f6; border-color:#dde3ea; color:#414b57; }
-.badge.rock.r-basalt           { background:#e9ecef; border-color:#d3d9df; color:#2a2f36; }
+.badge.rock.r-chert            { background:#eef1e8; border-color:#d9d2c4; color:#2b2b26; }  /* Lake Ontario beaches */
+.badge.rock.r-quartzite        { background:#f6f3ea; border-color:#d9d2c4; color:#2b2b26; }
+.badge.rock.r-limestone        { background:#f6f5f0; border-color:#d9d2c4; color:#2b2b26; }  /* not ideal to tumble but may appear */
+.badge.rock.r-dolostone        { background:#f3efe8; border-color:#d9d2c4; color:#2b2b26; }
+.badge.rock.r-granite          { background:#f1f3f5; border-color:#d9d2c4; color:#2b2b26; }
+.badge.rock.r-gneiss           { background:#f1f3f5; border-color:#d9d2c4; color:#2b2b26; }
+.badge.rock.r-basalt           { background:#eceee9; border-color:#d9d2c4; color:#2b2b26; }
 
 /* =========================
    Tumble tables
