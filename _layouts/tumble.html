@@ -71,6 +71,11 @@ Helpers
   {% endif %}
 
   {% if primary == nil %}
+    {% if st.stage == 5 %}
+      {% assign primary = page.images.after_burnish %}
+    {% endif %}
+  {% endif %}
+  {% if primary == nil %}
     {% assign primary = page.images.rough %}
   {% endif %}
 

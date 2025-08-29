@@ -31,4 +31,9 @@ class ImageExistsFilterTest < Minitest::Test
     tag = { 'src' => '/assets/image.jpg' }
     assert_equal '/assets/image.jpg', @filter.image_exists(tag)
   end
+
+  def test_zero_length_file_returns_nil
+    path = '/assets/tumbling/001/after-s5.jpg' # 0 bytes in repo
+    assert_nil @filter.image_exists(path)
+  end
 end

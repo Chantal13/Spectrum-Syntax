@@ -29,28 +29,36 @@ layout: default
       {% if items and items.size > 0 %}
         {% for d in items %}
           {% assign thumb = nil %}
-          {% assign cover = d.images.cover %}
-          {% if cover %}
-            {% assign thumb = cover %}
-          {% endif %}
+          {% assign cand = d.images.cover | image_exists %}
+          {% if cand %}{% assign thumb = cand %}{% endif %}
 
           {% if thumb == nil %}
-            {% assign thumb = d.images.after_stage_4 %}
+            {% assign cand = d.images.after_stage_5 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
           {% endif %}
           {% if thumb == nil %}
-            {% assign thumb = d.images.after_stage_3 %}
+            {% assign cand = d.images.after_stage_4 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
           {% endif %}
           {% if thumb == nil %}
-            {% assign thumb = d.images.after_stage_2 %}
+            {% assign cand = d.images.after_stage_3 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
           {% endif %}
           {% if thumb == nil %}
-            {% assign thumb = d.images.after_stage_1 %}
+            {% assign cand = d.images.after_stage_2 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
           {% endif %}
           {% if thumb == nil %}
-            {% assign thumb = d.images.after_burnish %}
+            {% assign cand = d.images.after_stage_1 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
           {% endif %}
           {% if thumb == nil %}
-            {% assign thumb = d.images.rough %}
+            {% assign cand = d.images.after_burnish | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil %}
+            {% assign cand = d.images.rough | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
           {% endif %}
 
           {% assign days = "" %}

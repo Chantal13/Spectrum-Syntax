@@ -24,7 +24,11 @@ module Jekyll
       site_source = @context.registers[:site].source
       relative = path.sub(%r{^/}, '')
       absolute = File.expand_path(relative, site_source)
-      File.exist?(absolute) ? path : nil
+      if File.exist?(absolute) && File.size?(absolute)
+        path
+      else
+        nil
+      end
     end
   end
 end
