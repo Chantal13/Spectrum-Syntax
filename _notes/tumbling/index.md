@@ -6,12 +6,13 @@ layout: default
 
 # Tumbling Batches
 
-{% assign coll = site.tumble_logs %}
-{% if coll %}
-  {% assign items = coll | sort: "date_started" | reverse %}
-{% else %}
-  {% assign items = "" | split: "," %}
-{% endif %}
+{% comment %}
+Collect all tumbling docs under _notes/tumbling (they are part of the
+`notes` collection), exclude this index, and sort by date_started desc.
+{% endcomment %}
+{% assign items = site.notes | where_exp: "p", "p.path contains '_notes/tumbling/'" %}
+{% assign items = items | where_exp: "p", "p.path != '_notes/tumbling/index.md'" %}
+{% assign items = items | sort: "date_started" | reverse %}
 
 <div class="tumble-index">
   <table class="nice-table">
@@ -116,7 +117,7 @@ layout: default
         {% endfor %}
       {% else %}
         <tr>
-          <td colspan="6">No batches found. Put markdown files in your tumbling collection with front matter.</td>
+          <td colspan="6">No batches found. Put markdown files in <code>_notes/tumbling/</code> with front matter.</td>
         </tr>
       {% endif %}
     </tbody>

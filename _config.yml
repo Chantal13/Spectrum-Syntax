@@ -32,9 +32,6 @@ collections:
   notes:
     output: true
     permalink: /:slug
-  tumble_logs:
-    output: true
-    permalink: /tumbling/:name/
 
 # --- Defaults (layouts, etc.) ---
 defaults:
@@ -50,12 +47,12 @@ defaults:
     values:
       layout: "note"
 
-  # Tumble collection items use the 'tumble' layout
+  # Tumbling pages under _notes/tumbling use the 'tumble' layout
   - scope:
-      path: ""
-      type: "tumble_logs"
+      path: "_notes/tumbling/**/*.md"
     values:
       layout: "tumble"
+      permalink: "/tumbling/:slug/"
 
 # (Remove multilingual keys since plugin is disabled)
 # languages:

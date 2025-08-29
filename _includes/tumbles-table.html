@@ -11,7 +11,13 @@
     </tr>
   </thead>
   <tbody>
-  {% assign items = site.tumble_logs | sort: "date_started" | reverse %}
+  {% if include.items %}
+    {% assign items = include.items %}
+  {% else %}
+    {% assign items = site.notes | where_exp: "p", "p.path contains '_notes/tumbling/'" %}
+    {% assign items = items | where_exp: "p", "p.path != '_notes/tumbling/index.md'" %}
+    {% assign items = items | sort: "date_started" | reverse %}
+  {% endif %}
   {% for t in items %}
     {% assign days = "" %}
     {% if t.date_started and t.date_finished %}
