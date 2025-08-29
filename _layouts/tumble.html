@@ -47,8 +47,8 @@ Helpers
 
 {%- assign before = page.images.rough | image_exists -%}
 {%- if before -%}
+<h2>Before Tumbling</h2>
 <div class="pre-tumble">
-  <h2>Before Tumbling</h2>
   <img src="{{ before | relative_url }}" alt="Before tumbling (rough)">
 </div>
 {%- endif -%}
@@ -119,6 +119,7 @@ Helpers
 
   {% assign primary = primary | image_exists %}
 
+  <h3 id="stage-{{ st.stage }}-title">Stage {{ st.stage }} — {{ st.name }}</h3>
   <section class="stage-card{% unless primary %} no-media{% endunless %}" id="stage-{{ st.stage }}">
     {% if primary %}
       <div class="stage-media">
@@ -126,8 +127,6 @@ Helpers
       </div>
     {% endif %}
     <div class="stage-body">
-      <h3>Stage {{ st.stage }} — {{ st.name }}</h3>
-
       <div class="kv">
         {% if st.grit %}
           <div><span>Grit/Polish</span><span>{{ st.grit }} ({{ brand }})</span></div>
@@ -186,8 +185,8 @@ Helpers
 -%}
 {%- assign after_img = after_candidate | image_exists -%}
 {%- if after_img -%}
+  <h2>After Tumbling</h2>
   <div class="post-tumble">
-    <h2>After Tumbling</h2>
     <img src="{{ after_img | relative_url }}" alt="After tumbling">
   </div>
 {%- endif -%}
