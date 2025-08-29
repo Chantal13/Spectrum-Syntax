@@ -1,11 +1,24 @@
 /* =========================
    Base design tokens
    ========================= */
-$color-primary: hsl(0, 0%, 10%);
-$color-text: hsl(0, 0%, 20%);
-$color-subtext: hsl(0, 0%, 30%);
-$color-border: hsl(0, 0%, 85%);
-$color-box-background: mix($color-primary, white, 4%);
+/* Earthy palette (trial) */
+$seal-brown:  #582f0eff;
+$russet:      #7f4f24ff;
+$raw-umber:   #936639ff;
+$lion:        #a68a64ff;
+$khaki:       #b6ad90ff;
+$sage:        #c2c5aaff;
+$sage-2:      #a4ac86ff;
+$reseda:      #656d4aff;
+$ebony:       #414833ff;
+$black-olive: #333d29ff;
+
+/* Map palette to site tokens */
+$color-primary: $ebony;                           /* link/base accents */
+$color-text:    $black-olive;                     /* body text */
+$color-subtext: mix($black-olive, white, 45%);    /* subdued text */
+$color-border:  mix($ebony, white, 86%);          /* subtle borders */
+$color-box-background: mix($seal-brown, white, 97%); /* soft panel bg */
 $border-radius: 4px;
 $font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
   sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
@@ -88,7 +101,7 @@ a {
 
   &:hover {
     color: black !important;
-    background: #fffaf1;
+    background: mix($lion, white, 85%);
   }
 
   &:after {
@@ -108,7 +121,7 @@ a {
 
 /* Focus outline aid */
 *:focus {
-  background: #ffe8bc !important;
+  background: mix($lion, white, 72%) !important;
   color: black !important;
 }
 
