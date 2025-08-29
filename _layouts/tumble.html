@@ -26,7 +26,16 @@ Helpers
 
   <ul class="tumble-details">
     <li><strong>Batch:</strong> {{ page.batch }}</li>
-    <li><strong>Status:</strong> {{ page.status | default: "Pending" }}</li>
+    {% assign raw = page.status | default: "pending" | downcase | strip %}
+    {% assign st = raw %}
+    {% if raw == "completed" or raw == "finished" or raw == "done" %}
+      {% assign st = "tumbled" %}
+    {% elsif raw == "in progress" or raw == "in-progress" or raw == "progress" or raw == "running" or raw == "active" %}
+      {% assign st = "tumbling" %}
+    {% elsif raw == "pending" or raw == "planned" or raw == "queued" %}
+      {% assign st = "pending" %}
+    {% endif %}
+    <li><strong>Status:</strong> <span class="status status--{{ st }}">{{ st }}</span></li>
     <li><strong>Started:</strong> {{ page.date_started | default: "—" }}</li>
     <li><strong>Finished:</strong> {{ page.date_finished | default: "—" }}</li>
     <li><strong>Tumbler:</strong> {{ page.tumbler | default: "—" }}</li>
@@ -242,6 +251,8 @@ Helpers
 
 /* Rock colour chips (extend as needed) */
 [class^="chip--"]{color:var(--chip-text)}
+
+/* status pills moved to global stylesheet */
 
 .stage-card{display:grid;gap:1rem;grid-template-columns:1fr;align-items:start;margin:1.5rem 0;padding:1rem;border:1px solid var(--panel-border);border-radius:8px;background:var(--card-a)}
 .stage-card:nth-of-type(even){background:var(--card-b)}

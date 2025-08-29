@@ -258,6 +258,51 @@ code {
 .badge.rock.r-hematite         { background:#eceee9; border-color:#d9d2c4; color:#2b2b26; }
 
 .badge.rock.r-fluorite         { background:#e9f1ee; border-color:#d9d2c4; color:#2b2b26; }
+
+/* =========================
+   Status Pills (tumbling)
+   ========================= */
+.status {
+  padding: .15rem .5rem;
+  border-radius: 999px;
+  font-size: .8em;
+  border: 1px solid #d9d2c4;
+  color: #333d29;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+/* =========================
+   Tumbling: No-wrap rules
+   ========================= */
+/* Keep date and status columns on one line in the index table */
+.tumble-index thead th:nth-child(2),
+.tumble-index thead th:nth-child(3),
+.tumble-index thead th:nth-child(4),
+.tumble-index tbody td:nth-child(2),
+.tumble-index tbody td:nth-child(3),
+.tumble-index tbody td:nth-child(4) {
+  white-space: nowrap;
+}
+
+/* Keep Status, Started, Finished on one line in detail header */
+.tumble-details li:nth-child(2),
+.tumble-details li:nth-child(3),
+.tumble-details li:nth-child(4) {
+  white-space: nowrap;
+}
+/* Light mode (default) */
+.status--tumbled  { background: #2a9d8f; color: #fff;     border-color: #22816f; }
+.status--tumbling { background: #e9c46a; color: #333d29; border-color: #c9a95b; }
+.status--pending  { background: #e76f51; color: #fff;     border-color: #c05a42; }
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  .status { border-color: #394049; color: #e8e8e6; }
+  .status--tumbled  { background: #22816f; color: #e9fffb; border-color: #1b6658; }
+  .status--tumbling { background: #caa24f; color: #1a1a1a; border-color: #9f833f; }
+  .status--pending  { background: #c9573f; color: #fff;     border-color: #a64633; }
+}
 .badge.rock.r-onyx             { background:#222;    border-color:#333;    color:#fff; }
 .badge.rock.r-rhodonite        { background:#f2e3e7; border-color:#d9d2c4; color:#2b2b26; }
 .badge.rock.r-howlite          { background:#f6f6f3; border-color:#d9d2c4; color:#2b2b26; }

@@ -22,7 +22,6 @@ Collect all tumbling docs under _notes/tumbling (they are part of the
         <th>Started</th>
         <th>Finished</th>
         <th>Status</th>
-        <th>Rocks</th>
         <th>Duration (days)</th>
       </tr>
     </thead>
@@ -102,22 +101,23 @@ Collect all tumbling docs under _notes/tumbling (they are part of the
             <td>{{ d.date_started | default: "—" }}</td>
             <td>{{ d.date_finished | default: "—" }}</td>
             <td>
-              {% assign st = d.status | default: "Pending" | downcase %}
-              <span class="status status--{{ st | replace: ' ', '-' }}">
-                {{ d.status | default: "Pending" }}
-              </span>
-            </td>
-            <td>
-              {% if d.rocks and d.rocks.size > 0 %}
-                {{ d.rocks | join: ", " }}
-              {% else %}—{% endif %}
+              {% assign raw = d.status | default: "pending" | downcase | strip %}
+              {% assign st = raw %}
+              {% if raw == "completed" or raw == "finished" or raw == "done" %}
+                {% assign st = "tumbled" %}
+              {% elsif raw == "in progress" or raw == "in-progress" or raw == "progress" or raw == "running" or raw == "active" %}
+                {% assign st = "tumbling" %}
+              {% elsif raw == "pending" or raw == "planned" or raw == "queued" %}
+                {% assign st = "pending" %}
+              {% endif %}
+              <span class="status status--{{ st }}">{{ st }}</span>
             </td>
             <td>{% if days != "" %}{{ days }}{% else %}—{% endif %}</td>
           </tr>
         {% endfor %}
       {% else %}
         <tr>
-          <td colspan="6">No batches found. Put markdown files in <code>_notes/tumbling/</code> with front matter.</td>
+          <td colspan="5">No batches found. Put markdown files in <code>_notes/tumbling/</code> with front matter.</td>
         </tr>
       {% endif %}
     </tbody>
@@ -148,9 +148,5 @@ Collect all tumbling docs under _notes/tumbling (they are part of the
 [class^="chip--"]{color:var(--chip-text)}
 /* override any rock-specific backgrounds */
 
-/* status pills */
-.status{padding:.15rem .5rem;border-radius:999px;font-size:.8em;border:1px solid #d9d2c4;color:#333d29}
-.status--pending{background:#f3eadf}
-.status--in-progress{background:#e7ecdf}
-.status--completed{background:#e8efe6}
+/* status pills moved to global stylesheet */
 </style>
