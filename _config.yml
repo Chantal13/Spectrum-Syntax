@@ -54,6 +54,12 @@ defaults:
       layout: "tumble"
       permalink: "/tumbling/:slug/"
 
+  # Do not publish note templates
+  - scope:
+      path: "_notes/_templates/**/*.md"
+    values:
+      published: false
+
 # (Remove multilingual keys since plugin is disabled)
 # languages:
 #  - en
