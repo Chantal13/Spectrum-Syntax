@@ -124,12 +124,12 @@ layout: default
 </div>
 
 <style>
-.tumble-index .nice-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--color-bg);border:1px solid var(--panel-border);border-radius:8px;overflow:hidden}
+.tumble-index .nice-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card-a);border:1px solid var(--panel-border);border-radius:8px;overflow:hidden}
 .tumble-index thead th{font-weight:600;text-align:left;padding:.6rem;border-bottom:1px solid var(--panel-border);background:var(--table-header-bg);color:var(--color-text)}
 .tumble-index tbody td{border-bottom:1px solid #eee2; padding:.55rem;vertical-align:middle}
-.tumble-index tbody tr:nth-child(even){background:var(--table-row-hover)}
+.tumble-index tbody tr:nth-child(even){background:var(--card-b)}
 .batch-cell{display:flex;gap:.75rem;align-items:center}
-.thumb{display:block;width:128px;min-width:128px;height:96px;border-radius:6px;overflow:hidden;border:1px solid var(--panel-border);background:var(--color-bg)}
+.thumb{display:block;width:128px;min-width:128px;height:96px;border-radius:6px;overflow:hidden;border:1px solid var(--panel-border);background:var(--card-a)}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .thumb .label{display:none}
 .thumb--empty .label{display:block}
@@ -138,15 +138,14 @@ layout: default
 .thumb--empty .label{line-height:1}
 .batch-meta{display:flex;flex-direction:column;gap:.25rem}
 .chips{display:flex;gap:.25rem;flex-wrap:nowrap;overflow-x:auto;max-width:100%}
-.chip{display:inline-block;padding:.1rem .45rem;border-radius:999px;font-size:.75em;border:1px solid var(--chip-border);white-space:nowrap;color:var(--chip-text)}
+.chip{display:inline-block;padding:.1rem .45rem;border-radius:999px;font-size:.75em;border:1px solid var(--chip-border);white-space:nowrap;color:var(--chip-text);background:var(--chip-b)}
+.chips .chip:nth-child(4n+1){background:var(--chip-a)}
+.chips .chip:nth-child(4n+2){background:var(--chip-b)}
+.chips .chip:nth-child(4n+3){background:var(--chip-c)}
+.chips .chip:nth-child(4n+4){background:var(--chip-d)}
 /* rock colours (same as layout, extend as needed) */
 [class^="chip--"]{color:#2b2b26}
-.chip--agate{background:var(--chip-agate-bg)}
-.chip--jasper{background:var(--chip-jasper-bg)}
-.chip--sodalite{background:var(--chip-sodalite-bg)}
-.chip--quartz{background:var(--chip-quartz-bg)}
-.chip--dalmatian-jasper{background:repeating-linear-gradient(45deg,var(--chip-dalmatian-a),var(--chip-dalmatian-a) 6px,var(--chip-dalmatian-b) 6px,var(--chip-dalmatian-b) 12px)}
-[class^="chip--"]:not(.chip--agate):not(.chip--jasper):not(.chip--sodalite):not(.chip--quartz):not(.chip--dalmatian-jasper){background:var(--chip-fallback-bg)}
+/* override any rock-specific backgrounds */
 
 /* status pills */
 .status{padding:.15rem .5rem;border-radius:999px;font-size:.8em;border:1px solid #d9d2c4;color:#333d29}

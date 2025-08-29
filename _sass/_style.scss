@@ -23,24 +23,24 @@ $color-box-background: mix($tiffany-blue, white, 92%); /* soft panel bg */
 /* CSS variables for templates and inline styles */
 :root {
   /* Core */
-  /* Page background matches tumbling header */
-  --color-bg: #{$tiffany-blue};
+  /* Page background (all pages) */
+  --color-bg: #fefae0;
   --color-text: #{$rich-black};
-  --panel-bg: #{mix($tiffany-blue, white, 94%)};
+  /* Card/background variants */
+  --card-a: #faedcd;
+  --card-b: #e9edc9;
+  --panel-bg: var(--card-a);
   --panel-border: #{mix($rich-black, white, 88%)};
-  --table-header-bg: #{$tiffany-blue}; /* tumbling batch table header */
-  --table-row-hover: #{mix($tiffany-blue, white, 96%)};
+  --table-header-bg: var(--card-a); /* tumbling batch table header */
+  --table-row-hover: var(--card-b);
 
   /* Chips */
   --chip-text: #{mix($rich-black, white, 15%)};
   --chip-border: var(--panel-border);
-  --chip-fallback-bg: #{mix($tiffany-blue, white, 97%)};
-  --chip-agate-bg: #{mix($tiffany-blue, white, 85%)};
-  --chip-jasper-bg: #{mix($gamboge, white, 85%)};
-  --chip-sodalite-bg: #{mix($dark-cyan, white, 88%)};
-  --chip-quartz-bg: #{mix($vanilla, white, 88%)};
-  --chip-dalmatian-a: #{mix($vanilla, white, 85%)};
-  --chip-dalmatian-b: #{mix($gamboge, white, 88%)};
+  --chip-a: #d4a373;
+  --chip-b: #faedcd;
+  --chip-c: #e9edc9;
+  --chip-d: #ccd5ae;
 }
 $border-radius: 4px;
 $font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
