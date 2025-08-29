@@ -23,7 +23,7 @@ $color-box-background: mix($tiffany-blue, white, 92%); /* soft panel bg */
 /* CSS variables for templates and inline styles */
 :root {
   /* Core */
-  --color-bg: #{$vanilla};
+  --color-bg: #{mix($vanilla, white, 96%)}; /* lighter vanilla for higher contrast */
   --color-text: #{$rich-black};
   --panel-bg: #{mix($tiffany-blue, white, 94%)};
   --panel-border: #{mix($rich-black, white, 88%)};
