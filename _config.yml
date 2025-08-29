@@ -26,6 +26,9 @@ sass:
   sass_dir: _sass
   style: "compressed"
 
+# Place collections under `_notes/`
+collections_dir: _notes
+
 # --- Collections ---
 collections:
   notes:
