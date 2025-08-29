@@ -71,23 +71,36 @@ Collect all tumbling docs under _notes/tumbling (they are part of the
 
           <tr>
             <td class="batch-cell">
+              {% assign has_batch = d.batch and d.batch != '' %}
+              {% assign has_title = d.title and d.title != '' %}
+              {% if has_batch and has_title %}
+                {% assign display_text = d.batch | append: " — " | append: d.title %}
+              {% elsif has_batch %}
+                {% assign display_text = d.batch %}
+              {% elsif has_title %}
+                {% assign display_text = d.title %}
+              {% else %}
+                {% assign display_text = "Untitled" %}
+              {% endif %}
               {% if thumb %}
-                <a class="thumb" href="{{ d.url | relative_url }}">
-                  <img src="{{ thumb | relative_url }}" alt="{{ d.title | default: d.batch }}" onerror="this.parentNode.classList.add('thumb--empty'); this.remove();">
-                  <span class="label">{{ d.batch | default: d.title }}</span>
+                <a class="thumb" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
+                  <img src="{{ thumb | relative_url }}" alt="{{ display_text }}" onerror="this.parentNode.classList.add('thumb--empty'); this.remove();">
+                  <span class="label">{{ display_text }}</span>
                 </a>
               {% else %}
-                <a class="thumb thumb--empty" href="{{ d.url | relative_url }}" aria-label="Open {{ d.title | default: d.batch }}">
+                <a class="thumb thumb--empty" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                     <rect x="2" y="4" width="20" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
                     <circle cx="8" cy="10" r="2" fill="currentColor"/>
                     <path d="M5 18l5-6 4 5 3-3 3 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
-                  <span class="label">{{ d.batch | default: d.title }}</span>
+                  <span class="label">{{ display_text }}</span>
                 </a>
               {% endif %}
               <div class="batch-meta">
-                <a href="{{ d.url | relative_url }}"><strong>{{ d.batch | default: d.title }}</strong></a>
+                <a href="{{ d.url | relative_url }}">
+                  {% if has_batch and has_title %}<strong>{{ d.batch }}</strong> — {{ d.title }}{% elsif has_batch %}<strong>{{ d.batch }}</strong>{% elsif has_title %}<strong>{{ d.title }}</strong>{% else %}<strong>Untitled</strong>{% endif %}
+                </a>
                 {% if d.rocks and d.rocks.size > 0 %}
                   <div class="chips">
                     {% for rock in d.rocks %}
