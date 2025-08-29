@@ -91,7 +91,8 @@ layout: default
             <td class="batch-cell">
               {% if thumb %}
                 <a class="thumb" href="{{ d.url | relative_url }}">
-                  <img src="{{ thumb | relative_url }}" alt="{{ d.title | default: d.batch }}">
+                  <img src="{{ thumb | relative_url }}" alt="{{ d.title | default: d.batch }}" onerror="this.parentNode.classList.add('thumb--empty'); this.remove();">
+                  <span class="label">{{ d.batch | default: d.title }}</span>
                 </a>
               {% else %}
                 <a class="thumb thumb--empty" href="{{ d.url | relative_url }}" aria-label="Open {{ d.title | default: d.batch }}">
@@ -147,6 +148,8 @@ layout: default
 .batch-cell{display:flex;gap:.75rem;align-items:center}
 .thumb{display:block;width:128px;min-width:128px;height:96px;border-radius:6px;overflow:hidden}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb .label{display:none}
+.thumb--empty .label{display:block}
 .thumb--empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.25rem;background:repeating-linear-gradient(45deg,#f6f7f9,#f6f7f9 8px,#eef1f4 8px,#eef1f4 16px);color:#5b6770;border:1px solid rgba(0,0,0,.08);text-decoration:none;font-weight:600;font-size:.9rem}
 .thumb--empty .icon{width:28px;height:28px;opacity:.7}
 .thumb--empty .label{line-height:1}
