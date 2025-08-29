@@ -133,6 +133,10 @@ stages:
       repeat:
       why:
     images:
+      # Example: photo of the load before the coarse grind (Stage 1)
+      # - src: "/assets/tumbling/001/stage1-before.jpg"
+      #   alt: "Before Stage 1 (rough)"
+      #   caption: "Load before coarse grind"
       - "/assets/tumbling/001/stage1-start.jpg"
       - src: "/assets/tumbling/001/stage1-end.jpg"
         alt: "Stage 1 end"
@@ -144,11 +148,11 @@ stages:
     end:
     grit: "120/220 SiC"
     barrel_fill_pct: "Use media ~30% of load"
-    water_level:
-    media_used:
+    water_level: "Just below top layer"
+    media_used: "Plastic pellets? Ceramic? Approx. 30% of load"
     amount_tbsp: 2
-    maintenance:
-    observations:
+    maintenance: "Top-ups; noise/leaks; mid-week checks"
+    observations: "Scratch removal progress; size balance; any chips?"
     decision:
       repeat:
       why:
@@ -159,12 +163,12 @@ stages:
     start:
     end:
     grit: "500 SiC"
-    barrel_fill_pct:
-    water_level:
-    media_used:
+    barrel_fill_pct: "Maintain 2/3–3/4 full with media"
+    water_level: "Just below top layer"
+    media_used: "Add pellets/ceramic to maintain spacing"
     amount_tbsp: 2
-    maintenance:
-    observations:
+    maintenance: "Rinse checks; lid seal; slurry thickness"
+    observations: "No visible scratches; uniform matte; ready for polish?"
     decision:
       repeat:
       why:
@@ -175,16 +179,33 @@ stages:
     start:
     end:
     polish: "Aluminum Oxide (TXP)"
-    barrel_fill_pct:
-    water_level:
+    barrel_fill_pct: "2/3–3/4 full; polish-only media"
+    water_level: "Just below top layer; clean water"
     media_used: "Dedicated polish-only media"
     amount_tbsp: 2
-    maintenance:
-    observations:
+    maintenance: "Clean barrel; isolate polish-only media"
+    observations: "Gloss level; haze/orange peel; under-polished spots"
     decision:
       repeat:
       why:
     images: []
+
+  - stage: 5
+    name: "Burnish"
+    start:
+    end:
+    grit: "Soap/Borax burnish"
+    barrel_fill_pct: "Same load; maintain spacing with pellets"
+    water_level: "Full (soap/borax water)"
+    media_used: "Plastic pellets recommended"
+    amount_tbsp:
+    maintenance: "Foam control; rinse cycles; contamination check"
+    observations: "Final shine; any haze or foam; orange peel?"
+    decision:
+      repeat:
+      why:
+    images:
+      - "/assets/tumbling/001/after-burnish.jpg"
 ---
 ```
 

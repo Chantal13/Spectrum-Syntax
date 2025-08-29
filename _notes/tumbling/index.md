@@ -28,13 +28,56 @@ layout: default
     <tbody>
       {% if items and items.size > 0 %}
         {% for d in items %}
-          {% assign thumb_candidate =
-            d.images.after_stage_4
-            | default: d.images.after_burnish
-            | default: d.images.cover
-            | default: d.images.rough
-          %}
-          {% assign thumb = thumb_candidate | image_exists %}
+          {% assign thumb = nil %}
+          {% assign cover = d.images.cover | image_exists %}
+          {% if cover %}
+            {% assign thumb = cover %}
+          {% endif %}
+
+          {% if thumb == nil %}
+            {% assign empty_array = "" | split: "," %}
+            {% assign stages = d.stages | default: empty_array %}
+            {% if stages and stages.size > 0 %}
+              {% for st in stages reversed %}
+                {% assign imgs = st.images | default: empty_array %}
+                {% if imgs and imgs.size > 0 %}
+                  {% assign cand = imgs[0] %}
+                  {% if cand.alt != nil %}
+                    {% assign cand = cand.src | default: cand %}
+                  {% endif %}
+                  {% assign cand = cand | image_exists %}
+                  {% if cand %}
+                    {% assign thumb = cand %}
+                    {% break %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% endif %}
+
+          {% if thumb == nil %}
+            {% assign cand = d.images.after_burnish | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil %}
+            {% assign cand = d.images.after_stage_4 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil %}
+            {% assign cand = d.images.after_stage_3 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil %}
+            {% assign cand = d.images.after_stage_2 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil %}
+            {% assign cand = d.images.after_stage_1 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil %}
+            {% assign thumb = d.images.rough | image_exists %}
+          {% endif %}
 
           {% assign days = "" %}
           {% if d.date_started and d.date_finished %}
