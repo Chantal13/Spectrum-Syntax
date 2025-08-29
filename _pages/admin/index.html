@@ -1,0 +1,349 @@
+---
+layout: default
+title: Admin
+permalink: /admin/
+---
+
+<h1>Tumbling Admin</h1>
+
+<p>This admin page helps you create new tumbling logs without hand-editing front matter. It also includes a quick checklist.</p>
+
+<div class="admin-tabs">
+  <button class="tab active" data-tab="checklist">Checklist</button>
+  <button class="tab" data-tab="builder">New Log Builder</button>
+</div>
+
+<section id="tab-checklist" class="tab-panel active">
+  <h2>Checklist</h2>
+  <ul>
+    <li><b>Images:</b> provide <code>images.rough</code> and at least one final image (<code>images.after_stage_4</code> or <code>images.after_burnish</code>). Optional: stage progress images.</li>
+    <li><b>Batch + Title:</b> fill both; index shows “Batch — Title”.</li>
+    <li><b>Status:</b> Pending | In Progress | Completed.</li>
+    <li><b>Dates:</b> <code>date_started</code> and optional <code>date_finished</code> (YYYY-MM-DD).</li>
+    <li><b>Rocks:</b> list of types for chips.</li>
+    <li><b>Stages:</b> for each stage include timing, grit/polish, barrel details, observations, and decision.</li>
+  </ul>
+  <details>
+    <summary>Exact Keys</summary>
+    <pre><code>images.rough
+images.after_stage_1
+images.after_stage_2
+images.after_stage_3
+images.after_stage_4
+images.after_burnish</code></pre>
+  </details>
+</section>
+
+<section id="tab-builder" class="tab-panel">
+  <h2>New Tumbling Log</h2>
+
+  <form id="log-form" onsubmit="event.preventDefault(); buildMarkdown();">
+    <fieldset>
+      <legend>Basics</legend>
+      <div class="grid">
+        <label>Batch
+          <input type="text" id="batch" placeholder="001">
+        </label>
+        <label>Title
+          <input type="text" id="title" placeholder="Baby’s First Tumble">
+        </label>
+        <label>Status
+          <select id="status">
+            <option value="">—</option>
+            <option>Pending</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+          </select>
+        </label>
+        <label>Date Started
+          <input type="date" id="date_started">
+        </label>
+        <label>Date Finished
+          <input type="date" id="date_finished">
+        </label>
+      </div>
+      <div class="grid">
+        <label>Tumbler
+          <input type="text" id="tumbler" placeholder="National Geographic Professional Rock Tumbler">
+        </label>
+        <label>Origin
+          <input type="text" id="origin" placeholder="Blue Marble NG Kit">
+        </label>
+        <label>Consumables Brand
+          <input type="text" id="brand" placeholder="National Geographic">
+        </label>
+      </div>
+      <label>Rocks (comma-separated)
+        <input type="text" id="rocks" placeholder="agate, jasper, quartz">
+      </label>
+      <label>Notes
+        <textarea id="notes" rows="3" placeholder="Short summary of the batch..."></textarea>
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Milestone Images</legend>
+      <div class="grid">
+        <label>Rough
+          <input type="text" id="img_rough" placeholder="/assets/tumbling/XYZ/rough.jpg">
+        </label>
+        <label>After Stage 1
+          <input type="text" id="img_s1" placeholder="/assets/tumbling/XYZ/after-s1.jpg">
+        </label>
+        <label>After Stage 2
+          <input type="text" id="img_s2" placeholder="/assets/tumbling/XYZ/after-s2.jpg">
+        </label>
+        <label>After Stage 3
+          <input type="text" id="img_s3" placeholder="/assets/tumbling/XYZ/after-s3.jpg">
+        </label>
+        <label>After Stage 4
+          <input type="text" id="img_s4" placeholder="/assets/tumbling/XYZ/after-s4.jpg">
+        </label>
+        <label>After Burnish
+          <input type="text" id="img_burnish" placeholder="/assets/tumbling/XYZ/after-burnish.jpg">
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset id="stages-fieldset">
+      <legend>Stages</legend>
+      <div id="stages"></div>
+      <button type="button" id="add-stage">+ Add Stage</button>
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit">Generate Markdown</button>
+      <button type="button" id="copy-btn" disabled>Copy</button>
+      <button type="button" id="download-btn" disabled>Download .md</button>
+    </div>
+  </form>
+
+  <details id="output-wrap" open>
+    <summary>Output</summary>
+    <textarea id="output" rows="20" spellcheck="false"></textarea>
+    <p class="hint">Move the downloaded file into <code>_notes/tumbling/</code> to publish. Suggested filename is auto-generated.</p>
+  </details>
+</section>
+
+<style>
+.admin-tabs { display:inline-flex; gap:.5rem; margin:.5rem 0 1rem; }
+.tab { padding:.4rem .7rem; border:1px solid var(--panel-border); background:var(--card-a); border-radius:6px; cursor:pointer }
+.tab.active { background:var(--card-b) }
+.tab-panel { display:none }
+.tab-panel.active { display:block }
+form fieldset { margin:1rem 0; border:1px solid var(--panel-border); border-radius:8px; padding:1rem; background:var(--card-a) }
+form legend { font-weight:600 }
+label { display:flex; flex-direction:column; gap:.25rem; margin:.4rem 0 }
+input, textarea, select { font: inherit; padding:.45rem .55rem; border-radius:6px; border:1px solid var(--panel-border); background:white }
+.grid { display:grid; gap:.6rem; grid-template-columns:1fr; }
+@media (min-width: 720px){ .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.actions { display:flex; gap:.5rem; margin:.5rem 0 }
+#output { width:100%; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+.stage { border:1px dashed var(--panel-border); border-radius:6px; padding:.75rem; margin:.6rem 0; background:var(--card-b) }
+.stage .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.stage .row { display:grid; gap:.6rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.row-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.stage .head { display:flex; align-items:center; justify-content:space-between; margin-bottom:.5rem }
+.small { font-size:.9em; color: var(--color-subtext) }
+.hint { color: var(--color-subtext); font-size:.9em }
+.icon-btn { background:transparent; border:1px solid var(--panel-border); padding:.25rem .5rem; border-radius:6px; cursor:pointer }
+</style>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.tab-panel');
+  tabs.forEach(btn => btn.addEventListener('click', () => {
+    tabs.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  }));
+
+  // Stages builder
+  const stagesEl = document.getElementById('stages');
+  const addStageBtn = document.getElementById('add-stage');
+  let stageCount = 0;
+  addStageBtn.addEventListener('click', () => addStage());
+
+  function addStage(prefill={}){
+    stageCount++;
+    const idx = stageCount;
+    const wrap = document.createElement('div');
+    wrap.className = 'stage';
+    wrap.innerHTML = `
+      <div class="head">
+        <strong>Stage <span class="num">${prefill.stage || idx}</span></strong>
+        <span>
+          <button type="button" class="icon-btn" data-action="n--">–</button>
+          <button type="button" class="icon-btn" data-action="n++">+</button>
+          <button type="button" class="icon-btn" data-action="remove">Remove</button>
+        </span>
+      </div>
+      <div class="grid">
+        <label>Name<input type="text" name="name" value="${prefill.name||''}" placeholder="Coarse Grind"></label>
+        <label>Start<input type="date" name="start" value="${prefill.start||''}"></label>
+        <label>End<input type="date" name="end" value="${prefill.end||''}"></label>
+      </div>
+      <div class="row">
+        <label>Grit<input type="text" name="grit" value="${prefill.grit||''}" placeholder="60/90 SiC"></label>
+        <label>Polish<input type="text" name="polish" value="${prefill.polish||''}" placeholder="Aluminum Oxide (TXP)"></label>
+        <label>Amount (Tbsp)<input type="number" name="amount_tbsp" value="${prefill.amount_tbsp||''}" min="0" step="1"></label>
+      </div>
+      <div class="row">
+        <label>Barrel fill %<input type="text" name="barrel_fill_pct" value="${prefill.barrel_fill_pct||''}" placeholder="75%"></label>
+        <label>Water level<input type="text" name="water_level" value="${prefill.water_level||''}" placeholder="Just below top layer"></label>
+        <label>Media used<input type="text" name="media_used" value="${prefill.media_used||''}" placeholder="Ceramic media / Plastic pellets / None"></label>
+      </div>
+      <label>Maintenance <span class="small">(optional)</span>
+        <input type="text" name="maintenance" value="${prefill.maintenance||''}" placeholder="Top-ups; leak checks; etc.">
+      </label>
+      <label>Observations
+        <textarea name="observations" rows="2" placeholder="What you observed">${prefill.observations||''}</textarea>
+      </label>
+      <div class="row row-2">
+        <label>Decision — Repeat?
+          <select name="repeat">
+            <option value="">—</option>
+            <option value="yes" ${prefill.repeat==='yes'?'selected':''}>yes</option>
+            <option value="no" ${prefill.repeat==='no'?'selected':''}>no</option>
+          </select>
+        </label>
+        <label>Decision — Why
+          <input type="text" name="why" value="${prefill.why||''}" placeholder="Short reason">
+        </label>
+      </div>
+      <label>Stage Images (comma-separated paths)
+        <input type="text" name="images" value="${(prefill.images||[]).join(', ')}" placeholder="/assets/tumbling/XYZ/after-s1.jpg, /assets/tumbling/XYZ/extra.jpg">
+      </label>
+    `;
+    // adjust stage number
+    wrap.querySelector('[data-action="n--"]').onclick = () => {
+      const n = Number(wrap.querySelector('.num').textContent)||idx; wrap.querySelector('.num').textContent = Math.max(1, n-1);
+    };
+    wrap.querySelector('[data-action="n++"]').onclick = () => {
+      const n = Number(wrap.querySelector('.num').textContent)||idx; wrap.querySelector('.num').textContent = n+1;
+    };
+    wrap.querySelector('[data-action="remove"]').onclick = () => { wrap.remove(); };
+    stagesEl.appendChild(wrap);
+  }
+
+  // seed one stage by default
+  addStage({ stage: 1, name: 'Coarse Grind' });
+
+  function esc(str){
+    return String(str).replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+  }
+  function emitKV(key, val, indent){
+    return `${' '.repeat(indent)}${key}: ${val}\n`;
+  }
+  function emitStr(key, val, indent){
+    if(!val) return '';
+    return emitKV(key, `"${esc(val)}"`, indent);
+  }
+  function emitList(key, items, indent){
+    const arr = (items||[]).map(s => s).filter(s => s && String(s).trim() !== '');
+    if(arr.length===0) return '';
+    let out = `${' '.repeat(indent)}${key}:\n`;
+    arr.forEach(s => { out += `${' '.repeat(indent+2)}- ${String(s).includes(':')?`"${esc(s)}"`:esc(s)}\n`; });
+    return out;
+  }
+  function buildImages(indent){
+    const map = {
+      rough: document.getElementById('img_rough').value,
+      after_stage_1: document.getElementById('img_s1').value,
+      after_stage_2: document.getElementById('img_s2').value,
+      after_stage_3: document.getElementById('img_s3').value,
+      after_stage_4: document.getElementById('img_s4').value,
+      after_burnish: document.getElementById('img_burnish').value,
+    };
+    const keys = Object.keys(map).filter(k => map[k] && map[k].trim() !== '');
+    if(keys.length===0) return '';
+    let out = `${' '.repeat(indent)}images:\n`;
+    keys.forEach(k => { out += emitStr(k, map[k], indent+2); });
+    return out;
+  }
+  function buildStages(indent){
+    const blocks = [];
+    stagesEl.querySelectorAll('.stage').forEach(st => {
+      const stageNum = Number(st.querySelector('.num').textContent)||null;
+      const get = n => st.querySelector(`[name="${n}"]`).value;
+      const imgs = get('images').split(',').map(s => s.trim()).filter(Boolean);
+      const block = { stage: stageNum, name: get('name'), start: get('start'), end: get('end'), grit: get('grit'), polish: get('polish'), amount_tbsp: get('amount_tbsp'), barrel_fill_pct: get('barrel_fill_pct'), water_level: get('water_level'), media_used: get('media_used'), maintenance: get('maintenance'), observations: get('observations'), decision: { repeat: get('repeat'), why: get('why') }, images: imgs };
+      blocks.push(block);
+    });
+    if(blocks.length===0) return '';
+    let out = `${' '.repeat(indent)}stages:\n`;
+    blocks.forEach(b => {
+      out += `${' '.repeat(indent+2)}- stage: ${b.stage||''}\n`;
+      out += emitStr('name', b.name, indent+4);
+      out += emitStr('start', b.start, indent+4);
+      out += emitStr('end', b.end, indent+4);
+      if(b.grit) out += emitStr('grit', b.grit, indent+4);
+      if(b.polish) out += emitStr('polish', b.polish, indent+4);
+      out += emitStr('barrel_fill_pct', b.barrel_fill_pct, indent+4);
+      out += emitStr('water_level', b.water_level, indent+4);
+      out += emitStr('media_used', b.media_used, indent+4);
+      if(b.amount_tbsp) out += emitKV('amount_tbsp', b.amount_tbsp, indent+4);
+      out += emitStr('maintenance', b.maintenance, indent+4);
+      out += emitStr('observations', b.observations, indent+4);
+      if(b.decision.repeat || b.decision.why){
+        out += `${' '.repeat(indent+4)}decision:\n`;
+        if(b.decision.repeat) out += emitStr('repeat', b.decision.repeat, indent+6);
+        if(b.decision.why) out += emitStr('why', b.decision.why, indent+6);
+      }
+      if(b.images && b.images.length){ out += emitList('images', b.images, indent+4); }
+      out += `\n`;
+    });
+    return out;
+  }
+  function buildMarkdown(){
+    const batch = document.getElementById('batch').value.trim();
+    const title = document.getElementById('title').value.trim();
+    const status = document.getElementById('status').value.trim();
+    const date_started = document.getElementById('date_started').value.trim();
+    const date_finished = document.getElementById('date_finished').value.trim();
+    const tumbler = document.getElementById('tumbler').value.trim();
+    const origin = document.getElementById('origin').value.trim();
+    const brand = document.getElementById('brand').value.trim();
+    const notes = document.getElementById('notes').value.trim();
+    const rocks = document.getElementById('rocks').value.split(',').map(s => s.trim()).filter(Boolean);
+
+    let out = '---\n';
+    out += emitStr('layout', 'tumble', 0);
+    out += emitStr('title', title, 0);
+    out += emitStr('batch', batch, 0);
+    out += emitStr('status', status, 0);
+    out += emitStr('date_started', date_started, 0);
+    if(date_finished) out += emitStr('date_finished', date_finished, 0);
+    out += emitStr('tumbler', tumbler, 0);
+    out += emitStr('origin', origin, 0);
+    if(rocks.length) out += emitList('rocks', rocks, 0);
+    if(notes) out += emitKV('notes', `>\n  ${notes.split('\n').map(l=>l?l.replace(/^/,'  '):'').join('\n')}`, 0);
+    out += emitStr('consumables_brand', brand, 0);
+    out += buildImages(0);
+    out += buildStages(0);
+    out += '---\n\n';
+    // minimal content; layout renders the rest
+    const filename = suggestFilename(date_started, batch, title);
+    document.getElementById('output').value = out;
+    const copyBtn = document.getElementById('copy-btn');
+    const dlBtn = document.getElementById('download-btn');
+    copyBtn.disabled = false; dlBtn.disabled = false;
+    dlBtn.onclick = () => downloadFile(filename, out);
+    copyBtn.onclick = async () => { try { await navigator.clipboard.writeText(out); copyBtn.textContent = 'Copied!'; setTimeout(()=>copyBtn.textContent='Copy', 1200);} catch(e){ alert('Copy failed'); } };
+  }
+  function suggestFilename(dateStr, batch, title){
+    const d = dateStr || new Date().toISOString().slice(0,10);
+    const b = batch || 'xxx';
+    const t = (title||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40);
+    return `${d}-batch-${b}${t?'-'+t:''}.md`;
+  }
+  function downloadFile(name, content){
+    const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = name; a.click();
+    setTimeout(()=> URL.revokeObjectURL(url), 2000);
+  }
+</script>
+
