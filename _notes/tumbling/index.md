@@ -29,7 +29,7 @@ layout: default
       {% if items and items.size > 0 %}
         {% for d in items %}
           {% assign thumb = nil %}
-          {% assign cover = d.images.cover %}
+          {% assign cover = d.images.cover | image_exists %}
           {% if cover %}
             {% assign thumb = cover %}
           {% endif %}
@@ -40,42 +40,54 @@ layout: default
             {% if stages and stages.size > 0 %}
               {% for st in stages reversed %}
                 {% assign imgs = st.images | default: empty_array %}
+                {% assign found = nil %}
                 {% if imgs and imgs.size > 0 %}
-                  {% assign cand = imgs[0] %}
-                  {% if cand.alt != nil %}
-                    {% assign cand = cand.src | default: cand %}
-                  {% endif %}
-                  {% if cand %}
-                    {% assign thumb = cand %}
-                    {% break %}
-                  {% endif %}
+                  {% for it in imgs %}
+                    {% assign cand = it %}
+                    {% if cand.alt != nil %}
+                      {% assign cand = cand.src | default: cand %}
+                    {% endif %}
+                    {% assign cand = cand | image_exists %}
+                    {% if cand %}
+                      {% assign found = cand %}
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+                {% if found == nil %}
+                  {% assign k = "after_stage_" | append: st.stage %}
+                  {% assign found = d.images[k] | image_exists %}
+                {% endif %}
+                {% if found %}
+                  {% assign thumb = found %}
+                  {% break %}
                 {% endif %}
               {% endfor %}
             {% endif %}
           {% endif %}
 
           {% if thumb == nil %}
-            {% assign cand = d.images.after_burnish %}
+            {% assign cand = d.images.after_stage_4 | image_exists %}
             {% if cand %}{% assign thumb = cand %}{% endif %}
           {% endif %}
           {% if thumb == nil %}
-            {% assign cand = d.images.after_stage_4 %}
+            {% assign cand = d.images.after_stage_3 | image_exists %}
             {% if cand %}{% assign thumb = cand %}{% endif %}
           {% endif %}
           {% if thumb == nil %}
-            {% assign cand = d.images.after_stage_3 %}
+            {% assign cand = d.images.after_stage_2 | image_exists %}
             {% if cand %}{% assign thumb = cand %}{% endif %}
           {% endif %}
           {% if thumb == nil %}
-            {% assign cand = d.images.after_stage_2 %}
+            {% assign cand = d.images.after_stage_1 | image_exists %}
             {% if cand %}{% assign thumb = cand %}{% endif %}
           {% endif %}
           {% if thumb == nil %}
-            {% assign cand = d.images.after_stage_1 %}
+            {% assign cand = d.images.rough | image_exists %}
             {% if cand %}{% assign thumb = cand %}{% endif %}
           {% endif %}
           {% if thumb == nil %}
-            {% assign thumb = d.images.rough %}
+            {% assign thumb = d.images.after_burnish | image_exists %}
           {% endif %}
 
           {% assign days = "" %}
