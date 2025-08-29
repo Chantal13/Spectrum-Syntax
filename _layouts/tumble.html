@@ -17,7 +17,7 @@ Helpers
 
 <h1>{{ page.title }}</h1>
 
-<div class="tumble-meta">
+<div class="tumble-meta{% unless cover %} no-cover{% endunless %}">
   {% if cover %}
     <div class="tumble-cover">
       <img src="{{ cover | relative_url }}" alt="{{ page.title }} cover image">
@@ -76,7 +76,7 @@ Helpers
 
   {% assign primary = primary | image_exists %}
 
-  <section class="stage-card" id="stage-{{ st.stage }}">
+  <section class="stage-card{% unless primary %} no-media{% endunless %}" id="stage-{{ st.stage }}">
     {% if primary %}
       <div class="stage-media">
         <img src="{{ primary | relative_url }}" alt="Stage {{ st.stage }} image">
@@ -164,6 +164,8 @@ Helpers
 .tumble-cover img{width:100%;max-height:280px;object-fit:cover;border-radius:8px}
 .tumble-details{list-style:none;padding:0;margin:0}
 .tumble-details li{margin:.25rem 0}
+/* When no cover image, keep spacing tidy */
+.tumble-meta.no-cover{grid-template-columns:1fr; gap: .75rem}
 
 .chips{display:inline-flex;gap:.35rem;flex-wrap:wrap}
 .chip{display:inline-block;padding:.15rem .5rem;border-radius:999px;font-size:.85em;border:1px solid rgba(0,0,0,.1)}
@@ -178,6 +180,8 @@ Helpers
 [class^="chip--"]:not(.chip--agate):not(.chip--jasper):not(.chip--sodalite):not(.chip--quartz):not(.chip--dalmatian-jasper){background:#eef3ff}
 
 .stage-card{display:grid;gap:1rem;grid-template-columns:1fr;align-items:start;margin:1.5rem 0;padding:1rem;border:1px solid rgba(0,0,0,.06);border-radius:8px;background:#fafafa}
+/* If a stage has no media, collapse to single column at all sizes */
+.stage-card.no-media{grid-template-columns:1fr}
 .stage-media img{width:100%;border-radius:6px}
 .kv{display:grid;grid-template-columns:1fr 1fr;gap:.35rem .75rem;margin:.5rem 0}
 .kv > div{display:contents}
@@ -190,6 +194,8 @@ Helpers
 .gallery img{width:100%;border-radius:6px}
 @media (min-width: 820px){
   .tumble-meta{grid-template-columns: 320px 1fr}
+  .tumble-meta.no-cover{grid-template-columns: 1fr}
   .stage-card{grid-template-columns: 260px 1fr}
+  .stage-card.no-media{grid-template-columns: 1fr}
 }
 </style>

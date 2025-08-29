@@ -136,7 +136,7 @@ layout: default
 .tumble-index thead th{font-weight:600;border-bottom:1px solid rgba(0,0,0,.12);text-align:left;padding:.5rem}
 .tumble-index tbody td{border-bottom:1px solid rgba(0,0,0,.06);padding:.5rem;vertical-align:middle}
 .batch-cell{display:flex;gap:.75rem;align-items:center}
-.thumb{display:block;width:64px;min-width:64px;height:48px;border-radius:6px;overflow:hidden}
+.thumb{display:block;width:128px;min-width:128px;height:96px;border-radius:6px;overflow:hidden}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .batch-meta{display:flex;flex-direction:column;gap:.25rem}
 .chips{display:flex;gap:.25rem;flex-wrap:wrap}
