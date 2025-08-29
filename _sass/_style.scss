@@ -26,10 +26,10 @@ $color-box-background: mix($tiffany-blue, white, 92%); /* soft panel bg */
   /* Page background matches tumbling header */
   --color-bg: #{$tiffany-blue};
   --color-text: #{$rich-black};
-  --panel-bg: #{mix($tiffany-blue, white, 94%)};
+  --panel-bg: #{$tiffany-blue};
   --panel-border: #{mix($rich-black, white, 88%)};
   --table-header-bg: #{$tiffany-blue}; /* tumbling batch table header */
-  --table-row-hover: #{mix($tiffany-blue, white, 96%)};
+  --table-row-hover: #{$tiffany-blue};
 
   /* Chips */
   --chip-text: #{mix($rich-black, white, 15%)};
@@ -278,8 +278,8 @@ code {
   font-size: 0.95rem;
 }
 
-.tumble-table thead th {
-  background: mix($tiffany-blue, white, 90%);
+ .tumble-table thead th {
+  background: var(--color-bg);
   text-align: left;
   font-weight: 600;
   border-bottom: 1px solid $color-border;
@@ -292,7 +292,7 @@ code {
   vertical-align: top;
 }
 
-.tumble-table tbody tr:hover { background: mix($tiffany-blue, white, 94%); }
+.tumble-table tbody tr:hover { background: var(--color-bg); }
 
 /* Mobile: hide the left "Field" column; show only value with label */
 @media (max-width: 640px) {
@@ -314,9 +314,9 @@ code {
   .tumble-table tr {
     padding: 0.35rem 0.6rem;
     margin-bottom: 0.75rem;
-    border: 1px solid #e8ebf0;
+    border: 1px solid var(--panel-border);
     border-radius: 12px;
-    background: #fff;
+    background: var(--color-bg);
   }
 
   .tumble-table td:nth-child(2) {
@@ -326,7 +326,7 @@ code {
   }
 
   .tumble-table tr > td:last-child { padding-bottom: 0.1rem; }
-  .tumble-table tbody tr:hover { background: #fafbff; }
+  .tumble-table tbody tr:hover { background: var(--color-bg); }
 }
 
 /* =========================
