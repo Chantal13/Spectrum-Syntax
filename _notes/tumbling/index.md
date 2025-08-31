@@ -71,14 +71,14 @@ Collect all tumbling docs under _notes/tumbling (they are part of the
 
           <tr>
             <td class="batch-cell">
-              {% assign has_batch = d.batch and d.batch != '' %}
-              {% assign has_title = d.title and d.title != '' %}
-              {% if has_batch and has_title %}
-                {% assign display_text = d.batch | append: " — " | append: d.title %}
-              {% elsif has_batch %}
-                {% assign display_text = d.batch %}
-              {% elsif has_title %}
-                {% assign display_text = d.title %}
+              {% assign batch = d.batch | default: '' | to_s | strip %}
+              {% assign title = d.title | default: '' | to_s | strip %}
+              {% if batch != '' and title != '' %}
+                {% assign display_text = batch | append: " — " | append: title %}
+              {% elsif batch != '' %}
+                {% assign display_text = batch %}
+              {% elsif title != '' %}
+                {% assign display_text = title %}
               {% else %}
                 {% assign display_text = "Untitled" %}
               {% endif %}
@@ -99,7 +99,7 @@ Collect all tumbling docs under _notes/tumbling (they are part of the
               {% endif %}
               <div class="batch-meta">
                 <a href="{{ d.url | relative_url }}">
-                  {% if has_batch and has_title %}<strong>{{ d.batch }}</strong> — {{ d.title }}{% elsif has_batch %}<strong>{{ d.batch }}</strong>{% elsif has_title %}<strong>{{ d.title }}</strong>{% else %}<strong>Untitled</strong>{% endif %}
+                  {% if batch != '' and title != '' %}<strong>{{ batch }}</strong> — {{ title }}{% elsif batch != '' %}<strong>{{ batch }}</strong>{% elsif title != '' %}<strong>{{ title }}</strong>{% else %}<strong>Untitled</strong>{% endif %}
                 </a>
                 {% if d.rocks and d.rocks.size > 0 %}
                   <div class="chips">
