@@ -1,4 +1,16 @@
 - title: Tumbling
   url: /tumbling/
+  active_if:
+    url_prefix: /tumbling/
+- title: Rockhounding
+  url: /rockhounding/
+  active_if:
+    path_contains: _notes/rockhounding/
+- title: Games
+  url: /games/
+  active_if:
+    path_contains: _notes/games/
 - title: About
-  url: /about/
+  url: /about
+  active_if:
+    url_exact: /about

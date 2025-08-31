@@ -238,6 +238,13 @@ nav { margin: 1em 0 3em; }
 }
 .site-nav .nav-links a:hover { background: transparent; }
 
+/* Active page indicator (subtle underline + color) */
+.site-nav .nav-links a.nav-link--active,
+.site-nav .nav-home.nav-link--active {
+  color: $color-primary;
+  border-bottom: 2px solid #{mix($rich-black, white, 70%)};
+}
+
 /* Tighter divider spacing on very small screens */
 @media (max-width: 480px) {
   .site-nav .nav-links li + li::before {
@@ -257,6 +264,10 @@ nav { margin: 1em 0 3em; }
     color: #{mix(white, $rich-black, 78%)};
   }
   .site-nav .nav-links a:hover { background: transparent; }
+  .site-nav .nav-links a.nav-link--active,
+  .site-nav .nav-home.nav-link--active {
+    border-bottom-color: #{mix(white, $rich-black, 80%)};
+  }
 }
 
 #notes-entry-container {
