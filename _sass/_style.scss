@@ -228,14 +228,15 @@ nav { margin: 1em 0 3em; }
 .site-nav .nav-links li + li:nth-child(6n + 7)::before { content: "♔"; }
 
 /* Nav link hit area + underline cleanup */
-.site-nav a { border-bottom: 0; }
+.site-nav a {
+  border-bottom: 0;
+  background: transparent; /* no background in nav */
+}
 .site-nav .nav-links a {
   padding: 0.15em 0.4em;
   border-radius: 6px;
 }
-.site-nav .nav-links a:hover {
-  background: #{mix($tiffany-blue, white, 90%)};
-}
+.site-nav .nav-links a:hover { background: transparent; }
 
 /* Tighter divider spacing on very small screens */
 @media (max-width: 480px) {
@@ -255,9 +256,7 @@ nav { margin: 1em 0 3em; }
   .site-nav .nav-links::before {
     color: #{mix(white, $rich-black, 78%)};
   }
-  .site-nav .nav-links a:hover {
-    background: #{mix($midnight-green, white, 88%)};
-  }
+  .site-nav .nav-links a:hover { background: transparent; }
 }
 
 #notes-entry-container {
