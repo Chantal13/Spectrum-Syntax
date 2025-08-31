@@ -1,3 +1,10 @@
-<div>
-    <a class="internal-link" href="{{ site.baseurl }}/"><b>{{ site.title }}</b></a>
-</div>
+<nav class="site-nav">
+  <a class="internal-link nav-home" href="{{ site.baseurl }}/"><strong>{{ site.title }}</strong></a>
+  {% if site.data.navigation %}
+  <ul class="nav-links">
+    {% for item in site.data.navigation %}
+    <li><a class="internal-link" href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</nav>
