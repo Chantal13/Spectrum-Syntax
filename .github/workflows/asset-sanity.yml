@@ -38,6 +38,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@v2
+        with:
+          ignore: tests/**  # adjust as needed
+
       - name: Grep referenced asset paths
         id: grep_paths
         run: |
