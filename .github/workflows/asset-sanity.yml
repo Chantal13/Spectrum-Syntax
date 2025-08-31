@@ -43,7 +43,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p .tmp
-          rg -No "/assets/tumbling/[^"]+" _tumble_logs || true > .tmp/refs.txt
+          rg -No '/assets/tumbling/[^"]+' _tumble_logs || true > .tmp/refs.txt
           if [ ! -s .tmp/refs.txt ]; then
             echo "No referenced tumbling assets found in logs."
             exit 0
