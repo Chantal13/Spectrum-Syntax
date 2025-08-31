@@ -5,11 +5,11 @@
 - title: Rockhounding
   url: /rockhounding/
   active_if:
-    path_contains: _notes/rockhounding/
+    url_prefix: /rockhounding/
 - title: Games
   url: /games/
   active_if:
-    path_contains: _notes/games/
+    url_prefix: /games/
 - title: About
   url: /about
   active_if:

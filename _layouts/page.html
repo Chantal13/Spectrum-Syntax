@@ -3,5 +3,7 @@ layout: default
 ---
 
 <content>
+  {% assign segments = page.url | split: '/' %}
+  {% include breadcrumbs.html segments=segments title=page.title %}
   {{ content }}
 </content>
