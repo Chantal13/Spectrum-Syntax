@@ -14,8 +14,8 @@
   {% if include.items %}
     {% assign items = include.items %}
   {% else %}
-    {% assign items = site.notes | where_exp: "p", "p.path contains '_notes/tumbling/'" %}
-    {% assign items = items | where_exp: "p", "p.path != '_notes/tumbling/index.md'" %}
+    {% assign items = site.notes | where_exp: "p", "p.path contains '_notes/Rockhounding/tumbling/'" %}
+    {% assign items = items | where_exp: "p", "p.path != '_notes/Rockhounding/tumbling/index.md'" %}
     {% assign items = items | sort: "date_started" | reverse %}
   {% endif %}
   {% for t in items %}
