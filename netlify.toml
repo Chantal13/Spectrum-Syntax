@@ -6,9 +6,4 @@
   RUBY_VERSION = "3.2.1"
   JEKYLL_ENV = "production"
 
-# Permanent redirect for legacy checklist URL
-[[redirects]]
-  from = "/tumbling/log-checklist/"
-  to = "/admin/"
-  status = 301
-  force = true
+# (Removed redirect to /admin; public checklist now lives at /tumbling/log-checklist/)

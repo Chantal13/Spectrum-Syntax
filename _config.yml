@@ -11,6 +11,7 @@ relative_permalinks: false      # harmless, but unused by Jekyll 4
 
 include:
   - "_pages"
+  - "_admin"
 
 exclude:
   - "_includes/notes_graph.json"
