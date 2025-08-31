@@ -245,6 +245,15 @@ nav { margin: 1em 0 3em; }
   border-bottom: 2px solid #{mix($rich-black, white, 70%)};
 }
 
+/* Breadcrumb navigation */
+.note-breadcrumbs {
+  font-size: 0.9em;
+  margin-bottom: 1rem;
+}
+.note-breadcrumbs .crumb-divider {
+  margin: 0 0.3em;
+}
+
 /* Tighter divider spacing on very small screens */
 @media (max-width: 480px) {
   .site-nav .nav-links li + li::before {

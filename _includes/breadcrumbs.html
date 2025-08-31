@@ -1,0 +1,21 @@
+{% assign segments = include.segments %}
+{% if segments and segments.size > 0 %}
+<nav class="note-breadcrumbs" aria-label="Breadcrumb">
+  <a class="internal-link" href="{{ site.baseurl }}/">Home</a>
+  {% assign crumb_path = '' %}
+  {% for segment in segments %}
+    {% if segment != '' %}
+      {% assign seg_clean = segment | remove: '.md' %}
+      {% assign slug = seg_clean | slugify %}
+      {% assign crumb_path = crumb_path | append: '/' | append: slug %}
+      {% if forloop.last and include.title %}
+        <span class="crumb-divider">/</span>
+        <span aria-current="page">{{ include.title }}</span>
+      {% else %}
+        <span class="crumb-divider">/</span>
+        <a class="internal-link" href="{{ site.baseurl }}{{ crumb_path }}/">{{ seg_clean | replace: '-', ' ' | capitalize }}</a>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+</nav>
+{% endif %}
