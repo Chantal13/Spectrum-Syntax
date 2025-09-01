@@ -48,9 +48,9 @@ defaults:
     values:
       layout: "note"
 
-  # Tumbling pages under _notes/Rockhounding/tumbling use the 'tumble' layout
+  # Tumbling pages under _notes/rockhounding/tumbling use the 'tumble' layout
   - scope:
-      path: "_notes/Rockhounding/tumbling/**/*.md"
+      path: "_notes/rockhounding/tumbling/**/*.md"
     values:
       layout: "tumble"
       permalink: "/tumbling/:slug/"

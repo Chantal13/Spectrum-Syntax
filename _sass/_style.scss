@@ -245,6 +245,23 @@ nav { margin: 1em 0 3em; }
   border-bottom: 2px solid #{mix($rich-black, white, 70%)};
 }
 
+/* Nested navigation lists */
+.site-nav .nav-links--sub {
+  display: block;
+  padding-left: 1rem;
+  margin: 0.3em 0;
+}
+
+.site-nav .nav-links--sub li {
+  display: block;
+}
+
+.site-nav .nav-links--sub li + li::before,
+.site-nav .nav-links--sub::before {
+  content: none;
+  margin: 0;
+}
+
 /* Tighter divider spacing on very small screens */
 @media (max-width: 480px) {
   .site-nav .nav-links li + li::before {
