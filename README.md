@@ -46,6 +46,25 @@ This site relies on custom Jekyll plugins, so GitHub Pages cannot build it direc
 
 To host the site elsewhere, run `bundle exec jekyll build` and upload the generated `_site` directory to your provider.
 
+## Change summaries
+
+Generate summaries locally and in CI for easier PR descriptions and reviews.
+
+- Local pre-push summary
+  - Enable hooks once per clone:
+    ```bash
+    git config core.hooksPath .githooks
+    ```
+  - On every push, a Markdown summary prints to the console and is saved to `.git/last_push_summary.md`.
+  - You can also run manually for any range:
+    ```bash
+    scripts/changes_summary.sh <base> <head>
+    ```
+
+- GitHub Actions
+  - PR summary comment: see `.github/workflows/pr-summary.yml` — posts/updates a comment with commits and file changes on each PR update.
+  - Push summary check: see `.github/workflows/push-summary.yml` — adds a “Change Summary” check run to each push with the same details.
+
 ## Customization
 
 - Add or edit notes in [`_notes/`](./_notes).
@@ -56,4 +75,3 @@ To host the site elsewhere, run `bundle exec jekyll build` and upload the genera
 ## License
 
 Source code is available under the [MIT license](LICENSE.md).
-
