@@ -18,7 +18,7 @@
           url: /rockhounding/rocks/category/
           children:
             - title: Igneous Rocks
-              url: /rockhounding/rocks/category/igneous-rocks/
+              url: /rockhounding/rocks/category/igneous/
 - title: Games
   url: /games/
   active_if:
