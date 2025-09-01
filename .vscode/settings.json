@@ -1,8 +1,27 @@
 {
-    "python.testing.pytestArgs": [
-        "tests"
-    ],
-    "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true,
-    "openai.stream": false
+  "python.testing.pytestArgs": ["tests"],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
+
+  // Mirror the critical OpenAI/Codex bits here so the workspace can't override them
+  "openai.stream": false,
+  "openai.useStreaming": false,
+  "openai.streaming": false,
+  "openai.chat.stream": false,
+  "openai.sse": false,
+  "openai.baseUrl": "https://api.openai.com/v1",
+  "http.proxy": "",
+  "http.proxySupport": "off",
+
+  "terminal.integrated.inheritEnv": true,
+  "terminal.integrated.env.osx": {
+    "HTTP_PROXY": "",
+    "HTTPS_PROXY": "",
+    "ALL_PROXY": "",
+    "http_proxy": "",
+    "https_proxy": "",
+    "all_proxy": "",
+    "NO_PROXY": "",
+    "no_proxy": ""
+  }
 }
