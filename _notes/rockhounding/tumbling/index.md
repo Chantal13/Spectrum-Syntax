@@ -2,6 +2,9 @@
 title: Tumbling Batches
 permalink: /tumbling/
 layout: default
+breadcrumbs:
+  - title: Rockhounding
+    url: /rockhounding/
 ---
 
 # Tumbling Batches

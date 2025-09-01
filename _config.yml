@@ -32,7 +32,7 @@ sass:
 collections:
   notes:
     output: true
-    permalink: /:slug
+    permalink: /:path/
 
 # --- Defaults (layouts, etc.) ---
 defaults:

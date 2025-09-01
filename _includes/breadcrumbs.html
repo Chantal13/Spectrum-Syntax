@@ -1,0 +1,57 @@
+{%- comment -%}
+  Breadcrumbs include
+  Usage: included automatically from default layout. Builds crumbs from page.url
+  and attempts to resolve titles by matching site.pages and site.notes by URL.
+  Fallback: humanize URL segments if no page found.
+{%- endcomment -%}
+
+{%- assign url = page.url | default: '/' -%}
+{%- assign parts = url | split: '/' -%}
+{%- assign parts = parts | reject: '' -%}
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a class="internal-link" href="{{ site.baseurl }}/">{{ site.title }}</a>
+
+  {%- if page.breadcrumbs and page.breadcrumbs.size > 0 -%}
+    {%- for bc in page.breadcrumbs -%}
+      <span class="crumb-sep">›</span>
+      <a class="internal-link" href="{{ bc.url | relative_url }}">{{ bc.title }}</a>
+    {%- endfor -%}
+    <span class="crumb-sep">›</span>
+    <span aria-current="page">{{ page.title }}</span>
+  {%- else -%}
+    {%- assign accum = '' -%}
+    {%- for seg in parts -%}
+      {%- assign accum = accum | append: '/' | append: seg -%}
+      {%- assign target = accum | append: '/' -%}
+      {%- assign is_last = forloop.last -%}
+
+      {%- assign match = nil -%}
+      {%- assign pages = site.pages | where: 'url', target -%}
+      {%- if pages and pages.size > 0 -%}
+        {%- assign match = pages[0] -%}
+      {%- endif -%}
+      {%- if match == nil and site.notes -%}
+        {%- assign notes = site.notes | where: 'url', target -%}
+        {%- if notes and notes.size > 0 -%}
+          {%- assign match = notes[0] -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- assign label = nil -%}
+      {%- if match and match.title -%}
+        {%- assign label = match.title -%}
+      {%- else -%}
+        {%- assign label = seg | replace: '-', ' ' | capitalize -%}
+      {%- endif -%}
+
+      <span class="crumb-sep">›</span>
+      {%- if is_last -%}
+        <span aria-current="page">{{ label }}</span>
+      {%- else -%}
+        <a class="internal-link" href="{{ site.baseurl }}{{ target }}">{{ label }}</a>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+</nav>
+
