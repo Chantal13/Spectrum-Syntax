@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   {% include head.html %}
-  <body>
+  <body{% if page.id %} class="page-{{ page.id | slugify }}"{% endif %}>
     <div class="wrapper">
       {% include breadcrumbs.html %}
       <main>{{ content }}</main>

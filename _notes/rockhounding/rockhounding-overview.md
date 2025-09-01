@@ -1,5 +1,4 @@
----
-title: Rockhounding
+title: Rockhounding Overview
 aliases:
   - rockhounding
 ---
@@ -8,7 +7,7 @@ Rockhounding is the hobby of searching for, identifying, and collecting rocks, m
 # My Notes
 - [[Collection Log]] - coming soon
 - [[Field Trip Notes]] - coming soon
-- [[index|Tumbling Batches]] 
+- [[Tumbling|Tumbling Batches]] 
 - [[Ontario Locations]] - coming soon
 # Rockhounding Basics
 - [[Ethics & Laws in Rockhounding]] - coming soon

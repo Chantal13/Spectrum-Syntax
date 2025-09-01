@@ -17,11 +17,33 @@ https://spectrumsyntax.netlify.app/
 
 ## Local setup
 
-1. Install dependencies:
+This project targets Ruby 3.2.1 and Bundler 2.7.1. On macOS, use rbenv for a smooth setup.
+
+1) Install rbenv + ruby-build:
    ```bash
-   bundle install
+   brew install rbenv ruby-build
    ```
-2. Build or serve the site locally:
+
+2) Install Ruby (from `.ruby-version`):
+   ```bash
+   rbenv install 3.2.1
+   # If you hit macOS SDK/readline errors, try one of:
+   #   RUBY_CONFIGURE_OPTS="--with-out-ext=readline" rbenv install 3.2.1
+   #   rbenv install 3.3.5 && rbenv local 3.3.5
+   # If OpenSSL isn’t detected:
+   #   export OPENSSL_DIR="$(brew --prefix openssl@3)"
+   #   export CPPFLAGS="-I$OPENSSL_DIR/include"
+   #   export LDFLAGS="-L$OPENSSL_DIR/lib"
+   ```
+
+3) Use the Ruby version for this repo and install gems:
+   ```bash
+   rbenv local 3.2.1   # or `rbenv shell 3.2.1`
+   gem install bundler:2.7.1
+   bundle _2.7.1_ install
+   ```
+
+4) Build or serve the site locally:
    ```bash
    bundle exec jekyll serve
    # or
@@ -29,13 +51,13 @@ https://spectrumsyntax.netlify.app/
    ```
    The development server runs at http://localhost:4000.
 
-3. Check for missing assets:
+5) Check for missing assets:
    ```bash
    ruby scripts/check_assets.rb
    ```
    The script scans front matter for image paths and fails if any referenced file is missing.
 
-4. Run the test suite:
+6) Run the test suite:
    ```bash
    bundle exec rake test
    ```

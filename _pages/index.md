@@ -9,17 +9,17 @@ permalink: /
 
 This site is my working notebook—mostly rockhounding (Ontario-focused but useful anywhere), a bit of Python programming, and, for now, one humble blog post. I like doing lots of different things—aviation, guitar, and whatever else catches my curiosity—so expect the topics to wander as I do.
 
-Take a look at my blog <span style="font-weight: bold">[[Inside My Mind]]</span> while you are here.
+Take a look at my blog <strong>[[Inside My Mind]]</strong> while you are here.
 
 Here is what I am currently interested in:
   <ul>
-    <li><span style="font-weight: bold">[[Python]]</span></li>
-    <li><span style="font-weight: bold">[[rockhounding]]</span></li>
+    <li><strong>[[Python]]</strong></li>
+    <li><strong>[[rockhounding]]</strong></li>
   </ul>
 I also play games like these:
   <ul>
-    <li><span style="font-weight: bold">[[IDLE Champions]]</span></li>
-    <li><span style="font-weight: bold">[[Dark War Survival]]</span></li>
+    <li><strong>[[IDLE Champions]]</strong></li>
+    <li><strong>[[Dark War Survival]]</strong></li>
   </ul>
 
 <strong>Recently updated notes</strong>
@@ -32,9 +32,3 @@ I also play games like these:
     </li>
   {% endfor %}
 </ul>
-
-<style>
-  .wrapper {
-    max-width: 46em;
-  }
-</style>

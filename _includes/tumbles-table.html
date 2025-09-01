@@ -1,40 +1,129 @@
-<div class="tumble">
-<table>
-  <thead>
-    <tr>
-      <th>Batch</th>
-      <th>Started</th>
-      <th>Finished</th>
-      <th>Status</th>
-      <th>Rocks</th>
-      <th>Duration (days)</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% if include.items %}
-    {% assign items = include.items %}
-  {% else %}
-    {% assign items = site.notes | where_exp: "p", "p.path contains '_notes/rockhounding/tumbling/'" %}
-    {% assign items = items | where_exp: "p", "p.path != '_notes/rockhounding/tumbling/index.md'" %}
-    {% assign items = items | sort: "date_started" | reverse %}
-  {% endif %}
-  {% for t in items %}
-    {% assign days = "" %}
-    {% if t.date_started and t.date_finished %}
-      {% assign started_s  = t.date_started  | date: "%s" %}
-      {% assign finished_s = t.date_finished | date: "%s" %}
-      {% assign seconds = finished_s | minus: started_s %}
-      {% assign days = seconds | divided_by: 86400 %}
-    {% endif %}
-    <tr>
-      <td><a href="{{ t.url | relative_url }}">{{ t.batch | default: t.title }}</a></td>
-      <td>{{ t.date_started | default: "—" }}</td>
-      <td>{{ t.date_finished | default: "—" }}</td>
-      <td>{{ t.status | default: "—" }}</td>
-      <td>{% if t.rocks %}{{ t.rocks | join: ", " }}{% else %}—{% endif %}</td>
-      <td>{% if days != "" %}{{ days }}{% else %}—{% endif %}</td>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
+{% if include.items %}
+  {% assign items = include.items %}
+{% else %}
+  {% assign items = site.notes | where_exp: "p", "p.path contains '_notes/rockhounding/tumbling/'" %}
+  {% assign items = items | sort: "date_started" | reverse %}
+{% endif %}
+
+<div class="tumble-index">
+  <table class="nice-table">
+    <thead>
+      <tr>
+        <th>Batch</th>
+        <th>Started</th>
+        <th>Finished</th>
+        <th>Status</th>
+        <th>Duration (days)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if items and items.size > 0 %}
+        {% for d in items %}
+          {% assign thumb = nil %}
+          {% assign cand = d.images.cover | image_exists %}
+          {% if cand %}{% assign thumb = cand %}{% endif %}
+
+          {% if thumb == nil %}
+            {% assign cand = d.images.after_stage_5 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil %}
+            {% assign cand = d.images.after_stage_4 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil %}
+            {% assign cand = d.images.after_stage_3 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil %}
+            {% assign cand = d.images.after_stage_2 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil %}
+            {% assign cand = d.images.after_stage_1 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil %}
+            {% assign cand = d.images.after_burnish | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil %}
+            {% assign cand = d.images.rough | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+
+          {% assign days = "" %}
+          {% if d.date_started and d.date_finished %}
+            {% assign started_s  = d.date_started  | date: "%s" %}
+            {% assign finished_s = d.date_finished | date: "%s" %}
+            {% assign seconds = finished_s | minus: started_s %}
+            {% assign days = seconds | divided_by: 86400 %}
+          {% endif %}
+
+          <tr>
+            <td class="batch-cell">
+              {% assign batch = d.batch | default: '' | to_s | strip %}
+              {% assign title = d.title | default: '' | to_s | strip %}
+              {% if batch != '' and title != '' %}
+                {% assign display_text = batch | append: " — " | append: title %}
+              {% elsif batch != '' %}
+                {% assign display_text = batch %}
+              {% elsif title != '' %}
+                {% assign display_text = title %}
+              {% else %}
+                {% assign display_text = "Untitled" %}
+              {% endif %}
+              {% if thumb %}
+                <a class="thumb" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
+                  <img src="{{ thumb | relative_url }}" alt="{{ display_text }}" onerror="this.parentNode.classList.add('thumb--empty'); this.remove();">
+                  <span class="label">{{ display_text }}</span>
+                </a>
+              {% else %}
+                <a class="thumb thumb--empty" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <rect x="2" y="4" width="20" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="8" cy="10" r="2" fill="currentColor"/>
+                    <path d="M5 18l5-6 4 5 3-3 3 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="label">{{ display_text }}</span>
+                </a>
+              {% endif %}
+              <div class="batch-meta">
+                <a href="{{ d.url | relative_url }}">
+                  {% if batch != '' and title != '' %}<strong>{{ batch }}</strong> — {{ title }}{% elsif batch != '' %}<strong>{{ batch }}</strong>{% elsif title != '' %}<strong>{{ title }}</strong>{% else %}<strong>Untitled</strong>{% endif %}
+                </a>
+                {% if d.rocks and d.rocks.size > 0 %}
+                  <div class="chips">
+                    {% for rock in d.rocks %}
+                      {% assign rk = rock | downcase | strip | replace: " ", "-" | replace: "_", "-" | replace: "/", "-" %}
+                      <span class="chip chip--{{ rk }}">{{ rock }}</span>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            </td>
+            <td>{{ d.date_started | default: "—" }}</td>
+            <td>{{ d.date_finished | default: "—" }}</td>
+            <td>
+              {% assign raw = d.status | default: "pending" | downcase | strip %}
+              {% assign st = raw %}
+              {% if raw == "completed" or raw == "finished" or raw == "done" %}
+                {% assign st = "tumbled" %}
+              {% elsif raw == "in progress" or raw == "in-progress" or raw == "progress" or raw == "running" or raw == "active" %}
+                {% assign st = "tumbling" %}
+              {% elsif raw == "pending" or raw == "planned" or raw == "queued" %}
+                {% assign st = "pending" %}
+              {% endif %}
+              <span class="status status--{{ st }}">{{ st }}</span>
+            </td>
+            <td>{% if days != "" %}{{ days }}{% else %}—{% endif %}</td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+          <td colspan="5">No batches found. Put markdown files in <code>_notes/rockhounding/tumbling/</code> with front matter.</td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
 </div>

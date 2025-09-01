@@ -4,6 +4,7 @@
 
 [build.environment]
   RUBY_VERSION = "3.2.1"
+  BUNDLER_VERSION = "2.7.1"
   JEKYLL_ENV = "production"
 
 # (Removed redirect to /admin; public checklist now lives at /tumbling/log-checklist/)
