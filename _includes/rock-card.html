@@ -1,0 +1,14 @@
+<div class="rock-card">
+  {% assign thumb = include.rock.thumbnail | default: include.rock.cover %}
+  {% if thumb %}
+    <a href="{{ include.rock.url | relative_url }}">
+      <img src="{{ thumb | relative_url }}" alt="{{ include.rock.title }}">
+    </a>
+  {% endif %}
+  <h3><a href="{{ include.rock.url | relative_url }}">{{ include.rock.title }}</a></h3>
+  {% if include.rock.description %}
+    <p>{{ include.rock.description }}</p>
+  {% else %}
+    <p>{{ include.rock.excerpt | strip_html | truncate: 160 }}</p>
+  {% endif %}
+</div>

@@ -609,3 +609,51 @@ code {
 .t-thumb.is-placeholder {
   filter: grayscale(0.25) opacity(0.9);
 }
+
+/* Rock card grid */
+.rock-card-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.rock-card {
+  background: var(--card-a);
+  border: 1px solid var(--panel-border);
+  border-radius: $border-radius;
+  padding: 0.75rem;
+  transition: background 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.rock-card:hover {
+  background: var(--card-b);
+}
+
+.rock-card img {
+  width: 100%;
+  height: auto;
+  border-radius: $border-radius;
+  margin-bottom: 0.5rem;
+}
+
+.rock-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1em;
+}
+
+.rock-card h3 a {
+  text-decoration: none;
+  border-bottom: none;
+  color: inherit;
+}
+
+.rock-card h3 a:hover {
+  text-decoration: underline;
+}
+
+.rock-card p {
+  margin: 0;
+  font-size: 0.9em;
+}
