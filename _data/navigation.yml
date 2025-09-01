@@ -6,6 +6,15 @@
   url: /rockhounding/
   active_if:
     path_contains: _notes/rockhounding/
+  children:
+    - title: Rocks
+      url: /rockhounding/rocks/
+      children:
+        - title: Category
+          url: /rockhounding/rocks/category/
+          children:
+            - title: Igneous Rocks
+              url: /rockhounding/rocks/category/igneous-rocks/
 - title: Games
   url: /games/
   active_if:
