@@ -7,11 +7,11 @@ layout: default
 # Tumbling Batches
 
 {% comment %}
-Collect all tumbling docs under _notes/Rockhounding/tumbling (they are part of the
+Collect all tumbling docs under _notes/rockhounding/tumbling (they are part of the
 `notes` collection), exclude this index, and sort by date_started desc.
 {% endcomment %}
-{% assign items = site.notes | where_exp: "p", "p.path contains '_notes/Rockhounding/tumbling/'" %}
-{% assign items = items | where_exp: "p", "p.path != '_notes/Rockhounding/tumbling/index.md'" %}
+{% assign items = site.notes | where_exp: "p", "p.path contains '_notes/rockhounding/tumbling/'" %}
+{% assign items = items | where_exp: "p", "p.path != '_notes/rockhounding/tumbling/index.md'" %}
 {% assign items = items | sort: "date_started" | reverse %}
 
 <div class="tumble-index">
@@ -130,7 +130,7 @@ Collect all tumbling docs under _notes/Rockhounding/tumbling (they are part of t
         {% endfor %}
       {% else %}
         <tr>
-          <td colspan="5">No batches found. Put markdown files in <code>_notes/Rockhounding/tumbling/</code> with front matter.</td>
+          <td colspan="5">No batches found. Put markdown files in <code>_notes/rockhounding/tumbling/</code> with front matter.</td>
         </tr>
       {% endif %}
     </tbody>

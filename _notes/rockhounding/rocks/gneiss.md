@@ -52,7 +52,7 @@ Gneiss belongs to the **[[metamorphic]] Rock family**, formed through the transf
 
 ## Related Stones
 - **[[unakite]]** → Another [[metamorphic]] rock, often green and pink, found along Lake Ontario.  
-- **[[Notes/Rockhounding/Rocks/Minerals/Quartz|Quartz]]** → A common mineral within gneiss, also found as separate pebbles on the shoreline.  
+ - **[[Notes/rockhounding/rocks/minerals/quartz|Quartz]]** → A common mineral within gneiss, also found as separate pebbles on the shoreline.
 - **[[granite]]** → The [[igneous]] parent rock that often transforms into gneiss.  
 
 ---
