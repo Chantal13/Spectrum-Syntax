@@ -1,0 +1,105 @@
+name: Push Summary Check
+
+on:
+  push:
+    branches: ["**"]
+
+permissions:
+  contents: read
+  checks: write
+
+jobs:
+  summarize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate summary
+        id: gen
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="${{ github.event.before }}"
+          head="${{ github.sha }}"
+
+          # Handle new branch (all-zero before)
+          if [[ "$base" == "0000000000000000000000000000000000000000" || -z "$base" ]]; then
+            if git rev-parse "${head}^" >/dev/null 2>&1; then
+              base=$(git rev-parse "${head}^")
+            else
+              # Fallback to first parent of merge or same commit
+              base="$head^1" || true
+            fi
+          fi
+
+          sbase=$(git rev-parse --short "$base" 2>/dev/null || echo "$base")
+          shead=$(git rev-parse --short "$head" 2>/dev/null || echo "$head")
+          branch='${{ github.ref_name }}'
+
+          {
+            echo "**Changes: ${base}..${head}**"
+            echo
+            echo "- Branch: \`${branch}\`"
+            echo "- Range: \`${sbase}\`..\`${shead}\`"
+            echo
+            echo "**Commits**"
+            git log --pretty=format:'- %h %s (%an, %ad)' --date=short "$base..$head" || true
+            echo
+            echo "**Files Changed**"
+            added=$(git diff --diff-filter=A --name-only "$base..$head" || true)
+            modified=$(git diff --diff-filter=M --name-only "$base..$head" || true)
+            deleted=$(git diff --diff-filter=D --name-only "$base..$head" || true)
+            renamed=$(git diff --diff-filter=R --name-status "$base..$head" || true)
+            if [[ -n "${added}" ]]; then
+              echo "- Added:"
+              while IFS= read -r f; do
+                [[ -n "$f" ]] && echo "  - \`$f\`"
+              done <<< "$added"
+            fi
+            if [[ -n "${modified}" ]]; then
+              echo "- Modified:"
+              while IFS= read -r f; do
+                [[ -n "$f" ]] && echo "  - \`$f\`"
+              done <<< "$modified"
+            fi
+            if [[ -n "${deleted}" ]]; then
+              echo "- Deleted:"
+              while IFS= read -r f; do
+                [[ -n "$f" ]] && echo "  - \`$f\`"
+              done <<< "$deleted"
+            fi
+            if [[ -n "${renamed}" ]]; then
+              echo "- Renamed:"
+              while IFS=$'\t' read -r code old new; do
+                [[ -n "$old" && -n "$new" ]] && echo "  - \`$old\` → \`$new\`"
+              done <<< "$renamed"
+            fi
+          } > summary.md
+
+          echo "summary_path=$PWD/summary.md" >> "$GITHUB_OUTPUT"
+
+      - name: Create check run with summary
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const { owner, repo } = context.repo;
+            const head_sha = context.sha;
+            const summary = fs.readFileSync('${{ steps.gen.outputs.summary_path }}', 'utf8');
+            await github.rest.checks.create({
+              owner,
+              repo,
+              name: 'Change Summary',
+              head_sha,
+              status: 'completed',
+              conclusion: 'success',
+              output: {
+                title: 'Change Summary',
+                summary,
+              },
+            });
+

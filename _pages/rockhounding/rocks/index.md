@@ -19,10 +19,11 @@ permalink: /rockhounding/rocks/
 <ul>
   {%- assign items = site.notes | where_exp: "n", "n.path contains '_notes/rockhounding/rocks/'" -%}
   {%- assign items = items | reject: 'path', '_notes/rockhounding/rocks/category/index.md' -%}
-  {%- assign items = items | where_exp: "n", "n.path contains '/rocks/' and n.path contains '/minerals/' == false and n.path contains '/category/' == false" -%}
+  {%- assign items = items | where_exp: "n", "n.path contains '/rocks/'" -%}
   {%- assign items = items | sort: 'title' -%}
   {%- for n in items -%}
-    <li><a class="internal-link" href="{{ n.url | relative_url }}">{{ n.title }}</a></li>
+    {%- unless n.path contains '/minerals/' or n.path contains '/category/' -%}
+      <li><a class="internal-link" href="{{ n.url | relative_url }}">{{ n.title }}</a></li>
+    {%- endunless -%}
   {%- endfor -%}
 </ul>
-

@@ -21,8 +21,14 @@
 - [ ] Added `images.rough` (Before Tumbling) where available
 - [ ] Added most recent stage image(s); `images.after_burnish` if finished
 - [ ] Updated docs when behavior changed (`.bundle/CONTRIBUTING.md`)
+ - [ ] Reviewed auto-generated summaries:
+   - “Change Summary” check in the Checks tab
+   - PR comment labeled “changes-summary” (auto-updates on push)
 
 ## Notes for reviewers (optional)
 
 - Special considerations, migration notes, or follow‑ups
 
+## Auto Summary
+
+The bot posts a “Change Summary” check and an auto-updating PR comment listing commits and files changed. Use those for quick context when reviewing.

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Print a Markdown summary of what is being pushed, so you can paste it into GitHub.
+# Does not block the push even if it fails.
+
+set -u
+repo_root=$(git rev-parse --show-toplevel 2>/dev/null || echo "")
+script="$repo_root/scripts/changes_summary.sh"
+
+if [[ -x "$script" ]]; then
+  # Pass along stdin (ref updates) to the script
+  tmp=$(mktemp)
+  cat > "$tmp"
+  "$script" </"$tmp" || true
+  rm -f "$tmp"
+else
+  echo "(Info) Missing $script; skipping push summary" >&2
+fi
+
+exit 0
+
