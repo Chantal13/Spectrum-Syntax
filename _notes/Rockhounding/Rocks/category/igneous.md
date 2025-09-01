@@ -1,5 +1,6 @@
 ---
 title: Igneous Rocks
+permalink: /rockhounding/rocks/category/igneous/
 draft: false
 tags:
   - rockhounding
