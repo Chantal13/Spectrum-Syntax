@@ -3,5 +3,18 @@
         "tests"
     ],
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+
+    // --- Codex / OpenAI extension ---
+    "openai.stream": false,
+    "openai.useStreaming": false,
+    "openai.streaming": false,
+    "openai.chat.stream": false,
+    "openai.sse": false,
+
+    // (Optional hardening) Don’t let VS Code use any proxy on your behalf
+    "http.proxySupport": "off",
+
+    // (Optional) Make sure the extension only talks directly to the official API
+    "openai.baseUrl": "https://api.openai.com/v1"
 }
