@@ -16,6 +16,10 @@ _includes/notes_graph.json
 
 # macOS junk
 .DS_Store
+._*
+
+# Windows junk
+Thumbs.db
 
 # Local helper scripts (don’t commit)
 # git_push.py
