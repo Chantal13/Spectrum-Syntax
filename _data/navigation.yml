@@ -6,6 +6,10 @@
   url: /rockhounding/
   active_if:
     path_contains: _notes/rockhounding/
+- title: Rock Categories
+  url: /rockhounding/rocks/category/
+  active_if:
+    path_contains: _notes/rockhounding/rocks/category/
   children:
     - title: Rocks
       url: /rockhounding/rocks/
