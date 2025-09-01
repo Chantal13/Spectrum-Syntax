@@ -2,11 +2,8 @@
 <html lang="en">
   {% include head.html %}
   <body>
-    {% include nav.html %}
     <div class="wrapper">
-      {% unless page.url == '/' %}
-        {% include breadcrumbs.html %}
-      {% endunless %}
+      {% include breadcrumbs.html %}
       <main>{{ content }}</main>
       <footer>{% include footer.html %}</footer>
     </div>
