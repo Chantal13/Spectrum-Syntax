@@ -4,6 +4,7 @@
     ],
     "python.testing.unittestEnabled": false,
 <<<<<<< HEAD
+<<<<<<< HEAD
     "python.testing.pytestEnabled": true,
     "openai.stream": false
 }
@@ -12,3 +13,8 @@
 }
 "openai.stream": false
 >>>>>>> fa0261d (Disable OpenAI API streaming.)
+=======
+    "python.testing.pytestEnabled": true,
+    "openai.stream": false
+}
+>>>>>>> b386105 (Disable OpenAI streaming)
