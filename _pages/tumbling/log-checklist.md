@@ -2,6 +2,9 @@
 layout: note
 title: Tumbling Log Checklist
 permalink: /tumbling/log-checklist/
+breadcrumbs:
+  - title: Rockhounding
+    url: /rockhounding/
 ---
 
 # Tumbling Log Checklist
@@ -84,4 +87,3 @@ Provide the following for each stage you run. Stages are typically 1–5.
 - Keep at least one clear “final” photo (Stage 4 or Burnish) — it’s used prominently.
 - If a stage is skipped, omit it or leave fields blank; the layout will fall back to the nearest reasonable image.
 - Set both `batch` and `title` — the index shows “Batch — Title”.
-

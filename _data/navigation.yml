@@ -1,28 +1,23 @@
-- title: Tumbling
-  url: /tumbling/
+- title: Blog
+  url: /blog/
   active_if:
-    url_prefix: /tumbling/
-- title: Rockhounding
-  url: /rockhounding/
-  active_if:
-    path_contains: _notes/rockhounding/
-- title: Rock Categories
-  url: /rockhounding/rocks/category/
-  active_if:
-    path_contains: _notes/rockhounding/rocks/category/
-  children:
-    - title: Rocks
-      url: /rockhounding/rocks/
-      children:
-        - title: Category
-          url: /rockhounding/rocks/category/
-          children:
-            - title: Igneous Rocks
-              url: /rockhounding/rocks/category/igneous/
+    url_prefix: /blog/
 - title: Games
   url: /games/
   active_if:
     path_contains: _notes/games/
+  children:
+    - title: IDLE Champions
+      url: /games/idle-champions/
+    - title: Dark War Survival
+      url: /games/dark-war-survival/
+- title: Hobbies
+  url: /hobbies/
+  active_if:
+    path_contains: rockhounding
+  children:
+    - title: Rockhounding
+      url: /rockhounding/
 - title: About
   url: /about
   active_if:

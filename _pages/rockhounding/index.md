@@ -7,12 +7,10 @@ permalink: /rockhounding/
 <h1>Rockhounding</h1>
 
 <ul>
-  {%- assign rh_notes = site.notes | where_exp: "n", "n.path contains '_notes/rockhounding/'" -%}
-  {%- assign rh_sorted = rh_notes | sort: "title" -%}
-  {%- for note in rh_sorted -%}
-  <li>
-    <a class="internal-link" href="{{ site.baseurl }}{{ note.url }}">{{ note.title }}</a>
-  </li>
-  {%- endfor -%}
+  <li><a class="internal-link" href="{{ '/rockhounding/guides/' | relative_url }}">Guides</a></li>
+  <li><a class="internal-link" href="{{ '/rockhounding/resources/' | relative_url }}">Resources</a></li>
+  <li><a class="internal-link" href="{{ '/tumbling/' | relative_url }}">Tumbling</a></li>
+  <li><a class="internal-link" href="{{ '/rockhounding/rocks/' | relative_url }}">Rocks</a></li>
+  <li><a class="internal-link" href="{{ '/rockhounding/rocks/minerals/' | relative_url }}">Minerals</a></li>
+  
 </ul>
-
