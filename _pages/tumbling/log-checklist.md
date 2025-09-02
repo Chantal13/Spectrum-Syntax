@@ -10,16 +10,18 @@ breadcrumbs:
 # Tumbling Log Checklist
 
 Use this checklist when creating or updating a tumbling batch log so everything renders nicely in the index and detail views.
+This page replaces the old `/admin` path.
 
 ## Required Images
 - [ ] Rough load photo (`images.rough`)
 - [ ] Final result photo — pick one of:
   - [ ] After Stage 4 (`images.after_stage_4`)
   - [ ] After Burnish (`images.after_burnish`)
-- [ ] Optional progress photos (helpful, not required):
-  - [ ] After Stage 1 (`images.after_stage_1`)
-  - [ ] After Stage 2 (`images.after_stage_2`)
-  - [ ] After Stage 3 (`images.after_stage_3`)
+  - [ ] Optional progress photos (helpful, not required):
+    - [ ] After Stage 1 (`images.after_stage_1`)
+    - [ ] After Stage 2 (`images.after_stage_2`)
+    - [ ] After Stage 3 (`images.after_stage_3`)
+    - [ ] After Stage 5 (if applicable) (`images.after_stage_5`)
 - Notes
   - The page will automatically choose a cover image in this order: `cover` → `after_stage_4` → `after_burnish` → `rough`.
   - The index uses the best available image in this order: `cover` → `after_stage_5` → `after_stage_4` → `after_stage_3` → `after_stage_2` → `after_stage_1` → `after_burnish` → `rough`.
