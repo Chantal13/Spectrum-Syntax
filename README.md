@@ -57,7 +57,12 @@ This project targets Ruby 3.2.1 and Bundler 2.7.1. On macOS, use rbenv for a smo
    ```
    The script scans front matter for image paths and fails if any referenced file is missing.
 
-6) Run the test suite:
+6) Check built-site links (after build):
+   ```bash
+   python3 scripts/check_site_links.py
+   ```
+
+7) Run the test suite:
    ```bash
    bundle exec rake test
    ```

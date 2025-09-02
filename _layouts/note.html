@@ -25,7 +25,7 @@ layout: default
       <ul class="backlinks">
         {% for backlink in page.backlinks %}
         <li class="backlink-item">
-          <a class="internal-link" href="{{ site.baseurl }}{{ backlink.url }}{%- if site.use_html_extension -%}.html{%- endif -%}">{{ backlink.title }}</a>
+          <a class="internal-link" href="{{ backlink.url | relative_url | uri_escape }}{%- if site.use_html_extension -%}.html{%- endif -%}">{{ backlink.title }}</a>
           <div class="backlink-excerpt">{{ backlink.excerpt | strip_html | truncatewords: 12 }}</div>
         </li>
         {% endfor %}

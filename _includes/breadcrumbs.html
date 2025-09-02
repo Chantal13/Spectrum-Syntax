@@ -10,12 +10,12 @@
 {%- assign parts = parts | reject: '' -%}
 
 <nav class="breadcrumbs" aria-label="Breadcrumb">
-  <a class="internal-link" href="{{ site.baseurl }}/">{{ site.title }}</a>
+  <a class="internal-link" href="{{ '/' | relative_url }}">{{ site.title }}</a>
 
   {%- if page.breadcrumbs and page.breadcrumbs.size > 0 -%}
     {%- for bc in page.breadcrumbs -%}
       {%- unless forloop.first -%}<span class="crumb-sep">›</span>{%- endunless -%}
-      <a class="internal-link" href="{{ bc.url | relative_url }}">{{ bc.title }}</a>
+      <a class="internal-link" href="{{ bc.url | relative_url | uri_escape }}">{{ bc.title }}</a>
     {%- endfor -%}
     {%- if page.title -%}<span class="crumb-sep">›</span><span aria-current="page">{{ page.title }}</span>{%- endif -%}
   {%- else -%}
@@ -49,7 +49,7 @@
         <span aria-current="page">{{ label }}</span>
       {%- else -%}
         {%- unless forloop.first -%}<span class="crumb-sep">›</span>{%- endunless -%}
-        <a class="internal-link" href="{{ target | relative_url }}">{{ label }}</a>
+        <a class="internal-link" href="{{ target | relative_url | uri_escape }}">{{ label }}</a>
       {%- endif -%}
     {%- endfor -%}
   {%- endif -%}
