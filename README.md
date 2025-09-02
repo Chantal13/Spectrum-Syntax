@@ -111,6 +111,9 @@ Generate summaries locally and in CI for easier PR descriptions and reviews.
   - Old URLs like `/rockhounding/rocks/category/{igneous|metamorphic|sedimentary}/` and top‑level rock pages (e.g., `/rockhounding/rocks/granite/`) now redirect to their new locations.
   - Redirect rules are defined in `netlify.toml`. Please update internal links to point to the new paths to avoid redirect hops.
 
+- Administrative checklist
+  - The tumbling log checklist lives at [`_pages/tumbling/log-checklist.md`](_pages/tumbling/log-checklist.md) (served at `/tumbling/log-checklist/`). Use it when adding or updating tumbling batch logs.
+
 ## License
 
 Source code is available under the [MIT license](LICENSE.md).
