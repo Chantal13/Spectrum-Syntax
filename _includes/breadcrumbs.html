@@ -42,7 +42,7 @@
       {%- if match and match.title -%}
         {%- assign label = match.title -%}
       {%- else -%}
-        {%- assign label = seg | replace: '-', ' ' | capitalize -%}
+        {%- assign label = seg | url_decode | replace: '-', ' ' | replace: '_', ' ' | capitalize -%}
       {%- endif -%}
 
       <span class="crumb-sep">›</span>
@@ -54,4 +54,3 @@
     {%- endfor -%}
   {%- endif -%}
 </nav>
-
