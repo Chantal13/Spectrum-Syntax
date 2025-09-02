@@ -11,10 +11,6 @@ An idle/formation RPG set in D&D’s Forgotten Realms. It’s **playable F2P** b
 [[IDLE Army Building]]
 
 [[IDLE Gold Farming]]
-### Events
-[[Ahghairon’s Day 2025]]
-
-[[Ahghairon’s Day 2025 – Cheatsheet]]
 
 ## Resources
 
