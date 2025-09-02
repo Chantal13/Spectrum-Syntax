@@ -2,12 +2,13 @@
 title: Agate
 draft: false
 tags:
-  - rockhounding
-  - tumbling
+- rockhounding
+- tumbling
 aliases:
-  - agates
-  - Agates
-  - Agate
+- agates
+- Agates
+- Agate
+thumbnail: https://upload.wikimedia.org/wikipedia/commons/a/ae/Mexican_Crazy_Lace_Agate_-_World%27s_Best.jpg
 ---
 Glaciers transported many agates to Southern Ontario from far to the north and west. Agates form in volcanic or [[sedimentary]] cavities where silica-rich water deposits layers of microcrystalline [[quartz]]. 
 
