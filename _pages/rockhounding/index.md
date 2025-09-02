@@ -6,37 +6,39 @@ permalink: /rockhounding/
 
 <h1>Rockhounding</h1>
 
-<p>Field-tested notes on finding, identifying, and caring for rocks and minerals—Ontario-focused, useful anywhere. Start with the guides if you’re new, or jump to rocks and minerals when you want to ID a find.</p>
+<p>Practical, Ontario‑first field notes for finding, identifying, and polishing rocks and minerals. New to the hobby? Start with Guides. Trying to ID a find? Jump to Rocks or Minerals. Ready to polish? See Tumbling.</p>
+
+<p><em>Regional focus: Lake Ontario’s north shore and Southern Ontario; methods apply broadly.</em></p>
 
 <div class="rock-card-grid">
   {% include rock-card.html rock={
-    url: '/rockhounding/guides/',
-    title: 'Guides',
-    description: 'Start here: how to scout locations, gear to bring, ethics and safety, and field ID basics.'
-  } %}
-
-  {% include rock-card.html rock={
     url: '/rockhounding/rocks/',
     title: 'Rocks',
-    description: 'Browse igneous, metamorphic, and sedimentary rocks with identification cues and typical Ontario contexts.'
+    description: 'Igneous, metamorphic, and sedimentary pages with key tells, photos, and Ontario context.'
   } %}
 
   {% include rock-card.html rock={
     url: '/rockhounding/rocks/minerals/',
     title: 'Minerals',
-    description: 'Common rock-forming minerals, quick tests (hardness, streak), and visual tells in the field.'
+    description: 'Rock‑forming minerals with quick tests (hardness, streak) and in‑the‑field visuals.'
   } %}
 
   {% include rock-card.html rock={
-    url: '/rockhounding/resources/',
-    title: 'Resources',
-    description: 'Books, websites, articles, and social accounts. The Books page pulls live from my Goodreads shelf.'
+    url: '/rockhounding/guides/',
+    title: 'Guides',
+    description: 'Where to go, what to bring, how to look—plus safety, ethics, and beginner IDs.'
   } %}
 
   {% include rock-card.html rock={
     url: '/tumbling/',
     title: 'Tumbling',
-    description: 'Step-by-step processes, media recipes, and troubleshooting logs for rock tumbling.'
+    description: 'Grit/media recipes, step‑by‑step runs, and troubleshooting notes from real batches.'
+  } %}
+
+  {% include rock-card.html rock={
+    url: '/rockhounding/resources/',
+    title: 'Resources',
+    description: 'Curated books, websites, articles, and social accounts; books sync from my Goodreads shelf.'
   } %}
 </div>
 
