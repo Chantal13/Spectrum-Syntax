@@ -40,6 +40,10 @@ class LinkParser(HTMLParser):
         elif tag == "img" and "src" in attr_dict:
             self.srcs.append(attr_dict["src"])
 
+    def handle_startendtag(self, tag, attrs):
+        """Handle self-closing tags like <img ... />."""
+        self.handle_starttag(tag, attrs)
+
 def map_url_to_file(url: str):
     if not url.startswith('/'):
         return None
