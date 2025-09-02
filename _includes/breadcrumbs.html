@@ -13,16 +13,12 @@
   <a class="internal-link" href="{{ site.baseurl }}/">{{ site.title }}</a>
 
   {%- if page.breadcrumbs and page.breadcrumbs.size > 0 -%}
-    <span class="crumb-sep crumb-sep--first">›</span>
     {%- for bc in page.breadcrumbs -%}
       {%- unless forloop.first -%}<span class="crumb-sep">›</span>{%- endunless -%}
       <a class="internal-link" href="{{ bc.url | relative_url }}">{{ bc.title }}</a>
     {%- endfor -%}
     {%- if page.title -%}<span class="crumb-sep">›</span><span aria-current="page">{{ page.title }}</span>{%- endif -%}
   {%- else -%}
-    {%- if parts and parts.size > 0 -%}
-      <span class="crumb-sep crumb-sep--first">›</span>
-    {%- endif -%}
     {%- assign accum = '' -%}
     {%- for seg in parts -%}
       {%- assign accum = accum | append: '/' | append: seg -%}
