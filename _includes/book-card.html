@@ -1,8 +1,18 @@
 <div class="book-card">
   <a class="book-card__cover" href="{{ include.book.link }}" target="_blank" rel="noopener">
-    {% assign cover = include.book.image.large | default: include.book.image.medium | default: include.book.image.small %}
+    {% assign cover_l = include.book.image.large %}
+    {% assign cover_m = include.book.image.medium %}
+    {% assign cover_s = include.book.image.small %}
+    {% assign cover = cover_l | default: cover_m | default: cover_s %}
     {% if cover %}
-      <img src="{{ cover }}" alt="Cover of {{ include.book.title | escape }}">
+      <img 
+        src="{{ cover }}"
+        {% if cover_s or cover_m or cover_l %}
+        srcset="{% if cover_s %}{{ cover_s }} 50w{% endif %}{% if cover_m %}{% if cover_s %}, {% endif %}{{ cover_m }} 98w{% endif %}{% if cover_l %}{% if cover_s or cover_m %}, {% endif %}{{ cover_l }} 318w{% endif %}"
+        sizes="(min-width: 700px) 200px, 45vw"
+        {% endif %}
+        loading="lazy" decoding="async"
+        alt="Cover of {{ include.book.title | escape }}">
     {% else %}
       <div class="book-card__no-cover">No cover</div>
     {% endif %}
@@ -19,9 +29,14 @@
         <span class="rating" title="My rating">⭐ {{ include.book.my_rating }}/5</span>
       {% endif %}
       {% if include.book.average_rating %}
-        <span class="rating avg" title="Average rating">★ {{ include.book.average_rating }}/5</span>
+        <span class="rating avg" title="Average rating">★ {{ include.book.average_rating | round: 2 }}/5</span>
       {% endif %}
     </div>
+    {% assign desc = include.book.description_html | strip_html | replace: "&nbsp;", " " | replace: "&#39;", "'" %}
+    {% assign words = include.excerpt_words | default: 45 %}
+    {% if desc and desc != '' %}
+      <p class="book-card__desc">{{ desc | truncatewords: words }}</p>
+    {% endif %}
   </div>
+  
 </div>
-
