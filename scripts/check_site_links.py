@@ -41,9 +41,6 @@ class LinkParser(HTMLParser):
             self.srcs.append(attr_dict["src"])
 
     def handle_startendtag(self, tag, attrs):
-        attr_dict = dict(attrs)
-        if tag == "img" and "src" in attr_dict:
-            self.srcs.append(attr_dict["src"])
 
 def map_url_to_file(url: str):
     if not url.startswith('/'):
