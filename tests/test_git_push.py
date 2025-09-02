@@ -127,13 +127,23 @@ def test_ahead_behind_parses_counts(monkeypatch):
     assert git_push.ahead_behind("origin/main", "main") == (2, 5)
 
 
-def test_ahead_behind_on_exception_returns_zeros(monkeypatch):
+def test_ahead_behind_on_calledprocesserror_returns_zeros(monkeypatch):
+    monkeypatch.setattr(
+        git_push,
+        "out",
+        lambda *_: (_ for _ in ()).throw(sp.CalledProcessError(returncode=2, cmd=["git"])),
+    )
+    assert git_push.ahead_behind("origin/main", "main") == (0, 0)
+
+
+def test_ahead_behind_other_exception_propagates(monkeypatch):
     monkeypatch.setattr(
         git_push,
         "out",
         lambda *_: (_ for _ in ()).throw(RuntimeError("oops")),
     )
-    assert git_push.ahead_behind("origin/main", "main") == (0, 0)
+    with pytest.raises(RuntimeError):
+        git_push.ahead_behind("origin/main", "main")
 
 
 def test_main_first_push_with_commit(monkeypatch, capsys):
