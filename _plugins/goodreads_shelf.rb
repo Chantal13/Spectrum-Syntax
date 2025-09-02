@@ -23,7 +23,7 @@ class GoodreadsShelfGenerator < Jekyll::Generator
         items = parse_items(xml)
         site.data['goodreads'][name] = items
         Jekyll.logger.info("Goodreads:", "Loaded #{items.length} items for '#{name}' shelf")
-      rescue => e
+      rescue StandardError => e
         Jekyll.logger.warn("Goodreads:", "Failed to load '#{name}' shelf: #{e.class} #{e.message}")
         site.data['goodreads'][name] ||= []
       end
