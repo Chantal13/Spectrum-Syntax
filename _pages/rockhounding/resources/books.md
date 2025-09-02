@@ -8,7 +8,7 @@ permalink: /rockhounding/resources/books/
 
 <p>Live list pulled from my Goodreads <em>geology</em> shelf.</p>
 
-{% assign books = site.data.goodreads.geology | default: [] %}
+{% assign books = site.data.goodreads.geology %}
 
 {% if books.size == 0 %}
   <p><em>No books found yet.</em> If you’re seeing this during a fresh build, the Goodreads feed may not have loaded or the shelf is empty.</p>
