@@ -63,6 +63,7 @@
 
         const lightenHex = (hex, t) => rgbToHex(mixRgb(parseCssColor(hex), { r: 255, g: 255, b: 255 }, t));
         const darkenHex  = (hex, t) => rgbToHex(mixRgb(parseCssColor(hex), { r: 0, g: 0, b: 0 }, t));
+        const mixHex     = (h1, h2, t) => rgbToHex(mixRgb(parseCssColor(h1), parseCssColor(h2), t));
 
         // Read base palette (7 colors) from CSS custom properties, normalize to hex
         const readBasePalette = () => {
@@ -312,7 +313,25 @@
 
           link = link.data(linksData, (d) => `${d.source.id}-${d.target.id}`);
           link.exit().remove();
-          link = link.enter().append("line").attr("stroke-width", STROKE).merge(link);
+          // Build a quick id -> category map for link colouring
+          const idToCat = new Map();
+          nodesData.forEach(n => idToCat.set(n.id, n.category || ''));
+
+          const linkStroke = (d) => {
+            const sid = (d.source && d.source.id) || d.source;
+            const tid = (d.target && d.target.id) || d.target;
+            const c1 = colorForCategory(idToCat.get(sid));
+            const c2 = colorForCategory(idToCat.get(tid));
+            // Blend the two endpoint colours and lighten slightly for subtlety
+            return lightenHex(mixHex(c1, c2, 0.5), 0.08);
+          };
+
+          link = link
+            .enter()
+            .append("line")
+            .attr("stroke-width", STROKE)
+            .merge(link)
+            .attr("stroke", linkStroke);
 
           text = text.data(nodesData, (d) => d.label);
           text.exit().remove();
