@@ -47,7 +47,7 @@ def ahead_behind(upstream, branch):
         s = out(["git", "rev-list", "--left-right", "--count", f"{upstream}...{branch}"])
         left, right = s.split()
         return int(left), int(right)
-    except Exception:
+    except sp.CalledProcessError:
         return (0, 0)
 
 def ensure_on_branch(branch: str, *, auto_branch: bool = False) -> str:
