@@ -74,12 +74,12 @@
                 {% assign display_text = "Untitled" %}
               {% endif %}
               {% if thumb %}
-                <a class="thumb" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
+                <a class="thumb" href="{{ d.url | relative_url | uri_escape }}" aria-label="Open {{ display_text }}">
                   <img src="{{ thumb | relative_url }}" alt="{{ display_text }}" onerror="this.parentNode.classList.add('thumb--empty'); this.remove();">
                   <span class="label">{{ display_text }}</span>
                 </a>
               {% else %}
-                <a class="thumb thumb--empty" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
+                <a class="thumb thumb--empty" href="{{ d.url | relative_url | uri_escape }}" aria-label="Open {{ display_text }}">
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                     <rect x="2" y="4" width="20" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
                     <circle cx="8" cy="10" r="2" fill="currentColor"/>
@@ -89,7 +89,7 @@
                 </a>
               {% endif %}
               <div class="batch-meta">
-                <a href="{{ d.url | relative_url }}">
+                <a href="{{ d.url | relative_url | uri_escape }}">
                   {% if batch != '' and title != '' %}<strong>{{ batch }}</strong> — {{ title }}{% elsif batch != '' %}<strong>{{ batch }}</strong>{% elsif title != '' %}<strong>{{ title }}</strong>{% else %}<strong>Untitled</strong>{% endif %}
                 </a>
                 {% if d.rocks and d.rocks.size > 0 %}

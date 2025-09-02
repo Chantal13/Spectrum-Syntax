@@ -23,7 +23,7 @@ permalink: /rockhounding/rocks/
   {%- assign items = items | sort: 'title' -%}
   {%- for n in items -%}
     {%- unless n.path contains '/minerals/' or n.path contains '/category/' -%}
-      <li><a class="internal-link" href="{{ n.url | relative_url }}">{{ n.title }}</a></li>
+      <li><a class="internal-link" href="{{ n.url | relative_url | uri_escape }}">{{ n.title }}</a></li>
     {%- endunless -%}
   {%- endfor -%}
 </ul>
