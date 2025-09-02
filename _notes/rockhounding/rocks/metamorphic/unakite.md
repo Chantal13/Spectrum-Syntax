@@ -6,6 +6,7 @@ tags:
   - tumbling
 aliases:
   - unakite
+thumbnail: "/assets/Rockhound - 3 of 4.jpeg"
 ---
 Unakite is a [[metamorphic]] rock created when [[granite]] is altered by hydrothermal fluids, replacing [[feldspar]] with green [[epidote]].  
 

@@ -7,6 +7,7 @@ aliases:
   - puddingstone
   - conglomerates
   - Conglomerates
+thumbnail: "/assets/Rockhound - 4 of 4.jpeg"
 ---
 Conglomerate, or puddingstone, is a **[[sedimentary rock]]** made of rounded pebbles and cobbles cemented together by finer materials such as sand, silt, or silica. It often looks like a “rock made of rocks,” with colourful fragments locked in a natural matrix.  
 

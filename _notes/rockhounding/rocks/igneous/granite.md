@@ -5,6 +5,7 @@ tags:
   - rockhounding
 aliases:
   - Granite
+thumbnail: "/assets/Rockhound - 1 of 4.jpeg"
 ---
 Granite is a coarse-grained **[[igneous]] rock** composed mainly of **[[quartz]], [[feldspar]], and mica**. It forms when magma cools slowly beneath the Earth’s surface, giving its crystals time to grow large and visible.  
 

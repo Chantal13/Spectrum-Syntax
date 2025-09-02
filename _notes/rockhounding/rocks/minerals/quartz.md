@@ -8,6 +8,7 @@ aliases:
   - quartzes
   - Quartzes
   - Quartz
+thumbnail: "/assets/tumbling/001/after-s4.jpg"
 ---
 Quartz (SiO₂) is one of the most common minerals. It forms in **[[igneous]]** ([[granite]]), **[[metamorphic]]** ([[gneiss]], schist), and **[[sedimentary]]** (cement, veins) contexts.  
 
@@ -27,5 +28,4 @@ Quartz (SiO₂) is one of the most common minerals. It forms in **[[igneous]]** 
 > [!info] Fun fact:  
 > Quartz appears in **all three rock families** — [[igneous]], [[sedimentary]], and [[metamorphic]] — which is why it’s so common.  
 > Learn more here → [[igneous|Igneous Rocks]] | [[sedimentary|Sedimentary Rocks]] | [[metamorphic|Metamorphic Rocks]]
-
 

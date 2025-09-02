@@ -8,6 +8,7 @@ aliases:
   - garnet
   - garnets
   - Garnets
+thumbnail: "/assets/tumbling/001/after-s1.jpg"
 ---
 Garnet is a group of silicate minerals that are well known for their **deep red crystals**, though they can also occur in green, orange, brown, yellow, and even black varieties. Garnets form under conditions of high temperature and pressure, making them common in **metamorphic rocks** such as [[gneiss]] and schist.  
 

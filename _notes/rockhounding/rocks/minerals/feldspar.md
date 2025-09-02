@@ -4,6 +4,7 @@ draft: false
 tags:
   - rockhounding
   - minerals
+thumbnail: "/assets/tumbling/002/rough.jpg"
 aliases:
   - Feldspar
 ---

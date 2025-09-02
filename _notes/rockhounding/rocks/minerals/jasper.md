@@ -8,6 +8,7 @@ aliases:
   - jaspers
   - Jaspers
   - Jasper
+thumbnail: "/assets/tumbling/001/after-s3.jpg"
 ---
 Jasper is an opaque chalcedony ([[quartz|quartz]]) coloured by mineral impurities, usually iron oxides. It often originates in silica-rich [[sedimentary]] deposits, though glacial action has moved it widely.  
 

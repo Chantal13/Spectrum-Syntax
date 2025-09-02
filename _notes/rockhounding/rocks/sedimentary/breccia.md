@@ -3,6 +3,7 @@ title: Breccia
 draft: false
 tags:
   - rockhounding
+thumbnail: "/assets/tumbling/coming_soon.jpg"
 aliases:
   - Breccia
 ---
