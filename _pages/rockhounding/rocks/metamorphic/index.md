@@ -2,6 +2,8 @@
 layout: page
 title: Metamorphic Rocks
 permalink: /rockhounding/rocks/metamorphic/
+aliases:
+  - metamorphic
 ---
 
 <h1>Metamorphic Rocks</h1>
@@ -13,4 +15,3 @@ permalink: /rockhounding/rocks/metamorphic/
     <li><a class="internal-link" href="{{ n.url | relative_url | uri_escape }}">{{ n.title }}</a></li>
   {%- endfor -%}
 </ul>
-

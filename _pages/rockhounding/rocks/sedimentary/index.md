@@ -2,6 +2,8 @@
 layout: page
 title: Sedimentary Rocks
 permalink: /rockhounding/rocks/sedimentary/
+aliases:
+  - sedimentary
 ---
 
 <h1>Sedimentary Rocks</h1>
@@ -13,4 +15,3 @@ permalink: /rockhounding/rocks/sedimentary/
     <li><a class="internal-link" href="{{ n.url | relative_url | uri_escape }}">{{ n.title }}</a></li>
   {%- endfor -%}
 </ul>
-

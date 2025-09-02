@@ -33,6 +33,15 @@ class BidirectionalLinksGenerator < Jekyll::Generator
             nil
           end
 
+        # alias patterns (if present) — support [[alias]] and [[alias|label]]
+        raw_aliases = note_potentially_linked_to.data["aliases"]
+        aliases_arr =
+          case raw_aliases
+          when String then [raw_aliases]
+          when Array then raw_aliases.compact.map(&:to_s)
+          else []
+          end
+
         new_href   = "#{site.baseurl}#{note_potentially_linked_to.url}#{link_extension}"
         anchor_tag = "<a class='internal-link' href='#{new_href}'>\\1</a>"
 
@@ -54,6 +63,20 @@ class BidirectionalLinksGenerator < Jekyll::Generator
         if note_title_regexp_pattern
           current_note.content.gsub!(
             /\[\[(#{note_title_regexp_pattern})\]\]/i,
+            anchor_tag
+          )
+        end
+
+        # [[alias|label]] and [[alias]]
+        aliases_arr.each do |al|
+          next if al.to_s.strip.empty?
+          al_rx = Regexp.escape(al.to_s).gsub('\_', '[ _]').gsub('\-', '[ -]')
+          current_note.content.gsub!(
+            /\[\[(?:#{al_rx})\|(.+?)(?=\])\]\]/i,
+            anchor_tag
+          )
+          current_note.content.gsub!(
+            /\[\[(#{al_rx})\]\]/i,
             anchor_tag
           )
         end

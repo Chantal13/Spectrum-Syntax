@@ -2,6 +2,8 @@
 layout: page
 title: Igneous Rocks
 permalink: /rockhounding/rocks/igneous/
+aliases:
+  - igneous
 ---
 
 <h1>Igneous Rocks</h1>
@@ -13,4 +15,3 @@ permalink: /rockhounding/rocks/igneous/
     <li><a class="internal-link" href="{{ n.url | relative_url | uri_escape }}">{{ n.title }}</a></li>
   {%- endfor -%}
 </ul>
-
