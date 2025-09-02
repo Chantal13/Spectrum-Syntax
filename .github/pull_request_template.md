@@ -1,34 +1,45 @@
-## Summary
+<!--
+PR Title (use Conventional Commits where possible):
+Example: feat(minerals): generic path-based grouping; show hardness on cards
+-->
 
-- What does this PR change and why?
+## Summary
+- What changed and why (1–2 sentences).
 
 ## Changes
+- [ ] Key change 1
+- [ ] Key change 2
+- Add file paths when helpful (e.g., `_path/to/file.ext`).
 
-- Key updates (files, features, fixes)
+## Rationale
+- Why this approach? Any alternatives considered.
 
-## Screenshots / Demos (optional)
+## Implementation Notes
+- Important details, assumptions, or follow-ups.
+- Breaking changes: none
 
-- Add before/after or a short clip if helpful
+## Testing
+- Commands
+  - `bundle install --path vendor/bundle`
+  - `bundle exec jekyll serve`
+- Verify
+  - [ ] Expected pages render correctly
+  - [ ] No duplicates or regressions in lists
+  - [ ] New/changed metadata appears as intended
+- Screenshots (if UI changes):
+
+## Risks
+- Potential regressions or edge cases; how mitigated.
 
 ## Checklist
+- [ ] Conventional commit-style title
+- [ ] Build/test pass locally (if applicable)
+- [ ] Docs updated (if needed)
+- [ ] Links/screenshots added (if UI)
 
-- [ ] Ran `bundle install` (if Gemfile changed)
-- [ ] Previewed locally with `bundle exec jekyll serve`
-- [ ] Checked `/tumbling/` shows the expected thumbnail(s)
-- [ ] Image paths use leading slash (e.g., `/assets/tumbling/<id>/after-s4.jpg`)
-- [ ] No zero‑byte images (opened locally to verify)
-- [ ] Front matter has required fields (`batch`, `status`, `date_started`, `stages`)
-- [ ] Added `images.rough` (Before Tumbling) where available
-- [ ] Added most recent stage image(s); `images.after_burnish` if finished
-- [ ] Updated docs when behavior changed (`.bundle/CONTRIBUTING.md`)
- - [ ] Reviewed auto-generated summaries:
-   - “Change Summary” check in the Checks tab
-   - PR comment labeled “changes-summary” (auto-updates on push)
+## Linked Issues
+Closes #
 
-## Notes for reviewers (optional)
+## Release Notes
+- Short, user-facing summary of the change.
 
-- Special considerations, migration notes, or follow‑ups
-
-## Auto Summary
-
-The bot posts a “Change Summary” check and an auto-updating PR comment listing commits and files changed. Use those for quick context when reviewing.
