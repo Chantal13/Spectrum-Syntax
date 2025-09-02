@@ -15,14 +15,29 @@ permalink: /rockhounding/rocks/
 
 </ul>
 
-<h2>All Rocks</h2>
-<ul>
-  {%- assign items = site.notes | where_exp: "n", "n.path contains '_notes/rockhounding/rocks/'" -%}
-  {%- assign items = items | where_exp: "n", "n.path contains '/rocks/'" -%}
-  {%- assign items = items | sort: 'title' -%}
-  {%- for n in items -%}
-    {%- unless n.path contains '/minerals/' -%}
-      <li><a class="internal-link" href="{{ n.url | relative_url | uri_escape }}">{{ n.title }}</a></li>
-    {%- endunless -%}
+<h2>Igneous</h2>
+<div class="rock-card-grid">
+  {%- assign igneous = site.notes | where_exp: "n", "n.path contains '_notes/rockhounding/rocks/igneous/'" -%}
+  {%- assign igneous = igneous | sort: 'title' -%}
+  {%- for n in igneous -%}
+    {% include rock-card.html rock=n %}
   {%- endfor -%}
-</ul>
+</div>
+
+<h2>Metamorphic</h2>
+<div class="rock-card-grid">
+  {%- assign metamorphic = site.notes | where_exp: "n", "n.path contains '_notes/rockhounding/rocks/metamorphic/'" -%}
+  {%- assign metamorphic = metamorphic | sort: 'title' -%}
+  {%- for n in metamorphic -%}
+    {% include rock-card.html rock=n %}
+  {%- endfor -%}
+</div>
+
+<h2>Sedimentary</h2>
+<div class="rock-card-grid">
+  {%- assign sedimentary = site.notes | where_exp: "n", "n.path contains '_notes/rockhounding/rocks/sedimentary/'" -%}
+  {%- assign sedimentary = sedimentary | sort: 'title' -%}
+  {%- for n in sedimentary -%}
+    {% include rock-card.html rock=n %}
+  {%- endfor -%}
+</div>
