@@ -511,10 +511,11 @@ code {
    Notes Graph
    ========================= */
 #graph-wrapper {
-  /* Slightly darker than page background */
-  background: var(--card-a);
-  /* Use color-mix where supported for a subtle darken */
-  background: color-mix(in srgb, var(--color-bg) 90%, black);
+  /* Lighter than page background for better node contrast */
+  /* Fallback (no color-mix support): lighten the known page bg */
+  background: lighten(#fefae0, 6%);
+  /* Preferred: lighten current page bg via color-mix */
+  background: color-mix(in srgb, var(--color-bg) 80%, white);
   border-radius: 4px;
   height: auto;
 }
