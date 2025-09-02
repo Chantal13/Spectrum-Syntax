@@ -1,6 +1,7 @@
 title: Rockhounding Overview
 aliases:
   - rockhounding
+  - Rockhounding
 ---
 Rockhounding is the hobby of searching for, identifying, and collecting rocks, minerals, and the occasional fossil. It blends time outdoors with hands-on learning about geology—how rocks form, where minerals occur, and what clues in the landscape point to good finds. Responsible rockhounding also means knowing the rules (land access and permits), practising safe fieldwork, and respecting the environment and cultural sites.
 
