@@ -2,7 +2,7 @@
 
 <div class="graph-card">
   <div class="graph-card__header">
-    <div class="graph-title">Notes Graph</div>
+    <div class="graph-title">{{ include.title | default: 'Notes Graph' }}</div>
   </div>
   <div id="graph-wrapper">
   <script>
@@ -124,6 +124,22 @@
         const graphData = {% include notes_graph.json %}
         let nodesData = graphData.nodes;
         let linksData = graphData.edges;
+
+        // Optional filtering parameters passed via include:
+        // - only_category: keep nodes whose node.category matches exactly
+        // - path_contains: keep nodes whose node.path includes this substring
+        const onlyCategory = "{{ include.only_category | default: '' }}".trim();
+        const pathContains = "{{ include.path_contains | default: '' }}".trim();
+
+        if (onlyCategory || pathContains) {
+          nodesData = nodesData.filter((n) => {
+            if (onlyCategory && n.category !== onlyCategory) return false;
+            if (pathContains && !(n.path || '').includes(pathContains)) return false;
+            return true;
+          });
+          const allowed = new Set(nodesData.map((n) => n.id));
+          linksData = linksData.filter((e) => allowed.has(e.source) && allowed.has(e.target));
+        }
 
         const nodeSize = {};
 
