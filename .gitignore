@@ -28,3 +28,8 @@ Thumbs.db
 _staging/
 _templates/
 vendor/
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
