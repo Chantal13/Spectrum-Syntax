@@ -6,10 +6,10 @@ permalink: /rockhounding/rocks/minerals/
 
 <h1>Minerals</h1>
 
-<ul>
+<div class="rock-card-grid">
   {%- assign items = site.notes | where_exp: "n", "n.path contains '_notes/rockhounding/rocks/minerals/'" -%}
   {%- assign items = items | sort: 'title' -%}
   {%- for n in items -%}
-    <li><a class="internal-link" href="{{ n.url | relative_url | uri_escape }}">{{ n.title }}</a></li>
+    {% include rock-card.html rock=n %}
   {%- endfor -%}
-</ul>
+</div>
