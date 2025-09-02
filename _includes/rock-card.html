@@ -19,4 +19,7 @@
   {% else %}
     <p>{{ include.rock.excerpt | strip_html | truncate: 160 }}</p>
   {% endif %}
+  {% if include.rock.hardness %}
+    <p class="rock-card-meta">Hardness: {{ include.rock.hardness }}</p>
+  {% endif %}
 </div>

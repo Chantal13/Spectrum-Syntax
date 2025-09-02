@@ -855,6 +855,13 @@ code {
   font-size: 0.9em;
 }
 
+/* Additional rock card metadata (e.g., hardness) */
+.rock-card-meta {
+  margin-top: 0.35rem;
+  font-size: 0.85em;
+  color: var(--text-muted, #555);
+}
+
 /* Book card grid */
 .book-card-grid {
   display: grid;

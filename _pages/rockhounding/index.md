@@ -40,3 +40,5 @@ rocks:
   <li><a class="internal-link" href="{{ '/rockhounding/rocks/igneous/' | relative_url }}">Igneous</a> · <a class="internal-link" href="{{ '/rockhounding/rocks/metamorphic/' | relative_url }}">Metamorphic</a> · <a class="internal-link" href="{{ '/rockhounding/rocks/sedimentary/' | relative_url }}">Sedimentary</a></li>
   <li><a class="internal-link" href="{{ '/rockhounding/resources/books/' | relative_url }}">Books</a> · <a class="internal-link" href="{{ '/rockhounding/resources/websites/' | relative_url }}">Websites</a> · <a class="internal-link" href="{{ '/rockhounding/resources/articles/' | relative_url }}">Articles</a></li>
 </ul>
+
+{% include notes_graph.html only_category='rockhounding' title='Rockhounding Notes Graph' %}
