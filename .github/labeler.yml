@@ -1,20 +1,31 @@
 docs:
-  - '.bundle/CONTRIBUTING.md'
-  - 'README.md'
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.bundle/CONTRIBUTING.md'
+          - 'README.md'
 
 tumbling-log:
-  - '_tumble_logs/**'
+  - changed-files:
+      - any-glob-to-any-file:
+          - '_tumble_logs/**'
 
 assets:
-  - 'assets/tumbling/**'
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'assets/tumbling/**'
 
 theme:
-  - '_layouts/**'
-  - '_sass/**'
+  - changed-files:
+      - any-glob-to-any-file:
+          - '_layouts/**'
+          - '_sass/**'
 
 plugins:
-  - '_plugins/**'
+  - changed-files:
+      - any-glob-to-any-file:
+          - '_plugins/**'
 
 ci:
-  - '.github/workflows/**'
-
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/workflows/**'

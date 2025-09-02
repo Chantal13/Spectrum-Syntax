@@ -1,28 +1,27 @@
 ---
 layout: note
 title: Tumbling Log Checklist
-permalink: /tumbling/log-checklist/
-breadcrumbs:
-  - title: Rockhounding
-    url: /rockhounding/
+tags:
+  - tumbling
+  - checklist
+permalink: /admin/tumbling/log-checklist/
 ---
 
 # Tumbling Log Checklist
 
 Use this checklist when creating or updating a tumbling batch log so everything renders nicely in the index and detail views.
-This page replaces the old `/admin` path.
 
 ## Required Images
 - [ ] Rough load photo (`images.rough`)
 - [ ] Final result photo — pick one of:
   - [ ] After Stage 4 (`images.after_stage_4`)
   - [ ] After Burnish (`images.after_burnish`)
-  - [ ] Optional progress photos (helpful, not required):
-    - [ ] After Stage 1 (`images.after_stage_1`)
-    - [ ] After Stage 2 (`images.after_stage_2`)
-    - [ ] After Stage 3 (`images.after_stage_3`)
-    - [ ] After Stage 5 (if applicable) (`images.after_stage_5`)
+- [ ] Optional progress photos (helpful, not required):
+  - [ ] After Stage 1 (`images.after_stage_1`)
+  - [ ] After Stage 2 (`images.after_stage_2`)
+  - [ ] After Stage 3 (`images.after_stage_3`)
 - Notes
+  - Prefer standardized file names with the batch appended, e.g., `rough-001.jpg`, `after-s1-001.jpg`, … `after-burnish-001.jpg` inside `/assets/tumbling/<batch>/`.
   - The page will automatically choose a cover image in this order: `cover` → `after_stage_4` → `after_burnish` → `rough`.
   - The index uses the best available image in this order: `cover` → `after_stage_5` → `after_stage_4` → `after_stage_3` → `after_stage_2` → `after_stage_1` → `after_burnish` → `rough`.
 
@@ -82,7 +81,7 @@ Provide the following for each stage you run. Stages are typically 1–5.
     repeat: no
     why: "Advancing most stones; a few will be held back next batch"
   images:
-    - "/assets/tumbling/XYZ/after-s2.jpg"
+    - "/assets/tumbling/001/after-s2-001.jpg"
 ```
 
 ## Tips
