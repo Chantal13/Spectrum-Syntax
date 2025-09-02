@@ -858,8 +858,12 @@ code {
 /* Book card grid */
 .book-card-grid {
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 700px) {
+  .book-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 .book-card {

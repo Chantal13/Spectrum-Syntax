@@ -9,7 +9,7 @@
         src="{{ cover }}"
         {% if cover_s or cover_m or cover_l %}
         srcset="{% if cover_s %}{{ cover_s }} 50w{% endif %}{% if cover_m %}{% if cover_s %}, {% endif %}{{ cover_m }} 98w{% endif %}{% if cover_l %}{% if cover_s or cover_m %}, {% endif %}{{ cover_l }} 318w{% endif %}"
-        sizes="(min-width: 700px) 200px, 45vw"
+        sizes="(min-width: 900px) 360px, (min-width: 700px) 320px, 90vw"
         {% endif %}
         loading="lazy" decoding="async"
         alt="Cover of {{ include.book.title | escape }}">
