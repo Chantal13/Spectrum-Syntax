@@ -8,3 +8,50 @@
   JEKYLL_ENV = "production"
 
 # (Removed redirect to /admin; public checklist now lives at /tumbling/log-checklist/)
+
+# Redirects for reorganized rock category paths
+[[redirects]]
+  from = "/rockhounding/rocks/category/igneous/"
+  to = "/rockhounding/rocks/igneous/"
+  status = 301
+
+[[redirects]]
+  from = "/rockhounding/rocks/category/metamorphic/"
+  to = "/rockhounding/rocks/metamorphic/"
+  status = 301
+
+[[redirects]]
+  from = "/rockhounding/rocks/category/sedimentary/"
+  to = "/rockhounding/rocks/sedimentary/"
+  status = 301
+
+# Redirects for moved rock pages
+[[redirects]]
+  from = "/rockhounding/rocks/breccia/"
+  to = "/rockhounding/rocks/sedimentary/breccia/"
+  status = 301
+
+[[redirects]]
+  from = "/rockhounding/rocks/conglomerate/"
+  to = "/rockhounding/rocks/sedimentary/conglomerate/"
+  status = 301
+
+[[redirects]]
+  from = "/rockhounding/rocks/limestone/"
+  to = "/rockhounding/rocks/sedimentary/limestone/"
+  status = 301
+
+[[redirects]]
+  from = "/rockhounding/rocks/gneiss/"
+  to = "/rockhounding/rocks/metamorphic/gneiss/"
+  status = 301
+
+[[redirects]]
+  from = "/rockhounding/rocks/unakite/"
+  to = "/rockhounding/rocks/metamorphic/unakite/"
+  status = 301
+
+[[redirects]]
+  from = "/rockhounding/rocks/granite/"
+  to = "/rockhounding/rocks/igneous/granite/"
+  status = 301
