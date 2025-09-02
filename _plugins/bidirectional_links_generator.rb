@@ -103,11 +103,20 @@ class BidirectionalLinksGenerator < Jekyll::Generator
           "uncategorized"
         end
 
+        # Detect rock class (igneous/sedimentary/metamorphic) from path under rockhounding/rocks
+        rock_class = begin
+          m = current_note.path.to_s.match(%r{/rocks/(?:category/)?(igneous|sedimentary|metamorphic)(?:/|\.md)})
+          m ? m[1] : nil
+        rescue
+          nil
+        end
+
         graph_nodes << {
           id:   nid,
           path: "#{site.baseurl}#{current_note.url}#{link_extension}",
           label: label,
-          category: category
+          category: category,
+          rock_class: rock_class
         }
       end
 

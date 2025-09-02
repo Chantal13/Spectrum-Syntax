@@ -97,6 +97,13 @@
         const BASE_PALETTE = readBasePalette();
         const PALETTE = buildExtendedPalette(BASE_PALETTE); // 7 * 3 = 21 colours
 
+        // Explicit colours for rock classes to ensure consistent mapping
+        const ROCK_COLOURS = {
+          igneous: BASE_PALETTE[0],      // imperial red
+          sedimentary: BASE_PALETTE[3],  // saffron
+          metamorphic: BASE_PALETTE[6],  // paynes gray
+        };
+
         const colorForCategory = (cat) => {
           if (!cat) return PALETTE[0];
           let hash = 0;
@@ -105,6 +112,13 @@
           }
           const idx = Math.abs(hash) % PALETTE.length;
           return PALETTE[idx];
+        };
+
+        const colorForNode = (node) => {
+          if (node && node.rock_class && ROCK_COLOURS[node.rock_class]) {
+            return ROCK_COLOURS[node.rock_class];
+          }
+          return colorForCategory(node && node.category);
         };
 
         const graphData = {% include notes_graph.json %}
@@ -304,7 +318,7 @@
             .attr("r", (d) => {
               return nodeSize[d.id];
             })
-            .attr("fill", (d) => colorForCategory(d.category))
+            .attr("fill", (d) => colorForNode(d))
             .attr("data-cat", (d) => d.category || '')
             .on("click", onClick)
             .on("mouseover", onMouseover)
@@ -313,15 +327,17 @@
 
           link = link.data(linksData, (d) => `${d.source.id}-${d.target.id}`);
           link.exit().remove();
-          // Build a quick id -> category map for link colouring
-          const idToCat = new Map();
-          nodesData.forEach(n => idToCat.set(n.id, n.category || ''));
+          // Build a quick id -> node map for link colouring
+          const idToNode = new Map();
+          nodesData.forEach(n => idToNode.set(n.id, n));
 
           const linkStroke = (d) => {
             const sid = (d.source && d.source.id) || d.source;
             const tid = (d.target && d.target.id) || d.target;
-            const c1 = colorForCategory(idToCat.get(sid));
-            const c2 = colorForCategory(idToCat.get(tid));
+            const n1 = idToNode.get(sid);
+            const n2 = idToNode.get(tid);
+            const c1 = colorForNode(n1);
+            const c2 = colorForNode(n2);
             // Blend the two endpoint colours and lighten slightly for subtlety
             return lightenHex(mixHex(c1, c2, 0.5), 0.08);
           };
