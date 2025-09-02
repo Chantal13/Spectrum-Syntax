@@ -1,12 +1,16 @@
 <div class="rock-card">
   {% assign thumb = include.rock.thumbnail | default: include.rock.cover %}
   {% if thumb %}
-    {% assign thumb_webp = thumb | replace: '.jpeg', '.webp' | replace: '.jpg', '.webp' | replace: '.png', '.webp' %}
     <a href="{{ include.rock.url | relative_url | uri_escape }}">
-      <picture>
-        <source type="image/webp" srcset="{{ thumb_webp | relative_url | uri_escape }}">
-        <img src="{{ thumb | relative_url | uri_escape }}" alt="{{ include.rock.title }}">
-      </picture>
+      {% if thumb contains '://' %}
+        <img src="{{ thumb | uri_escape }}" alt="{{ include.rock.title }}">
+      {% else %}
+        {% assign thumb_webp = thumb | replace: '.jpeg', '.webp' | replace: '.jpg', '.webp' | replace: '.png', '.webp' %}
+        <picture>
+          <source type="image/webp" srcset="{{ thumb_webp | relative_url | uri_escape }}">
+          <img src="{{ thumb | relative_url | uri_escape }}" alt="{{ include.rock.title }}">
+        </picture>
+      {% endif %}
     </a>
   {% endif %}
   <h3><a href="{{ include.rock.url | relative_url | uri_escape }}">{{ include.rock.title }}</a></h3>
