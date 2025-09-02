@@ -11,11 +11,10 @@ permalink: /blog/
   {%- assign posts = posts | sort: 'last_modified_at' | reverse -%}
   {%- for note in posts -%}
     <li>
-      <a class="internal-link" href="{{ note.url | relative_url }}">{{ note.title }}</a>
+      <a class="internal-link" href="{{ note.url | relative_url | uri_escape }}">{{ note.title }}</a>
       {%- if note.last_modified_at -%}
         <small> — {{ note.last_modified_at | date: "%b %-d, %Y" }}</small>
       {%- endif -%}
     </li>
   {%- endfor -%}
 </ul>
-
