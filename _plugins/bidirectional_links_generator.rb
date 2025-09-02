@@ -88,10 +88,26 @@ class BidirectionalLinksGenerator < Jekyll::Generator
         label = current_note.data["slug"]  if label.nil? || label.to_s.strip.empty?
         label = current_note.basename_without_ext if label.nil? || label.to_s.strip.empty?
 
+        # Derive a simple category from the note path: first folder under _notes/
+        # Example: _notes/rockhounding/rocks/foo.md => "rockhounding"
+        category = begin
+          path = current_note.path.to_s
+          if path.include?("_notes/")
+            after = path.split("_notes/", 2)[1]
+            seg = after&.split("/", 2)&.first
+            seg && !seg.empty? ? seg : "uncategorized"
+          else
+            "uncategorized"
+          end
+        rescue
+          "uncategorized"
+        end
+
         graph_nodes << {
           id:   nid,
           path: "#{site.baseurl}#{current_note.url}#{link_extension}",
-          label: label
+          label: label,
+          category: category
         }
       end
 

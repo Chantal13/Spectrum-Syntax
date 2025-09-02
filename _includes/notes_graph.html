@@ -21,6 +21,30 @@
         const FONT_BASELINE = 40;
         const MAX_LABEL_LENGTH = 50;
 
+        // Read category palette from CSS custom properties
+        const readPalette = () => {
+          const root = getComputedStyle(document.documentElement);
+          const fallback = [
+            '#f94144', '#f3722c', '#f8961e', '#f9c74f', '#90be6d', '#43aa8b', '#577590'
+          ];
+          const arr = [];
+          for (let i = 0; i < 7; i++) {
+            const val = root.getPropertyValue(`--cat-${i}`).trim();
+            arr.push(val || fallback[i]);
+          }
+          return arr;
+        };
+        const PALETTE = readPalette();
+        const colorForCategory = (cat) => {
+          if (!cat) return PALETTE[0];
+          let hash = 0;
+          for (let i = 0; i < cat.length; i++) {
+            hash = ((hash << 5) - hash + cat.charCodeAt(i)) | 0;
+          }
+          const idx = Math.abs(hash) % PALETTE.length;
+          return PALETTE[idx];
+        };
+
         const graphData = {% include notes_graph.json %}
         let nodesData = graphData.nodes;
         let linksData = graphData.edges;
@@ -215,6 +239,8 @@
             .attr("r", (d) => {
               return nodeSize[d.id];
             })
+            .attr("fill", (d) => colorForCategory(d.category))
+            .attr("data-cat", (d) => d.category || '')
             .on("click", onClick)
             .on("mouseover", onMouseover)
             .on("mouseout", onMouseout)

@@ -13,6 +13,15 @@ $rust:           #bb3e03ff;
 $rufous:         #ae2012ff;
 $auburn:         #9b2226ff;
 
+/* Category palette (for graph nodes) */
+$imperial-red:   #f94144;  // 0
+$orange-crayola: #f3722c;  // 1
+$carrot-orange:  #f8961e;  // 2
+$saffron:        #f9c74f;  // 3
+$pistachio:      #90be6d;  // 4
+$zomp:           #43aa8b;  // 5
+$paynes-gray:    #577590;  // 6
+
 /* Map palette to site tokens */
 $color-primary: $midnight-green;                    /* links/accents */
 $color-text:    $rich-black;                        /* body text */
@@ -52,6 +61,15 @@ $color-box-background: mix($tiffany-blue, white, 92%); /* soft panel bg */
   --status-pending-bg:  #e76f51;
   --status-pending-fg:  #ffffff;
   --status-pending-br:  #c05a42;
+
+  /* Graph category palette (exposed for JS) */
+  --cat-0: #{$imperial-red};
+  --cat-1: #{$orange-crayola};
+  --cat-2: #{$carrot-orange};
+  --cat-3: #{$saffron};
+  --cat-4: #{$pistachio};
+  --cat-5: #{$zomp};
+  --cat-6: #{$paynes-gray};
 }
 $border-radius: 4px;
 $font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif,
@@ -493,7 +511,10 @@ code {
    Notes Graph
    ========================= */
 #graph-wrapper {
-  background: #fcfcfc;
+  /* Slightly darker than page background */
+  background: var(--card-a);
+  /* Use color-mix where supported for a subtle darken */
+  background: color-mix(in srgb, var(--color-bg) 90%, black);
   border-radius: 4px;
   height: auto;
 }
@@ -504,7 +525,6 @@ code {
 #graph-wrapper .links line { stroke: #ccc; opacity: 0.5; }
 #graph-wrapper .nodes circle {
   cursor: pointer;
-  fill: #8b88e6;
   transition: all 0.15s ease-out;
 }
 #graph-wrapper .text text {
