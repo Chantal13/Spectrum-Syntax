@@ -1,6 +1,10 @@
 <!-- Graph styles moved to SCSS -->
 
-<div id="graph-wrapper">
+<div class="graph-card">
+  <div class="graph-card__header">
+    <div class="graph-title">Notes Graph</div>
+  </div>
+  <div id="graph-wrapper">
   <script>
     window.addEventListener("load", loadGraph);
 
@@ -162,8 +166,11 @@
         graphWrapper.appendChild(element);
 
         const reportWindowSize = () => {
-          element.setAttribute("width", window.innerWidth);
-          element.setAttribute("height", window.innerHeight);
+          // Keep SVG sized to the card's inner width and a comfortable height
+          const w = graphWrapper.getBoundingClientRect().width;
+          const h = Math.round(window.innerHeight * 0.8);
+          element.setAttribute("width", w);
+          element.setAttribute("height", h);
         };
 
         window.onresize = reportWindowSize;
@@ -295,4 +302,6 @@
       }
     }
   </script>
+  </div>
+  <div class="graph-card__caption">Tip: Hover a node to highlight its neighbours. Colours indicate categories; click a node to open its note.</div>
 </div>

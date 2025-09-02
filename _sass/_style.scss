@@ -510,13 +510,35 @@ code {
 /* =========================
    Notes Graph
    ========================= */
-#graph-wrapper {
-  /* Lighter than page background for better node contrast */
-  /* Fallback (no color-mix support): lighten the known page bg */
+.graph-card {
+  /* Card container for the graph */
+  /* Background slightly lighter than page for contrast */
   background: lighten(#fefae0, 6%);
-  /* Preferred: lighten current page bg via color-mix */
   background: color-mix(in srgb, var(--color-bg) 80%, white);
-  border-radius: 4px;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  margin: 1rem 0;
+  padding: 0.75rem;
+  overflow: hidden;
+}
+.graph-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--panel-border);
+}
+.graph-title { margin: 0; font-size: .95em; font-weight: 600; color: var(--color-text); }
+.graph-card__caption {
+  margin-top: 0.5rem;
+  font-size: 0.9em;
+  color: mix($color-text, white, 50%);
+}
+#graph-wrapper {
+  /* Let the parent card provide the background */
+  background: transparent;
+  border-radius: 0;
   height: auto;
 }
 #graph-wrapper > svg {
