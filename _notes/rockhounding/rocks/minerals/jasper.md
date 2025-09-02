@@ -9,7 +9,7 @@ aliases:
   - Jaspers
   - Jasper
 thumbnail: "/assets/tumbling/001/after-s3.jpg"
-hardness: 6.5-7
+hardness: 7
 luster: null
 streak: null
 ---

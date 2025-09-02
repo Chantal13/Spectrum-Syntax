@@ -9,7 +9,7 @@ aliases:
   - garnets
   - Garnets
 thumbnail: "/assets/tumbling/001/after-s1.jpg"
-hardness: 6.5-7.5
+hardness: 7
 luster: null
 streak: null
 ---

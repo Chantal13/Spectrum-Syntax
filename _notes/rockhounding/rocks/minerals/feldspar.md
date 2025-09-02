@@ -7,7 +7,7 @@ tags:
 thumbnail: "/assets/tumbling/002/rough.jpg"
 aliases:
   - Feldspar
-hardness: 6-6.5
+hardness: 6
 luster: null
 streak: null
 ---
