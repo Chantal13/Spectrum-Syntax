@@ -6,8 +6,10 @@ Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
 
   html = doc.output.dup
 
-  # Fix mistakenly absolute "https://games/..." links -> "/games/..."
-  html.gsub!(/href=(['"])https?:\/\/games\//i, 'href=\1/games/')
+  # Fix mistakenly absolute "https://<section>/..." links -> "/<section>/..."
+  %w[games rockhounding tumbling hobbies blog].each do |section|
+    html.gsub!(/href=(["'])https?:\/\/#{section}\//i, 'href=\1/' + section + '/')
+  end
   # Also normalize to root-absolute
   html.gsub!(/href=(['"])\/games\//i, 'href=\1/games/')
   html.gsub!(/href=(['"])games\//i, 'href=\1/games/')
@@ -23,4 +25,3 @@ Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
 
   doc.output = html
 end
-

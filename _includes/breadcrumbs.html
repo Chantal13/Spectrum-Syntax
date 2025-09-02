@@ -14,11 +14,10 @@
 
   {%- if page.breadcrumbs and page.breadcrumbs.size > 0 -%}
     {%- for bc in page.breadcrumbs -%}
-      <span class="crumb-sep">›</span>
+      {%- unless forloop.first -%}<span class="crumb-sep">›</span>{%- endunless -%}
       <a class="internal-link" href="{{ bc.url | relative_url }}">{{ bc.title }}</a>
     {%- endfor -%}
-    <span class="crumb-sep">›</span>
-    <span aria-current="page">{{ page.title }}</span>
+    {%- if page.title -%}<span class="crumb-sep">›</span><span aria-current="page">{{ page.title }}</span>{%- endif -%}
   {%- else -%}
     {%- assign accum = '' -%}
     {%- for seg in parts -%}
@@ -42,14 +41,15 @@
       {%- if match and match.title -%}
         {%- assign label = match.title -%}
       {%- else -%}
-        {%- assign label = seg | url_decode | replace: '-', ' ' | replace: '_', ' ' | capitalize -%}
+        {%- assign label = seg | url_decode | title_case -%}
       {%- endif -%}
 
-      <span class="crumb-sep">›</span>
       {%- if is_last -%}
+        {%- unless forloop.first -%}<span class="crumb-sep">›</span>{%- endunless -%}
         <span aria-current="page">{{ label }}</span>
       {%- else -%}
-        <a class="internal-link" href="{{ site.baseurl }}{{ target }}">{{ label }}</a>
+        {%- unless forloop.first -%}<span class="crumb-sep">›</span>{%- endunless -%}
+        <a class="internal-link" href="{{ target | relative_url }}">{{ label }}</a>
       {%- endif -%}
     {%- endfor -%}
   {%- endif -%}
