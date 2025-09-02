@@ -9,7 +9,36 @@ aliases:
 - Epidotes
 - Epidote
 thumbnail: https://upload.wikimedia.org/wikipedia/commons/b/b8/%D0%AD%D0%BF%D0%B8%D0%B4%D0%BE%D1%82%28%D0%BF%D1%83%D1%88%D0%BA%D0%B8%D0%BD%D0%B8%D1%82%29.jpg
+hardness: 6-7
+luster: null
+streak: null
 ---
+{% include rock-card.html rock=page %}
+
+{%- comment -%} Show varieties for this mineral {%- endcomment -%}
+{%- assign root = '_notes/rockhounding/rocks/minerals/' -%}
+{%- assign all = site.notes | where_exp: "n", "n.path contains root" -%}
+{%- assign b_slug = page.path | split: '/' | last | replace: '.md','' -%}
+{%- assign base_dir = root | append: b_slug | append: '/' -%}
+
+<div class="rock-card-grid">
+  {%- assign immediate_children = all | where_exp: "n", "n.path contains base_dir and n.path | split: '/' | size == 6" | sort: 'title' -%}
+  {%- for n in immediate_children -%}
+    {% include rock-card.html rock=n %}
+  {%- endfor -%}
+</div>
+
+{%- assign deeper_pages = all | where_exp: "n", "n.path contains base_dir and n.path | split:'/' | size >= 7 and n.path | split:'/' | last != 'index.md'" -%}
+{%- if deeper_pages and deeper_pages.size > 0 -%}
+  <h3>Varieties</h3>
+  <div class="rock-card-grid">
+    {%- assign deeper_pages = deeper_pages | sort: 'title' -%}
+    {%- for n in deeper_pages -%}
+      {% include rock-card.html rock=n %}
+    {%- endfor -%}
+  </div>
+{%- endif -%}
+
 Epidote is a green **silicate mineral** that often forms during metamorphism when other minerals are altered by heat, pressure, and hydrothermal fluids. It is best known for giving **[[unakite]]** its striking green color (alongside pink [[feldspar]] and [[quartz]]).  
 
 While epidote rarely appears as large standalone crystals along Lake Ontario’s beaches, it is an important mineral to recognize because of its role in [[unakite]] and some metamorphic rocks.

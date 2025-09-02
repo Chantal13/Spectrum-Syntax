@@ -7,7 +7,36 @@ tags:
 thumbnail: "/assets/tumbling/002/rough.jpg"
 aliases:
   - Feldspar
+hardness: 6-6.5
+luster: null
+streak: null
 ---
+{% include rock-card.html rock=page %}
+
+{%- comment -%} Show varieties for this mineral {%- endcomment -%}
+{%- assign root = '_notes/rockhounding/rocks/minerals/' -%}
+{%- assign all = site.notes | where_exp: "n", "n.path contains root" -%}
+{%- assign b_slug = page.path | split: '/' | last | replace: '.md','' -%}
+{%- assign base_dir = root | append: b_slug | append: '/' -%}
+
+<div class="rock-card-grid">
+  {%- assign immediate_children = all | where_exp: "n", "n.path contains base_dir and n.path | split: '/' | size == 6" | sort: 'title' -%}
+  {%- for n in immediate_children -%}
+    {% include rock-card.html rock=n %}
+  {%- endfor -%}
+</div>
+
+{%- assign deeper_pages = all | where_exp: "n", "n.path contains base_dir and n.path | split:'/' | size >= 7 and n.path | split:'/' | last != 'index.md'" -%}
+{%- if deeper_pages and deeper_pages.size > 0 -%}
+  <h3>Varieties</h3>
+  <div class="rock-card-grid">
+    {%- assign deeper_pages = deeper_pages | sort: 'title' -%}
+    {%- for n in deeper_pages -%}
+      {% include rock-card.html rock=n %}
+    {%- endfor -%}
+  </div>
+{%- endif -%}
+
 Feldspar is a group of **rock-forming minerals** that make up more than half of the Earth’s crust. They are the primary components of many [[igneous]], [[metamorphic]], and [[sedimentary]] rocks, and serve as the “framework” minerals that bind rocks together.  
 
 On the north shores of Lake Ontario, feldspar is most often found as part of **[[granite]], [[gneiss]], and [[unakite]] pebbles** brought south from the Canadian Shield by glaciers. While rarely collected as a standalone mineral in beach gravels, it’s an essential part of many [[Rock Tumbling|tumbling]]-quality rocks.

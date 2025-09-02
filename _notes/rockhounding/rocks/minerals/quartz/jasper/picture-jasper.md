@@ -2,6 +2,10 @@
 title: Picture Jasper (Quartz)
 layout: note
 thumbnail: https://upload.wikimedia.org/wikipedia/commons/7/7c/Jasper_outcrop_in_the_Bucegi_Mountains.jpg
+hardness: 6.5-7
+luster: null
+streak: null
 ---
-Coming soon.
+{% include rock-card.html rock=page %}
 
+Coming soon.

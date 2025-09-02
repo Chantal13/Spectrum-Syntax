@@ -9,7 +9,36 @@ aliases:
   - garnets
   - Garnets
 thumbnail: "/assets/tumbling/001/after-s1.jpg"
+hardness: 6.5-7.5
+luster: null
+streak: null
 ---
+{% include rock-card.html rock=page %}
+
+{%- comment -%} Show varieties for this mineral {%- endcomment -%}
+{%- assign root = '_notes/rockhounding/rocks/minerals/' -%}
+{%- assign all = site.notes | where_exp: "n", "n.path contains root" -%}
+{%- assign b_slug = page.path | split: '/' | last | replace: '.md','' -%}
+{%- assign base_dir = root | append: b_slug | append: '/' -%}
+
+<div class="rock-card-grid">
+  {%- assign immediate_children = all | where_exp: "n", "n.path contains base_dir and n.path | split: '/' | size == 6" | sort: 'title' -%}
+  {%- for n in immediate_children -%}
+    {% include rock-card.html rock=n %}
+  {%- endfor -%}
+</div>
+
+{%- assign deeper_pages = all | where_exp: "n", "n.path contains base_dir and n.path | split:'/' | size >= 7 and n.path | split:'/' | last != 'index.md'" -%}
+{%- if deeper_pages and deeper_pages.size > 0 -%}
+  <h3>Varieties</h3>
+  <div class="rock-card-grid">
+    {%- assign deeper_pages = deeper_pages | sort: 'title' -%}
+    {%- for n in deeper_pages -%}
+      {% include rock-card.html rock=n %}
+    {%- endfor -%}
+  </div>
+{%- endif -%}
+
 Garnet is a group of silicate minerals that are well known for their **deep red crystals**, though they can also occur in green, orange, brown, yellow, and even black varieties. Garnets form under conditions of high temperature and pressure, making them common in **metamorphic rocks** such as [[gneiss]] and schist.  
 
 On the north shores of Lake Ontario, garnets are most often found embedded in **[[gneiss]] pebbles** carried south from the Canadian Shield by glaciers. Occasionally, small loose garnet crystals may also be found in beach gravels.
