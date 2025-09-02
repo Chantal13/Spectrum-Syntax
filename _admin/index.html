@@ -1,0 +1,65 @@
+---
+layout: none
+title: Admin
+permalink: /admin/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 30rem;
+      margin: 2rem auto;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="login">
+    <h1>Admin Login</h1>
+    <form id="login-form">
+      <label for="username">Username</label>
+      <input type="text" id="username" required>
+      <label for="password">Password</label>
+      <input type="password" id="password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p id="error" style="color:red; display:none;">Invalid credentials.</p>
+  </div>
+
+  <div id="content" style="display:none;">
+    <h1>Admin</h1>
+    <p>Welcome to the admin page.</p>
+  </div>
+
+  <script>
+    (function() {
+      const VALID_USERNAME = 'admin';
+      const VALID_PASSWORD = 'secret';
+
+      const form = document.getElementById('login-form');
+      const error = document.getElementById('error');
+      const login = document.getElementById('login');
+      const content = document.getElementById('content');
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        if (username === VALID_USERNAME && password === VALID_PASSWORD) {
+          login.style.display = 'none';
+          content.style.display = 'block';
+        } else {
+          error.style.display = 'block';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

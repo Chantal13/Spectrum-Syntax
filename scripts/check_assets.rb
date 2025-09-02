@@ -9,9 +9,12 @@ IMAGE_EXTENSIONS = %w[.png .jpg .jpeg .gif .svg .webp]
 
 # Recursively extract image paths from front matter data
 # @param obj [Object] the value to inspect
+# @param paths [Array<String>, nil] accumulator for extracted paths
 # @return [Array<String>] list of image paths
 
-def extract_image_paths(obj, paths = [])
+def extract_image_paths(obj, paths = nil)
+  paths ||= []
+
   case obj
   when String
     if IMAGE_EXTENSIONS.any? { |ext| obj.downcase.end_with?(ext) }
@@ -22,6 +25,7 @@ def extract_image_paths(obj, paths = [])
   when Hash
     obj.each_value { |value| extract_image_paths(value, paths) }
   end
+
   paths
 end
 

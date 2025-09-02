@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+<h1>{{ page.title }}</h1>
+{% if page.thumbnail %}
+  <p><img src="{{ page.thumbnail | uri_escape }}" alt="{{ page.title }}" class="field-thumb"></p>
+{% endif %}
+<ul class="field-meta">
+  {% if page.rocks %}
+  <li><strong>Rock type:</strong>
+    <span class="chips">
+      {% for r in page.rocks %}
+        <span class="chip chip--{{ r | slugify }}">{{ r }}</span>
+      {% endfor %}
+    </span>
+  </li>
+  {% endif %}
+  {% if page.minerals %}
+  <li><strong>Minerals:</strong>
+    <span class="chips">
+      {% for m in page.minerals %}
+        <span class="chip chip--{{ m | slugify }}">{{ m }}</span>
+      {% endfor %}
+    </span>
+  </li>
+  {% endif %}
+</ul>
+
+{{ content }}

@@ -41,8 +41,6 @@ class LinkParser(HTMLParser):
             self.srcs.append(attr_dict["src"])
 
     def handle_startendtag(self, tag, attrs):
-        """Handle self-closing tags like <img ... />."""
-        self.handle_starttag(tag, attrs)
 
 def map_url_to_file(url: str):
     if not url.startswith('/'):
@@ -79,7 +77,8 @@ for html in html_files:
     for href in parser.hrefs:
         if href.startswith(("#", "mailto:", "javascript:", "http://", "https://", "data:")):
             continue
-        mapped = map_url_to_file(href)
+        path = href.split("#", 1)[0]
+        mapped = map_url_to_file(path)
         if not mapped:
             missing.append((html, "href", href))
     for src in parser.srcs:
