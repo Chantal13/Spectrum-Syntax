@@ -67,6 +67,12 @@ This project targets Ruby 3.2.1 and Bundler 2.7.1. On macOS, use rbenv for a smo
    bundle exec rake test
    ```
 
+8) Push changes with the helper script:
+   ```bash
+   python3 git_push.py -m "Your message"
+   ```
+   See more options in the [Git push helper](#git-push-helper) section (includes IPv4/IPv6 flags for reliable SSH when iCloud Private Relay is enabled).
+
 ## Deployment
 
 This site relies on custom Jekyll plugins, so GitHub Pages cannot build it directly. The project is deployed to Netlify using the configuration in [`netlify.toml`](netlify.toml). Pushing to the main branch triggers a production build.
@@ -91,6 +97,44 @@ Generate summaries locally and in CI for easier PR descriptions and reviews.
 - GitHub Actions
   - PR summary comment: see `.github/workflows/pr-summary.yml` — posts/updates a comment with commits and file changes on each PR update.
   - Push summary check: see `.github/workflows/push-summary.yml` — adds a “Change Summary” check run to each push with the same details.
+
+## Git push helper
+
+Use the repository’s helper script to stage, commit, rebase, and push with sensible defaults.
+
+- Run a push with a message
+  ```bash
+  python3 git_push.py -m "Update"
+  ```
+  - Stages all changes, commits if anything is staged, fetches, rebases onto the upstream if set, and pushes. If there’s no upstream yet, it pushes with `-u origin <branch>`.
+
+- Rebase flow with autostash
+  ```bash
+  python3 git_push.py --rebase-flow --autostash -m "Refactor navigation"
+  ```
+
+- Remote/branch overrides
+  ```bash
+  python3 git_push.py --remote origin --branch main -m "Sync"
+  ```
+
+- Network transport flags
+  - By default, the script prefers IPv4 for SSH to reduce iCloud Private Relay/IPv6 quirks: it sets `GIT_SSH_COMMAND=ssh -4` if not already defined.
+  - Force IPv4 explicitly: `python3 git_push.py --force-ipv4`
+  - Force IPv6 explicitly: `python3 git_push.py --force-ipv6`
+
+- GitHub + iCloud Private Relay
+  - For the most reliable SSH connectivity, use port 443 and prefer IPv4 via `~/.ssh/config`:
+    ```
+    Host github.com
+      HostName ssh.github.com
+      Port 443
+      AddressFamily inet
+    ```
+  - If your remote uses HTTPS, consider switching to SSH:
+    ```bash
+    git remote set-url origin git@github.com:<OWNER>/<REPO>.git
+    ```
 
 ## Customization
 

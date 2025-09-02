@@ -4,6 +4,12 @@
 import os
 import sys
 import subprocess as sp
+from typing import Optional, Tuple
+
+# Prefer IPv4 for SSH to avoid iCloud Private Relay/IPv6 quirks.
+# Only set if not already defined by the user.
+if os.environ.get("GIT_SSH_COMMAND") is None:
+    os.environ["GIT_SSH_COMMAND"] = "ssh -4"
 
 def run(args, check=True, capture=False):
     print(">", " ".join(args))
@@ -50,6 +56,64 @@ def ahead_behind(upstream, branch):
     except sp.CalledProcessError:
         return (0, 0)
 
+
+def remote_url(remote: str = "origin") -> Optional[str]:
+    try:
+        return out(["git", "remote", "get-url", remote])
+    except sp.CalledProcessError:
+        return None
+
+
+def parse_github_repo(url: str) -> Optional[Tuple[str, str]]:
+    """Return (owner, repo) if URL is a GitHub URL, else None."""
+    if not url:
+        return None
+    url = url.strip()
+    if url.startswith("git@github.com:"):
+        try:
+            path = url.split(":", 1)[1]
+            owner, repo = path.rsplit("/", 1)
+            if repo.endswith(".git"):
+                repo = repo[:-4]
+            return owner, repo
+        except Exception:
+            return None
+    if url.startswith("https://github.com/"):
+        try:
+            path = url[len("https://github.com/") :]
+            owner, repo = path.split("/", 1)
+            if repo.endswith(".git"):
+                repo = repo[:-4]
+            return owner, repo
+        except Exception:
+            return None
+    return None
+
+
+def maybe_print_private_relay_hint(remote: str = "origin") -> None:
+    url = remote_url(remote) or ""
+    gh = parse_github_repo(url)
+    if gh is None:
+        return
+    owner, repo = gh
+    # If already using SSH, just remind about ssh over 443.
+    if url.startswith("git@github.com:"):
+        print("\nHint: Using SSH with GitHub. If you see intermittent issues on macOS with iCloud Private Relay, ensure your ~/.ssh/config contains:")
+        print("  Host github.com")
+        print("    HostName ssh.github.com")
+        print("    Port 443")
+        print("    AddressFamily inet  # Prefer IPv4")
+        return
+    # If using HTTPS, suggest switching to SSH over 443.
+    ssh_url = f"git@github.com:{owner}/{repo}.git"
+    print("\nHint: For GitHub + iCloud Private Relay, SSH over 443 is more reliable.")
+    print(f"  Switch remote: git remote set-url {remote} {ssh_url}")
+    print("  And ensure ~/.ssh/config has:")
+    print("    Host github.com")
+    print("      HostName ssh.github.com")
+    print("      Port 443")
+    print("      AddressFamily inet  # Prefer IPv4")
+
 def ensure_on_branch(branch: str, *, auto_branch: bool = False) -> str:
     """
     If currently in detached HEAD (branch == 'HEAD' or empty), prompt to create
@@ -90,6 +154,8 @@ def parse_cli(argv):
       --push-tags           Run 'git push --tags' after push
       --set-pull-rebase     Run 'git config pull.rebase true' (add --global to make global)
       --global              Use with --set-pull-rebase to set globally
+      --force-ipv4          Force SSH over IPv4 (sets GIT_SSH_COMMAND="ssh -4")
+      --force-ipv6          Force SSH over IPv6 (sets GIT_SSH_COMMAND="ssh -6")
     Any lone argument (without -m/--message) is treated as commit message.
     """
     opts = {
@@ -103,6 +169,8 @@ def parse_cli(argv):
         "push_tags": False,
         "set_pull_rebase": False,
         "global": False,
+        "force_ipv4": False,
+        "force_ipv6": False,
     }
     i = 1
     while i < len(argv):
@@ -111,6 +179,10 @@ def parse_cli(argv):
             opts["auto_branch"] = True
         elif a == "--rebase-flow":
             opts["rebase_flow"] = True
+        elif a in ("--force-ipv4", "--ipv4"):
+            opts["force_ipv4"] = True
+        elif a in ("--force-ipv6", "--ipv6"):
+            opts["force_ipv6"] = True
         elif a == "--remote":
             if i + 1 < len(argv):
                 opts["remote"] = argv[i + 1]
@@ -141,6 +213,14 @@ def parse_cli(argv):
 
 def main():
     opts = parse_cli(sys.argv)
+    # Apply SSH transport preference from CLI, overriding default if provided
+    if opts.get("force_ipv4") and opts.get("force_ipv6"):
+        # If both are requested, default to IPv4
+        os.environ["GIT_SSH_COMMAND"] = "ssh -4"
+    elif opts.get("force_ipv4"):
+        os.environ["GIT_SSH_COMMAND"] = "ssh -4"
+    elif opts.get("force_ipv6"):
+        os.environ["GIT_SSH_COMMAND"] = "ssh -6"
     in_repo_root()
     run(["git", "status"], check=False)
 
@@ -197,6 +277,8 @@ def main():
         except sp.CalledProcessError as e:
             print("\nPush failed. After resolving, try:")
             print(f"  git push {remote} {branch}")
+            # Provide a Private Relay/SSH over 443 hint for GitHub remotes.
+            maybe_print_private_relay_hint(remote)
             sys.exit(e.returncode)
 
         if opts["push_tags"]:
@@ -244,6 +326,8 @@ def main():
         print(f"  git rebase origin/{branch}")
         print("  # resolve conflicts → git add -A → git rebase --continue")
         print(f"  git push origin {branch}")
+        # Provide a Private Relay/SSH over 443 hint for GitHub remotes.
+        maybe_print_private_relay_hint("origin")
         sys.exit(e.returncode)
 
 if __name__ == "__main__":
