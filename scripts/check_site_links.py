@@ -8,8 +8,8 @@ Usage:
 Exits non-zero if any missing references are found.
 """
 import os
-import re
 import sys
+from html.parser import HTMLParser
 
 ROOT = os.path.join(os.path.dirname(__file__), "..", "_site")
 
@@ -24,8 +24,21 @@ for base, _, files in os.walk(ROOT):
         if f.endswith('.html'):
             html_files.append(os.path.join(base, f))
 
-href_re = re.compile(r'<a\s+[^>]*href=[\"\']([^\"\'#]+)')
-src_re  = re.compile(r'<img\s+[^>]*src=[\"\']([^\"\']+)')
+
+class LinkParser(HTMLParser):
+    """Collect href and src attributes from HTML."""
+
+    def __init__(self):
+        super().__init__()
+        self.hrefs = []
+        self.srcs = []
+
+    def handle_starttag(self, tag, attrs):
+        attr_dict = dict(attrs)
+        if tag == "a" and "href" in attr_dict:
+            self.hrefs.append(attr_dict["href"])
+        elif tag == "img" and "src" in attr_dict:
+            self.srcs.append(attr_dict["src"])
 
 def map_url_to_file(url: str):
     if not url.startswith('/'):
@@ -53,24 +66,24 @@ def map_asset(url: str):
 
 for html in html_files:
     try:
-        with open(html, 'r', encoding='utf-8', errors='ignore') as fh:
-            s = fh.read()
+        with open(html, "r", encoding="utf-8", errors="ignore") as fh:
+            parser = LinkParser()
+            parser.feed(fh.read())
+            parser.close()
     except Exception:
         continue
-    for m in href_re.finditer(s):
-        href = m.group(1)
-        if href.startswith(('#', 'mailto:', 'javascript:', 'http://', 'https://', 'data:')):
+    for href in parser.hrefs:
+        if href.startswith(("#", "mailto:", "javascript:", "http://", "https://", "data:")):
             continue
         mapped = map_url_to_file(href)
         if not mapped:
-            missing.append((html, 'href', href))
-    for m in src_re.finditer(s):
-        src = m.group(1)
-        if src.startswith(('http://', 'https://', 'data:')):
+            missing.append((html, "href", href))
+    for src in parser.srcs:
+        if src.startswith(("http://", "https://", "data:")):
             continue
         ok = map_asset(src)
         if not ok:
-            missing.append((html, 'src', src))
+            missing.append((html, "src", src))
 
 if missing:
     print("Broken references found:")
