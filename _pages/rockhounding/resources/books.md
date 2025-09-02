@@ -6,13 +6,16 @@ permalink: /rockhounding/resources/books/
 
 <h1>Books</h1>
 
-<p>Selected rockhounding and geology books. I’ll flesh this out soon.</p>
+<p>Live list pulled from my Goodreads <em>geology</em> shelf.</p>
 
-<ul>
-  <li><em>Roadside Geology of Ontario</em> — coming soon</li>
-  <li><em>Ontario Rocks</em> — coming soon</li>
-  <li><em>Petrology basics</em> — coming soon</li>
-  <!-- Add real entries as you curate them -->
-  
-</ul>
+{% assign books = site.data.goodreads.geology | default: [] %}
 
+{% if books.size == 0 %}
+  <p><em>No books found yet.</em> If you’re seeing this during a fresh build, the Goodreads feed may not have loaded or the shelf is empty.</p>
+{% else %}
+  <div class="book-card-grid">
+    {% for book in books %}
+      {% include book-card.html book=book %}
+    {% endfor %}
+  </div>
+{% endif %}

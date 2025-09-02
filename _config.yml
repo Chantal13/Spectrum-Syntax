@@ -67,3 +67,9 @@ defaults:
 #  - pt
 #  - fr
 # default_lang: en
+
+# Goodreads shelves to ingest at build time
+goodreads:
+  shelves:
+    - name: geology
+      rss: "https://www.goodreads.com/review/list_rss/1009239?key=ONuxfirW0TkmotoumjJGGOCilD1Ki1OhEFQyBLWInNEm_sDr&shelf=geology"

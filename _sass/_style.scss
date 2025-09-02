@@ -854,3 +854,36 @@ code {
   margin: 0;
   font-size: 0.9em;
 }
+
+/* Book card grid */
+.book-card-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.book-card {
+  background: var(--card-a);
+  border: 1px solid var(--panel-border);
+  border-radius: $border-radius;
+  padding: 0.75rem;
+  transition: background 0.2s ease;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.book-card:hover { background: var(--card-b); }
+
+.book-card__cover img {
+  width: 100%;
+  height: auto;
+  border-radius: $border-radius;
+  margin-bottom: 0.5rem;
+}
+
+.book-card__title { margin: 0 0 0.25rem; font-size: 1.05em; }
+.book-card__title a { text-decoration: none; border-bottom: none; color: inherit; }
+.book-card__title a:hover { text-decoration: underline; }
+.book-card__byline { margin: 0 0 0.25rem; font-size: 0.9em; color: var(--text-muted, #555); }
+.book-card__meta { font-size: 0.85em; display: flex; gap: .5rem; align-items: baseline; }
+.book-card__meta .rating { white-space: nowrap; }

@@ -1,0 +1,27 @@
+<div class="book-card">
+  <a class="book-card__cover" href="{{ include.book.link }}" target="_blank" rel="noopener">
+    {% assign cover = include.book.image.large | default: include.book.image.medium | default: include.book.image.small %}
+    {% if cover %}
+      <img src="{{ cover }}" alt="Cover of {{ include.book.title | escape }}">
+    {% else %}
+      <div class="book-card__no-cover">No cover</div>
+    {% endif %}
+  </a>
+  <div class="book-card__body">
+    <h3 class="book-card__title">
+      <a href="{{ include.book.link }}" target="_blank" rel="noopener">{{ include.book.title }}</a>
+    </h3>
+    {% if include.book.author %}
+      <p class="book-card__byline">{{ include.book.author }}</p>
+    {% endif %}
+    <div class="book-card__meta">
+      {% if include.book.my_rating %}
+        <span class="rating" title="My rating">⭐ {{ include.book.my_rating }}/5</span>
+      {% endif %}
+      {% if include.book.average_rating %}
+        <span class="rating avg" title="Average rating">★ {{ include.book.average_rating }}/5</span>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
