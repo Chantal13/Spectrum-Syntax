@@ -99,6 +99,18 @@ Generate summaries locally and in CI for easier PR descriptions and reviews.
 - Adjust global settings in [`_config.yml`](_config.yml).
 - Tweak styles via `styles.scss` and the files under [`assets/`](./assets).
 
+### Content structure notes
+
+- Rocks taxonomy
+  - Rock pages live under `_notes/rockhounding/rocks/{igneous|metamorphic|sedimentary}/...`.
+  - Minerals live under `_notes/rockhounding/rocks/minerals/...`.
+  - Category landing pages are in `_pages/rockhounding/rocks/{igneous|metamorphic|sedimentary}/index.md`.
+  - The interactive graph colours rock nodes by class (igneous/sedimentary/metamorphic) based on these paths. Keep new rock notes in the correct folder to get proper colouring.
+
+- Redirects for legacy paths
+  - Old URLs like `/rockhounding/rocks/category/{igneous|metamorphic|sedimentary}/` and top‑level rock pages (e.g., `/rockhounding/rocks/granite/`) now redirect to their new locations.
+  - Redirect rules are defined in `netlify.toml`. Please update internal links to point to the new paths to avoid redirect hops.
+
 ## License
 
 Source code is available under the [MIT license](LICENSE.md).
