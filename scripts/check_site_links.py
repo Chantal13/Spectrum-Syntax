@@ -27,6 +27,11 @@ for base, _, files in os.walk(ROOT):
 href_re = re.compile(r'<a\s+[^>]*href=[\"\']([^\"\'#]+)')
 src_re  = re.compile(r'<img\s+[^>]*src=[\"\']([^\"\']+)')
 
+    def handle_startendtag(self, tag, attrs):
+        attr_dict = dict(attrs)
+        if tag == "img" and "src" in attr_dict:
+            self.srcs.append(attr_dict["src"])
+
 def map_url_to_file(url: str):
     if not url.startswith('/'):
         return None
@@ -61,7 +66,8 @@ for html in html_files:
         href = m.group(1)
         if href.startswith(('#', 'mailto:', 'javascript:', 'http://', 'https://', 'data:')):
             continue
-        mapped = map_url_to_file(href)
+        path = href.split("#", 1)[0]
+        mapped = map_url_to_file(path)
         if not mapped:
             missing.append((html, 'href', href))
     for m in src_re.finditer(s):
