@@ -1,7 +1,7 @@
 <div class="rock-card">
   {% assign thumb = include.rock.thumbnail | default: include.rock.cover %}
   {% if thumb %}
-    <a href="{{ include.rock.url | relative_url | uri_escape }}">
+    <a href="{{ include.rock.url | relative_url }}">
       {% if thumb contains '://' %}
         <img src="{{ thumb | uri_escape }}" alt="{{ include.rock.title }}">
       {% else %}
@@ -13,7 +13,7 @@
       {% endif %}
     </a>
   {% endif %}
-  <h3><a href="{{ include.rock.url | relative_url | uri_escape }}">{{ include.rock.title }}</a></h3>
+  <h3><a href="{{ include.rock.url | relative_url }}">{{ include.rock.title }}</a></h3>
   {% if include.rock.description %}
     <p>{{ include.rock.description }}</p>
   {% else %}
