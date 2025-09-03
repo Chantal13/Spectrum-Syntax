@@ -11,9 +11,9 @@ thumbnail: "/assets/Rockhound - 3 of 4.jpeg"
 Unakite is a [[metamorphic]] rock created when [[granite]] is altered by hydrothermal fluids, replacing [[feldspar]] with green [[epidote]].  
 
 **Appearance & Identification:**  
-- Mottled green ([[epidote]]), pink ([[feldspar]]), and clear [[Notes/rockhounding/rocks/minerals/quartz|Quartz]]
+- Mottled green ([[epidote]]), pink ([[feldspar]]), and clear [[quartz|Quartz]]
 - Medium-grained texture
-- Opaque, with [[Notes/rockhounding/rocks/minerals/quartz|Quartz]] areas sometimes translucent
+- Opaque, with [[quartz|Quartz]] areas sometimes translucent
 
 > [!tip] Tumbling Qualities  
 > - Hardness: [[Mohs Hardness Scale|Mohs]] 6–7  
