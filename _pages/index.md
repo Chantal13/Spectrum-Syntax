@@ -28,7 +28,7 @@ I also play games like these:
   {% assign recent_notes = site.notes | sort: "last_modified_at_timestamp" | reverse %}
   {% for note in recent_notes limit: 5 %}
     <li>
-      {{ note.last_modified_at | date: "%Y-%m-%d" }} — <a class="internal-link" href="{{ note.url | relative_url | uri_escape }}">{{ note.title }}</a>
+      {{ note.last_modified_at | date: "%Y-%m-%d" }} — <a class="internal-link" href="{{ note.url | relative_url }}">{{ note.title }}</a>
     </li>
   {% endfor %}
 </ul>
