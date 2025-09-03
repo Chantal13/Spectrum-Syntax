@@ -1,0 +1,40 @@
+name: Link Check
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Ruby 3.2.1
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.1'
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Build site
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --trace
+
+      - name: Install HTMLProofer
+        run: |
+          gem install html-proofer --no-document || true
+
+      - name: Check internal links in built site
+        run: |
+          # Check generated HTML in _site. Limit to internal links only.
+          # If you want external link checking later, remove --disable-external.
+          htmlproofer ./_site --disable-external
+
