@@ -89,7 +89,7 @@ permalink: /rockhounding/rocks/minerals/
 
     {%- comment -%} Direct children of the subcategory (Varieties at this level) {%- endcomment -%}
     {%- comment -%} Build immediate children list for this subcategory {%- endcomment -%}
-    {%- assign s_immediate_markup -%}{%- endassign -%}
+    {%- assign s_immediate_markup = '' -%}
     {%- for n in all_sorted -%}
       {%- if n.path contains s_dir -%}
         {%- assign rel = n.path | remove: s_dir -%}
