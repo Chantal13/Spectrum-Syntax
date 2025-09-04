@@ -13,6 +13,8 @@ hardness: 7
 luster: null
 streak: null
 ---
+[[Minerals]] | [[jasper|Jasper]]
+
 {% include rock-card.html rock=page %}
 
 {%- comment -%} Show varieties for this mineral {%- endcomment -%}

@@ -172,7 +172,8 @@ permalink: /rockhounding/rocks/minerals/
             {%- assign rel = n.path | remove: t_dir -%}
             {%- unless rel contains '/' -%}
               {%- assign last = n.path | split:'/' | last -%}
-              {%- unless last == 'index.md' or last == t_slug | append: '.md' -%}
+              {%- assign t_md = t_slug | append: '.md' -%}
+              {%- unless last == 'index.md' or last == t_md -%}
                 {% include rock-card.html rock=n %}
               {%- endunless -%}
             {%- endunless -%}

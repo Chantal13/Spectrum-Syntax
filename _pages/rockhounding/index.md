@@ -4,11 +4,8 @@ title: Rockhounding
 permalink: /rockhounding/
 rocks:
   - url: '/rockhounding/rocks/'
-    title: 'Rocks'
-    description: 'Igneous, metamorphic, and sedimentary pages with key tells, photos, and Ontario context.'
-  - url: '/rockhounding/rocks/minerals/'
-    title: 'Minerals'
-    description: 'Rock‑forming minerals with quick tests (hardness, streak) and in‑the‑field visuals.'
+    title: 'Rocks & Minerals'
+    description: 'Igneous, metamorphic, sedimentary, and rock‑forming minerals with key tells, quick tests, photos, and Ontario context.'
   - url: '/rockhounding/guides/'
     title: 'Guides'
     description: 'Where to go, what to bring, how to look—plus safety, ethics, and beginner IDs.'
