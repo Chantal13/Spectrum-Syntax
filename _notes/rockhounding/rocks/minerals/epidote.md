@@ -100,7 +100,6 @@ While epidote rarely appears as large standalone crystals along Lake Ontario’s
 ## Mineral Family
 Epidote is part of the **silicate mineral group** and commonly occurs in metamorphic environments.  
 
-> [!info] Learn more about its metamorphic context here → [[metamorphic|Metamorphic Rocks]]  
 
 ---
 

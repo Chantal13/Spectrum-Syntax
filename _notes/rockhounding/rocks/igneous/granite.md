@@ -50,7 +50,6 @@ Along the north shores of Lake Ontario, granite is common in glacial erratics â€
 ## Rock Family
 Granite belongs to the **[[igneous]] Rock family** (intrusive type).  
 
-> [!info] Learn more about the **Igneous Rock family** here â†’ [[Igneous Rocks]]  
 
 ---
 

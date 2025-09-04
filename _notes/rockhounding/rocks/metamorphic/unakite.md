@@ -24,4 +24,3 @@ Unakite is a [[metamorphic]] rock created when [[granite]] is altered by hydroth
 
 > [!info] Curious about unakite’s origins?  
 > This pink-and-green stone is created when [[granite]] is transformed under heat and pressure, making it a **[[metamorphic]] rock**.  
-> Learn more here → [[metamorphic|Metamorphic Rocks]]

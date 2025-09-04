@@ -59,7 +59,6 @@ Conglomerate belongs to the **Sedimentary Rock family**. It is closely related t
 - **Sandstone** → finer-grained, made of sand-sized particles  
 - **[[breccia]]** → similar to conglomerate but with angular, not rounded, clasts  
 
-> [!info] Learn more about the **Sedimentary Rock family** here → [[sedimentary|Sedimentary Rocks]]  
 
 ---
 

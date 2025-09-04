@@ -56,7 +56,6 @@ It is closely related to:
 - **Conglomerate** → made of rounded clasts, transported farther by water  
 - **Tuff** → a volcanic rock formed of ash and angular fragments  
 
-> [!info] Learn more about the **Sedimentary Rock family** here → [[sedimentary|Sedimentary Rocks]]  
 
 ---
 

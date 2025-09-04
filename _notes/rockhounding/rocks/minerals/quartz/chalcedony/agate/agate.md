@@ -32,4 +32,3 @@ Glaciers transported many agates to Southern Ontario from far to the north and w
 
 > [!info] Want to dive deeper?  
 > Agates often form in volcanic cavities, making them part of the **[[igneous]] rock family**.  
-> Learn more here → [[igneous|Igneous Rocks]]

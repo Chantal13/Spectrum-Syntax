@@ -75,4 +75,3 @@ Jasper is an opaque chalcedony ([[quartz|quartz]]) coloured by mineral impuritie
 
 > [!info] Did you know?  
 > Jasper is a silica-rich stone that comes from **[[sedimentary]] environments**.  
-> Learn more here → [[sedimentary|Sedimentary Rocks]]

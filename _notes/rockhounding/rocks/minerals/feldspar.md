@@ -106,7 +106,6 @@ Feldspar is a **mineral group**, not a rock. It is most closely tied to:
 - **Metamorphic Rocks** → [[gneiss]], schist, [[unakite]]  
 - **Sedimentary Rocks** → Sandstone often contains feldspar grains  
 
-> [!info] Learn more about feldspar’s role in the **Igneous Rock family** here → [[igneous|Igneous Rocks]]  
 
 ---
 
