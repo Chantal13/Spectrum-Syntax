@@ -55,3 +55,16 @@
   from = "/rockhounding/rocks/granite/"
   to = "/rockhounding/rocks/igneous/granite/"
   status = 301
+
+# --- Security headers ---
+# Protect admin area with Basic Auth at the edge. Replace credentials below.
+# You can list multiple space‑separated user:pass pairs.
+[[headers]]
+  for = "/admin"
+  [headers.values]
+    Basic-Auth = "admin:secret"
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    Basic-Auth = "admin:secret"

@@ -11,6 +11,44 @@ tags:
 
 This guide explains how to use the Tumbling Admin at `/admin/` to create and edit tumbling logs without hand‑editing front matter or asset paths.
 
+## Authentication (Username/Password)
+
+Important: The simple login on `/admin/` is client‑side only and is not secure for protecting sensitive content on a public site. Anyone can view the page source and read whatever credentials are embedded in JavaScript. For production protection, use Netlify’s password protection or Basic Auth headers (recommended below). The JavaScript login is fine for local use or light guardrails on non‑sensitive content.
+
+### Quick (dev/testing) — inline JS login (now removed)
+Previously, `/admin/` used a client‑side login form with hard‑coded credentials. This has been removed in favour of server‑side Basic Auth. If you need a temporary local-only gate for testing, use a dev branch or serve locally.
+
+### Production (recommended) — protect /admin at the edge
+Use Netlify to require auth before the page is served. Two common options:
+
+Option A (enabled): Netlify Basic Auth for just the admin paths
+1) Open `netlify.toml` and add headers for `/admin` and `/admin/*`:
+   
+   ```toml
+   [[headers]]
+     for = "/admin"
+     [headers.values]
+       Basic-Auth = "youruser:yourpassword"
+
+   [[headers]]
+     for = "/admin/*"
+     [headers.values]
+       Basic-Auth = "youruser:yourpassword"
+   ```
+
+   - You can list multiple user:pass pairs separated by spaces, e.g.: `"alice:pass bob:pass2"`.
+   - Commit and deploy. Browsers will prompt for credentials before serving any `/admin` page.
+   - Keep in mind these credentials live in your repository. If the repo is public, rotate them as needed and treat them as non‑sensitive.
+
+Option B: Site‑wide password (fastest)
+- In Netlify UI: Site settings → Access control → Password → set a site password.
+- This protects the entire site (not just `/admin`), which may not be desirable long‑term but is quick and secure.
+
+Advanced
+- For private repos, you can still use Basic Auth in `netlify.toml` safely.
+- If you want to avoid committing credentials, generate a `_headers` file at build time from environment variables and add `Basic-Auth` entries there.
+- For full user management, consider Netlify Identity + a CMS (outside the scope of this simple admin).
+
 ## Overview
 - Tabs: Checklist, New Log Builder, Edit Existing.
 - Inline image uploads: Save milestone images directly into `assets/tumbling/` using the File System Access API.
