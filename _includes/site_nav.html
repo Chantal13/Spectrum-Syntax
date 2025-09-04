@@ -9,6 +9,7 @@
 {%- assign in_tumbling = url contains '/tumbling/' -%}
 {%- assign in_rockhounding = url contains '/rockhounding/' -%}
 {%- assign in_games = url contains '/games/' -%}
+{%- assign in_logs = url contains '/logs/' -%}
 {%- assign on_about = url == '/about' or url contains '/about/' -%}
 
 <nav class="site-nav" role="navigation" aria-label="Primary">
@@ -20,6 +21,11 @@
     <li>
       <a class="internal-link{% if in_tumbling %} nav-link--active{% endif %}"
          href="/tumbling/"{% if in_tumbling %} aria-current="page"{% endif %}>Tumbling</a>
+    </li>
+
+    <li>
+      <a class="internal-link{% if in_logs %} nav-link--active{% endif %}"
+         href="/logs/"{% if in_logs %} aria-current="page"{% endif %}>Logs</a>
     </li>
 
     <li class="has-dropdown">

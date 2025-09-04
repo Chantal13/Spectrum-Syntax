@@ -7,7 +7,7 @@ Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
   html = doc.output.dup
 
   # Fix mistakenly absolute "https://<section>/..." links -> "/<section>/..."
-  %w[games rockhounding tumbling hobbies blog].each do |section|
+  %w[games rockhounding tumbling logs hobbies blog].each do |section|
     html.gsub!(/href=(["'])https?:\/\/#{section}\//i, 'href=\1/' + section + '/')
     # Ensure section links are root-absolute (add leading slash if missing)
     html.gsub!(/href=(["'])#{section}\//i, 'href=\1/' + section + '/')
