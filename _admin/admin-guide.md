@@ -18,31 +18,22 @@ Important: The simple login on `/admin/` is client‑side only and is not secure
 ### Quick (dev/testing) — inline JS login (now removed)
 Previously, `/admin/` used a client‑side login form with hard‑coded credentials. This has been removed in favour of server‑side Basic Auth. If you need a temporary local-only gate for testing, use a dev branch or serve locally.
 
-### Production (recommended) — protect /admin at the edge
-Use Netlify to require auth before the page is served. Two common options:
+### Production (enabled) — protect /admin with a Netlify Edge Function
+This site enforces Basic Auth for `/admin` via a Netlify Edge Function that reads credentials from environment variables.
 
-Option A (enabled): Netlify Basic Auth for just the admin paths
-1) Open `netlify.toml` and add headers for `/admin` and `/admin/*`:
-   
-   ```toml
-   [[headers]]
-     for = "/admin"
-     [headers.values]
-       Basic-Auth = "youruser:yourpassword"
+How to set admin username/password
+1) In Netlify UI: Site settings → Build & deploy → Environment → Edit variables.
+2) Add `ADMIN_USER` and `ADMIN_PASS` and click Save.
+3) Trigger a deploy. Visiting `/admin/` will prompt for credentials.
 
-   [[headers]]
-     for = "/admin/*"
-     [headers.values]
-       Basic-Auth = "youruser:yourpassword"
-   ```
+Implementation details
+- Function file: `netlify/edge-functions/admin-auth.js`.
+- Mapping: `netlify.toml` `[[edge_functions]]` for `/admin` and `/admin/*`.
+- If env vars are not set, it falls back to `admin:secret`.
 
-   - You can list multiple user:pass pairs separated by spaces, e.g.: `"alice:pass bob:pass2"`.
-   - Commit and deploy. Browsers will prompt for credentials before serving any `/admin` page.
-   - Keep in mind these credentials live in your repository. If the repo is public, rotate them as needed and treat them as non‑sensitive.
-
-Option B: Site‑wide password (fastest)
+Alternative: Site‑wide password (fastest)
 - In Netlify UI: Site settings → Access control → Password → set a site password.
-- This protects the entire site (not just `/admin`), which may not be desirable long‑term but is quick and secure.
+- This protects the entire site (not just `/admin`).
 
 Advanced
 - For private repos, you can still use Basic Auth in `netlify.toml` safely.

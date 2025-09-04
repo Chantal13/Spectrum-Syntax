@@ -11,6 +11,9 @@ permalink: /admin/
   <style>
     body { font-family: sans-serif; max-width: 48rem; margin: 2rem auto; }
     h1 { margin-bottom: .5rem; }
+    .auth-status { font-size: .95rem; margin: .25rem 0 1rem; color: #666; }
+    .auth-ok { color: #2e7d32; }
+    .auth-fail { color: #c62828; }
     .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
     .card { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; }
     .card h2 { margin: 0 0 .5rem 0; font-size: 1.1rem; }
@@ -23,6 +26,7 @@ permalink: /admin/
 <body>
   <h1>Admin</h1>
   <p>Welcome. This area is protected by Basic Auth at the edge.</p>
+  <p id="auth-status" class="auth-status">Checking authentication…</p>
 
   <div class="cards">
     <div class="card">
@@ -37,5 +41,26 @@ permalink: /admin/
       <p><a class="internal-link" href="{{ '/admin/guide/' | relative_url }}">Read guide</a></p>
     </div>
   </div>
+
+  <script>
+    (async function () {
+      const el = document.getElementById('auth-status');
+      try {
+        const res = await fetch(window.location.pathname, { method: 'HEAD', cache: 'no-store' });
+        if (res.status === 200) {
+          el.textContent = "You're logged in.";
+          el.classList.add('auth-ok');
+        } else if (res.status === 401) {
+          el.textContent = 'Not authenticated. Reload to sign in.';
+          el.classList.add('auth-fail');
+        } else {
+          el.textContent = 'Auth check returned status ' + res.status + '.';
+        }
+      } catch (e) {
+        el.textContent = 'Auth check failed.';
+        el.classList.add('auth-fail');
+      }
+    })();
+  </script>
 </body>
 </html>
