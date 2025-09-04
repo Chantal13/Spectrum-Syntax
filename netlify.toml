@@ -68,3 +68,11 @@
   for = "/admin/*"
   [headers.values]
     Basic-Auth = "admin:secret"
+
+[[edge_functions]]
+  path = "/admin"
+  function = "admin-auth"
+
+[[edge_functions]]
+  path = "/admin/*"
+  function = "admin-auth"
