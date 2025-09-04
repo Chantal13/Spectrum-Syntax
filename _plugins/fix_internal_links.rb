@@ -11,7 +11,12 @@ Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
     html.gsub!(/href=(["'])https?:\/\/#{section}\//i, 'href=\1/' + section + '/')
     # Ensure section links are root-absolute (add leading slash if missing)
     html.gsub!(/href=(["'])#{section}\//i, 'href=\1/' + section + '/')
+    # Fix scheme-relative URLs like //rockhounding/... -> /rockhounding/...
+    html.gsub!(/href=(["'])\/\/#{section}\//i, 'href=\1/' + section + '/')
   end
+
+  # Fix bare scheme-relative root: href="//" or href='//' -> href="/" (preserve quote)
+  html.gsub!(/href=(["'])\/\/\1/i) { |m| "href=#{$1}/#{$1}" }
 
   # Ensure spaces in internal hrefs are percent-encoded
   html.gsub!(/href=(['"])(\/[^'"#?]*\s[^'"#?]*)(['"#?])/) do

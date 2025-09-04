@@ -2,6 +2,7 @@
 <html lang="en">
   {% include head.html %}
   <body{% if page.id %} class="page-{{ page.id | slugify }}"{% endif %}>
+    {% include site_nav.html %}
     <div class="wrapper">
       {% include breadcrumbs.html %}
       <main>{{ content }}</main>

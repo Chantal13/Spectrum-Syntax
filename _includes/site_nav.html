@@ -1,0 +1,95 @@
+{%- comment -%}
+  Global site navigation
+  - Appears at the top of every page (default layout)
+  - Highlights active section
+{%- endcomment -%}
+
+{%- assign url = page.url | default: '/' -%}
+{%- assign is_home = page.id == 'home' or url == '/' -%}
+{%- assign in_tumbling = url contains '/tumbling/' -%}
+{%- assign in_rockhounding = url contains '/rockhounding/' -%}
+{%- assign in_games = url contains '/games/' -%}
+{%- assign on_about = url == '/about' or url contains '/about/' -%}
+
+<nav class="site-nav" role="navigation" aria-label="Primary">
+  <a class="internal-link nav-home{% if is_home %} nav-link--active{% endif %}"
+     href="/"{% if is_home %} aria-current="page"{% endif %}><strong>{{ site.title }}</strong></a>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Toggle navigation">Menu</button>
+
+  <ul class="nav-links" id="site-menu">
+    <li>
+      <a class="internal-link{% if in_tumbling %} nav-link--active{% endif %}"
+         href="/tumbling/"{% if in_tumbling %} aria-current="page"{% endif %}>Tumbling</a>
+    </li>
+
+    <li class="has-dropdown">
+      <a class="internal-link{% if in_rockhounding %} nav-link--active{% endif %}"
+         href="/rockhounding/"{% if in_rockhounding %} aria-current="page"{% endif %}
+         aria-haspopup="true" aria-controls="nav-dropdown-rockhounding"{% if in_rockhounding %} aria-expanded="true"{% else %} aria-expanded="false"{% endif %}>Rockhounding</a>
+      <ul class="dropdown" id="nav-dropdown-rockhounding">
+        <li>
+          <a class="internal-link{% if url == '/rockhounding/' %} nav-link--active{% endif %}"
+             href="/rockhounding/"{% if url == '/rockhounding/' %} aria-current="page"{% endif %}>Overview</a>
+        </li>
+        <li>
+          <a class="internal-link{% if url contains '/rockhounding/rocks/' and url != '/rockhounding/rocks/minerals/' %} nav-link--active{% endif %}"
+             href="/rockhounding/rocks/"{% if url contains '/rockhounding/rocks/' and url != '/rockhounding/rocks/minerals/' %} aria-current="page"{% endif %}>Rocks</a>
+        </li>
+        <li>
+          <a class="internal-link{% if url contains '/rockhounding/rocks/minerals/' %} nav-link--active{% endif %}"
+             href="/rockhounding/rocks/minerals/"{% if url contains '/rockhounding/rocks/minerals/' %} aria-current="page"{% endif %}>Minerals</a>
+        </li>
+        <li>
+          <a class="internal-link{% if url contains '/rockhounding/guides/' %} nav-link--active{% endif %}"
+             href="/rockhounding/guides/"{% if url contains '/rockhounding/guides/' %} aria-current="page"{% endif %}>Guides</a>
+        </li>
+        <li>
+          <a class="internal-link{% if url contains '/rockhounding/field-log/' %} nav-link--active{% endif %}"
+             href="/rockhounding/field-log/"{% if url contains '/rockhounding/field-log/' %} aria-current="page"{% endif %}>Field Log</a>
+        </li>
+        <li>
+          <a class="internal-link{% if url contains '/rockhounding/resources/' %} nav-link--active{% endif %}"
+             href="/rockhounding/resources/"{% if url contains '/rockhounding/resources/' %} aria-current="page"{% endif %}>Resources</a>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <a class="internal-link{% if in_games %} nav-link--active{% endif %}"
+         href="/games/"{% if in_games %} aria-current="page"{% endif %}>Games</a>
+    </li>
+    <li>
+      <a class="internal-link{% if on_about %} nav-link--active{% endif %}"
+         href="/about"{% if on_about %} aria-current="page"{% endif %}>About</a>
+    </li>
+  </ul>
+</nav>
+
+<script>
+  (function() {
+    var nav = document.querySelector('.site-nav');
+    if (!nav) return;
+    var btn = nav.querySelector('.menu-toggle');
+    var menu = nav.querySelector('#site-menu');
+    if (!btn || !menu) return;
+
+    btn.addEventListener('click', function() {
+      var isOpen = nav.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        nav.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!nav.contains(e.target)) {
+        nav.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
