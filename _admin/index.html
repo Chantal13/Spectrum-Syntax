@@ -95,6 +95,151 @@ permalink: /admin/
         <li><a href="https://github.com/Chantal13/Spectrum-Syntax/new/main/_notes/rockhounding/rocks/minerals" target="_blank" rel="noopener noreferrer">New mineral note</a></li>
       </ul>
     </div>
+
+    <div class="card">
+      <h2>New Note Templates</h2>
+      <p>Copy a template, then use the “New…” links to create a file and paste.</p>
+      <p>
+        <button type="button" onclick="copyTpl('tpl-mineral')">Copy Mineral Template</button>
+        <a href="https://github.com/Chantal13/Spectrum-Syntax/new/main/_notes/rockhounding/rocks/minerals?filename=mineral-name.md" target="_blank" rel="noopener noreferrer">New mineral note</a>
+      </p>
+      <p>
+        <button type="button" onclick="copyTpl('tpl-rock')">Copy Rock Template</button>
+        <a href="https://github.com/Chantal13/Spectrum-Syntax/new/main/_notes/rockhounding/rocks/igneous?filename=rock-name.md" target="_blank" rel="noopener noreferrer">New igneous rock</a>
+        ·
+        <a href="https://github.com/Chantal13/Spectrum-Syntax/new/main/_notes/rockhounding/rocks/metamorphic?filename=rock-name.md" target="_blank" rel="noopener noreferrer">New metamorphic rock</a>
+        ·
+        <a href="https://github.com/Chantal13/Spectrum-Syntax/new/main/_notes/rockhounding/rocks/sedimentary?filename=rock-name.md" target="_blank" rel="noopener noreferrer">New sedimentary rock</a>
+      </p>
+      <p>
+        <button type="button" onclick="copyTpl('tpl-tumble')">Copy Tumbling Batch Template</button>
+        <a href="https://github.com/Chantal13/Spectrum-Syntax/new/main/_notes/rockhounding/tumbling?filename=YYYY-MM-DD-batch-000.md" target="_blank" rel="noopener noreferrer">New tumbling batch</a>
+      </p>
+
+      <script type="text/plain" id="tpl-mineral">{% raw %}---
+title: Mineral Name
+tags:
+  - rockhounding
+aliases: []
+thumbnail: "/assets/tumbling/placeholder.jpg"
+hardness: 7
+luster: null
+streak: null
+---
+{% include rock-card.html rock=page %}
+
+## Overview
+Brief description of the mineral, where it appears locally, and any notable field traits.
+
+## Appearance & Identification
+- Colour:
+- Luster:
+- Transparency:
+- Crystal Habit:
+- Hardness: [[Mohs Hardness Scale|Mohs]] X–Y
+
+## Tumbling Qualities
+- Hardness: [[Mohs Hardness Scale|Mohs]] X–Y
+- Notes:
+
+## Related
+- [[igneous|Igneous Rocks]] · [[sedimentary|Sedimentary Rocks]] · [[metamorphic|Metamorphic Rocks]]
+{% endraw %}</script>
+
+      <script type="text/plain" id="tpl-rock">{% raw %}---
+title: Rock Name (Family)
+tags:
+  - rockhounding
+aliases: []
+thumbnail: "/assets/rocks/placeholder.jpg"
+---
+
+## Overview
+One-paragraph description of the rock, typical composition, and where to find it locally.
+
+## Appearance & Identification
+- Texture:
+- Colours:
+- Minerals: [[quartz]], [[feldspar]], ...
+- Key tells:
+
+## Tumbling Notes
+- Hardness: [[Mohs Hardness Scale|Mohs]] X–Y
+- Tips:
+
+## Related
+- [[igneous|Igneous Rocks]] · [[sedimentary|Sedimentary Rocks]] · [[metamorphic|Metamorphic Rocks]]
+{% endraw %}</script>
+
+      <script type="text/plain" id="tpl-tumble">{% raw %}---
+title: "Batch Title"
+batch: "000"
+status: "In Progress"
+date_started: "YYYY-MM-DD"
+date_finished: ""
+tumbler: "National Geographic Professional Rock Tumbler"
+origin: ""
+consumables_brand: "National Geographic"
+rocks:
+  - agate
+  - jasper
+images:
+  rough: "/assets/tumbling/000/rough-000.jpg"
+  after_stage_1: "/assets/tumbling/000/after-s1-000.jpg"
+  after_stage_3: "/assets/tumbling/000/after-s3-000.jpg"
+  after_stage_4: "/assets/tumbling/000/after-s4-000.jpg"
+notes: "Short summary and goals for this batch."
+stages:
+  - stage: 1
+    name: "Coarse Grind"
+    start: "YYYY-MM-DD"
+    end: ""
+    grit: "60/90 SiC"
+    amount_tbsp: 2
+    barrel_fill_pct: "75%"
+    water_level: "Just below top layer"
+    media_used: "None"
+    maintenance: ""
+    observations: ""
+    decision:
+      repeat: "no"
+      why: ""
+
+  - stage: 2
+    name: "Medium Grind"
+    grit: "120/220 SiC"
+    amount_tbsp: 2
+    barrel_fill_pct: ""
+    water_level: "Just below top layer"
+    media_used: ""
+    maintenance: ""
+    observations: ""
+
+  - stage: 3
+    name: "Pre-Polish"
+    grit: "500 SiC"
+    amount_tbsp: 2
+    barrel_fill_pct: ""
+    water_level: "Just below top layer"
+    media_used: ""
+    maintenance: ""
+    observations: ""
+
+  - stage: 4
+    name: "Polish"
+    end: "YYYY-MM-DD"
+    polish: "Aluminum Oxide (TXP)"
+    amount_tbsp: 2
+    barrel_fill_pct: ""
+    water_level: "Just below top layer; clean water"
+    media_used: ""
+    maintenance: ""
+    observations: ""
+---
+
+<!-- Add batch narrative here if desired. -->
+{% endraw %}</script>
+    </div>
   </div>
 
   <script>
@@ -116,6 +261,23 @@ permalink: /admin/
         el.classList.add('auth-fail');
       }
     })();
+    async function copyTpl(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const text = el.textContent || el.innerText || '';
+      try {
+        await navigator.clipboard.writeText(text);
+        alert('Template copied to clipboard.');
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        alert('Template copied to clipboard.');
+      }
+    }
   </script>
 </body>
 </html>
