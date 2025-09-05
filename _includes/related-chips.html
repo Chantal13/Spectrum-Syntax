@@ -1,0 +1,64 @@
+{%- comment -%}
+  Related chips for rocks/minerals
+  Usage: {% include related-chips.html doc=page %}
+  Strategy:
+    - Find other notes in the same folder as this document (siblings)
+    - If none, fall back to broader rock class/mineral root folder
+    - Exclude the current document and non-content index.md when possible
+{%- endcomment -%}
+
+{%- assign doc = include.doc -%}
+{%- if doc and doc.path -%}
+  {%- assign segs = doc.path | split: '/' -%}
+  {%- capture parent_dir -%}
+    {%- for s in segs -%}
+      {%- unless forloop.last -%}{{ s }}/{%- endunless -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- assign candidates = site.notes | where_exp: "n", "n.path contains parent_dir" -%}
+  {%- assign rel_count = 0 -%}
+  {%- capture chips -%}
+    {%- for n in candidates -%}
+      {%- assign last = n.path | split: '/' | last -%}
+      {%- if n.path != doc.path and last != 'index.md' -%}
+        {%- assign rel_count = rel_count | plus: 1 -%}
+        <a class="chip" href="{{ n.url | relative_url }}">{{ n.title | default: n.basename_without_ext }}</a>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- if rel_count == 0 -%}
+    {%- comment -%} Fallbacks by broader grouping {%- endcomment -%}
+    {%- if doc.path contains '/rocks/igneous/' -%}
+      {%- assign folder = '_notes/rockhounding/rocks/igneous/' -%}
+    {%- elsif doc.path contains '/rocks/metamorphic/' -%}
+      {%- assign folder = '_notes/rockhounding/rocks/metamorphic/' -%}
+    {%- elsif doc.path contains '/rocks/sedimentary/' -%}
+      {%- assign folder = '_notes/rockhounding/rocks/sedimentary/' -%}
+    {%- elsif doc.path contains '/rocks/minerals/' -%}
+      {%- assign folder = '_notes/rockhounding/rocks/minerals/' -%}
+    {%- endif -%}
+    {%- if folder -%}
+      {%- assign candidates = site.notes | where_exp: "n", "n.path contains folder" -%}
+      {%- assign rel_count = 0 -%}
+      {%- capture chips -%}
+        {%- for n in candidates -%}
+          {%- assign last = n.path | split: '/' | last -%}
+          {%- if n.path != doc.path and last != 'index.md' -%}
+            {%- assign rel_count = rel_count | plus: 1 -%}
+            <a class="chip" href="{{ n.url | relative_url }}">{{ n.title | default: n.basename_without_ext }}</a>
+          {%- endif -%}
+          {%- if rel_count >= 8 -%}{% break %}{%- endif -%}
+        {%- endfor -%}
+      {%- endcapture -%}
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- if rel_count > 0 -%}
+    <div class="chips related-chips">
+      {{ chips }}
+    </div>
+  {%- endif -%}
+{%- endif -%}
+

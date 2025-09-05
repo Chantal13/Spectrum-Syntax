@@ -118,4 +118,7 @@
   {% if include.rock.hardness %}
     <p class="rock-card-meta">Hardness: {{ include.rock.hardness }}</p>
   {% endif %}
+  {%- if include.rock.url == page.url -%}
+    {%- include related-chips.html doc=include.rock -%}
+  {%- endif -%}
 </div>
