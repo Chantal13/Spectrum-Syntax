@@ -9,6 +9,12 @@
 
 {%- assign doc = include.doc -%}
 {%- if doc and doc.path -%}
+  {%- comment -%} Determine a primary directory for "related" {%- endcomment -%}
+  {%- assign is_mineral = doc.path contains '/rocks/minerals/' -%}
+  {%- assign is_igneous = doc.path contains '/rocks/igneous/' -%}
+  {%- assign is_metamorphic = doc.path contains '/rocks/metamorphic/' -%}
+  {%- assign is_sedimentary = doc.path contains '/rocks/sedimentary/' -%}
+
   {%- assign segs = doc.path | split: '/' -%}
   {%- capture parent_dir -%}
     {%- for s in segs -%}
@@ -16,7 +22,29 @@
     {%- endfor -%}
   {%- endcapture -%}
 
-  {%- assign candidates = site.notes | where_exp: "n", "n.path contains parent_dir" -%}
+  {%- assign primary_dir = parent_dir -%}
+
+  {%- if is_mineral -%}
+    {%- assign minerals_root = '_notes/rockhounding/rocks/minerals/' -%}
+    {%- assign rel_after_root = doc.path | remove: minerals_root -%}
+    {%- if rel_after_root contains '/' -%}
+      {%- comment -%} Nested under a mineral family; parent_dir is already the immediate folder {%- endcomment -%}
+      {%- assign primary_dir = parent_dir -%}
+    {%- else -%}
+      {%- comment -%} Base mineral file (e.g., minerals/quartz.md) — relate to its immediate children folder {%- endcomment -%}
+      {%- assign base_slug = doc.path | split: '/' | last | replace: '.md','' -%}
+      {%- assign primary_dir = minerals_root | append: base_slug | append: '/' -%}
+    {%- endif -%}
+  {%- elsif is_igneous -%}
+    {%- assign primary_dir = '_notes/rockhounding/rocks/igneous/' -%}
+  {%- elsif is_metamorphic -%}
+    {%- assign primary_dir = '_notes/rockhounding/rocks/metamorphic/' -%}
+  {%- elsif is_sedimentary -%}
+    {%- assign primary_dir = '_notes/rockhounding/rocks/sedimentary/' -%}
+  {%- endif -%}
+
+  {%- assign candidates = site.notes | where_exp: "n", "n.path contains primary_dir" -%}
+  {%- assign candidates = candidates | sort: 'title' -%}
   {%- assign rel_count = 0 -%}
   {%- capture chips -%}
     {%- for n in candidates -%}
@@ -25,22 +53,24 @@
         {%- assign rel_count = rel_count | plus: 1 -%}
         <a class="chip" href="{{ n.url | relative_url }}">{{ n.title | default: n.basename_without_ext }}</a>
       {%- endif -%}
+      {%- if rel_count >= 6 -%}{% break %}{%- endif -%}
     {%- endfor -%}
   {%- endcapture -%}
 
   {%- if rel_count == 0 -%}
     {%- comment -%} Fallbacks by broader grouping {%- endcomment -%}
-    {%- if doc.path contains '/rocks/igneous/' -%}
+    {%- if is_igneous -%}
       {%- assign folder = '_notes/rockhounding/rocks/igneous/' -%}
-    {%- elsif doc.path contains '/rocks/metamorphic/' -%}
+    {%- elsif is_metamorphic -%}
       {%- assign folder = '_notes/rockhounding/rocks/metamorphic/' -%}
-    {%- elsif doc.path contains '/rocks/sedimentary/' -%}
+    {%- elsif is_sedimentary -%}
       {%- assign folder = '_notes/rockhounding/rocks/sedimentary/' -%}
-    {%- elsif doc.path contains '/rocks/minerals/' -%}
+    {%- elsif is_mineral -%}
       {%- assign folder = '_notes/rockhounding/rocks/minerals/' -%}
     {%- endif -%}
     {%- if folder -%}
       {%- assign candidates = site.notes | where_exp: "n", "n.path contains folder" -%}
+      {%- assign candidates = candidates | sort: 'title' -%}
       {%- assign rel_count = 0 -%}
       {%- capture chips -%}
         {%- for n in candidates -%}
@@ -49,7 +79,7 @@
             {%- assign rel_count = rel_count | plus: 1 -%}
             <a class="chip" href="{{ n.url | relative_url }}">{{ n.title | default: n.basename_without_ext }}</a>
           {%- endif -%}
-          {%- if rel_count >= 8 -%}{% break %}{%- endif -%}
+          {%- if rel_count >= 6 -%}{% break %}{%- endif -%}
         {%- endfor -%}
       {%- endcapture -%}
     {%- endif -%}
@@ -61,4 +91,3 @@
     </div>
   {%- endif -%}
 {%- endif -%}
-
