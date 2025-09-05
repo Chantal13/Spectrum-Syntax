@@ -1,5 +1,5 @@
 ---
-title: Basalt (Igneous)
+title: Basalt
 layout: note
 thumbnail: "/assets/tumbling/001/rough.jpg"
 ---

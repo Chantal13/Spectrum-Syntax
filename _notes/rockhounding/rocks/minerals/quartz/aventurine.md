@@ -1,5 +1,5 @@
 ---
-title: Aventurine (Quartz)
+title: Aventurine
 layout: note
 thumbnail: https://upload.wikimedia.org/wikipedia/commons/8/84/Aventurine.jpg
 hardness: 7

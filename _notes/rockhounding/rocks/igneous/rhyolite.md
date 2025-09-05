@@ -1,5 +1,5 @@
 ---
-title: Rhyolite (Igneous)
+title: Rhyolite
 layout: note
 thumbnail: https://upload.wikimedia.org/wikipedia/commons/8/8c/Loebejuener_porphyr_poliert.jpg
 ---
