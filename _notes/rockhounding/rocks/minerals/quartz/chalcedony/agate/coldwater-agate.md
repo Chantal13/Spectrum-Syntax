@@ -1,7 +1,9 @@
 ---
 title: Coldwater Agate
 layout: note
-thumbnail: https://upload.wikimedia.org/wikipedia/commons/a/ae/Mexican_Crazy_Lace_Agate_-_World%27s_Best.jpg
+thumbnail: https://static.wikia.nocookie.net/encyclopedia-gemstonia/images/1/10/Coldwater_agate.jpg
+image_credit: Encyclopedia Gemstonia
+image_credit_url: https://encyclopedia-gemstonia.fandom.com/wiki/Coldwater_agate
 hardness: 7
 luster: null
 streak: null

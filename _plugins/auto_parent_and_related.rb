@@ -34,7 +34,7 @@ Jekyll::Hooks.register [:notes], :pre_render do |doc|
 
   # Inject Parent: [[...]] line if missing
   if parent_title && !content.include?('Parent: [[')
-    # place after first non-empty line following rock-card include
+    # place after first plain-text summary line following rock-card include
     inc_idx = content.index('{% include rock-card.html rock=page %}')
     if inc_idx
       line_start = content.index("\n", inc_idx)
@@ -42,11 +42,21 @@ Jekyll::Hooks.register [:notes], :pre_render do |doc|
         tail = content[line_start+1..-1]
         lines = tail.lines
         i = 0
+        # skip blank lines
         i += 1 while i < lines.length && lines[i].strip.empty?
-        if i < lines.length
-          insert_at = content.length - tail.length + lines[0...i+1].join.length
-          content = content.dup.insert(insert_at, "\nParent: [[#{parent_title}]]\n")
+        # skip Liquid/HTML/meta lines
+        def plain_text?(s)
+          s2 = s.lstrip
+          return false if s2.start_with?('{%', '{{', '{-', '<')
+          return true
         end
+        i += 1 while i < lines.length && !plain_text?(lines[i])
+        # if none found, fall back to first non-empty
+        i = 0 while i >= lines.length
+        # compute insertion point and ensure blank lines around
+        insert_at = content.length - tail.length + lines[0...i+1].join.length
+        insertion = "\n\nParent: [[#{parent_title}]]\n\n"
+        content = content.dup.insert(insert_at, insertion)
       end
     end
   end
@@ -84,7 +94,7 @@ Jekyll::Hooks.register [:notes], :pre_render do |doc|
                      .first(4)
                      .map { |n| n.data['title'] || n.basename_without_ext }
     if !titles.empty?
-      content = content.rstrip + "\n\nRelated: " + titles.map { |t| "[[#{t}]]" }.join(', ') + "\n"
+      content = content.rstrip + "\n\nRelated: " + titles.map { |t| "[[#{t}]]" }.join(', ') + "\n\n"
     end
   end
 

@@ -36,7 +36,15 @@
     {% if include.rock.url == page.url %}
       {% assign credit_label = nil %}
       {% assign credit_href  = nil %}
-      {% if final_thumb contains 'upload.wikimedia.org' %}
+      {%- comment -%}
+        Allow explicit credit override via front matter on the note:
+        image_credit (label) and image_credit_url (link). If not provided,
+        fall back to heuristics based on the image URL.
+      {%- endcomment -%}
+      {% if include.rock.image_credit or include.rock.image_credit_url %}
+        {% assign credit_href  = include.rock.image_credit_url %}
+        {% assign credit_label = include.rock.image_credit | default: 'Image Source' %}
+      {% elsif final_thumb contains 'upload.wikimedia.org' %}
         {% assign parts = final_thumb | split: '/' %}
         {% assign file_name = parts | last | url_decode %}
         {% assign credit_href = 'https://commons.wikimedia.org/wiki/File:' | append: file_name %}
