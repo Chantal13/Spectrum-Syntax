@@ -58,9 +58,7 @@ streak: null
   </div>
 {%- endif -%}
 
-Epidote is a green **silicate mineral** that often forms during metamorphism when other minerals are altered by heat, pressure, and hydrothermal fluids. It is best known for giving **[[unakite]]** its striking green color (alongside pink [[feldspar]] and [[quartz]]).  
-
-While epidote rarely appears as large standalone crystals along Lake Ontario’s beaches, it is an important mineral to recognize because of its role in [[unakite]] and some metamorphic rocks.
+Epidote is a pistachio‑green silicate mineral formed during low‑ to medium‑grade metamorphism and hydrothermal alteration; it commonly occurs with quartz and colors unakite.
 
 ---
 

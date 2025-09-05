@@ -5,4 +5,4 @@ thumbnail: https://upload.wikimedia.org/wikipedia/commons/2/22/Quartzite_Solli%C
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Quartzite is metamorphosed sandstone; tightly interlocked quartz grains make it very hard and resistant to weathering and erosion.

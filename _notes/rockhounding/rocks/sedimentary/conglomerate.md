@@ -11,7 +11,7 @@ thumbnail: "https://upload.wikimedia.org/wikipedia/commons/0/0a/Conglomerate_roc
 ---
 {% include rock-card.html rock=page %}
 
-Conglomerate, or puddingstone, is a **[[sedimentary rock]]** made of rounded pebbles and cobbles cemented together by finer materials such as sand, silt, or silica. It often looks like a “rock made of rocks,” with colourful fragments locked in a natural matrix.  
+Conglomerate is a clastic sedimentary rock of rounded pebbles and cobbles set in a finer matrix; the rounded clasts record transport by water. “Puddingstone” is a colorful variety.
 
 One of the most famous varieties is **puddingstone**, a type of conglomerate that contains bright red [[jasper]] pebbles within a lighter [[quartz]] or sand matrix. Glaciers have scattered puddingstone and other conglomerates across Southern Ontario, and they can sometimes be found along the **north shores of Lake Ontario** as glacial erratics.
 

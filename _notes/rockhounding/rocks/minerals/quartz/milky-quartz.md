@@ -8,4 +8,4 @@ streak: null
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Milky quartz is massive white quartz whose cloudiness comes from countless fluid and gas inclusions scattering light.

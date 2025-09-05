@@ -8,4 +8,4 @@ streak: null
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Picture jasper is jasper whose iron and manganese staining creates landscape‑like patterns in the stone.

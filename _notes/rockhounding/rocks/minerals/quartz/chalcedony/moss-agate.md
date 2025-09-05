@@ -8,4 +8,4 @@ streak: null
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Moss agate is translucent chalcedony with fern‑like dendritic inclusions, most often green; the patterns resemble moss but are mineral growths.

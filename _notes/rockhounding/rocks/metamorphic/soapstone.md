@@ -5,4 +5,4 @@ thumbnail: https://upload.wikimedia.org/wikipedia/commons/b/b3/Soapstone_%28Spec
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Soapstone is a talc‑rich metamorphic rock; it feels soapy, is soft to carve, and resists heat and acids.

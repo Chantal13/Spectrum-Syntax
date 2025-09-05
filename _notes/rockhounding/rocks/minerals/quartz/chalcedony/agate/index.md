@@ -8,4 +8,4 @@ streak: null
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Agate is banded chalcedony formed as silica layers deposit in cavities; its concentric bands display wide color and pattern variation.

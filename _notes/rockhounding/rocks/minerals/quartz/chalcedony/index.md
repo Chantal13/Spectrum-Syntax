@@ -8,4 +8,4 @@ streak: null
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Chalcedony is microcrystalline quartz that includes agate, jasper, onyx, and related varieties; it typically forms from silica‑rich fluids filling cavities and fractures.

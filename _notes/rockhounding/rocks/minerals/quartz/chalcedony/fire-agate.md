@@ -8,4 +8,4 @@ streak: null
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Fire agate is brown chalcedony with thin iron‑oxide layers that diffract light, producing iridescent "fire" when cut properly.

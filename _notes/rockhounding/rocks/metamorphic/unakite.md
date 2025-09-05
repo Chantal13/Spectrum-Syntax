@@ -10,7 +10,7 @@ thumbnail: "https://upload.wikimedia.org/wikipedia/commons/2/20/Unakite_%28epido
 ---
 {% include rock-card.html rock=page %}
 
-Unakite is a [[metamorphic]] rock created when [[granite]] is altered by hydrothermal fluids, replacing [[feldspar]] with green [[epidote]].  
+Unakite is altered granite composed of pink feldspar, green epidote, and quartz; the mottled pink‑green pattern develops during hydrothermal or metamorphic alteration.
 
 **Appearance & Identification:**  
 - Mottled green ([[epidote]]), pink ([[feldspar]]), and clear [[quartz|Quartz]]

@@ -5,4 +5,4 @@ thumbnail: https://upload.wikimedia.org/wikipedia/commons/a/af/USDA_Mineral_Sand
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Sandstone is a sedimentary rock of sand‑sized grains (often quartz) cemented together; bedding, cross‑beds, and ripple marks are common.

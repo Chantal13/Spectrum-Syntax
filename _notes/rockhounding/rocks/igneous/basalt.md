@@ -6,4 +6,4 @@ thumbnail: "https://upload.wikimedia.org/wikipedia/commons/7/7d/Basalt_Rock_Form
 
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Basalt is a dark, fine-grained volcanic rock rich in plagioclase and pyroxene; it forms from fast-cooling, low‑silica lava and makes up much of the oceanic crust.

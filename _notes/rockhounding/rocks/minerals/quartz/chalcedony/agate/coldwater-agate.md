@@ -8,4 +8,4 @@ streak: null
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Coldwater agate forms in sedimentary rocks from low‑temperature silica solutions; banding tends to be subtle with earthy colors.

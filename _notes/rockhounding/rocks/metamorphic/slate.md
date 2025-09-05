@@ -5,4 +5,4 @@ thumbnail: https://upload.wikimedia.org/wikipedia/commons/f/f4/Slate_%28Knife_La
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Slate is low‑grade metamorphosed shale with slaty cleavage; it breaks into thin, durable sheets.

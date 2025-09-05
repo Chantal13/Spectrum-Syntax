@@ -9,9 +9,7 @@ thumbnail: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Granite_Rock_2.j
 ---
 {% include rock-card.html rock=page %}
 
-Granite is a coarse-grained **[[igneous]] rock** composed mainly of **[[quartz]], [[feldspar]], and mica**. It forms when magma cools slowly beneath the Earth’s surface, giving its crystals time to grow large and visible.  
-
-Along the north shores of Lake Ontario, granite is common in glacial erratics — stones carried south from the Canadian Shield during the last Ice Age. These rounded granite pebbles are durable, colorful, and often used in [[Rock Tumbling]].
+Granite is a coarse‑grained intrusive igneous rock composed mainly of quartz and feldspar with mica; it forms by slow cooling of silica‑rich magma and is durable and speckled.
 
 ---
 

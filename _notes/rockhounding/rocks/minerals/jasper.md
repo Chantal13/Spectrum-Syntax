@@ -58,7 +58,7 @@ streak: null
   </div>
 {%- endif -%}
 
-Jasper is an opaque chalcedony ([[quartz|quartz]]) coloured by mineral impurities, usually iron oxides. It often originates in silica-rich [[sedimentary]] deposits, though glacial action has moved it widely.  
+Jasper is an opaque, iron‑bearing variety of microcrystalline quartz (chalcedony); its rich reds, browns, and patterns come from mineral impurities and layered silica deposition.
 
 **Appearance & Identification:**  
 - Opaque, solid colors  

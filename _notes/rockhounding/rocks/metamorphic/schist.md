@@ -5,4 +5,4 @@ thumbnail: https://upload.wikimedia.org/wikipedia/commons/6/6f/Schist_detail.jpg
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Schist is a medium‑ to high‑grade metamorphic rock rich in mica; it shows strong foliation and splits into flaky layers.

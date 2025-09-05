@@ -5,4 +5,4 @@ thumbnail: https://upload.wikimedia.org/wikipedia/commons/2/25/Banded_iron_forma
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Banded iron formation is a Precambrian sedimentary rock of alternating iron‑rich layers (hematite or magnetite) and silica (chert), typically showing red and gray bands.

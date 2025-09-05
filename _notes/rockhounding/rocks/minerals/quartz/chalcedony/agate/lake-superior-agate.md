@@ -8,4 +8,4 @@ streak: null
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Lake Superior agate is an iron‑rich banded agate from the Great Lakes region; red‑orange bands get their color from hematite.

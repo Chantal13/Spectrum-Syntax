@@ -8,4 +8,4 @@ streak: null
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Onyx is banded chalcedony with straight, parallel layers, typically black and white; it has long been used for carvings and cameos.

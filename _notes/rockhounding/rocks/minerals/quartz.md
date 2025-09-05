@@ -69,7 +69,7 @@ streak: null
   </div>
 {%- endif -%}
 
-Quartz (SiO₂) is one of the most common minerals. It forms in **[[igneous]]** ([[granite]]), **[[metamorphic]]** ([[gneiss]], schist), and **[[sedimentary]]** (cement, veins) contexts.  
+Quartz (SiO₂) is a hard, abundant mineral found in igneous, metamorphic, and sedimentary rocks; it forms hexagonal crystals and occurs in many well‑known varieties.
 
 **Appearance & Identification:**  
 - Milky quartz: opaque white  

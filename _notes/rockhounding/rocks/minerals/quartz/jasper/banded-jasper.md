@@ -8,4 +8,4 @@ streak: null
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Banded jasper is jasper with parallel or rhythmic bands produced by layered iron‑rich silica deposition.

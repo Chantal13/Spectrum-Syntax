@@ -8,4 +8,4 @@ streak: null
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Smoky quartz is brown to black quartz colored by radiation‑induced color centers; clarity ranges from translucent to nearly opaque.

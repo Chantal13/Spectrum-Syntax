@@ -15,7 +15,7 @@ streak: null
 ---
 {% include rock-card.html rock=page %}
 
-Glaciers transported many agates to Southern Ontario from far to the north and west. Agates form in volcanic or [[sedimentary]] cavities where silica-rich water deposits layers of microcrystalline [[quartz]]. 
+Agate is banded chalcedony that forms when silica‑rich fluids deposit layers of microcrystalline quartz in cavities; banding reveals varied colors and patterns.
 
 **Appearance & Identification:**  
 - Translucent to semi-opaque  

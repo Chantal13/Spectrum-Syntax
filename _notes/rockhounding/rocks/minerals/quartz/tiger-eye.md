@@ -8,4 +8,4 @@ streak: null
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Tiger's eye is chatoyant quartz formed by replacement of fibrous crocidolite; it shows a silky, banded sheen when cut and polished.

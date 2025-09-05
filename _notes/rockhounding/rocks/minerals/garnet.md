@@ -58,9 +58,7 @@ streak: null
   </div>
 {%- endif -%}
 
-Garnet is a group of silicate minerals that are well known for their **deep red crystals**, though they can also occur in green, orange, brown, yellow, and even black varieties. Garnets form under conditions of high temperature and pressure, making them common in **metamorphic rocks** such as [[gneiss]] and schist.  
-
-On the north shores of Lake Ontario, garnets are most often found embedded in **[[gneiss]] pebbles** carried south from the Canadian Shield by glaciers. Occasionally, small loose garnet crystals may also be found in beach gravels.
+Garnet is a group of silicate minerals common in metamorphic rocks; it typically forms dodecahedral crystals and ranges in color from deep red to green.
 
 ---
 

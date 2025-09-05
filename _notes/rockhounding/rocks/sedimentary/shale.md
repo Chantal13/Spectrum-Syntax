@@ -5,4 +5,4 @@ thumbnail: https://upload.wikimedia.org/wikipedia/commons/9/98/Shale_formation%2
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Shale is a fine‑grained sedimentary rock formed from compacted mud; it is fissile, splitting along thin layers, and weathers easily.

@@ -5,4 +5,4 @@ thumbnail: https://upload.wikimedia.org/wikipedia/commons/1/17/Lipari-Obsidienne
 ---
 {% include rock-card.html rock=page %}
 
-Coming soon.
+Obsidian is natural volcanic glass produced by rapid cooling of silica‑rich lava; it breaks with conchoidal fracture and forms very sharp edges.
