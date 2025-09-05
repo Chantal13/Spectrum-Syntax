@@ -599,6 +599,13 @@ code {
 
 [class^="chip--"] { color: var(--chip-text); }
 
+/* Parent chips on rock/mineral cards */
+.rock-parent-chips {
+  margin-bottom: 0.35rem;
+  flex-wrap: wrap;
+  overflow-x: visible;
+}
+
 /* =========================
    Home Page tweaks
    ========================= */

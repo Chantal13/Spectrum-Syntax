@@ -7,6 +7,8 @@ thumbnail: "/assets/tumbling/coming_soon.jpg"
 aliases:
   - Breccia
 ---
+{% include rock-card.html rock=page %}
+
 Breccia is a **sedimentary rock** (sometimes volcanic) made of **angular fragments** cemented together by a finer-grained material such as calcite, silica, or clay. Unlike **[[conglomerate]]**, which contains rounded pebbles, breccia clasts are sharp and jagged, indicating they were broken and deposited without traveling far.  
 
 On the north shores of Lake Ontario, breccia can occasionally be found in glacial gravels and erratics. Though less common than [[conglomerate]], it’s still worth keeping an eye out for these “jagged puzzle rocks.”

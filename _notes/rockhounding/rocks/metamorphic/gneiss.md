@@ -8,6 +8,8 @@ aliases:
   - Gneiss
 thumbnail: "/assets/Rockhound - 2 of 4.jpeg"
 ---
+{% include rock-card.html rock=page %}
+
 Gneiss (pronounced “nice”) is a **[[metamorphic]] rock** characterized by its distinctive light-and-dark banding. It forms when pre-existing rocks such as [[granite]], sandstone, or shale are subjected to intense heat and pressure, causing the minerals to re-crystallize and separate into layers.  
 
 On the north shores of Lake Ontario, gneiss is most commonly found as **glacial erratics** — stones carried south from the ancient Canadian Shield by glaciers during the last Ice Age. Today, they can be found as rounded pebbles and cobbles scattered along the beaches.
