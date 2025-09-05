@@ -1,7 +1,7 @@
 ---
 title: Basalt
 layout: note
-thumbnail: "/assets/tumbling/001/rough.jpg"
+thumbnail: "/assets/Rockhound - 4 of 4.jpeg"
 ---
 
 {% include rock-card.html rock=page %}

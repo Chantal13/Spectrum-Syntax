@@ -6,7 +6,7 @@ tags:
   - tumbling
 aliases:
   - unakite
-thumbnail: "/assets/Rockhound - 3 of 4.jpeg"
+thumbnail: "/assets/Rockhound - 4 of 4.jpeg"
 ---
 {% include rock-card.html rock=page %}
 

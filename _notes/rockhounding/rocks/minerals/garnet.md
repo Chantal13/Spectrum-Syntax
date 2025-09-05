@@ -8,7 +8,7 @@ aliases:
   - garnet
   - garnets
   - Garnets
-thumbnail: "/assets/tumbling/001/after-s1.jpg"
+thumbnail: "/assets/Rockhound - 1 of 4.jpeg"
 hardness: 7
 luster: null
 streak: null

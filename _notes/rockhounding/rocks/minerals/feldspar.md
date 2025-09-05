@@ -4,7 +4,7 @@ draft: false
 tags:
   - rockhounding
   - minerals
-thumbnail: "/assets/tumbling/002/rough.jpg"
+thumbnail: "/assets/Rockhound - 2 of 4.jpeg"
 aliases:
   - Feldspar
 hardness: 6

@@ -8,7 +8,7 @@ aliases:
   - jaspers
   - Jaspers
   - Jasper
-thumbnail: "/assets/tumbling/001/after-s3.jpg"
+thumbnail: "/assets/Rockhound - 4 of 4.jpeg"
 hardness: 7
 luster: null
 streak: null

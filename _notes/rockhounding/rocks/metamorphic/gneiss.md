@@ -6,7 +6,7 @@ tags:
   - tumbling
 aliases:
   - Gneiss
-thumbnail: "/assets/Rockhound - 2 of 4.jpeg"
+thumbnail: "/assets/Rockhound - 1 of 4.jpeg"
 ---
 {% include rock-card.html rock=page %}
 
