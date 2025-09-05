@@ -5,7 +5,7 @@ tags:
   - rockhounding
 aliases:
   - Granite
-thumbnail: "/assets/Rockhound - 3 of 4.jpeg"
+thumbnail: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Granite_Rock_2.jpg"
 ---
 {% include rock-card.html rock=page %}
 

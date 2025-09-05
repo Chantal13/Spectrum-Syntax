@@ -3,7 +3,7 @@ title: Breccia
 draft: false
 tags:
   - rockhounding
-thumbnail: "/assets/Rockhound - 3 of 4.jpeg"
+thumbnail: "https://upload.wikimedia.org/wikipedia/commons/9/96/Breccia_in_Marble_Canyon-750px.jpg"
 aliases:
   - Breccia
 ---

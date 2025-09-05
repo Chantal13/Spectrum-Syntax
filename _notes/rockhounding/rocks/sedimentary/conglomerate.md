@@ -7,7 +7,7 @@ aliases:
   - puddingstone
   - conglomerates
   - Conglomerates
-thumbnail: "/assets/Rockhound - 2 of 4.jpeg"
+thumbnail: "https://upload.wikimedia.org/wikipedia/commons/0/0a/Conglomerate_rock_called_puddingstone._-_geograph.org.uk_-_480555.jpg"
 ---
 {% include rock-card.html rock=page %}
 

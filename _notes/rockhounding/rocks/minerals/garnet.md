@@ -8,7 +8,7 @@ aliases:
   - garnet
   - garnets
   - Garnets
-thumbnail: "/assets/Rockhound - 1 of 4.jpeg"
+thumbnail: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Almandine_garnet_1.jpg"
 hardness: 7
 luster: null
 streak: null

@@ -4,7 +4,7 @@ draft: false
 tags:
   - rockhounding
   - minerals
-thumbnail: "/assets/Rockhound - 2 of 4.jpeg"
+thumbnail: "https://upload.wikimedia.org/wikipedia/commons/3/31/OrthoclaseBresil.jpg"
 aliases:
   - Feldspar
 hardness: 6

@@ -8,7 +8,7 @@ aliases:
   - jaspers
   - Jaspers
   - Jasper
-thumbnail: "/assets/Rockhound - 4 of 4.jpeg"
+thumbnail: "https://upload.wikimedia.org/wikipedia/commons/1/14/Unpolished_jasper.jpg"
 hardness: 7
 luster: null
 streak: null

@@ -6,7 +6,7 @@ tags:
   - tumbling
 aliases:
   - Gneiss
-thumbnail: "/assets/Rockhound - 1 of 4.jpeg"
+thumbnail: "https://upload.wikimedia.org/wikipedia/commons/6/60/Gneiss.jpg"
 ---
 {% include rock-card.html rock=page %}
 

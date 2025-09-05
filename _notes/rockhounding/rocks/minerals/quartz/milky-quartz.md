@@ -1,7 +1,7 @@
 ---
 title: Milky Quartz
 layout: note
-thumbnail: "/assets/Rockhound - 2 of 4.jpeg"
+thumbnail: "https://upload.wikimedia.org/wikipedia/commons/c/ce/Quartz_Br%C3%A9sil.jpg"
 hardness: 7
 luster: null
 streak: null

@@ -6,7 +6,7 @@ tags:
   - tumbling
 aliases:
   - unakite
-thumbnail: "/assets/Rockhound - 4 of 4.jpeg"
+thumbnail: "https://upload.wikimedia.org/wikipedia/commons/2/20/Unakite_%28epidotic_granite%29.jpg"
 ---
 {% include rock-card.html rock=page %}
 

@@ -1,7 +1,7 @@
 ---
 title: Rose Quartz
 layout: note
-thumbnail: "/assets/Rockhound - 1 of 4.jpeg"
+thumbnail: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Rose_Quartz_Macro_1.JPG"
 hardness: 7
 luster: null
 streak: null
