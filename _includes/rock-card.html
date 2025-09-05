@@ -30,6 +30,33 @@
         </picture>
       {% endif %}
     </a>
+    {%- comment -%}
+      Image credit appears only on detail pages (when include.rock == current page)
+    {%- endcomment -%}
+    {% if include.rock.url == page.url %}
+      {% assign credit_label = nil %}
+      {% assign credit_href  = nil %}
+      {% if final_thumb contains 'upload.wikimedia.org' %}
+        {% assign parts = final_thumb | split: '/' %}
+        {% assign file_name = parts | last | url_decode %}
+        {% assign credit_href = 'https://commons.wikimedia.org/wiki/File:' | append: file_name %}
+        {% assign credit_label = 'Wikimedia Commons' %}
+      {% elsif final_thumb contains '://' %}
+        {% assign credit_href = final_thumb %}
+        {% assign credit_label = 'Image Source' %}
+      {% else %}
+        {% assign credit_label = 'Photo: Spectrum Syntax' %}
+      {% endif %}
+      {% if credit_label %}
+        <div class="img-credit">
+          {% if credit_href %}
+            <a href="{{ credit_href | uri_escape }}" target="_blank" rel="noopener noreferrer">{{ credit_label }}</a>
+          {% else %}
+            {{ credit_label }}
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endif %}
   {% else %}
     <a class="rock-thumb rock-thumb--empty" href="{{ include.rock.url | relative_url }}" aria-label="Open {{ include.rock.title }}">
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
