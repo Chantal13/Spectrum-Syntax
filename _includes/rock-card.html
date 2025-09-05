@@ -14,6 +14,49 @@
     </a>
   {% endif %}
   <h3><a href="{{ include.rock.url | relative_url }}">{{ include.rock.title }}</a></h3>
+  {%- comment -%} Parent category chip {%- endcomment -%}
+  {%- assign parent_url = nil -%}
+  {%- assign parent_label = nil -%}
+  {%- assign p = include.rock.path | default: '' -%}
+  {%- assign u = include.rock.url  | default: '' -%}
+  {%- if p contains '_notes/rockhounding/rocks/igneous/' -%}
+    {%- assign parent_url = '/rockhounding/rocks/igneous/' -%}
+    {%- assign parent_label = 'Igneous' -%}
+  {%- elsif p contains '_notes/rockhounding/rocks/metamorphic/' -%}
+    {%- assign parent_url = '/rockhounding/rocks/metamorphic/' -%}
+    {%- assign parent_label = 'Metamorphic' -%}
+  {%- elsif p contains '_notes/rockhounding/rocks/sedimentary/' -%}
+    {%- assign parent_url = '/rockhounding/rocks/sedimentary/' -%}
+    {%- assign parent_label = 'Sedimentary' -%}
+  {%- elsif p contains '_notes/rockhounding/rocks/minerals/' and u contains '/rockhounding/rocks/minerals/' -%}
+    {%- assign segs = u | split: '/' -%}
+    {%- assign last_nonempty = '' -%}
+    {%- assign second_last_nonempty = '' -%}
+    {%- for s in segs -%}
+      {%- if s != '' -%}
+        {%- assign second_last_nonempty = last_nonempty -%}
+        {%- assign last_nonempty = s -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- assign parent_label = second_last_nonempty | replace: '-', ' ' | title_case -%}
+    {%- comment -%} Rebuild parent URL up to and including second_last_nonempty {%- endcomment -%}
+    {%- assign parent_url = '' -%}
+    {%- for s in segs -%}
+      {%- if s != '' -%}
+        {%- if s == second_last_nonempty -%}
+          {%- assign parent_url = parent_url | append: '/' | append: s | append: '/' -%}
+          {%- break -%}
+        {%- else -%}
+          {%- assign parent_url = parent_url | append: '/' | append: s -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {%- if parent_url and parent_label -%}
+    <div class="chips" style="margin-bottom: .35rem;">
+      <a class="chip" href="{{ parent_url | relative_url }}">{{ parent_label }}</a>
+    </div>
+  {%- endif -%}
   {% if include.rock.description %}
     <p>{{ include.rock.description }}</p>
   {% else %}
