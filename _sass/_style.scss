@@ -997,6 +997,25 @@ code {
   object-fit: cover;
 }
 
+.rock-thumb--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: repeating-linear-gradient(
+    45deg,
+    #f6f7f9,
+    #f6f7f9 8px,
+    #eef1f4 8px,
+    #eef1f4 16px
+  );
+  color: #5b6770;
+}
+.rock-thumb--empty .icon {
+  width: 28px;
+  height: 28px;
+  opacity: 0.7;
+}
+
 .rock-card h3 {
   margin: 0 0 0.5rem;
   font-size: 1.1em;

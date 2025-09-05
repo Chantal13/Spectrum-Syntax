@@ -1,16 +1,42 @@
 <div class="rock-card">
   {% assign thumb = include.rock.thumbnail | default: include.rock.cover %}
+  {%- comment -%} Disallow tumbling images for rocks/minerals and verify file exists {%- endcomment -%}
+  {% assign show_thumb = false %}
+  {% assign final_thumb = nil %}
   {% if thumb %}
+    {% if thumb contains '://' %}
+      {% assign final_thumb = thumb %}
+      {% assign show_thumb = true %}
+    {% else %}
+      {% assign exists = thumb | image_exists %}
+      {% if exists and exists contains '/assets/tumbling/' %}
+        {% assign show_thumb = false %}
+      {% elsif exists %}
+        {% assign final_thumb = exists %}
+        {% assign show_thumb = true %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+  {% if show_thumb and final_thumb %}
     <a class="rock-thumb" href="{{ include.rock.url | relative_url }}">
-      {% if thumb contains '://' %}
-        <img src="{{ thumb | uri_escape }}" alt="{{ include.rock.title }}">
+      {% if final_thumb contains '://' %}
+        <img src="{{ final_thumb | uri_escape }}" alt="{{ include.rock.title }}">
       {% else %}
-        {% assign thumb_webp = thumb | replace: '.jpeg', '.webp' | replace: '.jpg', '.webp' | replace: '.png', '.webp' %}
+        {% assign thumb_webp = final_thumb | replace: '.jpeg', '.webp' | replace: '.jpg', '.webp' | replace: '.png', '.webp' %}
         <picture>
           <source type="image/webp" srcset="{{ thumb_webp | relative_url | uri_escape }}">
-          <img src="{{ thumb | relative_url | uri_escape }}" alt="{{ include.rock.title }}">
+          <img src="{{ final_thumb | relative_url | uri_escape }}" alt="{{ include.rock.title }}">
         </picture>
       {% endif %}
+    </a>
+  {% else %}
+    <a class="rock-thumb rock-thumb--empty" href="{{ include.rock.url | relative_url }}" aria-label="Open {{ include.rock.title }}">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <rect x="2" y="4" width="20" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="8" cy="10" r="2" fill="currentColor"/>
+        <path d="M5 18l5-6 4 5 3-3 3 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </a>
   {% endif %}
   <h3><a href="{{ include.rock.url | relative_url }}">{{ include.rock.title }}</a></h3>
