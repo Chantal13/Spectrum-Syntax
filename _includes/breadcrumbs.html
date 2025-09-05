@@ -55,5 +55,17 @@
         <a class="internal-link" href="{{ target }}">{{ label }}</a>
       {%- endif -%}
     {%- endfor -%}
+    {%- comment -%}
+      Optional explicit parent crumb via front matter (bidirectional-friendly)
+      Example:
+        parent_title: Quartz
+        parent_url:   /rockhounding/rocks/minerals/quartz/
+    {%- endcomment -%}
+    {%- if page.parent_title and page.parent_url -%}
+      <span class="crumb-sep">›</span>
+      <a class="internal-link" href="{{ page.parent_url | relative_url }}">{{ page.parent_title }}</a>
+      <span class="crumb-sep">›</span>
+      <span aria-current="page">{{ page.title }}</span>
+    {%- endif -%}
   {%- endif -%}
 </nav>
