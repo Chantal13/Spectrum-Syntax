@@ -967,7 +967,27 @@ code {
   width: 100%;
   height: auto;
   border-radius: $border-radius;
+}
+
+/* Square thumbnail wrapper for rock/mineral cards */
+.rock-thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1; /* make square */
+  border-radius: $border-radius;
+  overflow: hidden;
+  background: #f1f5f9;
+  border: 1px solid var(--panel-border);
   margin-bottom: 0.5rem;
+}
+.rock-thumb picture,
+.rock-thumb img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.rock-thumb img {
+  object-fit: cover;
 }
 
 .rock-card h3 {
