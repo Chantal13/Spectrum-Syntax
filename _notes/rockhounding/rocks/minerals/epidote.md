@@ -59,19 +59,3 @@ streak: null
 {%- endif -%}
 
 Epidote is a pistachio‑green silicate mineral formed during low‑ to medium‑grade metamorphism and hydrothermal alteration; it commonly occurs with quartz and colors unakite.
-Epidote is part of the **silicate mineral group** and commonly occurs in metamorphic environments.  
-
-
----
-
-## Related Stones
-- **[[unakite]]** → Epidote + [[feldspar]] + [[quartz]]  
-- **[[gneiss]]** → May contain small epidote inclusions  
-- **Feldspar** → Often altered to epidote during metamorphism  
-
----
-
-## References
-- [Epidote (Wikipedia)](https://en.wikipedia.org/wiki/Epidote)  
-- [Ontario Geological Survey – Geology of Ontario](https://www.ontario.ca/page/geology-ontario)  
-- [Metamorphic Rocks (Wikipedia)](https://en.wikipedia.org/wiki/Metamorphic_rock)  

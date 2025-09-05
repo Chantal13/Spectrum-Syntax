@@ -70,19 +70,3 @@ streak: null
 {%- endif -%}
 
 Quartz (SiO₂) is a hard, abundant mineral found in igneous, metamorphic, and sedimentary rocks; it forms hexagonal crystals and occurs in many well‑known varieties.
-
-**Appearance & Identification:**  
-- Milky quartz: opaque white  
-- Smoky quartz: translucent grey-brown  
-- Chalcedony: waxy and semi-translucent  
-- Hardness test: scratches glass  
-
-> [!tip] Tumbling Qualities  
-> - Hardness: [[Mohs Hardness Scale|Mohs]] 7  
-> - Very durable  
-> - Polishes to a reflective, glass-like finish  
-
-**Rock Category:** Present in **all three rock types**.
-
-> [!info] Fun fact:  
-> Quartz appears in **all three rock families** — [[igneous]], [[sedimentary]], and [[metamorphic]] — which is why it’s so common.  

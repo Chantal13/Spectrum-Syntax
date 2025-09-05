@@ -57,6 +57,3 @@ streak: null
 {%- endif -%}
 
 Feldspar is a group of rock‑forming silicate minerals (plagioclase and potassium feldspar) with good cleavage; they dominate many igneous rocks and are abundant in metamorphic and sedimentary settings.
-- [Feldspar (Wikipedia)](https://en.wikipedia.org/wiki/Feldspar)  
-- [Ontario Geological Survey – Geology of Ontario](https://www.ontario.ca/page/geology-ontario)  
-- [Metamorphic Rocks (Wikipedia)](https://en.wikipedia.org/wiki/Metamorphic_rock)  

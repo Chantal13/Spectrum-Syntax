@@ -59,19 +59,3 @@ streak: null
 {%- endif -%}
 
 Jasper is an opaque, iron‑bearing variety of microcrystalline quartz (chalcedony); its rich reds, browns, and patterns come from mineral impurities and layered silica deposition.
-
-**Appearance & Identification:**  
-- Opaque, solid colors  
-- Reds, browns, yellows, greens  
-- Patterns: speckled, striped, or brecciated  
-- Lacks translucency (distinguishes it from [[agate]])  
-
-> [!tip] Tumbling Qualities  
-> - Hardness: [[Mohs Hardness Scale|Mohs]] 6.5–7  
-> - Produces a glossy, smooth polish  
-> - Colors deepen after [[Rock Tumbling|tumbling]]  
-
-**Rock Category:** **[[sedimentary]]**, though considered part of the [[quartz]] family.  
-
-> [!info] Did you know?  
-> Jasper is a silica-rich stone that comes from **[[sedimentary]] environments**.  
