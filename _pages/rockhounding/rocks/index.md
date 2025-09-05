@@ -6,14 +6,6 @@ permalink: /rockhounding/rocks/
 
 <h1>Rocks &amp; Minerals</h1>
 
-<h2>By Category</h2>
-<ul>
-  <li><a class="internal-link" href="{{ '/rockhounding/rocks/igneous/' | relative_url }}">Igneous</a></li>
-  <li><a class="internal-link" href="{{ '/rockhounding/rocks/metamorphic/' | relative_url }}">Metamorphic</a></li>
-  <li><a class="internal-link" href="{{ '/rockhounding/rocks/sedimentary/' | relative_url }}">Sedimentary</a></li>
-
-</ul>
-
 <h2>Igneous</h2>
 <div class="rock-card-grid">
   {%- assign igneous = site.notes | where_exp: "n", "n.path contains '_notes/rockhounding/rocks/igneous/'" -%}
