@@ -58,4 +58,6 @@ streak: null
   </div>
 {%- endif -%}
 
-Jasper is an opaque, iron‑bearing variety of microcrystalline quartz (chalcedony); its rich reds, browns, and patterns come from mineral impurities and layered silica deposition.
+Jasper is an opaque, iron‑bearing variety of microcrystalline [[quartz]] ([[chalcedony]]); its rich reds, browns, and patterns come from mineral impurities and layered silica deposition.
+
+Related: [[Quartz]], [[Chalcedony]], [[Agate]], [[Puddingstone]]

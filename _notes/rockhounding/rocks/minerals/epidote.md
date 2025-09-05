@@ -58,4 +58,6 @@ streak: null
   </div>
 {%- endif -%}
 
-Epidote is a pistachio‑green silicate mineral formed during low‑ to medium‑grade metamorphism and hydrothermal alteration; it commonly occurs with quartz and colors unakite.
+Epidote is a pistachio‑green silicate mineral formed during low‑ to medium‑grade metamorphism and hydrothermal alteration; it commonly occurs with [[quartz]] and colours [[unakite]].
+
+Related: [[Unakite]], [[Gneiss]], [[Granite]]

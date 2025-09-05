@@ -16,3 +16,5 @@ streak: null
 {% include rock-card.html rock=page %}
 
 Agate is banded chalcedony that forms when silica‑rich fluids deposit layers of microcrystalline quartz in cavities; banding reveals varied colors and patterns.
+
+Related: [[Chalcedony]], [[Jasper]]
