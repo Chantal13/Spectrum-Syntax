@@ -10,10 +10,8 @@
     <thead>
       <tr>
         <th>Batch</th>
-        <th>Started</th>
-        <th>Finished</th>
+        <th>Dates</th>
         <th>Status</th>
-        <th>Duration (days)</th>
       </tr>
     </thead>
     <tbody>
@@ -103,8 +101,20 @@
                 {% endif %}
               </div>
             </td>
-            <td>{{ d.date_started | default: "—" }}</td>
-            <td>{{ d.date_finished | default: "—" }}</td>
+            <td class="dates-cell">
+              {% assign ds = d.date_started | default: "" %}
+              {% assign df = d.date_finished | default: "" %}
+              {% if ds != "" and df != "" %}
+                {{ ds }} → {{ df }}
+              {% elsif ds != "" %}
+                {{ ds }}
+              {% elsif df != "" %}
+                {{ df }}
+              {% else %}
+                —
+              {% endif %}
+              {% if days != "" %}<span class="days"> · {{ days }}d</span>{% endif %}
+            </td>
             <td>
               {% assign raw = d.status | default: "pending" | downcase | strip %}
               {% assign st = raw %}
@@ -117,12 +127,11 @@
               {% endif %}
               <span class="status status--{{ st }}">{{ st }}</span>
             </td>
-            <td>{% if days != "" %}{{ days }}{% else %}—{% endif %}</td>
           </tr>
         {% endfor %}
       {% else %}
         <tr>
-          <td colspan="5">No batches found. Put markdown files in <code>_notes/rockhounding/tumbling/</code> with front matter.</td>
+          <td colspan="3">No batches found. Put markdown files in <code>_notes/rockhounding/tumbling/</code> with front matter.</td>
         </tr>
       {% endif %}
     </tbody>

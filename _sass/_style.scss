@@ -470,10 +470,8 @@ code {
 /* Keep date and status columns on one line in the index table */
 .tumble-index thead th:nth-child(2),
 .tumble-index thead th:nth-child(3),
-.tumble-index thead th:nth-child(4),
 .tumble-index tbody td:nth-child(2),
-.tumble-index tbody td:nth-child(3),
-.tumble-index tbody td:nth-child(4) {
+.tumble-index tbody td:nth-child(3) {
   white-space: nowrap;
 }
 
@@ -504,6 +502,8 @@ code {
   padding: 0.55rem;
   vertical-align: middle;
 }
+
+.dates-cell .days { color: #5b5b53; }
 
 .tumble-index tbody tr:nth-child(even) {
   background: var(--card-b);
@@ -577,19 +577,15 @@ code {
   .tumble-index .nice-table th,
   .tumble-index .nice-table td { padding: 0.45rem; }
 
-  /* Tumbling: hide Finished and Duration columns */
-  .tumble-index thead th:nth-child(3),
-  .tumble-index tbody td:nth-child(3),
-  .tumble-index thead th:nth-child(5),
-  .tumble-index tbody td:nth-child(5) { display: none; }
+  /* Tumbling: columns already condensed */
 
   /* Field log: no extra columns to hide at this width */
 }
 
 @media (max-width: 480px) {
-  /* Extra narrow: hide Status for tumbling and Date for field log */
-  .tumble-index thead th:nth-child(4),
-  .tumble-index tbody td:nth-child(4) { display: none; }
+  /* Extra narrow: hide Dates for tumbling and Date for field log */
+  .tumble-index thead th:nth-child(2),
+  .tumble-index tbody td:nth-child(2) { display: none; }
   .field-index thead th:nth-child(2),
   .field-index tbody td:nth-child(2) { display: none; }
 
@@ -679,9 +675,6 @@ code {
   .logs-grid .tumble-index .nice-table td { padding: 0.45rem; }
   .logs-grid .thumb { width: 96px; min-width: 96px; height: 72px; }
   .logs-grid .batch-cell { gap: 0.5rem; }
-  /* Hide Duration in the side-by-side tumbling table */
-  .logs-grid .tumble-index thead th:nth-child(5),
-  .logs-grid .tumble-index tbody td:nth-child(5) { display: none; }
 }
 
 /* =========================
