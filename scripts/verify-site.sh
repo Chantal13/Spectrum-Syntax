@@ -62,6 +62,9 @@ run_checks_once() {
   # Rockhounding index body
   body=$(fetch "$BASE_URL/rockhounding/") || { echo "[FAIL] Fetch rockhounding index"; return 1; }
 
+  # Language attribute should be Canadian English
+  assert_present "$body" "<html lang=\"en-CA\">" "/rockhounding/" || failures=$((failures+1))
+
   # Quick Links must be absent
   assert_absent "$body" "Quick Links" "/rockhounding/" || failures=$((failures+1))
 
@@ -77,6 +80,7 @@ run_checks_once() {
   tumble=$(fetch "$BASE_URL/rockhounding/tumbling/") || { echo "[FAIL] Fetch tumbling"; failures=$((failures+1)); }
   if [[ -n "$tumble" ]]; then
     assert_present "$tumble" "<h1>Tumbling</h1>" "/rockhounding/tumbling/" || failures=$((failures+1))
+    assert_present "$tumble" "<html lang=\"en-CA\">" "/rockhounding/tumbling/" || failures=$((failures+1))
   fi
 
   return $failures
