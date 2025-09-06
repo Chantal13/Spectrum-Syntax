@@ -583,11 +583,7 @@ code {
   .tumble-index thead th:nth-child(5),
   .tumble-index tbody td:nth-child(5) { display: none; }
 
-  /* Field log: hide Rocks and Minerals columns */
-  .field-index thead th:nth-child(3),
-  .field-index tbody td:nth-child(3),
-  .field-index thead th:nth-child(4),
-  .field-index tbody td:nth-child(4) { display: none; }
+  /* Field log: no extra columns to hide at this width */
 }
 
 @media (max-width: 480px) {

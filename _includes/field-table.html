@@ -11,8 +11,6 @@
       <tr>
         <th>Entry</th>
         <th>Date</th>
-        <th>Rocks</th>
-        <th>Minerals</th>
       </tr>
     </thead>
     <tbody>
@@ -78,31 +76,11 @@
               </div>
             </td>
             <td>{{ d.date | date: "%Y-%m-%d" }}</td>
-            <td>
-              {% if d.rocks and d.rocks.size > 0 %}
-                <div class="chips">
-                  {% for rock in d.rocks %}
-                    {% assign rk = rock | downcase | strip | replace: " ", "-" | replace: "_", "-" | replace: "/", "-" %}
-                    <span class="chip chip--{{ rk }}">{{ rock }}</span>
-                  {% endfor %}
-                </div>
-              {% else %}—{% endif %}
-            </td>
-            <td>
-              {% if d.minerals and d.minerals.size > 0 %}
-                <div class="chips">
-                  {% for mineral in d.minerals %}
-                    {% assign mk = mineral | downcase | strip | replace: " ", "-" | replace: "_", "-" | replace: "/", "-" %}
-                    <span class="chip chip--{{ mk }}">{{ mineral }}</span>
-                  {% endfor %}
-                </div>
-              {% else %}—{% endif %}
-            </td>
           </tr>
         {% endfor %}
       {% else %}
         <tr>
-          <td colspan="4">No field log entries found. Put markdown files in <code>_notes/rockhounding/field-log/</code> with front matter.</td>
+          <td colspan="2">No field log entries found. Put markdown files in <code>_notes/rockhounding/field-log/</code> with front matter.</td>
         </tr>
       {% endif %}
     </tbody>
