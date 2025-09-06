@@ -19,7 +19,10 @@
   {% endif %}
 
   {% if show_thumb and final_thumb %}
-    {% assign is_detail = include.rock.url == page.url %}
+    {% assign is_detail = false %}
+    {% if page.path and include.rock.path and page.path == include.rock.path %}
+      {% assign is_detail = true %}
+    {% endif %}
     {% assign cache_bust = site.time | date: '%s' %}
     {% if is_detail %}
       <div class="rock-hero">
@@ -63,7 +66,7 @@
     {%- comment -%}
       Image credit appears only on detail pages (when include.rock == current page)
     {%- endcomment -%}
-    {% if include.rock.url == page.url %}
+    {% if is_detail %}
       {% assign credit_label = nil %}
       {% assign credit_href  = nil %}
       {%- comment -%}
@@ -173,7 +176,7 @@
   {% if display_desc %}
     <p>{{ display_desc | truncate: 160 }}</p>
   {% endif %}
-  {%- if include.rock.url == page.url -%}
+  {%- if is_detail -%}
     {%- include related-chips.html doc=include.rock -%}
   {%- endif -%}
 </div>
