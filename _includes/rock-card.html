@@ -128,7 +128,7 @@
   {%- endif -%}
   {%- comment -%} Show hardness first {%- endcomment -%}
   {% if include.rock.hardness %}
-    {% assign hardness_val = include.rock.hardness | to_s %}
+    {% assign hardness_val = include.rock.hardness | append: '' %}
     {% assign approx_flag = hardness_val | slice: 0, 1 %}
     <p class="rock-card-meta">
       Hardness: {{ hardness_val }}
@@ -142,24 +142,12 @@
     <p class="rock-card-meta">Streak: {{ include.rock.streak }}</p>
   {%- endif -%}
   {%- comment -%}
-    Prefer explicit description. Otherwise, on listing pages derive the first
-    real paragraph after the embedded rock-card include, to avoid excerpts that
-    capture image credits. On detail pages, fall back to the default excerpt.
+    Prefer explicit description. Otherwise, use the note excerpt stripped of
+    HTML. Credits are rendered only on detail pages, not part of note content,
+    so excerpts are safe for listings.
   {%- endcomment -%}
-  {% assign display_desc = nil %}
-  {% if include.rock.description %}
-    {% assign display_desc = include.rock.description %}
-  {% else %}
-    {% if include.rock.url != page.url %}
-      {% assign parts = include.rock.content | split: '{% include rock-card.html rock=page %}' %}
-      {% assign after = parts | last | strip %}
-      {% assign paras = after | split: "\n\n" %}
-      {% assign first_para = paras | first %}
-      {% assign display_desc = first_para | strip_html %}
-    {% else %}
-      {% assign display_desc = include.rock.excerpt | strip_html %}
-    {% endif %}
-  {% endif %}
+  {% assign display_desc = include.rock.description | default: include.rock.excerpt %}
+  {% assign display_desc = display_desc | strip_html %}
   {% if display_desc %}
     <p>{{ display_desc | truncate: 160 }}</p>
   {% endif %}
