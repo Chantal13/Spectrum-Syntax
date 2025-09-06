@@ -55,10 +55,11 @@ layout: default
       <strong>Location:</strong>
       {% if loc.description %}{{ loc.description }}{% endif %}
       {% if loc.lat and loc.lng %}
-        {%- if loc.description %} · {% endif -%}
-        <code>{{ loc.lat }}, {{ loc.lng }}</code>
-        · <a href="https://www.openstreetmap.org/?mlat={{ loc.lat }}&mlon={{ loc.lng }}#map=16/{{ loc.lat }}/{{ loc.lng }}" target="_blank" rel="noopener">OSM</a>
-        · <a href="https://maps.google.com/?q={{ loc.lat }},{{ loc.lng }}" target="_blank" rel="noopener">Google</a>
+        <div class="loc-coords">
+          <code>{{ loc.lat }}, {{ loc.lng }}</code>
+          · <a href="https://www.openstreetmap.org/?mlat={{ loc.lat }}&mlon={{ loc.lng }}#map=16/{{ loc.lat }}/{{ loc.lng }}" target="_blank" rel="noopener">OSM</a>
+          · <a href="https://maps.google.com/?q={{ loc.lat }},{{ loc.lng }}" target="_blank" rel="noopener">Google</a>
+        </div>
       {% endif %}
     </li>
     {% endif %}
