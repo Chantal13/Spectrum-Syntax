@@ -567,6 +567,39 @@ code {
 
 .thumb--empty .label { line-height: 1; }
 
+/* Make index tables fit on small screens */
+.tumble-index { max-width: 100%; overflow-x: auto; }
+
+@media (max-width: 700px) {
+  /* Shrink thumbnail and spacing */
+  .tumble-index .thumb { width: 96px; min-width: 96px; height: 72px; }
+  .batch-cell { gap: 0.5rem; }
+  .tumble-index .nice-table th,
+  .tumble-index .nice-table td { padding: 0.45rem; }
+
+  /* Tumbling: hide Finished and Duration columns */
+  .tumble-index thead th:nth-child(3),
+  .tumble-index tbody td:nth-child(3),
+  .tumble-index thead th:nth-child(5),
+  .tumble-index tbody td:nth-child(5) { display: none; }
+
+  /* Field log: hide Rocks and Minerals columns */
+  .field-index thead th:nth-child(3),
+  .field-index tbody td:nth-child(3),
+  .field-index thead th:nth-child(4),
+  .field-index tbody td:nth-child(4) { display: none; }
+}
+
+@media (max-width: 480px) {
+  /* Extra narrow: hide Status for tumbling and Date for field log */
+  .tumble-index thead th:nth-child(4),
+  .tumble-index tbody td:nth-child(4) { display: none; }
+  .field-index thead th:nth-child(2),
+  .field-index tbody td:nth-child(2) { display: none; }
+
+  .tumble-index .thumb { width: 88px; min-width: 88px; height: 66px; }
+}
+
 .batch-meta {
   display: flex;
   flex-direction: column;
