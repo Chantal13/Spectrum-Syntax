@@ -1,0 +1,409 @@
+---
+layout: none
+title: Field Log Updater
+permalink: /admin/field-log/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Field Log Updater</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    :root { --gap: 0.75rem; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; max-width: 100rem; margin: 2rem auto; padding: 0 1rem; }
+    h1 { margin: 0 0 .25rem 0; }
+    .subtle { color: #666; margin: 0 0 1rem 0; }
+    .bar { display:flex; gap: .75rem; align-items:center; margin: 0 0 1rem 0; }
+    .bar a { text-decoration: none; }
+    .grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+    .grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+    label { font-size:.95rem; color:#333; display:block; }
+    input[type="text"], input[type="date"], select, textarea { width:100%; box-sizing:border-box; padding:.5rem; border:1px solid #ccc; border-radius:6px; }
+    textarea { min-height: 8rem; }
+    .actions { display:flex; gap:.5rem; margin-top: .75rem; }
+    pre { white-space: pre-wrap; background:#f7f7f7; border:1px solid #ddd; padding:.75rem; border-radius:8px; margin-top:.75rem; }
+    .note { font-size:.9rem; color:#555; }
+    @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 680px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+  </style>
+  {% assign css_v = site.time | date: '%s' %}
+  <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}?v={{ css_v }}">
+</head>
+<body>
+  <div class="bar">
+    <a href="{{ '/admin/' | relative_url }}">← Back to Admin</a>
+    <span class="subtle" id="auth-status">Checking authentication…</span>
+  </div>
+
+  <h1>Field Log Updater</h1>
+  <p class="subtle">Build front matter, extract EXIF GPS, and copy into a new note in <code>_notes/rockhounding/field-log/</code>.</p>
+
+  <p class="note">
+    <button type="button" onclick="copyTpl('tpl-field-log')">Copy Field Log Template</button>
+    <a href="https://github.com/Chantal13/Spectrum-Syntax/new/main/_notes/rockhounding/field-log?filename=YYYY-MM-DD-title.md" target="_blank" rel="noopener noreferrer">New file in GitHub</a>
+  </p>
+
+  <div class="grid-2">
+    <label>Title
+      <input id="fld-title" type="text" placeholder="e.g., Granite with Quartz Vein">
+    </label>
+    <label>Date
+      <input id="fld-date" type="date">
+    </label>
+  </div>
+
+  <div class="grid-2">
+    <label>Close-up photo path
+      <input id="fld-photo-close" type="text" placeholder="/assets/field/YYYY/close-up.jpg">
+    </label>
+    <label>Scale photo path (optional)
+      <input id="fld-photo-scale" type="text" placeholder="/assets/field/YYYY/with-scale.jpg">
+    </label>
+  </div>
+
+  <div class="grid-3" style="align-items:end">
+    <label>Pick a photo to read EXIF GPS
+      <input id="fld-photo-file" type="file" accept="image/*">
+    </label>
+    <div>
+      <button type="button" id="btn-exif">Extract GPS</button>
+      <div id="exif-status" class="subtle" style="margin-top:.4rem"></div>
+    </div>
+    <div></div>
+    <label>Latitude
+      <input id="fld-lat" type="text" placeholder="43.6532">
+    </label>
+    <label>Longitude
+      <input id="fld-lng" type="text" placeholder="-79.3832">
+    </label>
+    <label>Location description
+      <input id="fld-loc-desc" type="text" placeholder="Bluffers Park shoreline, Scarborough">
+    </label>
+  </div>
+
+  <div class="grid-2">
+    <label>Rock type(s)
+      <select id="fld-rocks" multiple size="8">
+        <option>Granite</option>
+        <option>Basalt</option>
+        <option>Rhyolite</option>
+        <option>Andesite</option>
+        <option>Diorite</option>
+        <option>Gabbro</option>
+        <option>Pegmatite</option>
+        <option>Obsidian</option>
+        <option>Sandstone</option>
+        <option>Limestone</option>
+        <option>Shale</option>
+        <option>Conglomerate</option>
+        <option>Breccia</option>
+        <option>Chert</option>
+        <option>Dolostone</option>
+        <option>Slate</option>
+        <option>Schist</option>
+        <option>Gneiss</option>
+        <option>Quartzite</option>
+        <option>Marble</option>
+        <option>Serpentinite</option>
+        <option>Soapstone</option>
+        <option>Unakite</option>
+        <option>Banded Iron Formation</option>
+      </select>
+    </label>
+
+    <label>Mineral composition
+      <select id="fld-minerals" multiple size="10">
+        <option>Quartz</option>
+        <option>Feldspar</option>
+        <option>Plagioclase</option>
+        <option>Orthoclase</option>
+        <option>Muscovite</option>
+        <option>Biotite</option>
+        <option>Amphibole</option>
+        <option>Hornblende</option>
+        <option>Pyroxene</option>
+        <option>Augite</option>
+        <option>Olivine</option>
+        <option>Calcite</option>
+        <option>Dolomite</option>
+        <option>Hematite</option>
+        <option>Magnetite</option>
+        <option>Pyrite</option>
+        <option>Chalcopyrite</option>
+        <option>Fluorite</option>
+        <option>Apatite</option>
+        <option>Talc</option>
+        <option>Gypsum</option>
+        <option>Halite</option>
+        <option>Kaolinite</option>
+        <option>Garnet</option>
+        <option>Epidote</option>
+        <option>Tourmaline</option>
+        <option>Beryl</option>
+        <option>Corundum</option>
+        <option>Kyanite</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="grid-3">
+    <label>Colour
+      <input id="fld-colour" type="text" placeholder="grey with pink feldspar">
+    </label>
+    <label>Lustre
+      <select id="fld-lustre">
+        <option value="">—</option>
+        <option>Metallic</option>
+        <option>Submetallic</option>
+        <option>Adamantine</option>
+        <option>Subadamantine</option>
+        <option>Vitreous</option>
+        <option>Subvitreous</option>
+        <option>Resinous</option>
+        <option>Greasy</option>
+        <option>Pearly</option>
+        <option>Silky</option>
+        <option>Waxy</option>
+        <option>Dull (Earthy)</option>
+      </select>
+    </label>
+    <label>Hardness (Mohs)
+      <select id="fld-hardness">
+        <option value="">—</option>
+        <option>1 - Talc (scratched by fingernail)</option>
+        <option>2 - Gypsum (fingernail scratches)</option>
+        <option>3 - Calcite (scratched by copper)</option>
+        <option>4 - Fluorite</option>
+        <option>5 - Apatite</option>
+        <option>6 - Orthoclase (scratches glass)</option>
+        <option>7 - Quartz</option>
+        <option>8 - Topaz</option>
+        <option>9 - Corundum</option>
+        <option>10 - Diamond</option>
+      </select>
+    </label>
+    <label>Streak
+      <select id="fld-streak">
+        <option value="">—</option>
+        <option>White</option>
+        <option>Colorless</option>
+        <option>Gray</option>
+        <option>Black</option>
+        <option>Brown</option>
+        <option>Red</option>
+        <option>Yellow</option>
+        <option>Green</option>
+        <option>Blue</option>
+      </select>
+    </label>
+    <label>Cleavage
+      <select id="fld-cleavage">
+        <option value="">None</option>
+        <option>Perfect</option>
+        <option>Good</option>
+        <option>Fair</option>
+        <option>Poor</option>
+        <option>Basal (1)</option>
+        <option>Prismatic (2 at 90°)</option>
+        <option>Prismatic (2 not at 90°)</option>
+        <option>Cubic (3 at 90°)</option>
+        <option>Rhombohedral (3 not at 90°)</option>
+        <option>Octahedral (4)</option>
+        <option>Dodecahedral (6)</option>
+      </select>
+    </label>
+    <label>Fracture
+      <select id="fld-fracture">
+        <option value="">—</option>
+        <option>Conchoidal</option>
+        <option>Subconchoidal</option>
+        <option>Even</option>
+        <option>Uneven</option>
+        <option>Hackly</option>
+        <option>Splintery</option>
+        <option>Earthy</option>
+      </select>
+    </label>
+  </div>
+
+  <label style="display:block;margin-top:.5rem">Crystal form / Texture
+    <input id="fld-cft" type="text" placeholder="e.g., granular; coarse-grained; equigranular">
+  </label>
+
+  <label style="display:block;margin-top:.5rem">Notes
+    <textarea id="fld-notes" rows="6" placeholder="Observations, context, etc."></textarea>
+  </label>
+
+  <details style="margin-top:.5rem">
+    <summary>Add gallery image</summary>
+    <div class="grid-2" style="margin-top:.5rem">
+      <label>Image path
+        <input id="fld-gal-src" type="text" placeholder="/assets/field/YYYY/photo-2.jpg">
+      </label>
+      <label>Caption
+        <input id="fld-gal-cap" type="text" placeholder="e.g., Fresh break showing conchoidal fracture">
+      </label>
+    </div>
+  </details>
+
+  <div class="actions">
+    <button id="btn-gen-field" type="button">Generate Front Matter</button>
+    <button id="btn-copy-field" type="button">Copy to clipboard</button>
+  </div>
+  <pre id="fld-output"></pre>
+
+  <script src="https://cdn.jsdelivr.net/npm/exifr@7/dist/full.umd.js"></script>
+  <script>
+    (async function () {
+      const el = document.getElementById('auth-status');
+      try {
+        const res = await fetch(window.location.pathname, { method: 'HEAD', cache: 'no-store' });
+        if (res.status === 200) { el.textContent = "You're logged in."; el.classList.add('auth-ok'); }
+        else if (res.status === 401) { el.textContent = 'Not authenticated. Reload to sign in.'; el.classList.add('auth-fail'); }
+        else { el.textContent = 'Auth check returned status ' + res.status + '.'; }
+      } catch (e) { el.textContent = 'Auth check failed.'; el.classList.add('auth-fail'); }
+    })();
+
+    function copyTpl(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const text = el.textContent || el.innerText || '';
+      navigator.clipboard.writeText(text).then(() => alert('Template copied to clipboard.')).catch(() => alert('Copy failed'));
+    }
+
+    // Helper functions
+    function val(el) { return el && 'value' in el ? el.value : ''; }
+    function selMultiValues(sel) { return Array.from(sel?.selectedOptions || []).map(o => o.value).filter(Boolean); }
+    function yamlList(arr, indent) { if (!arr || !arr.length) return '[]'; const sp = ' '.repeat(indent || 0); return '\n' + arr.map(v => sp + '- ' + String(v)).join('\n'); }
+    function esc(s) { return String(s || '').replace(/\"/g, '\\\"'); }
+
+    async function exifFromFile(file) {
+      if (!file) return null;
+      try {
+        const data = await exifr.parse(file);
+        if (!data) return null;
+        const lat = data.latitude ?? null;
+        const lng = data.longitude ?? null;
+        const dt = data.DateTimeOriginal || data.CreateDate || data.ModifyDate || null;
+        return { lat, lng, dt };
+      } catch (e) { console.warn('EXIF read failed', e); return null; }
+    }
+
+    const exifBtn = document.getElementById('btn-exif');
+    if (exifBtn) {
+      exifBtn.addEventListener('click', async () => {
+        const f = document.getElementById('fld-photo-file').files?.[0];
+        const status = document.getElementById('exif-status');
+        status.textContent = 'Reading…';
+        const info = await exifFromFile(f);
+        if (info?.lat && info?.lng) {
+          document.getElementById('fld-lat').value = String(info.lat.toFixed(6));
+          document.getElementById('fld-lng').value = String(info.lng.toFixed(6));
+        }
+        if (info?.dt && !document.getElementById('fld-date').value) {
+          try { const d = new Date(info.dt); const iso = new Date(d.getTime() - d.getTimezoneOffset()*60000).toISOString().slice(0,10); document.getElementById('fld-date').value = iso; } catch {}
+        }
+        status.textContent = info ? 'EXIF parsed' : 'No EXIF GPS found';
+      });
+    }
+
+    function buildFieldYaml() {
+      const title = val(document.getElementById('fld-title')) || 'Specimen title';
+      const date = val(document.getElementById('fld-date')) || 'YYYY-MM-DD';
+      const closeUp = val(document.getElementById('fld-photo-close'));
+      const scale = val(document.getElementById('fld-photo-scale'));
+      const lat = val(document.getElementById('fld-lat'));
+      const lng = val(document.getElementById('fld-lng'));
+      const locDesc = val(document.getElementById('fld-loc-desc'));
+      const rocks = selMultiValues(document.getElementById('fld-rocks'));
+      const minerals = selMultiValues(document.getElementById('fld-minerals'));
+      const colour = val(document.getElementById('fld-colour'));
+      const lustre = val(document.getElementById('fld-lustre'));
+      const hardness = val(document.getElementById('fld-hardness'));
+      const streak = val(document.getElementById('fld-streak'));
+      const cleavage = val(document.getElementById('fld-cleavage'));
+      const fracture = val(document.getElementById('fld-fracture'));
+      const cft = val(document.getElementById('fld-cft'));
+      const galSrc = val(document.getElementById('fld-gal-src'));
+      const galCap = val(document.getElementById('fld-gal-cap'));
+
+      const lines = [];
+      lines.push('---');
+      lines.push(`title: "${esc(title)}"`);
+      lines.push('layout: field');
+      lines.push(`date: ${date}`);
+      if (closeUp) lines.push(`thumbnail: "${esc(closeUp)}"`);
+      lines.push('images:');
+      lines.push(`  close_up: "${esc(closeUp)}"`);
+      lines.push(`  scale: "${esc(scale)}"`);
+      if (lat || lng || locDesc) {
+        lines.push('location:');
+        if (lat) lines.push(`  lat: ${lat}`);
+        if (lng) lines.push(`  lng: ${lng}`);
+        if (locDesc) lines.push(`  description: "${esc(locDesc)}"`);
+      } else {
+        lines.push('location:');
+        lines.push('  lat:');
+        lines.push('  lng:');
+        lines.push('  description: ""');
+      }
+      lines.push('rocks:' + yamlList(rocks, 2));
+      lines.push('minerals:' + yamlList(minerals, 2));
+      if (colour) lines.push(`colour: "${esc(colour)}"`);
+      if (lustre) lines.push(`lustre: "${esc(lustre)}"`);
+      if (hardness) lines.push(`hardness_mohs: "${esc(hardness)}"`);
+      if (streak) lines.push(`streak: "${esc(streak)}"`);
+      if (cft) lines.push(`crystal_form_texture: "${esc(cft)}"`);
+      if (cleavage) lines.push(`cleavage: "${esc(cleavage)}"`);
+      if (fracture) lines.push(`fracture: "${esc(fracture)}"`);
+      if (galSrc) { lines.push('gallery:'); lines.push(`  - { src: "${esc(galSrc)}", caption: "${esc(galCap)}" }`); }
+      else { lines.push('gallery: []'); }
+      lines.push('---');
+      const notes = val(document.getElementById('fld-notes'));
+      lines.push('\n' + notes);
+      return lines.join('\n');
+    }
+
+    const btnGen = document.getElementById('btn-gen-field');
+    const btnCopy = document.getElementById('btn-copy-field');
+    const out = document.getElementById('fld-output');
+    if (btnGen && out) btnGen.addEventListener('click', () => { out.textContent = buildFieldYaml(); });
+    if (btnCopy && out) btnCopy.addEventListener('click', async () => {
+      const text = out.textContent || buildFieldYaml();
+      try { await navigator.clipboard.writeText(text); alert('Copied.'); } catch (e) { alert('Copy failed'); }
+    });
+  </script>
+
+  <!-- Template for quick copy -->
+  <script type="text/plain" id="tpl-field-log">{% raw %}---
+title: "Specimen title"
+layout: field
+date: YYYY-MM-DD
+thumbnail: "" # optional; will fall back to images.close_up
+images:
+  close_up: "/assets/field/YYYY/close-up.jpg"
+  scale: "" # optional
+location:
+  lat: 
+  lng: 
+  description: "" # optional human-readable location
+rocks: []
+minerals: []
+colour: ""
+lustre: ""
+hardness_mohs: ""
+streak: ""
+crystal_form_texture: ""
+cleavage: ""
+fracture: ""
+gallery: [] # e.g., - { src: "/assets/field/YYYY/another.jpg", caption: "Fresh break" }
+---
+
+<!-- Notes go here. You can also add a 'gallery' array in front matter. -->
+{% endraw %}</script>
+
+</body>
+</html>
+
