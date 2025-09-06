@@ -4,7 +4,7 @@ layout: note
 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Rose_Quartz_Macro_1.JPG"
 hardness: 7
 luster: null
-streak: null
+streak: White
 ---
 {% include rock-card.html rock=page %}
 

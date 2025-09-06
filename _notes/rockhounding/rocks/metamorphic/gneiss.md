@@ -7,6 +7,7 @@ tags:
 aliases:
   - Gneiss
 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/6/60/Gneiss.jpg"
+hardness: "≈6–7"
 ---
 {% include rock-card.html rock=page %}
 

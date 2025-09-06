@@ -11,7 +11,7 @@ aliases:
 thumbnail: "/assets/tumbling/001/after-s4.jpg"
 hardness: 7
 luster: null
-streak: null
+streak: White
 ---
 {% include rock-card.html rock=page %}
 

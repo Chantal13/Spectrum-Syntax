@@ -4,9 +4,9 @@ layout: note
 thumbnail: /assets/rocks/minerals/quartz/chalcedony/agate/coldwater-agate.jpg
 image_credit: Encyclopedia Gemstonia
 image_credit_url: https://encyclopedia-gemstonia.fandom.com/wiki/Coldwater_agate
-hardness: 7
+hardness: "6.5–7"
 luster: null
-streak: null
+streak: White
 ---
 {% include rock-card.html rock=page %}
 

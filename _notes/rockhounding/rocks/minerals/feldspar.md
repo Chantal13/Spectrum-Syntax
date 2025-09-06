@@ -7,9 +7,9 @@ tags:
 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/3/31/OrthoclaseBresil.jpg"
 aliases:
   - Feldspar
-hardness: 6
+hardness: "6–6.5"
 luster: null
-streak: null
+streak: White
 ---
 {% include rock-card.html rock=page %}
 

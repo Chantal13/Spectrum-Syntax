@@ -126,13 +126,42 @@
       <a class="chip" href="{{ parent_url | relative_url }}">{{ parent_label }}</a>
     </div>
   {%- endif -%}
-  {% if include.rock.description %}
-    <p>{{ include.rock.description }}</p>
-  {% else %}
-    <p>{{ include.rock.excerpt | strip_html | truncate: 160 }}</p>
-  {% endif %}
+  {%- comment -%} Show hardness first {%- endcomment -%}
   {% if include.rock.hardness %}
-    <p class="rock-card-meta">Hardness: {{ include.rock.hardness }}</p>
+    {% assign hardness_val = include.rock.hardness | to_s %}
+    {% assign approx_flag = hardness_val | slice: 0, 1 %}
+    <p class="rock-card-meta">
+      Hardness: {{ hardness_val }}
+      {% if approx_flag == '≈' %}
+        <span class="approx-flag" title="Approximate">Approximate</span>
+      {% endif %}
+    </p>
+  {% endif %}
+  {%- comment -%} For minerals, show streak under hardness if available {%- endcomment -%}
+  {%- if p contains '_notes/rockhounding/rocks/minerals/' and include.rock.streak -%}
+    <p class="rock-card-meta">Streak: {{ include.rock.streak }}</p>
+  {%- endif -%}
+  {%- comment -%}
+    Prefer explicit description. Otherwise, on listing pages derive the first
+    real paragraph after the embedded rock-card include, to avoid excerpts that
+    capture image credits. On detail pages, fall back to the default excerpt.
+  {%- endcomment -%}
+  {% assign display_desc = nil %}
+  {% if include.rock.description %}
+    {% assign display_desc = include.rock.description %}
+  {% else %}
+    {% if include.rock.url != page.url %}
+      {% assign parts = include.rock.content | split: '{% include rock-card.html rock=page %}' %}
+      {% assign after = parts | last | strip %}
+      {% assign paras = after | split: "\n\n" %}
+      {% assign first_para = paras | first %}
+      {% assign display_desc = first_para | strip_html %}
+    {% else %}
+      {% assign display_desc = include.rock.excerpt | strip_html %}
+    {% endif %}
+  {% endif %}
+  {% if display_desc %}
+    <p>{{ display_desc | truncate: 160 }}</p>
   {% endif %}
   {%- if include.rock.url == page.url -%}
     {%- include related-chips.html doc=include.rock -%}

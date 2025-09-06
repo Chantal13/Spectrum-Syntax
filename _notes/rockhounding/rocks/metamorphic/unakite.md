@@ -7,6 +7,7 @@ tags:
 aliases:
   - unakite
 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/2/20/Unakite_%28epidotic_granite%29.jpg"
+hardness: "≈6–7"
 ---
 {% include rock-card.html rock=page %}
 

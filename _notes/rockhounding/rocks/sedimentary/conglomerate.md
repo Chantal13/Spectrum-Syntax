@@ -8,6 +8,7 @@ aliases:
   - conglomerates
   - Conglomerates
 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/0/0a/Conglomerate_rock_called_puddingstone._-_geograph.org.uk_-_480555.jpg"
+hardness: "≈2–7"
 ---
 {% include rock-card.html rock=page %}
 

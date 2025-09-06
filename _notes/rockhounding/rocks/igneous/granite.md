@@ -6,6 +6,7 @@ tags:
 aliases:
   - Granite
 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Granite_Rock_2.jpg"
+hardness: "≈6–7"
 ---
 {% include rock-card.html rock=page %}
 

@@ -9,9 +9,9 @@ aliases:
 - Epidotes
 - Epidote
 thumbnail: https://upload.wikimedia.org/wikipedia/commons/b/b8/%D0%AD%D0%BF%D0%B8%D0%B4%D0%BE%D1%82%28%D0%BF%D1%83%D1%88%D0%BA%D0%B8%D0%BD%D0%B8%D1%82%29.jpg
-hardness: 6.5
+hardness: "6–7"
 luster: null
-streak: null
+streak: Greyish white
 ---
 {% include rock-card.html rock=page %}
 

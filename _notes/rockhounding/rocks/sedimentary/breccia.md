@@ -4,6 +4,7 @@ draft: false
 tags:
   - rockhounding
 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/9/96/Breccia_in_Marble_Canyon-750px.jpg"
+hardness: "≈2–7"
 aliases:
   - Breccia
 ---

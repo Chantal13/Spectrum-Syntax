@@ -9,9 +9,9 @@ aliases:
   - garnets
   - Garnets
 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Almandine_garnet_1.jpg"
-hardness: 7
+hardness: "6.5–7.5"
 luster: null
-streak: null
+streak: White
 ---
 {% include rock-card.html rock=page %}
 
