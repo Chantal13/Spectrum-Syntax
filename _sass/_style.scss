@@ -672,6 +672,9 @@ code {
 .field-details li { margin: 0.25rem 0; }
 .field-details .loc-coords { margin-top: 0.25rem; color: #5b5b53; }
 .field-details .loc-coords code { margin-right: 0.35rem; }
+.field-details .map-link { display: inline-flex; align-items: center; gap: .25rem; text-decoration: none; }
+.field-details .map-link .label { text-decoration: underline; text-underline-offset: 2px; }
+.field-details .map-icon { width: 0.95em; height: 0.95em; vertical-align: -0.125em; opacity: .9; }
 
 .field-photos, .field-gallery {
   display: grid;

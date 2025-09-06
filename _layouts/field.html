@@ -57,8 +57,20 @@ layout: default
       {% if loc.lat and loc.lng %}
         <div class="loc-coords">
           <code>{{ loc.lat }}, {{ loc.lng }}</code>
-          · <a href="https://www.openstreetmap.org/?mlat={{ loc.lat }}&mlon={{ loc.lng }}#map=16/{{ loc.lat }}/{{ loc.lng }}" target="_blank" rel="noopener">OSM</a>
-          · <a href="https://maps.google.com/?q={{ loc.lat }},{{ loc.lng }}" target="_blank" rel="noopener">Google</a>
+          · <a class="map-link" href="https://www.openstreetmap.org/?mlat={{ loc.lat }}&mlon={{ loc.lng }}#map=16/{{ loc.lat }}/{{ loc.lng }}" target="_blank" rel="noopener">
+            <svg class="map-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 21s-6-5.7-6-10a6 6 0 0 1 12 0c0 4.3-6 10-6 10z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="11" r="2" fill="currentColor"/>
+            </svg>
+            <span class="label">OSM</span>
+          </a>
+          · <a class="map-link" href="https://maps.google.com/?q={{ loc.lat }},{{ loc.lng }}" target="_blank" rel="noopener">
+            <svg class="map-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 21s-6-5.7-6-10a6 6 0 0 1 12 0c0 4.3-6 10-6 10z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="11" r="2" fill="currentColor"/>
+            </svg>
+            <span class="label">Google</span>
+          </a>
         </div>
       {% endif %}
     </li>
