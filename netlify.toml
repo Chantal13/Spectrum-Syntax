@@ -28,6 +28,12 @@
   to = "/rockhounding/rocks/sedimentary/"
   status = 301
 
+# Removed standalone Minerals index; redirect to combined Rocks & Minerals
+[[redirects]]
+  from = "/rockhounding/rocks/minerals/"
+  to = "/rockhounding/rocks/"
+  status = 301
+
 # Redirects for moved rock pages
 [[redirects]]
   from = "/rockhounding/rocks/breccia/"

@@ -74,8 +74,9 @@
                 {% assign display_text = "Untitled" %}
               {% endif %}
               {% if thumb %}
+                {% assign cache_bust = site.time | date: '%s' %}
                 <a class="thumb" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
-                  <img src="{{ thumb | relative_url }}" alt="{{ display_text }}" onerror="this.parentNode.classList.add('thumb--empty'); this.remove();">
+                  <img src="{{ thumb | relative_url | append: '?v=' | append: cache_bust }}" alt="{{ display_text }}" onerror="this.parentNode.classList.add('thumb--empty'); this.remove();">
                   <span class="label">{{ display_text }}</span>
                 </a>
               {% else %}

@@ -20,7 +20,8 @@ Helpers
 <div class="tumble-meta{% unless cover %} no-cover{% endunless %}">
   {% if cover %}
     <div class="tumble-cover">
-      <img src="{{ cover | relative_url }}" alt="{{ page.title }} cover image">
+      {% assign cache_bust = site.time | date: '%s' %}
+      <img src="{{ cover | relative_url | append: '?v=' | append: cache_bust }}" alt="{{ page.title }} cover image">
     </div>
   {% endif %}
 
@@ -58,7 +59,8 @@ Helpers
 {%- if before -%}
 <h2>Before Tumbling</h2>
 <div class="pre-tumble">
-  <img src="{{ before | relative_url }}" alt="Before tumbling (rough)">
+  {% assign cache_bust = site.time | date: '%s' %}
+  <img src="{{ before | relative_url | append: '?v=' | append: cache_bust }}" alt="Before tumbling (rough)">
 </div>
 {%- endif -%}
 
@@ -132,7 +134,8 @@ Helpers
   <section class="stage-card{% unless primary %} no-media{% endunless %}" id="stage-{{ st.stage }}">
     {% if primary %}
       <div class="stage-media">
-        <img src="{{ primary | relative_url }}" alt="Stage {{ st.stage }} image">
+        {% assign cache_bust = site.time | date: '%s' %}
+        <img src="{{ primary | relative_url | append: '?v=' | append: cache_bust }}" alt="Stage {{ st.stage }} image">
       </div>
     {% endif %}
     <div class="stage-body">
@@ -173,10 +176,16 @@ Helpers
           {% for extra in imgs offset:1 %}
             {% if extra.alt != nil %}
               {% assign ex = extra.src | default: extra | image_exists %}
-              {% if ex %}<img src="{{ ex | relative_url }}" alt="{{ extra.alt }}">{% endif %}
+              {% if ex %}
+                {% assign cache_bust = site.time | date: '%s' %}
+                <img src="{{ ex | relative_url | append: '?v=' | append: cache_bust }}" alt="{{ extra.alt }}">
+              {% endif %}
             {% else %}
               {% assign ex = extra | image_exists %}
-              {% if ex %}<img src="{{ ex | relative_url }}" alt="Stage {{ st.stage }} extra image {{ forloop.index }}">{% endif %}
+              {% if ex %}
+                {% assign cache_bust = site.time | date: '%s' %}
+                <img src="{{ ex | relative_url | append: '?v=' | append: cache_bust }}" alt="Stage {{ st.stage }} extra image {{ forloop.index }}">
+              {% endif %}
             {% endif %}
           {% endfor %}
         </div>
@@ -196,7 +205,8 @@ Helpers
 {%- if after_img -%}
   <h2>After Tumbling</h2>
   <div class="post-tumble">
-    <img src="{{ after_img | relative_url }}" alt="After tumbling">
+    {% assign cache_bust = site.time | date: '%s' %}
+    <img src="{{ after_img | relative_url | append: '?v=' | append: cache_bust }}" alt="After tumbling">
   </div>
 {%- endif -%}
 
@@ -208,7 +218,8 @@ Helpers
         {% assign gs = g.src | image_exists %}
         {% if gs %}
           <figure>
-            <img src="{{ gs | relative_url }}" alt="{{ g.alt | default: "" }}">
+            {% assign cache_bust = site.time | date: '%s' %}
+            <img src="{{ gs | relative_url | append: '?v=' | append: cache_bust }}" alt="{{ g.alt | default: "" }}">
             {% if g.caption %}<figcaption>{{ g.caption }}</figcaption>{% endif %}
           </figure>
         {% endif %}
@@ -216,7 +227,8 @@ Helpers
         {% assign g1 = g | image_exists %}
         {% if g1 %}
           <figure>
-            <img src="{{ g1 | relative_url }}" alt="">
+            {% assign cache_bust = site.time | date: '%s' %}
+            <img src="{{ g1 | relative_url | append: '?v=' | append: cache_bust }}" alt="">
           </figure>
         {% endif %}
       {% endif %}

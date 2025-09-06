@@ -4,11 +4,29 @@
     {% assign cover_m = include.book.image.medium %}
     {% assign cover_s = include.book.image.small %}
     {% assign cover = cover_l | default: cover_m | default: cover_s %}
+    {% assign cache_bust = site.time | date: '%s' %}
+    {%- comment -%} Append cache-busting query param to cover URLs {%- endcomment -%}
+    {% if cover %}
+      {% assign sep = '?' %}{% if cover contains '?' %}{% assign sep = '&' %}{% endif %}
+      {% assign cover_v = cover | append: sep | append: 'v=' | append: cache_bust %}
+    {% endif %}
+    {% if cover_s %}
+      {% assign sep = '?' %}{% if cover_s contains '?' %}{% assign sep = '&' %}{% endif %}
+      {% assign cover_s_v = cover_s | append: sep | append: 'v=' | append: cache_bust %}
+    {% endif %}
+    {% if cover_m %}
+      {% assign sep = '?' %}{% if cover_m contains '?' %}{% assign sep = '&' %}{% endif %}
+      {% assign cover_m_v = cover_m | append: sep | append: 'v=' | append: cache_bust %}
+    {% endif %}
+    {% if cover_l %}
+      {% assign sep = '?' %}{% if cover_l contains '?' %}{% assign sep = '&' %}{% endif %}
+      {% assign cover_l_v = cover_l | append: sep | append: 'v=' | append: cache_bust %}
+    {% endif %}
     {% if cover %}
       <img 
-        src="{{ cover }}"
+        src="{{ cover_v | default: cover }}"
         {% if cover_s or cover_m or cover_l %}
-        srcset="{% if cover_s %}{{ cover_s }} 50w{% endif %}{% if cover_m %}{% if cover_s %}, {% endif %}{{ cover_m }} 98w{% endif %}{% if cover_l %}{% if cover_s or cover_m %}, {% endif %}{{ cover_l }} 318w{% endif %}"
+        srcset="{% if cover_s %}{{ cover_s_v | default: cover_s }} 50w{% endif %}{% if cover_m %}{% if cover_s %}, {% endif %}{{ cover_m_v | default: cover_m }} 98w{% endif %}{% if cover_l %}{% if cover_s or cover_m %}, {% endif %}{{ cover_l_v | default: cover_l }} 318w{% endif %}"
         sizes="(min-width: 900px) 360px, (min-width: 700px) 320px, 90vw"
         {% endif %}
         loading="lazy" decoding="async"

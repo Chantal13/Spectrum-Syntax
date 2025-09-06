@@ -20,15 +20,15 @@ Jekyll::Hooks.register [:notes], :pre_render do |doc|
     parent_title = 'Sedimentary Rocks'
     parent_url   = '/rockhounding/rocks/sedimentary/'
   elsif path.include?('/rocks/minerals/')
-    # Minerals: if nested under a base mineral folder, use that; else use Minerals
+    # Minerals: if nested under a base mineral folder, use that; else use Rocks & Minerals index
     rel = path.split('/rocks/minerals/', 2)[1]
     if rel && rel.include?('/')
       base = rel.split('/', 2)[0]
       parent_title = base.tr('-', ' ').split.map(&:capitalize).join(' ')
       parent_url   = "/rockhounding/rocks/minerals/#{base}/"
     else
-      parent_title = 'Minerals'
-      parent_url   = '/rockhounding/rocks/minerals/'
+      parent_title = 'Rocks & Minerals'
+      parent_url   = '/rockhounding/rocks/'
     end
   end
 

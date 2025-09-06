@@ -4,7 +4,17 @@ layout: default
 
 <h1>{{ page.title }}</h1>
 {% if page.thumbnail %}
-  <p><img src="{{ page.thumbnail | uri_escape }}" alt="{{ page.title }}" class="field-thumb"></p>
+  {% assign cache_bust = site.time | date: '%s' %}
+  {% assign tn = page.thumbnail %}
+  {% if tn contains '://' %}
+    {% assign sep = '?' %}{% if tn contains '?' %}{% assign sep = '&' %}{% endif %}
+    {% assign tn_url = tn | append: sep | append: 'v=' | append: cache_bust %}
+    <p><img src="{{ tn_url | uri_escape }}" alt="{{ page.title }}" class="field-thumb"></p>
+  {% else %}
+    {% assign tn_url = page.thumbnail | relative_url %}
+    {% assign tn_url = tn_url | append: '?v=' | append: cache_bust %}
+    <p><img src="{{ tn_url | uri_escape }}" alt="{{ page.title }}" class="field-thumb"></p>
+  {% endif %}
 {% endif %}
 <ul class="field-meta">
   {% if page.rocks %}

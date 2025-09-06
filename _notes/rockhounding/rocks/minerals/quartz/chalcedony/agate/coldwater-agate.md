@@ -1,7 +1,7 @@
 ---
 title: Coldwater Agate
 layout: note
-thumbnail: https://static.wikia.nocookie.net/encyclopedia-gemstonia/images/1/10/Coldwater_agate.jpg
+thumbnail: /assets/rocks/minerals/quartz/chalcedony/agate/coldwater-agate.jpg
 image_credit: Encyclopedia Gemstonia
 image_credit_url: https://encyclopedia-gemstonia.fandom.com/wiki/Coldwater_agate
 hardness: 7
