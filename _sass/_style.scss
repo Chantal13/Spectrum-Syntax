@@ -673,6 +673,17 @@ code {
   .logs-grid { grid-template-columns: 1fr 1fr; }
 }
 
+/* When the logbook shows two tables side by side, keep each compact */
+@media (min-width: 900px) and (max-width: 1200px) {
+  .logs-grid .tumble-index .nice-table th,
+  .logs-grid .tumble-index .nice-table td { padding: 0.45rem; }
+  .logs-grid .thumb { width: 96px; min-width: 96px; height: 72px; }
+  .logs-grid .batch-cell { gap: 0.5rem; }
+  /* Hide Duration in the side-by-side tumbling table */
+  .logs-grid .tumble-index thead th:nth-child(5),
+  .logs-grid .tumble-index tbody td:nth-child(5) { display: none; }
+}
+
 /* =========================
    Link Previews (tooltip)
    ========================= */
