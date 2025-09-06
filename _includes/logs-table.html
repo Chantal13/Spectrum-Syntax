@@ -134,7 +134,12 @@ Columns: Entry (thumb + label + chips), Dates, Type, Status
               {% endif %}
               {% if days != "" %}<span class="days"> · {{ days }}d</span>{% endif %}
             </td>
-            <td><span class="type-pill type-pill--tumble">Tumble</span></td>
+            <td><span class="type-pill type-pill--tumble">
+              <svg class="pill-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M6 18l-2-5 4-5 6-2 6 6-2 6z" fill="currentColor"/>
+              </svg>
+              Tumble
+            </span></td>
             <td>
               {% assign raw = d.status | default: "pending" | downcase | strip %}
               {% assign st = raw %}
@@ -213,7 +218,13 @@ Columns: Entry (thumb + label + chips), Dates, Type, Status
               </div>
             </td>
             <td>{{ d.date | date: "%Y-%m-%d" }}</td>
-            <td><span class="type-pill type-pill--field">Field</span></td>
+            <td><span class="type-pill type-pill--field">
+              <svg class="pill-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 21s-6-5.7-6-10a6 6 0 0 1 12 0c0 4.3-6 10-6 10z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="11" r="2" fill="currentColor"/>
+              </svg>
+              Field
+            </span></td>
             <td>—</td>
           </tr>
         {% endfor %}
