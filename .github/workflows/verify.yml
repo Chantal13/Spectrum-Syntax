@@ -1,0 +1,20 @@
+name: Verify Live Site
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify production URLs
+        env:
+          BASE_URL: https://spectrumsyntax.netlify.app
+        run: |
+          bash scripts/verify-site.sh
+
