@@ -23,10 +23,7 @@
          href="/tumbling/"{% if in_tumbling %} aria-current="page"{% endif %}>Tumbling</a>
     </li>
 
-    <li>
-      <a class="internal-link{% if in_logs %} nav-link--active{% endif %}"
-         href="/logs/"{% if in_logs %} aria-current="page"{% endif %}>Logs</a>
-    </li>
+    
 
     <li class="has-dropdown">
       <a class="internal-link{% if in_rockhounding %} nav-link--active{% endif %}"
@@ -48,6 +45,10 @@
         <li>
           <a class="internal-link{% if url contains '/rockhounding/field-log/' %} nav-link--active{% endif %}"
              href="/rockhounding/field-log/"{% if url contains '/rockhounding/field-log/' %} aria-current="page"{% endif %}>Field Log</a>
+        </li>
+        <li>
+          <a class="internal-link{% if url contains '/rockhounding/logs/' %} nav-link--active{% endif %}"
+             href="/rockhounding/logs/"{% if url contains '/rockhounding/logs/' %} aria-current="page"{% endif %}>Logbook</a>
         </li>
         <li>
           <a class="internal-link{% if url contains '/rockhounding/resources/' %} nav-link--active{% endif %}"

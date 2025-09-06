@@ -1,5 +1,5 @@
 [build]
-  command = "bundle exec jekyll build --trace"
+  command = "bundle exec rake webp && bundle exec jekyll build --trace"
   publish = "_site"
 
 [build.environment]
@@ -32,6 +32,12 @@
 [[redirects]]
   from = "/rockhounding/rocks/minerals/"
   to = "/rockhounding/rocks/"
+  status = 301
+
+# Consolidate logs under Rockhounding
+[[redirects]]
+  from = "/logs/"
+  to = "/rockhounding/logs/"
   status = 301
 
 # Redirects for moved rock pages

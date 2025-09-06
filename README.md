@@ -45,6 +45,8 @@ This project targets Ruby 3.2.1 and Bundler 2.7.1. On macOS, use rbenv for a smo
 
 4) Build or serve the site locally:
    ```bash
+   # Optional: generate WebP for local images (faster loads)
+   bundle exec rake webp
    bundle exec jekyll serve
    # or
    bundle exec jekyll build
@@ -79,6 +81,25 @@ This site relies on custom Jekyll plugins, so GitHub Pages cannot build it direc
 
 To host the site elsewhere, run `bundle exec jekyll build` and upload the generated `_site` directory to your provider.
 
+### Images and WebP
+
+- Local WebP generation
+  - Run `bundle exec rake webp` to generate `.webp` variants for images under `assets/rocks/` and `assets/tumbling/`.
+  - Requires Python 3 and Pillow. If missing, install with `pip3 install Pillow`.
+  - Safe to run repeatedly; only converts new/changed files.
+
+- Netlify build
+  - Netlify runs the WebP step automatically before building Jekyll (`bundle exec rake webp && bundle exec jekyll build --trace`).
+
+- Template behavior
+  - Templates prefer WebP for local images via a `<picture>` source and fall back to the original JPEG/PNG.
+  - External images (e.g., Wikimedia) are used as-is.
+
+- Placeholders
+  - Category placeholders live under `assets/rocks/` and are auto‑selected if a thumbnail is missing or fails to load:
+    - `placeholder-igneous.webp|jpg`, `placeholder-metamorphic.webp|jpg`, `placeholder-sedimentary.webp|jpg`, `placeholder-mineral.webp|jpg`, and default `placeholder.webp|jpg`.
+  - Replace these files with your own artwork to customize the look.
+
 ## Change summaries
 
 Generate summaries locally and in CI for easier PR descriptions and reviews.
@@ -88,6 +109,8 @@ Generate summaries locally and in CI for easier PR descriptions and reviews.
     ```bash
     git config core.hooksPath .githooks
     ```
+    - Pre-commit: auto-generates WebP for staged images in `assets/rocks/` and `assets/tumbling/`, then stages the resulting `.webp` files.
+    - Pre-push: warns if any local images are missing `.webp` siblings, and prints a Markdown change summary for easy PR/push notes.
   - On every push, a Markdown summary prints to the console and is saved to `.git/last_push_summary.md`.
   - You can also run manually for any range:
     ```bash

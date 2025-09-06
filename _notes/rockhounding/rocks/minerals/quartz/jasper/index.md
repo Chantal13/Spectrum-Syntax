@@ -4,7 +4,7 @@ tags:
   - rockhounding
   - minerals
 aliases: []
-thumbnail: "/assets/rocks/placeholder.jpg"
+thumbnail: "https://upload.wikimedia.org/wikipedia/commons/1/14/Unpolished_jasper.jpg"
 ---
 
 {% include rock-card.html rock=page %}

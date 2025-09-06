@@ -9,11 +9,22 @@ layout: default
   {% if tn contains '://' %}
     {% assign sep = '?' %}{% if tn contains '?' %}{% assign sep = '&' %}{% endif %}
     {% assign tn_url = tn | append: sep | append: 'v=' | append: cache_bust %}
-    <p><img src="{{ tn_url | uri_escape }}" alt="{{ page.title }}" class="field-thumb"></p>
+    <p><img src="{{ tn_url }}" alt="{{ page.title }}" class="field-thumb"></p>
   {% else %}
     {% assign tn_url = page.thumbnail | relative_url %}
     {% assign tn_url = tn_url | append: '?v=' | append: cache_bust %}
-    <p><img src="{{ tn_url | uri_escape }}" alt="{{ page.title }}" class="field-thumb"></p>
+    {% assign tn_webp_candidate = page.thumbnail | replace: '.jpg', '.webp' | replace: '.jpeg', '.webp' | replace: '.png', '.webp' %}
+    {% assign tn_webp_path = tn_webp_candidate | image_exists %}
+    {% if tn_webp_path %}
+      {% assign tn_webp_url = tn_webp_path | relative_url %}
+      {% assign tn_webp_url = tn_webp_url | append: '?v=' | append: cache_bust %}
+      <p><picture>
+        <source srcset="{{ tn_webp_url }}" type="image/webp">
+        <img src="{{ tn_url | uri_escape }}" alt="{{ page.title }}" class="field-thumb">
+      </picture></p>
+    {% else %}
+      <p><img src="{{ tn_url | uri_escape }}" alt="{{ page.title }}" class="field-thumb"></p>
+    {% endif %}
   {% endif %}
 {% endif %}
 <ul class="field-meta">

@@ -1,5 +1,17 @@
 <div class="rock-card">
   {% assign thumb = include.rock.thumbnail | default: include.rock.cover %}
+  {%- assign p = include.rock.path | default: '' -%}
+  {%- assign placeholder_path = '/assets/rocks/placeholder.jpg' -%}
+  {%- if p contains '_notes/rockhounding/rocks/igneous/' -%}
+    {%- assign placeholder_path = '/assets/rocks/placeholder-igneous.jpg' -%}
+  {%- elsif p contains '_notes/rockhounding/rocks/metamorphic/' -%}
+    {%- assign placeholder_path = '/assets/rocks/placeholder-metamorphic.jpg' -%}
+  {%- elsif p contains '_notes/rockhounding/rocks/sedimentary/' -%}
+    {%- assign placeholder_path = '/assets/rocks/placeholder-sedimentary.jpg' -%}
+  {%- elsif p contains '_notes/rockhounding/rocks/minerals/' -%}
+    {%- assign placeholder_path = '/assets/rocks/placeholder-mineral.jpg' -%}
+  {%- endif -%}
+  {%- assign placeholder_url = placeholder_path | relative_url -%}
   {%- comment -%} Disallow tumbling images for rocks/minerals and verify file exists {%- endcomment -%}
   {% assign show_thumb = false %}
   {% assign final_thumb = nil %}
@@ -30,11 +42,26 @@
           {% assign sep = '?' %}
           {% if final_thumb contains '?' %}{% assign sep = '&' %}{% endif %}
           {% assign img_src_ext = final_thumb | append: sep | append: 'v=' | append: cache_bust %}
-          <img src="{{ img_src_ext | uri_escape }}" alt="{{ include.rock.title }}">
+          <img src="{{ img_src_ext }}" alt="{{ include.rock.title }}"
+               onerror="this.onerror=null; this.src='{{ placeholder_url }}'; var p=this.closest('.rock-hero'); if(p) p.classList.add('is-placeholder');">
         {% else %}
-        {% assign final_thumb_url = final_thumb | relative_url %}
-        {% assign final_thumb_url = final_thumb_url | append: '?v=' | append: cache_bust %}
-        <img src="{{ final_thumb_url | uri_escape }}" alt="{{ include.rock.title }}">
+          {%- comment -%} Local image: prefer WebP if available {%- endcomment -%}
+          {% assign final_thumb_url = final_thumb | relative_url %}
+          {% assign final_thumb_url = final_thumb_url | append: '?v=' | append: cache_bust %}
+          {% assign webp_candidate = final_thumb | replace: '.jpg', '.webp' | replace: '.jpeg', '.webp' | replace: '.png', '.webp' %}
+          {% assign webp_path = webp_candidate | image_exists %}
+          {% if webp_path %}
+            {% assign webp_url = webp_path | relative_url %}
+            {% assign webp_url = webp_url | append: '?v=' | append: cache_bust %}
+            <picture>
+              <source srcset="{{ webp_url }}" type="image/webp">
+              <img src="{{ final_thumb_url | uri_escape }}" alt="{{ include.rock.title }}"
+                   onerror="this.onerror=null; this.src='{{ placeholder_url }}'; var p=this.closest('.rock-hero'); if(p) p.classList.add('is-placeholder');">
+            </picture>
+          {% else %}
+            <img src="{{ final_thumb_url | uri_escape }}" alt="{{ include.rock.title }}"
+                 onerror="this.onerror=null; this.src='{{ placeholder_url }}'; var p=this.closest('.rock-hero'); if(p) p.classList.add('is-placeholder');">
+          {% endif %}
         {% endif %}
       </div>
     {% else %}
@@ -43,11 +70,25 @@
           {% assign sep = '?' %}
           {% if final_thumb contains '?' %}{% assign sep = '&' %}{% endif %}
           {% assign img_src_ext = final_thumb | append: sep | append: 'v=' | append: cache_bust %}
-          <img src="{{ img_src_ext | uri_escape }}" alt="{{ include.rock.title }}">
+          <img src="{{ img_src_ext }}" alt="{{ include.rock.title }}"
+               onerror="this.onerror=null; this.src='{{ placeholder_url }}'; var a=this.closest('a'); if(a) a.classList.add('is-placeholder');">
         {% else %}
           {% assign final_thumb_url = final_thumb | relative_url %}
           {% assign final_thumb_url = final_thumb_url | append: '?v=' | append: cache_bust %}
-          <img src="{{ final_thumb_url | uri_escape }}" alt="{{ include.rock.title }}">
+          {% assign webp_candidate = final_thumb | replace: '.jpg', '.webp' | replace: '.jpeg', '.webp' | replace: '.png', '.webp' %}
+          {% assign webp_path = webp_candidate | image_exists %}
+          {% if webp_path %}
+            {% assign webp_url = webp_path | relative_url %}
+            {% assign webp_url = webp_url | append: '?v=' | append: cache_bust %}
+            <picture>
+              <source srcset="{{ webp_url }}" type="image/webp">
+              <img src="{{ final_thumb_url | uri_escape }}" alt="{{ include.rock.title }}"
+                   onerror="this.onerror=null; this.src='{{ placeholder_url }}'; var a=this.closest('a'); if(a) a.classList.add('is-placeholder');">
+            </picture>
+          {% else %}
+            <img src="{{ final_thumb_url | uri_escape }}" alt="{{ include.rock.title }}"
+                 onerror="this.onerror=null; this.src='{{ placeholder_url }}'; var a=this.closest('a'); if(a) a.classList.add('is-placeholder');">
+          {% endif %}
         {% endif %}
       </a>
     {% endif %}
@@ -87,12 +128,19 @@
       {% endif %}
     {% endif %}
   {% else %}
-    <a class="rock-thumb rock-thumb--empty" href="{{ include.rock.url | relative_url }}" aria-label="Open {{ include.rock.title }}">
-      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <rect x="2" y="4" width="20" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
-        <circle cx="8" cy="10" r="2" fill="currentColor"/>
-        <path d="M5 18l5-6 4 5 3-3 3 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+    <a class="rock-thumb is-placeholder" href="{{ include.rock.url | relative_url }}" aria-label="Open {{ include.rock.title }}">
+      {% assign ph_webp = placeholder_path | replace: '.jpg', '.webp' | replace: '.jpeg', '.webp' | replace: '.png', '.webp' %}
+      {% assign ph_webp_path = ph_webp | image_exists %}
+      {% if ph_webp_path %}
+        {% assign ph_webp_url = ph_webp_path | relative_url %}
+        {% assign ph_webp_url = ph_webp_url | append: '?v=' | append: cache_bust %}
+        <picture>
+          <source srcset="{{ ph_webp_url }}" type="image/webp">
+          <img src="{{ placeholder_url }}" alt="{{ include.rock.title }}">
+        </picture>
+      {% else %}
+        <img src="{{ placeholder_url }}" alt="{{ include.rock.title }}">
+      {% endif %}
     </a>
   {% endif %}
   <h3><a href="{{ include.rock.url | relative_url }}">{{ include.rock.title }}</a></h3>

@@ -1,13 +1,22 @@
 #!/usr/bin/env bash
-# Print a Markdown summary of what is being pushed, so you can paste it into GitHub.
-# Does not block the push even if it fails.
+# Pre-push helpers:
+#  - Warn if local images are missing WebP siblings (non-blocking)
+#  - Print a Markdown summary of refs being pushed
 
 set -u
 repo_root=$(git rev-parse --show-toplevel 2>/dev/null || echo "")
-script="$repo_root/scripts/changes_summary.sh"
 
+# 1) WebP sibling check (non-fatal)
+wp_chk="$repo_root/scripts/check_webp_siblings.py"
+if command -v python3 >/dev/null 2>&1 && [[ -f "$wp_chk" ]]; then
+  python3 "$wp_chk" || true
+else
+  echo "(Info) Skipping WebP sibling check (python3 or script not found)" >&2
+fi
+
+# 2) Change summary (non-fatal)
+script="$repo_root/scripts/changes_summary.sh"
 if [[ -x "$script" ]]; then
-  # Pass along stdin (ref updates) to the script
   tmp=$(mktemp)
   cat > "$tmp"
   "$script" </"$tmp" || true
@@ -17,4 +26,3 @@ else
 fi
 
 exit 0
-

@@ -614,6 +614,20 @@ code {
 }
 
 /* =========================
+   Logbook (combined logs) layout
+   ========================= */
+.logs-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .logs-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* =========================
    Link Previews (tooltip)
    ========================= */
 #tooltip-wrapper {

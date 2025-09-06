@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# Generate WebP variants for newly staged local images and auto-stage them.
+# Non-blocking on failure; exits 0 to not interfere with commits.
+
+set -euo pipefail
+
+# Only run if relevant image types are staged
+staged=$(git diff --cached --name-only --diff-filter=ACMR | rg -n '^(assets/(rocks|tumbling)/).+\.(jpg|jpeg|png)$' -N || true)
+if [[ -z "$staged" ]]; then
+  exit 0
+fi
+
+repo_root=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+cd "$repo_root"
+
+echo "[pre-commit] Detected staged images; generating WebP variants..." >&2
+
+ran=0
+if command -v python3 >/dev/null 2>&1 && [[ -f scripts/make_webp.py ]]; then
+  if python3 scripts/make_webp.py; then
+    ran=1
+  fi
+fi
+
+if [[ $ran -eq 0 ]]; then
+  if command -v bundle >/dev/null 2>&1; then
+    if bundle exec rake webp; then
+      ran=1
+    fi
+  fi
+fi
+
+# Stage any generated/updated .webp files under assets/rocks or assets/tumbling
+if command -v find >/dev/null 2>&1; then
+  mapfile -d '' -t webps < <(find assets/rocks assets/tumbling -type f -name '*.webp' -print0 2>/dev/null || true)
+  if [[ ${#webps[@]} -gt 0 ]]; then
+    git add -- "${webps[@]}" 2>/dev/null || true
+  fi
+fi
+
+echo "[pre-commit] WebP generation complete (non-blocking)." >&2
+exit 0
+
