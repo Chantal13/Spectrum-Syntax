@@ -672,6 +672,25 @@ code {
 .field-details li { margin: 0.25rem 0; }
 .field-details .loc-coords { margin-top: 0.25rem; color: #5b5b53; }
 .field-details .loc-coords code { margin-right: 0.35rem; }
+.field-details li strong { display: inline-flex; align-items: center; gap: .25rem; }
+/* Generic small icon before each label */
+.field-details li strong::before {
+  content: "";
+  display: inline-block;
+  width: 0.95em; height: 0.95em;
+  margin-right: .05rem;
+  background: currentColor;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/></svg>') no-repeat center / contain;
+          mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/></svg>') no-repeat center / contain;
+  opacity: .9;
+}
+
+/* Small icons for table headers and pills */
+.table-icon, .pill-icon, .meta-icon, .map-icon {
+  width: 0.95em; height: 0.95em; vertical-align: -0.125em;
+}
+.table-icon { margin-right: .25rem; opacity: .9; }
+.type-pill .pill-icon { margin-right: .25rem; opacity: .9; }
 .field-details .map-link { display: inline-flex; align-items: center; gap: .25rem; text-decoration: none; }
 .field-details .map-link .label { text-decoration: underline; text-underline-offset: 2px; }
 .field-details .map-icon { width: 0.95em; height: 0.95em; vertical-align: -0.125em; opacity: .9; }
