@@ -464,6 +464,18 @@ code {
   display: inline-block;
 }
 
+.type-pill {
+  padding: .1rem .45rem;
+  border-radius: 999px;
+  font-size: .75em;
+  border: 1px solid var(--panel-border);
+  color: #455;
+  background: var(--card-b);
+  white-space: nowrap;
+}
+.type-pill--tumble { background: #eef6ff; color: #234; border-color: #d5e6fb; }
+.type-pill--field  { background: #f3fff0; color: #243; border-color: #d9f0d2; }
+
   /* =========================
    Tumbling: No-wrap rules
    ========================= */
@@ -580,14 +592,22 @@ code {
   /* Tumbling: columns already condensed */
 
   /* Field log: no extra columns to hide at this width */
+
+  /* Unified logs: hide Type to save space */
+  .logs-index thead th:nth-child(3),
+  .logs-index tbody td:nth-child(3) { display: none; }
 }
 
 @media (max-width: 480px) {
   /* Extra narrow: hide Dates for tumbling and Date for field log */
-  .tumble-index thead th:nth-child(2),
-  .tumble-index tbody td:nth-child(2) { display: none; }
+  .tumble-index:not(.logs-index) thead th:nth-child(2),
+  .tumble-index:not(.logs-index) tbody td:nth-child(2) { display: none; }
   .field-index thead th:nth-child(2),
   .field-index tbody td:nth-child(2) { display: none; }
+
+  /* Unified logs: hide Status at extra-narrow widths */
+  .logs-index thead th:nth-child(4),
+  .logs-index tbody td:nth-child(4) { display: none; }
 
   .tumble-index .thumb { width: 88px; min-width: 88px; height: 66px; }
 }

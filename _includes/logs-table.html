@@ -1,0 +1,218 @@
+{% comment %}
+Unified logs table: Tumbling first, then Field notes. Compact columns.
+Columns: Entry (thumb + label + chips), Dates, Type, Status
+{% endcomment %}
+
+{% assign tumbles = site.notes | where_exp: "p", "p.path contains '_notes/rockhounding/tumbling/'" %}
+{% assign tumbles = tumbles | sort: "date_started" | reverse %}
+{% assign fields = site.notes | where_exp: "n", "n.path contains '_notes/rockhounding/field-log/'" %}
+{% assign fields = fields | sort: "date" | reverse %}
+
+<div class="tumble-index logs-index">
+  <table class="nice-table">
+    <thead>
+      <tr>
+        <th>Entry</th>
+        <th>Dates</th>
+        <th>Type</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% assign any_rows = false %}
+
+      {# ---- Tumbling rows ---- #}
+      {% if tumbles and tumbles.size > 0 %}
+        {% for d in tumbles %}
+          {% assign any_rows = true %}
+          {% assign thumb = nil %}
+          {% assign cand = d.images.cover | image_exists %}
+          {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% if thumb == nil %}
+            {% assign cand = d.images.after_stage_5 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil %}
+            {% assign cand = d.images.after_stage_4 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil %}
+            {% assign cand = d.images.after_stage_3 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil %}
+            {% assign cand = d.images.after_stage_2 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil %}
+            {% assign cand = d.images.after_stage_1 | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil %}
+            {% assign cand = d.images.after_burnish | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil %}
+            {% assign cand = d.images.rough | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+
+          {% assign days = "" %}
+          {% if d.date_started and d.date_finished %}
+            {% assign started_s  = d.date_started  | date: "%s" %}
+            {% assign finished_s = d.date_finished | date: "%s" %}
+            {% assign seconds = finished_s | minus: started_s %}
+            {% assign days = seconds | divided_by: 86400 %}
+          {% endif %}
+
+          <tr>
+            <td class="batch-cell">
+              {% assign batch = d.batch | default: '' | to_s | strip %}
+              {% assign title = d.title | default: '' | to_s | strip %}
+              {% if batch != '' and title != '' %}
+                {% assign display_text = batch | append: " — " | append: title %}
+              {% elsif batch != '' %}
+                {% assign display_text = batch %}
+              {% elsif title != '' %}
+                {% assign display_text = title %}
+              {% else %}
+                {% assign display_text = "Untitled" %}
+              {% endif %}
+              {% assign cache_bust = site.time | date: '%s' %}
+              {% if thumb %}
+                <a class="thumb" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
+                  <img src="{{ thumb | relative_url | append: '?v=' | append: cache_bust }}" alt="{{ display_text }}" onerror="this.parentNode.classList.add('thumb--empty'); this.remove();">
+                  <span class="label">{{ display_text }}</span>
+                </a>
+              {% else %}
+                <a class="thumb thumb--empty" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <rect x="2" y="4" width="20" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="8" cy="10" r="2" fill="currentColor"/>
+                    <path d="M5 18l5-6 4 5 3-3 3 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="label">{{ display_text }}</span>
+                </a>
+              {% endif %}
+              <div class="batch-meta">
+                <a href="{{ d.url | relative_url }}">
+                  {% if batch != '' and title != '' %}<strong>{{ batch }}</strong> — {{ title }}{% elsif batch != '' %}<strong>{{ batch }}</strong>{% elsif title != '' %}<strong>{{ title }}</strong>{% else %}<strong>Untitled</strong>{% endif %}
+                </a>
+                {% if d.rocks and d.rocks.size > 0 %}
+                  <div class="chips">
+                    {% for rock in d.rocks %}
+                      {% assign rk = rock | downcase | strip | replace: " ", "-" | replace: "_", "-" | replace: "/", "-" %}
+                      <span class="chip chip--{{ rk }}">{{ rock }}</span>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            </td>
+            <td class="dates-cell">
+              {% assign ds = d.date_started | default: "" %}
+              {% assign df = d.date_finished | default: "" %}
+              {% if ds != "" and df != "" %}
+                {{ ds }} → {{ df }}
+              {% elsif ds != "" %}
+                {{ ds }}
+              {% elsif df != "" %}
+                {{ df }}
+              {% else %}
+                —
+              {% endif %}
+              {% if days != "" %}<span class="days"> · {{ days }}d</span>{% endif %}
+            </td>
+            <td><span class="type-pill type-pill--tumble">Tumble</span></td>
+            <td>
+              {% assign raw = d.status | default: "pending" | downcase | strip %}
+              {% assign st = raw %}
+              {% if raw == "completed" or raw == "finished" or raw == "done" %}
+                {% assign st = "tumbled" %}
+              {% elsif raw == "in progress" or raw == "in-progress" or raw == "progress" or raw == "running" or raw == "active" %}
+                {% assign st = "tumbling" %}
+              {% elsif raw == "pending" or raw == "planned" or raw == "queued" %}
+                {% assign st = "pending" %}
+              {% endif %}
+              <span class="status status--{{ st }}">{{ st }}</span>
+            </td>
+          </tr>
+        {% endfor %}
+      {% endif %}
+
+      {# ---- Field note rows ---- #}
+      {% if fields and fields.size > 0 %}
+        {% for d in fields %}
+          {% assign any_rows = true %}
+          {% assign thumb = nil %}
+          {% assign cand = d.thumbnail | image_exists %}
+          {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% if thumb == nil and d.images %}
+            {% assign cand = d.images.close_up | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+          {% if thumb == nil and d.images %}
+            {% assign cand = d.images.scale | image_exists %}
+            {% if cand %}{% assign thumb = cand %}{% endif %}
+          {% endif %}
+
+          <tr>
+            <td class="batch-cell">
+              {% assign date_label = d.date | date: "%Y-%m-%d" %}
+              {% assign title = d.title | default: '' | to_s | strip %}
+              {% if title != '' %}
+                {% assign display_text = date_label | append: " — " | append: title %}
+              {% else %}
+                {% assign display_text = date_label %}
+              {% endif %}
+              {% assign cache_bust = site.time | date: '%s' %}
+              {% if thumb %}
+                <a class="thumb" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
+                  <img src="{{ thumb | relative_url | append: '?v=' | append: cache_bust }}" alt="{{ display_text }}" onerror="this.parentNode.classList.add('thumb--empty'); this.remove();">
+                  <span class="label">{{ display_text }}</span>
+                </a>
+              {% else %}
+                <a class="thumb thumb--empty" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <rect x="2" y="4" width="20" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="8" cy="10" r="2" fill="currentColor"/>
+                    <path d="M5 18l5-6 4 5 3-3 3 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="label">{{ display_text }}</span>
+                </a>
+              {% endif %}
+              <div class="batch-meta">
+                <a href="{{ d.url | relative_url }}"><strong>{{ date_label }}</strong>{% if title != '' %} — {{ title }}{% endif %}</a>
+                {% if d.rocks and d.rocks.size > 0 %}
+                  <div class="chips">
+                    {% for rock in d.rocks %}
+                      {% assign rk = rock | downcase | strip | replace: " ", "-" | replace: "_", "-" | replace: "/", "-" %}
+                      <span class="chip chip--{{ rk }}">{{ rock }}</span>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+                {% if d.minerals and d.minerals.size > 0 %}
+                  <div class="chips">
+                    {% for mineral in d.minerals %}
+                      {% assign mk = mineral | downcase | strip | replace: " ", "-" | replace: "_", "-" | replace: "/", "-" %}
+                      <span class="chip chip--{{ mk }}">{{ mineral }}</span>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            </td>
+            <td>{{ d.date | date: "%Y-%m-%d" }}</td>
+            <td><span class="type-pill type-pill--field">Field</span></td>
+            <td>—</td>
+          </tr>
+        {% endfor %}
+      {% endif %}
+
+      {% unless any_rows %}
+        <tr>
+          <td colspan="4">No logs found. Add markdown files in <code>_notes/rockhounding/tumbling/</code> or <code>_notes/rockhounding/field-log/</code>.</td>
+        </tr>
+      {% endunless %}
+    </tbody>
+  </table>
+</div>
+
