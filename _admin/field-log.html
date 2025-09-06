@@ -22,9 +22,11 @@ permalink: /admin/field-log/
     label { font-size:.95rem; color:#333; display:block; }
     input[type="text"], input[type="date"], select, textarea { width:100%; box-sizing:border-box; padding:.5rem; border:1px solid #ccc; border-radius:6px; }
     textarea { min-height: 8rem; }
-    .actions { display:flex; gap:.5rem; margin-top: .75rem; }
+    .actions { display:flex; flex-wrap: wrap; gap:.5rem; margin-top: .75rem; }
     pre { white-space: pre-wrap; background:#f7f7f7; border:1px solid #ddd; padding:.75rem; border-radius:8px; margin-top:.75rem; }
     .note { font-size:.9rem; color:#555; }
+    button { padding:.55rem .8rem; border:1px solid #bbb; background:#fff; border-radius:8px; }
+    button:active { transform: translateY(1px); }
     @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 680px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
   </style>
@@ -63,9 +65,29 @@ permalink: /admin/field-log/
     </label>
   </div>
 
+  <div class="grid-2" style="align-items:end">
+    <label>Choose close-up image (camera OK)
+      <input id="fld-file-close" type="file" accept="image/*" capture="environment">
+    </label>
+    <div class="actions">
+      <button id="btn-upload-close" type="button">Upload Close-up → assets</button>
+      <span id="status-upload-close" class="subtle"></span>
+    </div>
+  </div>
+
+  <div class="grid-2" style="align-items:end">
+    <label>Choose scale image (optional)
+      <input id="fld-file-scale" type="file" accept="image/*" capture="environment">
+    </label>
+    <div class="actions">
+      <button id="btn-upload-scale" type="button">Upload Scale → assets</button>
+      <span id="status-upload-scale" class="subtle"></span>
+    </div>
+  </div>
+
   <div class="grid-3" style="align-items:end">
     <label>Pick a photo to read EXIF GPS
-      <input id="fld-photo-file" type="file" accept="image/*">
+      <input id="fld-photo-file" type="file" accept="image/*" capture="environment">
     </label>
     <div>
       <button type="button" id="btn-exif">Extract GPS</button>
@@ -374,6 +396,50 @@ permalink: /admin/field-log/
       const text = out.textContent || buildFieldYaml();
       try { await navigator.clipboard.writeText(text); alert('Copied.'); } catch (e) { alert('Copy failed'); }
     });
+
+    // ---- Upload helpers ----
+    function extFromType(t) { if (!t) return 'jpg'; if (t.includes('png')) return 'png'; if (t.includes('webp')) return 'webp'; return 'jpg'; }
+    function slug(s) { return String(s||'').toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') || 'specimen'; }
+    function todayYMD() { const d = new Date(); const pad=n=>String(n).padStart(2,'0'); return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; }
+    function yearFromInput() { const v = val(document.getElementById('fld-date')); return (v && /^\d{4}/.test(v)) ? v.slice(0,4) : String(new Date().getFullYear()); }
+    function buildDestPath(kind, file) {
+      const y = yearFromInput();
+      const base = 'assets/field/' + y + '/';
+      const d = (val(document.getElementById('fld-date')) || todayYMD()).replace(/-/g,'');
+      const title = val(document.getElementById('fld-title'));
+      const name = `${d}-${slug(title)}-${kind}.${extFromType(file?.type)}`;
+      return base + name;
+    }
+    function fileToBase64(file) { return new Promise((res, rej) => { const fr = new FileReader(); fr.onerror = () => rej(new Error('read failed')); fr.onload = () => { const s = String(fr.result||''); const idx = s.indexOf('base64,'); res(idx>=0 ? s.slice(idx+7) : s); }; fr.readAsDataURL(file); }); }
+    async function uploadAsset(file, kind) {
+      if (!file) throw new Error('No file selected');
+      const pathInputId = kind === 'close-up' ? 'fld-photo-close' : 'fld-photo-scale';
+      let dest = val(document.getElementById(pathInputId)).replace(/^\//,'');
+      if (!dest) dest = buildDestPath(kind, file);
+      const body = { path: dest, content_base64: await fileToBase64(file), message: `Upload field ${kind}` };
+      const resp = await fetch('/.netlify/functions/upload-asset', { method:'POST', headers: { 'content-type':'application/json' }, body: JSON.stringify(body), credentials: 'include' });
+      if (!resp.ok) {
+        const txt = await resp.text();
+        throw new Error(`Upload failed (${resp.status}): ${txt}`);
+      }
+      const data = await resp.json();
+      const fullPath = '/' + data.path.replace(/^\//,'');
+      document.getElementById(pathInputId).value = fullPath;
+      return fullPath;
+    }
+
+    document.getElementById('btn-upload-close')?.addEventListener('click', async () => {
+      const st = document.getElementById('status-upload-close');
+      st.textContent = 'Uploading…';
+      try { const f = document.getElementById('fld-file-close').files?.[0]; const p = await uploadAsset(f, 'close-up'); st.textContent = 'Saved to ' + p; }
+      catch (e) { st.textContent = (e?.message || 'Upload failed'); }
+    });
+    document.getElementById('btn-upload-scale')?.addEventListener('click', async () => {
+      const st = document.getElementById('status-upload-scale');
+      st.textContent = 'Uploading…';
+      try { const f = document.getElementById('fld-file-scale').files?.[0]; const p = await uploadAsset(f, 'with-scale'); st.textContent = 'Saved to ' + p; }
+      catch (e) { st.textContent = (e?.message || 'Upload failed'); }
+    });
   </script>
 
   <!-- Template for quick copy -->
@@ -406,4 +472,3 @@ gallery: [] # e.g., - { src: "/assets/field/YYYY/another.jpg", caption: "Fresh b
 
 </body>
 </html>
-

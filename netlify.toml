@@ -87,6 +87,14 @@ SECRETS_SCAN_OMIT_KEYS = "ADMIN_USER"
   path = "/admin/*"
   function = "admin-auth"
 
+# Optionally protect the upload function with the same Basic Auth.
+# Note: fetch() should reuse cached Basic credentials, but mobile Safari may not.
+# If this causes issues when uploading from phone, remove or comment this block
+# and rely on ADMIN_SECRET in the function instead.
+[[edge_functions]]
+  path = "/.netlify/functions/upload-asset"
+  function = "admin-auth"
+
 # --- Security headers ---
 [[headers]]
   for = "/*"
