@@ -25,6 +25,9 @@ permalink: /admin/field-log/
     .actions { display:flex; flex-wrap: wrap; gap:.5rem; margin-top: .75rem; }
     pre { white-space: pre-wrap; background:#f7f7f7; border:1px solid #ddd; padding:.75rem; border-radius:8px; margin-top:.75rem; }
     .note { font-size:.9rem; color:#555; }
+    .help { font-size:.85rem; color:#555; margin-top:.35rem; }
+    .help summary { font-weight:600; color:#444; cursor:pointer; }
+    .help ul { margin:.25rem 0 0 .75rem; padding:0; }
     button { padding:.55rem .8rem; border:1px solid #bbb; background:#fff; border-radius:8px; }
     button:active { transform: translateY(1px); }
     @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr 1fr; } }
@@ -191,6 +194,18 @@ permalink: /admin/field-log/
         <option>Waxy</option>
         <option>Dull (Earthy)</option>
       </select>
+      <details class="help">
+        <summary>What is lustre?</summary>
+        How a fresh surface reflects light.
+        <ul>
+          <li>Metallic: looks like metal; opaque, high shine.</li>
+          <li>Vitreous: glassy (quartz, many silicates).</li>
+          <li>Resinous/Greasy/Waxy: plastic‑like or oily sheen.</li>
+          <li>Pearly/Silky: layered or fibrous sheen.</li>
+          <li>Dull/Earthy: little to no reflection.</li>
+        </ul>
+        Tip: test on a fresh break, not weathered surfaces.
+      </details>
     </label>
     <label>Hardness (Mohs)
       <select id="fld-hardness">
@@ -236,6 +251,15 @@ permalink: /admin/field-log/
         <option>Octahedral (4)</option>
         <option>Dodecahedral (6)</option>
       </select>
+      <details class="help">
+        <summary>What is cleavage?</summary>
+        Tendency to split along flat, parallel planes.
+        <ul>
+          <li>Quality: Perfect → Poor indicates how clean planes are.</li>
+          <li>Directions: Basal(1), Prismatic(2), Cubic/Rhombohedral(3), Octahedral(4), Dodecahedral(6).</li>
+        </ul>
+        Tip: look for repeated, parallel flat faces on broken pieces.
+      </details>
     </label>
     <label>Fracture
       <select id="fld-fracture">
@@ -248,6 +272,16 @@ permalink: /admin/field-log/
         <option>Splintery</option>
         <option>Earthy</option>
       </select>
+      <details class="help">
+        <summary>What is fracture?</summary>
+        How a mineral breaks when it doesn’t follow cleavage.
+        <ul>
+          <li>Conchoidal: curved, shell‑like (quartz, glass).</li>
+          <li>Hackly: jagged, torn metal‑like.</li>
+          <li>Splintery/Fibrous: sharp splinters or fibers.</li>
+          <li>Even/Uneven/Earthy: relatively flat vs rough vs crumbly.</li>
+        </ul>
+      </details>
     </label>
   </div>
 
