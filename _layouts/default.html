@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   {% include head.html %}
-  <body{% if page.id %} class="page-{{ page.id | slugify }}"{% endif %}>
+  <body{% if page.id %} class="page-{{ page.id | slugify }}"{% endif %} data-gramm="false" data-gramm_editor="false" data-pw-ignore="true">
     {% include site_nav.html %}
     <div class="wrapper">
       {% include breadcrumbs.html %}
@@ -11,5 +11,28 @@
 
     {% include link-previews.html wrapperQuerySelector="content" %}
     {% include link-previews.html wrapperQuerySelector="side" %}
+
+    <script>
+      // Remove inputs injected by writing-aid browser extensions (e.g., ProWritingAid/Grammarly)
+      // that can trigger a11y audits: missing id/name on fake editors.
+      (function () {
+        function cleanInjectedEditors() {
+          var sel = [
+            'input[pwa-fake-editor]',
+            'textarea[pwa-fake-editor]',
+            'input[data-gramm="true"]',
+            'textarea[data-gramm="true"]'
+          ].join(',');
+          document.querySelectorAll(sel).forEach(function (el) {
+            try { el.parentNode && el.parentNode.removeChild(el); } catch (e) {}
+          });
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', cleanInjectedEditors);
+        } else {
+          cleanInjectedEditors();
+        }
+      })();
+    </script>
   </body>
 </html>
