@@ -661,18 +661,31 @@ code {
 /* =========================
    Field Log layout
    ========================= */
-.field-meta { margin: 0 0 1rem 0; }
+.field-card { margin: 1rem 0; padding: 0.75rem; border: 1px solid var(--panel-border); border-radius: 8px; background: var(--card-a); }
+.field-card h2 { margin: 0 0 0.5rem 0; font-size: 1.05rem; }
+
+/* Summary card with cover image + details */
+.field-summary { display: grid; gap: 1rem; grid-template-columns: 280px 1fr; align-items: start; }
+.field-cover { align-self: center; }
+.field-cover img { width: 100%; max-height: 280px; object-fit: cover; border-radius: 6px; border: 1px solid var(--panel-border); background: var(--card-a); }
+.field-details { list-style: none; padding: 0; margin: 0; }
+.field-details li { margin: 0.25rem 0; }
+
 .field-photos, .field-gallery {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.75rem;
   margin: 0.5rem 0 1rem 0;
 }
+.field-card .field-photos, .field-card .field-gallery { margin: 0.5rem 0 0 0; }
 .field-photos figure, .field-gallery figure { margin: 0; }
 .field-photos img, .field-gallery img { width: 100%; height: auto; border: 1px solid #eee; border-radius: 4px; }
 .field-photos figcaption, .field-gallery figcaption { font-size: 0.85em; color: #666; margin-top: .25rem; }
 @media (min-width: 700px) {
   .field-photos, .field-gallery { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 820px) {
+  .field-summary { grid-template-columns: 1fr; }
 }
 
 /* =========================

@@ -16,100 +16,105 @@ layout: default
   {% assign primary_img = page.images.scale %}
 {% endif %}
 
-{% if primary_img %}
-  {% assign cache_bust = site.time | date: '%s' %}
-  {% assign tn = primary_img %}
-  {% if tn contains '://' %}
-    {% assign sep = '?' %}{% if tn contains '?' %}{% assign sep = '&' %}{% endif %}
-    {% assign tn_url = tn | append: sep | append: 'v=' | append: cache_bust %}
-    <p><img src="{{ tn_url }}" alt="{{ page.title }}" class="field-thumb"></p>
-  {% else %}
-    {% assign tn_url = tn | relative_url %}
-    {% assign tn_url = tn_url | append: '?v=' | append: cache_bust %}
-    {% assign tn_webp_candidate = tn | replace: '.jpg', '.webp' | replace: '.jpeg', '.webp' | replace: '.png', '.webp' %}
-    {% assign tn_webp_path = tn_webp_candidate | image_exists %}
-    {% if tn_webp_path %}
-      {% assign tn_webp_url = tn_webp_path | relative_url %}
-      {% assign tn_webp_url = tn_webp_url | append: '?v=' | append: cache_bust %}
-      <p><picture>
-        <source srcset="{{ tn_webp_url }}" type="image/webp">
-        <img src="{{ tn_url | uri_escape }}" alt="{{ page.title }}" class="field-thumb">
-      </picture></p>
+<div class="field-summary field-card">
+  {% if primary_img %}
+    {% assign cache_bust = site.time | date: '%s' %}
+    {% assign tn = primary_img %}
+    <div class="field-cover">
+    {% if tn contains '://' %}
+      {% assign sep = '?' %}{% if tn contains '?' %}{% assign sep = '&' %}{% endif %}
+      {% assign tn_url = tn | append: sep | append: 'v=' | append: cache_bust %}
+      <img src="{{ tn_url }}" alt="{{ page.title }}">
     {% else %}
-      <p><img src="{{ tn_url | uri_escape }}" alt="{{ page.title }}" class="field-thumb"></p>
+      {% assign tn_url = tn | relative_url %}
+      {% assign tn_url = tn_url | append: '?v=' | append: cache_bust %}
+      {% assign tn_webp_candidate = tn | replace: '.jpg', '.webp' | replace: '.jpeg', '.webp' | replace: '.png', '.webp' %}
+      {% assign tn_webp_path = tn_webp_candidate | image_exists %}
+      {% if tn_webp_path %}
+        {% assign tn_webp_url = tn_webp_path | relative_url %}
+        {% assign tn_webp_url = tn_webp_url | append: '?v=' | append: cache_bust %}
+        <picture>
+          <source srcset="{{ tn_webp_url }}" type="image/webp">
+          <img src="{{ tn_url | uri_escape }}" alt="{{ page.title }}">
+        </picture>
+      {% else %}
+        <img src="{{ tn_url | uri_escape }}" alt="{{ page.title }}">
+      {% endif %}
     {% endif %}
-  {% endif %}
-{% endif %}
-
-<ul class="field-meta">
-  {% if page.date %}
-  <li><strong>Date:</strong> {{ page.date | date: '%Y-%m-%d' }}</li>
+    </div>
   {% endif %}
 
-  {%- assign loc = page.location -%}
-  {% if loc and (loc.lat or loc.lng or loc.description) %}
-  <li>
-    <strong>Location:</strong>
-    {% if loc.description %}{{ loc.description }}{% endif %}
-    {% if loc.lat and loc.lng %}
-      {%- if loc.description %} · {% endif -%}
-      <code>{{ loc.lat }}, {{ loc.lng }}</code>
-      · <a href="https://www.openstreetmap.org/?mlat={{ loc.lat }}&mlon={{ loc.lng }}#map=16/{{ loc.lat }}/{{ loc.lng }}" target="_blank" rel="noopener">OSM</a>
-      · <a href="https://maps.google.com/?q={{ loc.lat }},{{ loc.lng }}" target="_blank" rel="noopener">Google</a>
+  <ul class="field-details">
+    {% if page.date %}
+    <li><strong>Date:</strong> {{ page.date | date: '%Y-%m-%d' }}</li>
     {% endif %}
-  </li>
-  {% endif %}
 
-  {% if page.rocks %}
-  <li><strong>Rock type:</strong>
-    <span class="chips">
-      {% for r in page.rocks %}
-        <span class="chip chip--{{ r | slugify }}">{{ r }}</span>
-      {% endfor %}
-    </span>
-  </li>
-  {% endif %}
-  {% if page.minerals %}
-  <li><strong>Minerals:</strong>
-    <span class="chips">
-      {% for m in page.minerals %}
-        <span class="chip chip--{{ m | slugify }}">{{ m }}</span>
-      {% endfor %}
-    </span>
-  </li>
-  {% endif %}
+    {%- assign loc = page.location -%}
+    {% if loc and (loc.lat or loc.lng or loc.description) %}
+    <li>
+      <strong>Location:</strong>
+      {% if loc.description %}{{ loc.description }}{% endif %}
+      {% if loc.lat and loc.lng %}
+        {%- if loc.description %} · {% endif -%}
+        <code>{{ loc.lat }}, {{ loc.lng }}</code>
+        · <a href="https://www.openstreetmap.org/?mlat={{ loc.lat }}&mlon={{ loc.lng }}#map=16/{{ loc.lat }}/{{ loc.lng }}" target="_blank" rel="noopener">OSM</a>
+        · <a href="https://maps.google.com/?q={{ loc.lat }},{{ loc.lng }}" target="_blank" rel="noopener">Google</a>
+      {% endif %}
+    </li>
+    {% endif %}
 
-  {% assign colour = page.colour | default: page.color %}
-  {% if colour %}
-  <li><strong>Colour:</strong> {{ colour }}</li>
-  {% endif %}
+    {% if page.rocks %}
+    <li><strong>Rock type:</strong>
+      <span class="chips">
+        {% for r in page.rocks %}
+          <span class="chip chip--{{ r | slugify }}">{{ r }}</span>
+        {% endfor %}
+      </span>
+    </li>
+    {% endif %}
+    {% if page.minerals %}
+    <li><strong>Minerals:</strong>
+      <span class="chips">
+        {% for m in page.minerals %}
+          <span class="chip chip--{{ m | slugify }}">{{ m }}</span>
+        {% endfor %}
+      </span>
+    </li>
+    {% endif %}
 
-  {% if page.lustre %}
-  <li><strong>Lustre:</strong> {{ page.lustre }}</li>
-  {% endif %}
+    {% assign colour = page.colour | default: page.color %}
+    {% if colour %}
+    <li><strong>Colour:</strong> {{ colour }}</li>
+    {% endif %}
 
-  {% if page.hardness_mohs or page.hardness %}
-  <li><strong>Hardness (Mohs):</strong> {{ page.hardness_mohs | default: page.hardness }}</li>
-  {% endif %}
+    {% if page.lustre %}
+    <li><strong>Lustre:</strong> {{ page.lustre }}</li>
+    {% endif %}
 
-  {% if page.streak %}
-  <li><strong>Streak:</strong> {{ page.streak }}</li>
-  {% endif %}
+    {% if page.hardness_mohs or page.hardness %}
+    <li><strong>Hardness (Mohs):</strong> {{ page.hardness_mohs | default: page.hardness }}</li>
+    {% endif %}
 
-  {% if page.crystal_form_texture %}
-  <li><strong>Crystal form/Texture:</strong> {{ page.crystal_form_texture }}</li>
-  {% endif %}
+    {% if page.streak %}
+    <li><strong>Streak:</strong> {{ page.streak }}</li>
+    {% endif %}
 
-  {% if page.cleavage or page.fracture %}
-  <li><strong>Cleavage/Fracture:</strong>
-    {%- if page.cleavage %} Cleavage: {{ page.cleavage }}{%- endif -%}
-    {%- if page.cleavage and page.fracture %} · {% endif -%}
-    {%- if page.fracture %} Fracture: {{ page.fracture }}{%- endif -%}
-  </li>
-  {% endif %}
-</ul>
+    {% if page.crystal_form_texture %}
+    <li><strong>Crystal form/Texture:</strong> {{ page.crystal_form_texture }}</li>
+    {% endif %}
+
+    {% if page.cleavage or page.fracture %}
+    <li><strong>Cleavage/Fracture:</strong>
+      {%- if page.cleavage %} Cleavage: {{ page.cleavage }}{%- endif -%}
+      {%- if page.cleavage and page.fracture %} · {% endif -%}
+      {%- if page.fracture %} Fracture: {{ page.fracture }}{%- endif -%}
+    </li>
+    {% endif %}
+  </ul>
+</div>
 
 {%- if page.images and (page.images.close_up or page.images.scale) -%}
+  <section class="field-card">
   <h2>Photos</h2>
   <div class="field-photos">
     {%- if page.images.close_up -%}
@@ -127,11 +132,15 @@ layout: default
       </figure>
     {%- endif -%}
   </div>
+  </section>
 {%- endif -%}
 
-{{ content }}
+<section class="field-card field-notes">
+  {{ content }}
+</section>
 
 {%- if page.gallery and page.gallery.size > 0 -%}
+  <section class="field-card">
   <h2>Gallery</h2>
   <div class="field-gallery">
     {%- for g in page.gallery -%}
@@ -144,4 +153,5 @@ layout: default
       {%- endif -%}
     {%- endfor -%}
   </div>
+  </section>
 {%- endif -%}
