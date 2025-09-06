@@ -44,7 +44,7 @@ check_redirect() {
   local headers status location
   headers=$(head_req "$from") || { echo "[FAIL] HEAD $from"; return 1; }
   status=$(printf "%s" "$headers" | awk 'tolower($1) ~ /^http\// {print $2; exit}')
-  location=$(printf "%s" "$headers" | awk 'tolower($1) == "location:" {print $2; exit}')
+  location=$(printf "%s" "$headers" | awk 'tolower($1) == "location:" {print $2; exit}' | tr -d '\r')
   if [[ "$status" != "301" && "$status" != "302" ]]; then
     echo "[FAIL] Expected redirect for $from, got $status"
     return 1
@@ -75,7 +75,7 @@ run_checks_once() {
 
   # New Tumbling page exists
   tumble=$(fetch "$BASE_URL/rockhounding/tumbling/") || { echo "[FAIL] Fetch tumbling"; failures=$((failures+1)); }
-  if [[ ${#tumble:-0} -gt 0 ]]; then
+  if [[ -n "$tumble" ]]; then
     assert_present "$tumble" "<h1>Tumbling</h1>" "/rockhounding/tumbling/" || failures=$((failures+1))
   fi
 
@@ -97,4 +97,3 @@ done
 
 echo "Verification failed after $attempts attempts"
 exit 1
-
