@@ -85,25 +85,26 @@ permalink: /admin/field-log/
     </div>
   </div>
 
-  <div class="grid-3" style="align-items:end">
+  <div class="grid-2" style="align-items:end">
     <label>Pick a photo to read EXIF GPS
       <input id="fld-photo-file" type="file" accept="image/*" capture="environment">
     </label>
-    <div>
+    <div class="actions">
       <button type="button" id="btn-exif">Extract GPS</button>
-      <div id="exif-status" class="subtle" style="margin-top:.4rem"></div>
+      <span id="exif-status" class="subtle"></span>
     </div>
-    <div></div>
+  </div>
+  <div class="grid-2">
     <label>Latitude
       <input id="fld-lat" type="text" placeholder="43.6532">
     </label>
     <label>Longitude
       <input id="fld-lng" type="text" placeholder="-79.3832">
     </label>
-    <label>Location description
-      <input id="fld-loc-desc" type="text" placeholder="Bluffers Park shoreline, Scarborough">
-    </label>
   </div>
+  <label style="display:block;margin-top:.5rem">Location description
+    <input id="fld-loc-desc" type="text" placeholder="Bluffers Park shoreline, Scarborough">
+  </label>
 
   <div class="grid-2">
     <label>Rock type(s)

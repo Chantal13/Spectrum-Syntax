@@ -9,7 +9,7 @@ tags:
 
 # Admin Page Guide
 
-This guide explains how to use the Tumbling Admin at `/admin/` to create and edit tumbling logs without hand‑editing front matter or asset paths.
+This guide explains how to use the Admin area at `/admin/` to manage Rockhounding content.
 
 ## Authentication (Username/Password)
 
@@ -40,9 +40,26 @@ Advanced
 - If you want to avoid committing credentials, generate a `_headers` file at build time from environment variables and add `Basic-Auth` entries there.
 - For full user management, consider Netlify Identity + a CMS (outside the scope of this simple admin).
 
-## Overview
+## Field Log Updater (mobile‑friendly)
+Path: `/admin/field-log/`
+
+- Wide, responsive layout for phones and tablets.
+- Choose images directly from your phone (camera supported) and upload to `assets/field/<year>/`.
+- Auto‑generate front matter, including EXIF GPS extraction and date.
+- After upload, the image path fields fill automatically so you can copy the complete markdown.
+
+Setup required (once)
+- In Netlify → Site settings → Build & deploy → Environment, add:
+  - `GITHUB_TOKEN` with repo Contents: read/write access (fine‑grained or classic PAT).
+  - Optional: `ADMIN_SECRET` to require a shared header for the upload endpoint.
+  - Optional: `COMMITTER_NAME`, `COMMITTER_EMAIL`, `GITHUB_REPO` (defaults to `Chantal13/Spectrum-Syntax`), `GITHUB_BRANCH` (`main`).
+
+Notes
+- The upload endpoint is `/.netlify/functions/upload-asset` and, by default, is protected by the same Basic Auth as `/admin`. If mobile uploads fail to authenticate, remove that mapping in `netlify.toml` and rely on `ADMIN_SECRET`.
+
+## Tumbling Admin
 - Tabs: Checklist, New Log Builder, Edit Existing.
-- Inline image uploads: Save milestone images directly into `assets/tumbling/` using the File System Access API.
+- Inline image uploads: Save milestone images directly into `assets/tumbling/` using the File System Access API (desktop Chrome/Edge).
 - Standardized naming: Files save as `rough-<batch>.jpg`, `after-s1-<batch>.jpg`, … `after-burnish-<batch>.jpg` inside a batch‑specific subfolder.
 - Auto paths: Image fields are auto‑filled to the correct `/assets/tumbling/<subfolder>/<name>.jpg` values.
 
