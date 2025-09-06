@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Tumbling
-permalink: /tumbling/
+permalink: /rockhounding/tumbling/
 breadcrumbs:
   - title: Rockhounding
     url: /rockhounding/

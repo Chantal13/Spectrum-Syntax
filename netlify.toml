@@ -8,7 +8,13 @@
   JEKYLL_ENV = "production"
   # Netlify Secrets Scanner: omit non-sensitive username value from scanning
   # to avoid false positives where the username text appears in content/assets.
-  SECRETS_SCAN_OMIT_KEYS = "ADMIN_USER"
+SECRETS_SCAN_OMIT_KEYS = "ADMIN_USER"
+
+# Redirect Tumbling to Rockhounding section
+[[redirects]]
+  from = "/tumbling/"
+  to = "/rockhounding/tumbling/"
+  status = 301
 
 # (Removed redirect to /admin; public checklist now lives at /tumbling/log-checklist/)
 

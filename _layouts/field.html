@@ -3,17 +3,30 @@ layout: default
 ---
 
 <h1>{{ page.title }}</h1>
+{%- comment -%}
+  Choose a primary image for the entry. Prefer explicit `thumbnail`,
+  then `images.close_up`, then `images.scale`.
+{%- endcomment -%}
+{% assign primary_img = nil %}
 {% if page.thumbnail %}
+  {% assign primary_img = page.thumbnail %}
+{% elsif page.images and page.images.close_up %}
+  {% assign primary_img = page.images.close_up %}
+{% elsif page.images and page.images.scale %}
+  {% assign primary_img = page.images.scale %}
+{% endif %}
+
+{% if primary_img %}
   {% assign cache_bust = site.time | date: '%s' %}
-  {% assign tn = page.thumbnail %}
+  {% assign tn = primary_img %}
   {% if tn contains '://' %}
     {% assign sep = '?' %}{% if tn contains '?' %}{% assign sep = '&' %}{% endif %}
     {% assign tn_url = tn | append: sep | append: 'v=' | append: cache_bust %}
     <p><img src="{{ tn_url }}" alt="{{ page.title }}" class="field-thumb"></p>
   {% else %}
-    {% assign tn_url = page.thumbnail | relative_url %}
+    {% assign tn_url = tn | relative_url %}
     {% assign tn_url = tn_url | append: '?v=' | append: cache_bust %}
-    {% assign tn_webp_candidate = page.thumbnail | replace: '.jpg', '.webp' | replace: '.jpeg', '.webp' | replace: '.png', '.webp' %}
+    {% assign tn_webp_candidate = tn | replace: '.jpg', '.webp' | replace: '.jpeg', '.webp' | replace: '.png', '.webp' %}
     {% assign tn_webp_path = tn_webp_candidate | image_exists %}
     {% if tn_webp_path %}
       {% assign tn_webp_url = tn_webp_path | relative_url %}
@@ -27,7 +40,26 @@ layout: default
     {% endif %}
   {% endif %}
 {% endif %}
+
 <ul class="field-meta">
+  {% if page.date %}
+  <li><strong>Date:</strong> {{ page.date | date: '%Y-%m-%d' }}</li>
+  {% endif %}
+
+  {%- assign loc = page.location -%}
+  {% if loc and (loc.lat or loc.lng or loc.description) %}
+  <li>
+    <strong>Location:</strong>
+    {% if loc.description %}{{ loc.description }}{% endif %}
+    {% if loc.lat and loc.lng %}
+      {%- if loc.description %} · {% endif -%}
+      <code>{{ loc.lat }}, {{ loc.lng }}</code>
+      · <a href="https://www.openstreetmap.org/?mlat={{ loc.lat }}&mlon={{ loc.lng }}#map=16/{{ loc.lat }}/{{ loc.lng }}" target="_blank" rel="noopener">OSM</a>
+      · <a href="https://maps.google.com/?q={{ loc.lat }},{{ loc.lng }}" target="_blank" rel="noopener">Google</a>
+    {% endif %}
+  </li>
+  {% endif %}
+
   {% if page.rocks %}
   <li><strong>Rock type:</strong>
     <span class="chips">
@@ -46,6 +78,70 @@ layout: default
     </span>
   </li>
   {% endif %}
+
+  {% assign colour = page.colour | default: page.color %}
+  {% if colour %}
+  <li><strong>Colour:</strong> {{ colour }}</li>
+  {% endif %}
+
+  {% if page.lustre %}
+  <li><strong>Lustre:</strong> {{ page.lustre }}</li>
+  {% endif %}
+
+  {% if page.hardness_mohs or page.hardness %}
+  <li><strong>Hardness (Mohs):</strong> {{ page.hardness_mohs | default: page.hardness }}</li>
+  {% endif %}
+
+  {% if page.streak %}
+  <li><strong>Streak:</strong> {{ page.streak }}</li>
+  {% endif %}
+
+  {% if page.crystal_form_texture %}
+  <li><strong>Crystal form/Texture:</strong> {{ page.crystal_form_texture }}</li>
+  {% endif %}
+
+  {% if page.cleavage or page.fracture %}
+  <li><strong>Cleavage/Fracture:</strong>
+    {%- if page.cleavage %} Cleavage: {{ page.cleavage }}{%- endif -%}
+    {%- if page.cleavage and page.fracture %} · {% endif -%}
+    {%- if page.fracture %} Fracture: {{ page.fracture }}{%- endif -%}
+  </li>
+  {% endif %}
 </ul>
 
+{%- if page.images and (page.images.close_up or page.images.scale) -%}
+  <h2>Photos</h2>
+  <div class="field-photos">
+    {%- if page.images.close_up -%}
+      {% assign cu = page.images.close_up %}
+      <figure>
+        <img src="{{ cu | relative_url }}" alt="Close-up photo">
+        <figcaption>Close-up</figcaption>
+      </figure>
+    {%- endif -%}
+    {%- if page.images.scale -%}
+      {% assign sc = page.images.scale %}
+      <figure>
+        <img src="{{ sc | relative_url }}" alt="Scale photo">
+        <figcaption>With scale</figcaption>
+      </figure>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
 {{ content }}
+
+{%- if page.gallery and page.gallery.size > 0 -%}
+  <h2>Gallery</h2>
+  <div class="field-gallery">
+    {%- for g in page.gallery -%}
+      {%- assign src = g.src | default: g['src'] -%}
+      {%- if src -%}
+      <figure>
+        <img src="{{ src | relative_url }}" alt="{{ g.caption | default: 'Specimen photo' }}">
+        {%- if g.caption -%}<figcaption>{{ g.caption }}</figcaption>{%- endif -%}
+      </figure>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- endif -%}

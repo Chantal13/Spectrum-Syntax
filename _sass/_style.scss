@@ -614,6 +614,23 @@ code {
 }
 
 /* =========================
+   Field Log layout
+   ========================= */
+.field-meta { margin: 0 0 1rem 0; }
+.field-photos, .field-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin: 0.5rem 0 1rem 0;
+}
+.field-photos figure, .field-gallery figure { margin: 0; }
+.field-photos img, .field-gallery img { width: 100%; height: auto; border: 1px solid #eee; border-radius: 4px; }
+.field-photos figcaption, .field-gallery figcaption { font-size: 0.85em; color: #666; margin-top: .25rem; }
+@media (min-width: 700px) {
+  .field-photos, .field-gallery { grid-template-columns: 1fr 1fr; }
+}
+
+/* =========================
    Logbook (combined logs) layout
    ========================= */
 .logs-grid {
