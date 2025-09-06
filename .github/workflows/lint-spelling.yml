@@ -1,0 +1,37 @@
+name: Canadian English Lint
+
+on:
+  pull_request:
+    branches: [ main, '**' ]
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get changed content files
+        id: changes
+        uses: tj-actions/changed-files@v45
+        with:
+          files: |
+            _admin/**/*.html
+            _pages/**/*.md
+            _pages/**/*.html
+            _includes/**/*.html
+            _layouts/**/*.html
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run linter
+        run: |
+          if [ -n "${{ steps.changes.outputs.all_changed_files }}" ]; then
+            python3 scripts/canadian_english_lint.py ${{ steps.changes.outputs.all_changed_files }}
+          else
+            echo "No relevant content file changes detected. Skipping.";
+          fi

@@ -57,6 +57,13 @@ Setup required (once)
 Notes
 - The upload endpoint is `/.netlify/functions/upload-asset` and, by default, is protected by the same Basic Auth as `/admin`. If mobile uploads fail to authenticate, remove that mapping in `netlify.toml` and rely on `ADMIN_SECRET`.
 
+## Canadian English checks
+- A GitHub Action enforces Canadian English in changed content files on pull requests.
+- It flags common US spellings and suggests Canadian variants (e.g., luster → lustre, colorless → colourless, gray → grey, favorite → favourite, center → centre).
+- To intentionally keep a US spelling in a specific line, add `ca-spell: ignore-line` to that line (as an HTML comment or plain text).
+- To allow a specific word globally (e.g., “program” in computing contexts), add it to `.canadian-spelling-allowlist.txt` in the repo root.
+- Scope: `_admin/**/*.html`, `_pages/**/*.{md,html}`, `_includes/**/*.html`, `_layouts/**/*.html`. Old notes are not scanned by default.
+
 ## Tumbling Admin
 - Tabs: Checklist, New Log Builder, Edit Existing.
 - Inline image uploads: Save milestone images directly into `assets/tumbling/` using the File System Access API (desktop Chrome/Edge).
