@@ -19,25 +19,47 @@
   {% endif %}
 
   {% if show_thumb and final_thumb %}
-    <a class="rock-thumb" href="{{ include.rock.url | relative_url }}">
-      {% assign cache_bust = site.time | date: '%s' %}
-      {% if final_thumb contains '://' %}
-        {% assign sep = '?' %}
-        {% if final_thumb contains '?' %}{% assign sep = '&' %}{% endif %}
-        {% assign img_src_ext = final_thumb | append: sep | append: 'v=' | append: cache_bust %}
-        <img src="{{ img_src_ext | uri_escape }}" alt="{{ include.rock.title }}">
-      {% else %}
-        {% assign thumb_webp = final_thumb | replace: '.jpeg', '.webp' | replace: '.jpg', '.webp' | replace: '.png', '.webp' %}
-        {% assign thumb_webp_url = thumb_webp | relative_url %}
-        {% assign thumb_webp_url = thumb_webp_url | append: '?v=' | append: cache_bust %}
-        {% assign final_thumb_url = final_thumb | relative_url %}
-        {% assign final_thumb_url = final_thumb_url | append: '?v=' | append: cache_bust %}
-        <picture>
-          <source type="image/webp" srcset="{{ thumb_webp_url | uri_escape }}">
-          <img src="{{ final_thumb_url | uri_escape }}" alt="{{ include.rock.title }}">
-        </picture>
-      {% endif %}
-    </a>
+    {% assign is_detail = include.rock.url == page.url %}
+    {% assign cache_bust = site.time | date: '%s' %}
+    {% if is_detail %}
+      <div class="rock-hero">
+        {% if final_thumb contains '://' %}
+          {% assign sep = '?' %}
+          {% if final_thumb contains '?' %}{% assign sep = '&' %}{% endif %}
+          {% assign img_src_ext = final_thumb | append: sep | append: 'v=' | append: cache_bust %}
+          <img src="{{ img_src_ext | uri_escape }}" alt="{{ include.rock.title }}">
+        {% else %}
+          {% assign thumb_webp = final_thumb | replace: '.jpeg', '.webp' | replace: '.jpg', '.webp' | replace: '.png', '.webp' %}
+          {% assign thumb_webp_url = thumb_webp | relative_url %}
+          {% assign thumb_webp_url = thumb_webp_url | append: '?v=' | append: cache_bust %}
+          {% assign final_thumb_url = final_thumb | relative_url %}
+          {% assign final_thumb_url = final_thumb_url | append: '?v=' | append: cache_bust %}
+          <picture>
+            <source type="image/webp" srcset="{{ thumb_webp_url | uri_escape }}">
+            <img src="{{ final_thumb_url | uri_escape }}" alt="{{ include.rock.title }}">
+          </picture>
+        {% endif %}
+      </div>
+    {% else %}
+      <a class="rock-thumb" href="{{ include.rock.url | relative_url }}">
+        {% if final_thumb contains '://' %}
+          {% assign sep = '?' %}
+          {% if final_thumb contains '?' %}{% assign sep = '&' %}{% endif %}
+          {% assign img_src_ext = final_thumb | append: sep | append: 'v=' | append: cache_bust %}
+          <img src="{{ img_src_ext | uri_escape }}" alt="{{ include.rock.title }}">
+        {% else %}
+          {% assign thumb_webp = final_thumb | replace: '.jpeg', '.webp' | replace: '.jpg', '.webp' | replace: '.png', '.webp' %}
+          {% assign thumb_webp_url = thumb_webp | relative_url %}
+          {% assign thumb_webp_url = thumb_webp_url | append: '?v=' | append: cache_bust %}
+          {% assign final_thumb_url = final_thumb | relative_url %}
+          {% assign final_thumb_url = final_thumb_url | append: '?v=' | append: cache_bust %}
+          <picture>
+            <source type="image/webp" srcset="{{ thumb_webp_url | uri_escape }}">
+            <img src="{{ final_thumb_url | uri_escape }}" alt="{{ include.rock.title }}">
+          </picture>
+        {% endif %}
+      </a>
+    {% endif %}
     {%- comment -%}
       Image credit appears only on detail pages (when include.rock == current page)
     {%- endcomment -%}

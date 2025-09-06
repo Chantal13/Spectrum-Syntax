@@ -997,6 +997,23 @@ code {
   object-fit: cover;
 }
 
+/* Full-width hero image on detail pages (preserve intrinsic aspect ratio) */
+.rock-hero {
+  display: block;
+  width: 100%;
+  border-radius: $border-radius;
+  overflow: hidden;
+  background: #f1f5f9;
+  border: 1px solid var(--panel-border);
+  margin-bottom: 0.5rem;
+}
+.rock-hero picture,
+.rock-hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 .rock-thumb--empty {
   display: flex;
   align-items: center;
