@@ -8,14 +8,18 @@ permalink: /admin/field-log/
 <head>
   <meta charset="UTF-8">
   <title>Field Log Updater</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex, nofollow">
   <style>
     :root { --gap: 0.75rem; }
     body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; max-width: 100rem; margin: 2rem auto; padding: 0 1rem; }
     h1 { margin: 0 0 .25rem 0; }
     .subtle { color: #666; margin: 0 0 1rem 0; }
-    .bar { display:flex; gap: .75rem; align-items:center; margin: 0 0 1rem 0; }
+    .auth-ok { color: #2e7d32; }
+    .auth-fail { color: #c62828; }
+    .status { display: inline-flex; align-items: center; gap: .35rem; }
+    .status svg { width: 1.1em; height: 1.1em; }
+    .bar { display:flex; gap: .75rem; align-items:center; margin: 0 0 1rem 0; flex-wrap: wrap; }
     .bar a { text-decoration: none; }
     .grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
     .grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
@@ -32,6 +36,10 @@ permalink: /admin/field-log/
     button:active { transform: translateY(1px); }
     @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 680px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) {
+      body { margin: 1rem auto; padding: 0 .75rem; }
+      .bar { gap: .5rem; }
+    }
   </style>
   {% assign css_v = site.time | date: '%s' %}
   <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}?v={{ css_v }}">
@@ -39,14 +47,16 @@ permalink: /admin/field-log/
 <body>
   <div class="bar">
     <a href="{{ '/admin/' | relative_url }}">← Back to Admin</a>
-    <span class="subtle" id="auth-status">Checking authentication…</span>
   </div>
+  <p class="subtle" id="auth-status">Checking authentication…</p>
 
   <h1>Field Log Updater</h1>
   <p class="subtle">Build front matter, extract EXIF GPS, and copy into a new note in <code>_notes/rockhounding/field-log/</code>.</p>
 
   <p class="note">
     <button type="button" onclick="copyTpl('tpl-field-log')">Copy Field Log Template</button>
+  </p>
+  <p class="note">
     <a href="https://github.com/Chantal13/Spectrum-Syntax/new/main/_notes/rockhounding/field-log?filename=YYYY-MM-DD-title.md" target="_blank" rel="noopener noreferrer">New file in GitHub</a>
   </p>
 
@@ -74,7 +84,7 @@ permalink: /admin/field-log/
     </label>
     <div class="actions">
       <button id="btn-upload-close" type="button">Upload Close-up → assets</button>
-      <span id="status-upload-close" class="subtle"></span>
+      <span id="status-upload-close" class="subtle status"></span>
     </div>
   </div>
 
@@ -84,7 +94,7 @@ permalink: /admin/field-log/
     </label>
     <div class="actions">
       <button id="btn-upload-scale" type="button">Upload Scale → assets</button>
-      <span id="status-upload-scale" class="subtle"></span>
+      <span id="status-upload-scale" class="subtle status"></span>
     </div>
   </div>
 
@@ -463,17 +473,51 @@ permalink: /admin/field-log/
       return fullPath;
     }
 
+    function setStatus(el, msg, ok) {
+      if (!el) return;
+      el.classList.remove('auth-ok', 'auth-fail');
+      // Clear previous content
+      while (el.firstChild) el.removeChild(el.firstChild);
+      if (ok === true) {
+        // Inline SVG check icon
+        const ns = 'http://www.w3.org/2000/svg';
+        const svg = document.createElementNS(ns, 'svg');
+        svg.setAttribute('viewBox', '0 0 16 16');
+        svg.setAttribute('fill', 'none');
+        svg.setAttribute('stroke', 'currentColor');
+        svg.setAttribute('stroke-width', '2');
+        svg.setAttribute('aria-hidden', 'true');
+        const path = document.createElementNS(ns, 'path');
+        path.setAttribute('d', 'M3 8l3 3 7-7');
+        svg.appendChild(path);
+        el.appendChild(svg);
+        el.classList.add('auth-ok');
+      } else if (ok === false) {
+        el.classList.add('auth-fail');
+      }
+      el.appendChild(document.createTextNode(msg));
+    }
     document.getElementById('btn-upload-close')?.addEventListener('click', async () => {
       const st = document.getElementById('status-upload-close');
-      st.textContent = 'Uploading…';
-      try { const f = document.getElementById('fld-file-close').files?.[0]; const p = await uploadAsset(f, 'close-up'); st.textContent = 'Saved to ' + p; }
-      catch (e) { st.textContent = (e?.message || 'Upload failed'); }
+      setStatus(st, 'Uploading…');
+      try {
+        const f = document.getElementById('fld-file-close').files?.[0];
+        const p = await uploadAsset(f, 'close-up');
+        setStatus(st, 'Saved to ' + p, true);
+      } catch (e) {
+        setStatus(st, (e?.message || 'Upload failed'), false);
+      }
     });
     document.getElementById('btn-upload-scale')?.addEventListener('click', async () => {
       const st = document.getElementById('status-upload-scale');
-      st.textContent = 'Uploading…';
-      try { const f = document.getElementById('fld-file-scale').files?.[0]; const p = await uploadAsset(f, 'with-scale'); st.textContent = 'Saved to ' + p; }
-      catch (e) { st.textContent = (e?.message || 'Upload failed'); }
+      setStatus(st, 'Uploading…');
+      try {
+        const f = document.getElementById('fld-file-scale').files?.[0];
+        const p = await uploadAsset(f, 'with-scale');
+        setStatus(st, 'Saved to ' + p, true);
+      } catch (e) {
+        setStatus(st, (e?.message || 'Upload failed'), false);
+      }
     });
   </script>
 

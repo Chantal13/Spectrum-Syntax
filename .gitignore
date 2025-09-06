@@ -29,6 +29,9 @@ _staging/
 _templates/
 vendor/
 
+# Local preview server output
+preview/
+
 # Python caches
 __pycache__/
 *.py[cod]
