@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-check:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -37,4 +37,3 @@ jobs:
           # Check generated HTML in _site. Limit to internal links only.
           # If you want external link checking later, remove --disable-external.
           htmlproofer ./_site --disable-external
-
