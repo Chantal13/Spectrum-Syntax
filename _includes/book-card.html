@@ -1,5 +1,5 @@
 <div class="book-card">
-  <a class="book-card__cover" href="{{ include.book.link }}" target="_blank" rel="noopener">
+  <a class="book-card__cover" href="{{ include.book.link }}">
     {% assign cover_l = include.book.image.large %}
     {% assign cover_m = include.book.image.medium %}
     {% assign cover_s = include.book.image.small %}
@@ -37,7 +37,7 @@
   </a>
   <div class="book-card__body">
     <h3 class="book-card__title">
-      <a href="{{ include.book.link }}" target="_blank" rel="noopener">{{ include.book.title }}</a>
+      <a href="{{ include.book.link }}">{{ include.book.title }}</a>
     </h3>
     {% if include.book.author %}
       <p class="book-card__byline">{{ include.book.author }}</p>

@@ -120,7 +120,7 @@
       {% if credit_label %}
         <div class="img-credit">
           {% if credit_href %}
-            <a href="{{ credit_href | uri_escape }}" target="_blank" rel="noopener noreferrer">{{ credit_label }}</a>
+          <a href="{{ credit_href | uri_escape }}">{{ credit_label }}</a>
           {% else %}
             {{ credit_label }}
           {% endif %}
