@@ -15,6 +15,6 @@ streak: White
 ---
 {% include rock-card.html rock=page %}
 
-Agate is banded chalcedony that forms when silica‑rich fluids deposit layers of microcrystalline quartz in cavities; banding reveals varied colors and patterns.
+Agate is banded chalcedony that forms when silica‑rich fluids deposit layers of microcrystalline quartz in cavities; banding reveals varied colours and patterns.
 
 Related: [[Chalcedony]], [[Jasper]]
