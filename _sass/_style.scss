@@ -71,6 +71,40 @@ $color-box-background: mix($tiffany-blue, white, 92%); /* soft panel bg */
   --cat-5: #{$zomp};
   --cat-6: #{$paynes-gray};
 }
+
+/* =========================
+   Dark Theme (CSS variable overrides)
+   ========================= */
+html[data-theme='dark'] {
+  /* Core surfaces */
+  --color-bg: #{$rich-black};
+  --color-text: #{$vanilla};
+  --card-a: #{mix($midnight-green, $rich-black, 50%)}; /* primary surface */
+  --card-b: #{mix($dark-cyan, $rich-black, 60%)};     /* alt surface */
+  --panel-bg: var(--card-a);
+  --panel-border: #{mix($vanilla, $rich-black, 70%)};
+  --table-header-bg: #{mix($gamboge, $rich-black, 30%)};
+  --table-row-hover: #{mix($tiffany-blue, $rich-black, 75%)};
+
+  /* Chips */
+  --chip-text: #{$vanilla};
+  --chip-border: var(--panel-border);
+  --chip-a: #{mix($gamboge, $rich-black, 30%)};
+  --chip-b: #{mix($tiffany-blue, $rich-black, 35%)};
+  --chip-c: #{mix($dark-cyan, $rich-black, 40%)};
+  --chip-d: #{mix($auburn, $rich-black, 35%)};
+
+  /* Status pills (dark) */
+  --status-tumbled-bg:  #{$dark-cyan};
+  --status-tumbled-fg:  #001219; /* rich black for contrast */
+  --status-tumbled-br:  #{mix($dark-cyan, $rich-black, 35%)};
+  --status-tumbling-bg: #{$gamboge};
+  --status-tumbling-fg: #001219;
+  --status-tumbling-br: #{mix($gamboge, $rich-black, 35%)};
+  --status-pending-bg:  #{$rufous};
+  --status-pending-fg:  #ffffff;
+  --status-pending-br:  #{mix($rufous, $rich-black, 35%)};
+}
 $border-radius: 4px;
 $font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif,
   Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
@@ -246,6 +280,18 @@ a.internal-link:hover {
   padding: 0.25rem 0.6rem;
 }
 
+.site-nav .theme-toggle {
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  background: var(--card-a);
+  color: var(--color-text);
+  padding: 0.25rem 0.55rem;
+  font-size: 0.95rem;
+}
+@media (max-width: 820px) {
+  .site-nav .theme-toggle { order: 3; }
+}
+
 /* Dropdowns */
 .site-nav .has-dropdown {
   position: relative;
@@ -281,8 +327,8 @@ a.internal-link:hover {
   list-style: none;
   margin: 0;
   padding: 0.35rem;
-  background: #fff;
-  border: 1px solid $color-border;
+  background: var(--card-a);
+  border: 1px solid var(--panel-border);
   border-radius: 8px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   z-index: 50;
@@ -313,7 +359,7 @@ a.internal-link:hover {
     flex-direction: column;
     gap: 0.25rem;
     margin-top: 0.25rem;
-    background: #fff;
+    background: var(--card-a);
     border: 1px solid var(--panel-border);
     border-radius: 8px;
     padding: 0.4rem;
