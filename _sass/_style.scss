@@ -125,8 +125,11 @@ html {
   /* Additive bump: increase base font size by 1pt site-wide */
   font-size: calc(100% + 1pt);
 }
+*, *::before, *::after {
+  box-sizing: inherit;
+}
 body {
-  box-sizing: content-box;
+  box-sizing: border-box;
   font-family: $font-family;
   margin: 0 auto;
   line-height: 1.7;
