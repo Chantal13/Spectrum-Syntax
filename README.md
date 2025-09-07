@@ -67,11 +67,7 @@ This project targets Ruby 3.2.1 and Bundler 2.7.1. On macOS, use rbenv for a smo
    bundle exec rake test
    ```
 
-8) Push changes with the helper script:
-   ```bash
-   python3 git_push.py -m "Your message"
-   ```
-   See more options in the [Git push helper](#git-push-helper) section (includes IPv4/IPv6 flags for reliable SSH when iCloud Private Relay is enabled).
+For push commands, see the [Git push helper](#git-push-helper) section.
 
 ## Deployment
 
