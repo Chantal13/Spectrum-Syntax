@@ -6,4 +6,5 @@ hardness: "≈6–7"
 ---
 {% include rock-card.html rock=page %}
 
-Rhyolite is a light-colored, fine-grained volcanic rock with high silica; it is the extrusive equivalent of granite and commonly shows flow banding.
+Rhyolite is a light-coloured, fine-grained volcanic rock with high silica; it is the extrusive equivalent of granite and commonly
+ shows flow banding.
