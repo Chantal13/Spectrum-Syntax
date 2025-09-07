@@ -727,12 +727,8 @@ code {
 .logs-grid {
   display: grid;
   gap: 1.25rem;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr; /* Always stack sections vertically */
   align-items: start;
-}
-
-@media (min-width: 900px) {
-  .logs-grid { grid-template-columns: 1fr 1fr; }
 }
 
 /* In Rockhounding Logbook tables, stack the card info vertically
