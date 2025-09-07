@@ -165,7 +165,7 @@ _(Full table in original guide — exceptions apply!)_
     
     1. High BUD formation with tanks holding ~100 enemies.
         
-    2. Gold Find formation centered on **Makos** (_Dark Luck specialization_).
+    2. Gold Find formation centred on **Makos** (_Dark Luck specialization_).
         
 - Fire Makos’ Ultimate into the stack for massive gold.
     
@@ -235,7 +235,7 @@ _(Full table in original guide — exceptions apply!)_
 
 ## 📍 Best Farming Locations by Campaign
 
-Choose **adventures/Free Plays without armored bosses**.
+Choose **adventures/Free Plays without armoured bosses**.
 
 |Campaign|Example Adventure|
 |---|---|
@@ -261,4 +261,4 @@ Choose **adventures/Free Plays without armored bosses**.
     
 
 **Good luck & have fun!**  
-~ Gaar
+~ Gaarawarr
