@@ -65,14 +65,15 @@
         const darkenHex  = (hex, t) => rgbToHex(mixRgb(parseCssColor(hex), { r: 0, g: 0, b: 0 }, t));
         const mixHex     = (h1, h2, t) => rgbToHex(mixRgb(parseCssColor(h1), parseCssColor(h2), t));
 
-        // Read base palette (7 colors) from CSS custom properties, normalize to hex
+        // Read base palette (up to 12 colors) from CSS custom properties, normalize to hex
         const readBasePalette = () => {
           const root = getComputedStyle(document.documentElement);
           const fallback = [
-            '#f94144', '#f3722c', '#f8961e', '#f9c74f', '#90be6d', '#43aa8b', '#577590'
+            '#f94144', '#f3722c', '#f8961e', '#f9c74f', '#90be6d', '#43aa8b', '#577590',
+            '#ee9b00', '#ca6702', '#bb3e03', '#ae2012', '#9b2226'
           ];
           const arr = [];
-          for (let i = 0; i < 7; i++) {
+          for (let i = 0; i < 12; i++) {
             let val = root.getPropertyValue(`--cat-${i}`).trim();
             if (!val) val = fallback[i];
             // Normalize to hex string for manipulation
@@ -95,7 +96,7 @@
         };
 
         const BASE_PALETTE = readBasePalette();
-        const PALETTE = buildExtendedPalette(BASE_PALETTE); // 7 * 3 = 21 colours
+        const PALETTE = buildExtendedPalette(BASE_PALETTE); // N * 3 colours (up to 36)
 
         // Explicit colours for rock classes to ensure consistent mapping
         const ROCK_COLOURS = {

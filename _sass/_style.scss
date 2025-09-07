@@ -71,6 +71,12 @@ $color-box-background: mix($tiffany-blue, white, 92%); /* soft panel bg */
   --cat-4: #{$pistachio};
   --cat-5: #{$zomp};
   --cat-6: #{$paynes-gray};
+  /* Extra categories to enrich graph colours */
+  --cat-7:  #{$gamboge};
+  --cat-8:  #{$alloy-orange};
+  --cat-9:  #{$rust};
+  --cat-10: #{$rufous};
+  --cat-11: #{$auburn};
 }
 
 /* =========================
@@ -211,6 +217,24 @@ a {
   &.reversefootnote:after {
     content: "";
   }
+}
+
+/* Dark-mode link tuning */
+html[data-theme='dark'] a {
+  color: #{$tiffany-blue};
+  border-bottom-color: var(--panel-border);
+}
+html[data-theme='dark'] a:hover {
+  color: white !important;
+  background: #{mix($dark-cyan, $rich-black, 45%)};
+}
+html[data-theme='dark'] a.internal-link {
+  color: var(--color-text);
+  background: #{mix($midnight-green, $rich-black, 55%)};
+}
+html[data-theme='dark'] a.internal-link:hover {
+  background: #{mix($gamboge, $rich-black, 35%)};
+  color: var(--color-text) !important;
 }
 
 /* Obsidian-style internal links (bidirectional links, wiki links) */
