@@ -5,14 +5,7 @@ permalink: /rockhounding/rocks/
 ---
 
 <h1>Rocks &amp; Minerals</h1>
-
-{%- comment -%} Curated quick links to top minerals {%- endcomment -%}
-<div class="chips">
-  <a class="chip" href="{{ '/rockhounding/rocks/minerals/quartz/'    | relative_url }}">Quartz</a>
-  <a class="chip" href="{{ '/rockhounding/rocks/minerals/feldspar/'  | relative_url }}">Feldspar</a>
-  <a class="chip" href="{{ '/rockhounding/rocks/minerals/garnet/'    | relative_url }}">Garnet</a>
-  <a class="chip" href="{{ '/rockhounding/rocks/minerals/jasper/'    | relative_url }}">Jasper</a>
-</div>
+I'm slowly working on building this section. As I build my field log and tumble rocks, I will replace many of the Wikimedia Commons images I used as placeholders. 
 
 <h2>Igneous</h2>
 <div class="rock-card-grid">
