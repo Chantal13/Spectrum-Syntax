@@ -35,6 +35,7 @@ $color-box-background: mix($tiffany-blue, white, 92%); /* soft panel bg */
   /* Page background (all pages) */
   --color-bg: #fefae0;
   --color-text: #{$rich-black};
+  --muted: #666666;
   /* Card/background variants */
   --card-a: #faedcd;
   --card-b: #e9edc9;
@@ -78,7 +79,9 @@ $color-box-background: mix($tiffany-blue, white, 92%); /* soft panel bg */
 html[data-theme='dark'] {
   /* Core surfaces */
   --color-bg: #{$rich-black};
-  --color-text: #{$vanilla};
+  /* Much lighter text for readability on dark */
+  --color-text: #{mix(white, $vanilla, 70%)};
+  --muted: #{mix(white, $vanilla, 50%)};
   --card-a: #{mix($midnight-green, $rich-black, 50%)}; /* primary surface */
   --card-b: #{mix($dark-cyan, $rich-black, 60%)};     /* alt surface */
   --panel-bg: var(--card-a);
@@ -123,7 +126,7 @@ body {
   line-height: 1.7;
   padding: 4vh 6vw;
   overflow-x: hidden;
-  color: $color-text;
+  color: var(--color-text);
   font-size: 1rem;
   max-width: 63em;
   background: var(--color-bg);
@@ -139,14 +142,14 @@ body {
 
 time {
   display: block;
-  color: $color-subtext;
+  color: var(--muted);
   margin: 0.5em 0 1em;
 }
 
 footer {
   margin: 2em 0;
   font-size: 0.8em;
-  color: mix($color-text, white, 80%);
+  color: var(--muted);
   padding-top: 1em;
 }
 
