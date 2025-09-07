@@ -8,4 +8,4 @@ streak: White
 ---
 {% include rock-card.html rock=page %}
 
-Aventurine is a variety of quartz containing shimmering inclusions (commonly mica or fuchsite) that create a sparkly effect; green is the most typical color.
+Aventurine is a variety of quartz containing shimmering inclusions (commonly mica or fuchsite) that create a sparkly effect; green is the most typical colour.
