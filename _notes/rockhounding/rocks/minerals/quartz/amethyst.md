@@ -8,4 +8,4 @@ streak: White
 ---
 {% include rock-card.html rock=page %}
 
-Amethyst is purple quartz colored by trace iron and natural irradiation; crystals often line volcanic cavities and geodes.
+Amethyst is purple quartz coloured by trace iron and natural irradiation; crystals often line volcanic cavities and geodes.
