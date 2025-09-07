@@ -45,8 +45,6 @@ This project targets Ruby 3.2.1 and Bundler 2.7.1. On macOS, use rbenv for a smo
 
 4) Build or serve the site locally:
    ```bash
-   # Optional: generate WebP for local images (faster loads)
-   bundle exec rake webp
    bundle exec jekyll serve
    # or
    bundle exec jekyll build
