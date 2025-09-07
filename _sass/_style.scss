@@ -735,6 +735,16 @@ code {
   .logs-grid { grid-template-columns: 1fr 1fr; }
 }
 
+/* In Rockhounding Logbook tables, stack the card info vertically
+   so thumbnail sits above the text for better fit. */
+.logs-grid .batch-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.logs-grid .thumb { width: 100%; min-width: 0; aspect-ratio: 4 / 3; height: auto; }
+.logs-grid .batch-meta { margin-top: 0.35rem; }
+
 /* When the logbook shows two tables side by side, keep each compact */
 @media (min-width: 900px) and (max-width: 1200px) {
   .logs-grid .tumble-index .nice-table th,
