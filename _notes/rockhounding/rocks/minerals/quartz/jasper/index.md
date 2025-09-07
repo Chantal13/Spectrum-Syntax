@@ -9,4 +9,4 @@ thumbnail: "https://upload.wikimedia.org/wikipedia/commons/1/14/Unpolished_jaspe
 
 {% include rock-card.html rock=page %}
 
-Jasper is an opaque, iron‑bearing form of microcrystalline quartz; this section groups its many color and pattern varieties.
+Jasper is an opaque, iron‑bearing form of microcrystalline quartz; this section groups its many colour and pattern varieties.
