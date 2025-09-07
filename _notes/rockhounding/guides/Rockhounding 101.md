@@ -35,7 +35,7 @@ The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure tro
     
 - **Search zones:** Look at pebble lines along the water’s edge, especially near **creek mouths**.
     
-- **Do the wet test:** Dip stones in water—colors and banding pop when wet.
+- **Do the wet test:** Dip stones in water—colours and banding pop when wet.
     
 - **Respect nature:** Follow conservation rules, and don’t collect from protected areas.
 
@@ -45,7 +45,7 @@ The shores of Lake Ontario, shaped by glaciers and erosion, offer a treasure tro
 
 - **[[agate|Agates]]:** Look for translucency and banding (hold to light).
     
-- **[[jasper]]:** Opaque, solid colors—reds and greens are most common.
+- **[[jasper]]:** Opaque, solid colours—reds and greens are most common.
     
 - **[[quartz|Quartz]]:** Glassy appearance, hardness test scratches glass.
     
