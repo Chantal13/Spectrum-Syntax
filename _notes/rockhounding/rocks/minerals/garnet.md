@@ -58,4 +58,4 @@ streak: White
   </div>
 {%- endif -%}
 
-Garnet is a group of silicate minerals common in metamorphic rocks; it typically forms dodecahedral crystals and ranges in color from deep red to green.
+Garnet is a group of silicate minerals common in metamorphic rocks; it typically forms dodecahedral crystals and ranges in colour from deep red to green.
