@@ -183,4 +183,4 @@ Use the repository’s helper script to stage, commit, rebase, and push with sen
 
 ## License
 
-Source code is available under the [MIT license](LICENSE.md).
+Source code is available under the [MIT license](LICENSE).
