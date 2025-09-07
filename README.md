@@ -91,7 +91,7 @@ To host the site elsewhere, run `bundle exec jekyll build` and upload the genera
 - Netlify build
   - Netlify runs the WebP step automatically before building Jekyll (`bundle exec rake webp && bundle exec jekyll build --trace`).
 
-- Template behavior
+- Template behaviour
   - Templates prefer WebP for local images via a `<picture>` source and fall back to the original JPEG/PNG.
   - External images (e.g., Wikimedia) are used as-is.
 
