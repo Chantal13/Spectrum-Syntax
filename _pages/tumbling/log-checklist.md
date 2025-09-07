@@ -58,7 +58,7 @@ Provide the following for each stage you run. Stages are typically 1–5.
 - [ ] Maintenance (optional)
   - [ ] `maintenance` — top-ups, checks, leak/foam notes
 - [ ] Observations
-  - [ ] `observations` — what you saw, issues, rock behavior
+  - [ ] `observations` — what you saw, issues, rock behaviour
 - [ ] Decision block (optional but helpful)
   - [ ] `decision.repeat` — `yes` | `no`
   - [ ] `decision.why` — short reason
