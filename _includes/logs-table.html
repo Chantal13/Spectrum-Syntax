@@ -92,12 +92,12 @@ Columns: Entry (thumb + label + chips), Dates, Type, Status
               {% endif %}
               {% assign cache_bust = site.time | date: '%s' %}
               {% if thumb %}
-                <a class="thumb" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
+                <a class="thumb internal-link" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
                   <img src="{{ thumb | relative_url | append: '?v=' | append: cache_bust }}" alt="{{ display_text }}" onerror="this.parentNode.classList.add('thumb--empty'); this.remove();">
                   <span class="label">{{ display_text }}</span>
                 </a>
               {% else %}
-                <a class="thumb thumb--empty" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
+                <a class="thumb thumb--empty internal-link" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                     <rect x="2" y="4" width="20" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
                     <circle cx="8" cy="10" r="2" fill="currentColor"/>
@@ -107,7 +107,7 @@ Columns: Entry (thumb + label + chips), Dates, Type, Status
                 </a>
               {% endif %}
               <div class="batch-meta">
-                <a href="{{ d.url | relative_url }}">
+                <a class="internal-link" href="{{ d.url | relative_url }}">
                   {% if batch != '' and title != '' %}<strong>{{ batch }}</strong> — {{ title }}{% elsif batch != '' %}<strong>{{ batch }}</strong>{% elsif title != '' %}<strong>{{ title }}</strong>{% else %}<strong>Untitled</strong>{% endif %}
                 </a>
                 {% if d.rocks and d.rocks.size > 0 %}
@@ -183,12 +183,12 @@ Columns: Entry (thumb + label + chips), Dates, Type, Status
               {% endif %}
               {% assign cache_bust = site.time | date: '%s' %}
               {% if thumb %}
-                <a class="thumb" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
+                <a class="thumb internal-link" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
                   <img src="{{ thumb | relative_url | append: '?v=' | append: cache_bust }}" alt="{{ display_text }}" onerror="this.parentNode.classList.add('thumb--empty'); this.remove();">
                   <span class="label">{{ display_text }}</span>
                 </a>
               {% else %}
-                <a class="thumb thumb--empty" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
+                <a class="thumb thumb--empty internal-link" href="{{ d.url | relative_url }}" aria-label="Open {{ display_text }}">
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                     <rect x="2" y="4" width="20" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
                     <circle cx="8" cy="10" r="2" fill="currentColor"/>
@@ -198,7 +198,7 @@ Columns: Entry (thumb + label + chips), Dates, Type, Status
                 </a>
               {% endif %}
               <div class="batch-meta">
-                <a href="{{ d.url | relative_url }}"><strong>{{ date_label }}</strong>{% if title != '' %} — {{ title }}{% endif %}</a>
+                <a class="internal-link" href="{{ d.url | relative_url }}"><strong>{{ date_label }}</strong>{% if title != '' %} — {{ title }}{% endif %}</a>
                 {% if d.rocks and d.rocks.size > 0 %}
                   <div class="chips">
                     {% for rock in d.rocks %}

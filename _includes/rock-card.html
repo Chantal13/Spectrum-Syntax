@@ -65,7 +65,7 @@
         {% endif %}
       </div>
     {% else %}
-      <a class="rock-thumb" href="{{ include.rock.url | relative_url }}">
+      <a class="rock-thumb internal-link" href="{{ include.rock.url | relative_url }}">
         {% if final_thumb contains '://' %}
           {% assign sep = '?' %}
           {% if final_thumb contains '?' %}{% assign sep = '&' %}{% endif %}
@@ -143,7 +143,7 @@
       {% endif %}
     </a>
   {% endif %}
-  <h3><a href="{{ include.rock.url | relative_url }}">{{ include.rock.title }}</a></h3>
+  <h3><a class="internal-link" href="{{ include.rock.url | relative_url }}">{{ include.rock.title }}</a></h3>
   {%- comment -%} Parent category chip {%- endcomment -%}
   {%- assign parent_url = nil -%}
   {%- assign parent_label = nil -%}
