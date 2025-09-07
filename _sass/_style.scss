@@ -1082,8 +1082,10 @@ code {
 /* Rock card grid */
 .rock-card-grid {
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+  /* Wider, centered cards */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
+  justify-content: center;
 }
 
 .rock-card {

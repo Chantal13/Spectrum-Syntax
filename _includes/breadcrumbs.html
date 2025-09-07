@@ -9,7 +9,6 @@
 {%- assign parts = url | split: '/' -%}
 
 <nav class="breadcrumbs" aria-label="Breadcrumb">
-  <a class="internal-link" href="/">{{ site.title }}</a>
 
   {%- if page.breadcrumbs and page.breadcrumbs.size > 0 -%}
     {%- for bc in page.breadcrumbs -%}
