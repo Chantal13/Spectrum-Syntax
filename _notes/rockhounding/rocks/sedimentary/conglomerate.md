@@ -12,6 +12,6 @@ hardness: "≈2–7"
 ---
 {% include rock-card.html rock=page %}
 
-Conglomerate is a clastic sedimentary rock of rounded pebbles and cobbles set in a finer matrix; the rounded clasts record transport by water. “Puddingstone” is a colorful variety.
+Conglomerate is a clastic sedimentary rock of rounded pebbles and cobbles set in a finer matrix; the rounded clasts record transport by water. “Puddingstone” is a colourful variety.
 
 Related: [[Jasper]], [[Quartz]]
