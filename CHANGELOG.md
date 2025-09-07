@@ -6,6 +6,9 @@ The format is based on Keep a Changelog and the project attempts to adhere to Se
 
 ## [Unreleased]
 
+### Changed
+- Remove global `overflow-x: hidden` from body to allow horizontal scrolling for wide content.
+
 ## [0.2.0] - 2025-09-02
 
 ### Added
