@@ -1,12 +1,9 @@
 ---
 layout: page
 title: Tumbling
-permalink: /rockhounding/tumbling/
-breadcrumbs:
-  - title: Rockhounding
-    url: /rockhounding/
+permalink: /tumbling/
+redirect_to: /rockhounding/tumbling/
 ---
 
-<h1>Tumbling</h1>
+If you are not redirected, go to <a class="internal-link" href="{{ '/rockhounding/tumbling/' | relative_url }}">Rockhounding → Tumbling</a>.
 
-{% include tumbles-table.html %}

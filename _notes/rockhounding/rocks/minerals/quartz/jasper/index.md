@@ -3,6 +3,7 @@ title: Jasper
 tags:
   - rockhounding
   - minerals
+permalink: /rockhounding/rocks/minerals/quartz/jasper/
 aliases: []
 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/1/14/Unpolished_jasper.jpg"
 ---

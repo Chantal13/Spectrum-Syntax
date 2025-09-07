@@ -43,7 +43,7 @@ Here is a list of some of the resources I have found helpful, while I learn abou
 [Find Hidden Gems: Rockhounding for Beginners \| Come Wander](https://comewander.ca/story/find-hidden-gems-rockhounding-beginners)
 
 ### Sites
-[Mineral Collecting - Bancroft Ontario](http://www.bancroftontario.com/rock-collecting-sites/)
+[Mineral Collecting - Bancroft Ontario](https://www.bancroftontario.com/rock-collecting-sites/)
 
 [Where to go rockhounding \| Destination Ontario](https://www.destinationontario.com/en-ca/articles/rockhounding-ontario)
 
@@ -51,7 +51,6 @@ Here is a list of some of the resources I have found helpful, while I learn abou
 [Lake Ontario Rocks! \| Rockhounding for Lake Ontario Beach Stones - YouTube](https://www.youtube.com/watch?v=COgDojKiyjA)
 
 [Collecting in the Ontario Grenville Geological Province - YouTube](https://www.youtube.com/watch?v=AhnF4zZQpcU)
-
 
 
 

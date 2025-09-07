@@ -1,6 +1,7 @@
 ---
 title: Chalcedony
 layout: note
+permalink: /rockhounding/rocks/minerals/quartz/chalcedony/
 thumbnail: https://upload.wikimedia.org/wikipedia/commons/f/f0/Quartz-46809.jpg
 hardness: "6.5–7"
 luster: null
