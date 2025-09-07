@@ -39,7 +39,10 @@
         iframe.onload = function() {
           tooltipContentHtml = ''
           tooltipContentHtml += '<div class="lp-title">' + iframe.contentWindow.document.querySelector('h1').innerHTML + '</div>'
-          tooltipContentHtml += iframe.contentWindow.document.querySelector('content').innerHTML
+          var previewSource = iframe.contentWindow.document.querySelector('.page-content, .note-content');
+          if (previewSource) {
+            tooltipContentHtml += previewSource.innerHTML
+          }
 
           tooltipContent.innerHTML = tooltipContentHtml
           linkHistories[event.target.href] = tooltipContentHtml

@@ -9,8 +9,9 @@
       <footer>{% include footer.html %}</footer>
     </div>
 
-    {% include link-previews.html wrapperQuerySelector="content" %}
-    {% include link-previews.html wrapperQuerySelector="side" %}
+    {% include link-previews.html wrapperQuerySelector=".page-content" %}
+    {% include link-previews.html wrapperQuerySelector=".note-content" %}
+    {% include link-previews.html wrapperQuerySelector=".note-aside" %}
 
     <script>
       // Remove inputs injected by writing-aid browser extensions (e.g., ProWritingAid/Grammarly)
