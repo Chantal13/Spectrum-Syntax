@@ -734,14 +734,23 @@ code {
 /* In Rockhounding Logbook tables, stack the card info vertically
    so thumbnail sits above the text for better fit. */
 .logs-grid .batch-cell {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: .5rem .75rem;
+  align-items: start;
 }
-.logs-grid .thumb { width: 25%; min-width: 140px; max-width: 360px; aspect-ratio: 4 / 3; height: auto; margin: .25rem auto 0; }
+.logs-grid .thumb { width: 100%; min-width: 0; max-width: none; aspect-ratio: 4 / 3; height: auto; margin: 0; }
 /* Ensure both Field and Tumbling thumbs match exactly in the Logbook */
 .logs-grid .field-index .thumb,
-.logs-grid .tumble-index .thumb { width: 25%; min-width: 140px; max-width: 360px; aspect-ratio: 4 / 3; height: auto; margin: .25rem auto 0; }
+.logs-grid .tumble-index .thumb { width: 100%; min-width: 0; max-width: none; aspect-ratio: 4 / 3; height: auto; margin: 0; }
+.logs-grid .batch-meta { margin-top: 0; }
+.logs-grid .batch-meta .excerpt { margin-top: .25rem; font-size: .9em; color: #5b5b53; }
+/* Align table cells to top inside the stacked logbook sections */
+.logs-grid .tumble-index tbody td,
+.logs-grid .field-index tbody td { vertical-align: top; }
+@media (min-width: 700px) {
+  .logs-grid .batch-cell { grid-template-columns: 160px 1fr; }
+}
 
 /* Subtle tightening for section spacing within the logbook */
 .logs-grid > section h2 { margin: 0 0 .4rem; }

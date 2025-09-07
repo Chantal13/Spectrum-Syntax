@@ -97,7 +97,7 @@
                 </a>
               {% endif %}
               <div class="batch-meta">
-                <a href="{{ d.url | relative_url }}">
+                <a class="internal-link" href="{{ d.url | relative_url }}">
                   {% if batch != '' and title != '' %}<strong>{{ batch }}</strong> — {{ title }}{% elsif batch != '' %}<strong>{{ batch }}</strong>{% elsif title != '' %}<strong>{{ title }}</strong>{% else %}<strong>Untitled</strong>{% endif %}
                 </a>
                 {% if d.rocks and d.rocks.size > 0 %}
@@ -108,6 +108,9 @@
                     {% endfor %}
                   </div>
                 {% endif %}
+                {% assign ex = d.notes | default: d.excerpt %}
+                {% assign ex = ex | strip_html | truncate: 140 %}
+                {% if ex %}<div class="excerpt">{{ ex }}</div>{% endif %}
               </div>
             </td>
             <td class="dates-cell">

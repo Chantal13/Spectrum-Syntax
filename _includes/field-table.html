@@ -79,6 +79,8 @@
                     {% endfor %}
                   </div>
                 {% endif %}
+                {% assign ex = d.excerpt | strip_html | truncate: 140 %}
+                {% if ex %}<div class="excerpt">{{ ex }}</div>{% endif %}
               </div>
             </td>
             <td>{{ d.date | date: "%Y-%m-%d" }}</td>
