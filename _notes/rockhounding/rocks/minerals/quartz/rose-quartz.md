@@ -8,4 +8,4 @@ streak: White
 ---
 {% include rock-card.html rock=page %}
 
-Rose quartz is pink quartz colored by trace impurities and fibrous inclusions; it is typically massive rather than well‑crystallized.
+Rose quartz is pink quartz coloured by trace impurities and fibrous inclusions; it is typically massive rather than well‑crystallized.
