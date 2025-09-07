@@ -55,7 +55,7 @@ In play, you build/upgrade turrets and basic income sources to survive waves; ea
 
 ## General Tips
 
-- Focus on **economy → defense → reactive reinforcement**.
+- Focus on **economy → defence → reactive reinforcement**.
 - Avoid overspending; only upgrade what’s necessary for the stage.
 - Watch [[zombies]] movement and adjust your layout or upgrade timing.
 
