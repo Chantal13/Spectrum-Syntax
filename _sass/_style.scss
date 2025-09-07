@@ -743,6 +743,9 @@ code {
   align-items: stretch;
 }
 .logs-grid .thumb { width: 100%; min-width: 0; aspect-ratio: 4 / 3; height: auto; }
+/* Ensure both Field and Tumbling thumbs match exactly in the Logbook */
+.logs-grid .field-index .thumb,
+.logs-grid .tumble-index .thumb { width: 100%; aspect-ratio: 4 / 3; height: auto; }
 .logs-grid .batch-meta { margin-top: 0.35rem; }
 
 /* When the logbook shows two tables side by side, keep each compact */
