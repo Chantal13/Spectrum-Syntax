@@ -3,7 +3,7 @@ title: IDLE Champions
 draft:
 aliases:
 ---
-An idle/formation RPG set in D&D’s Forgotten Realms. It’s **playable F2P** but built for long-tail grind: real progress comes from event cycles, gem farming, and optimizing formations; late-game goals can take **thousands of hours** without spending. Monetization centers on chests, DLC packs, “weekend” offers, and familiars (QoL that speeds everything up). It’s not hard P2W—money mostly accelerates unlocks and gearing—but it can be **aggressively tempting** if you chase every champion/skin/GE. Longevity is strong: the devs keep adding events, variants, and even new (paid) chest tiers like Platinum packs. Verdict: **fun for systems/optimization fans with high tolerance for grind;** excellent background game if you enjoy steady incremental goals, less so if you want rapid traditional RPG payoff.
+An idle/formation RPG set in D&D’s Forgotten Realms. It’s **playable F2P** but built for long-tail grind: real progress comes from event cycles, gem farming, and optimizing formations; late-game goals can take **thousands of hours** without spending. Monetization centres on chests, DLC packs, “weekend” offers, and familiars (QoL that speeds everything up). It’s not hard P2W—money mostly accelerates unlocks and gearing—but it can be **aggressively tempting** if you chase every champion/skin/GE. Longevity is strong: the devs keep adding events, variants, and even new (paid) chest tiers like Platinum packs. Verdict: **fun for systems/optimization fans with high tolerance for grind;** excellent background game if you enjoy steady incremental goals, less so if you want rapid traditional RPG payoff.
 
 ## Guides
 [[Into the Forbidden Zone]]
