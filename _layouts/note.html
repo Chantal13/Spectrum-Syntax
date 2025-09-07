@@ -12,14 +12,14 @@ layout: default
   </div>
 
   <div id="notes-entry-container">
-    <content>
+    <div class="content-section">
       {{ content }}
-      
-      <p>     ┬─┬ノ( º _ ºノ)     </p>
-      
-    </content>
 
-    <side class="note-aside">
+      <p>     ┬─┬ノ( º _ ºノ)     </p>
+
+    </div>
+
+    <aside class="note-aside">
       <h3 class="backlinks-title">Notes mentioning this note</h3>
       {% if page.backlinks.size > 0 %}
       <ul class="backlinks">
@@ -33,7 +33,7 @@ layout: default
       {% else %}
       <div class="backlinks-empty">There are no notes linking to this note.</div>
       {% endif %}
-    </side>
+    </aside>
   </div>
 </article>
 

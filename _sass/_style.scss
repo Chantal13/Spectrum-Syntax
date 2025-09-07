@@ -413,6 +413,9 @@ a.internal-link:hover {
     grid-template-columns: 3fr 1fr;
     grid-template-areas: "content side";
   }
+
+  > .content-section { grid-area: content; }
+  > .note-aside { grid-area: side; }
 }
 
 /* .backlink-box removed; backlinks now flow like regular content */
