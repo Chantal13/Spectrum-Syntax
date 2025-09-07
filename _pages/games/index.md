@@ -1,12 +1,9 @@
 ---
 layout: page
-title: Games
-permalink: /games/
+title: Games (redirect)
+permalink: /Games/
+redirect_to: /games/
 ---
 
-<h1>Games</h1>
+This page moved to <a class="internal-link" href="{{ '/games/' | relative_url }}">/games/</a>.
 
-<ul>
-  <li><a class="internal-link" href="{{ '/games/idle-champions/' | relative_url }}">IDLE Champions</a></li>
-  <li><a class="internal-link" href="{{ '/games/dark-war-survival/' | relative_url }}">Dark War Survival</a></li>
-</ul>
