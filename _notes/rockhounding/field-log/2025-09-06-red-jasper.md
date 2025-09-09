@@ -29,4 +29,3 @@ gallery:
 Collected along the wave‑polished pebble line. The piece shows uniform deep red colouration with occasional darker mottling, consistent with hematite inclusions in chalcedony. Fresh chip displays a clean conchoidal fracture and vitreous lustre.
 
 Field tests: copper does not scratch; scratches glass; white streak on unglazed porcelain. Identification consistent with red jasper (a variety of microcrystalline quartz).
-

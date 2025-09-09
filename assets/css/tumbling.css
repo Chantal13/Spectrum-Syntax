@@ -100,4 +100,8 @@
 .tumble-status {
   display: inline-block;
   padding: 0.2rem 0.5rem;
-  bord
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  line-height: 1;
+}
