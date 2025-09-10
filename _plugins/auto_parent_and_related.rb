@@ -51,8 +51,8 @@ Jekyll::Hooks.register [:notes], :pre_render do |doc|
           return true
         end
         i += 1 while i < lines.length && !plain_text?(lines[i])
-        # if none found, fall back to first non-empty
-        i = 0 while i >= lines.length
+        # if none found, fall back to first non-empty (single adjustment)
+        i = 0 if i >= lines.length
         # compute insertion point and ensure blank lines around
         insert_at = content.length - tail.length + lines[0...i+1].join.length
         insertion = "\n\nParent: [[#{parent_title}]]\n\n"

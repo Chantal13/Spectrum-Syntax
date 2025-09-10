@@ -74,13 +74,13 @@ run_checks_once() {
   assert_absent "$nav" "/rockhounding/tumbling/" "nav-dropdown-rockhounding" || failures=$((failures+1))
 
   # Redirect from old Tumbling path
-  check_redirect "$BASE_URL/tumbling/" "/rockhounding/tumbling/" || failures=$((failures+1))
+  check_redirect "$BASE_URL/tumbling/" "/rockhounding/logs/" || failures=$((failures+1))
 
-  # New Tumbling page exists
-  tumble=$(fetch "$BASE_URL/rockhounding/tumbling/") || { echo "[FAIL] Fetch tumbling"; failures=$((failures+1)); }
-  if [[ -n "$tumble" ]]; then
-    assert_present "$tumble" "<h1>Tumbling</h1>" "/rockhounding/tumbling/" || failures=$((failures+1))
-    assert_present "$tumble" "<html lang=\"en-CA\">" "/rockhounding/tumbling/" || failures=$((failures+1))
+  # Logbook page exists
+  logbook=$(fetch "$BASE_URL/rockhounding/logs/") || { echo "[FAIL] Fetch logbook"; failures=$((failures+1)); }
+  if [[ -n "$logbook" ]]; then
+    assert_present "$logbook" "<h1>Rockhounding Logbook</h1>" "/rockhounding/logs/" || failures=$((failures+1))
+    assert_present "$logbook" "<html lang=\"en-CA\">" "/rockhounding/logs/" || failures=$((failures+1))
   fi
 
   return $failures

@@ -33,7 +33,7 @@ Columns: Entry (thumb + label + chips), Dates, Type, Status
     <tbody>
       {% assign any_rows = false %}
 
-      {# ---- Tumbling rows ---- #}
+      {% comment %} ---- Tumbling rows ---- {% endcomment %}
       {% if tumbles and tumbles.size > 0 %}
         {% for d in tumbles %}
           {% assign any_rows = true %}
@@ -159,7 +159,7 @@ Columns: Entry (thumb + label + chips), Dates, Type, Status
         {% endfor %}
       {% endif %}
 
-      {# ---- Field note rows ---- #}
+      {% comment %} ---- Field note rows ---- {% endcomment %}
       {% if fields and fields.size > 0 %}
         {% for d in fields %}
           {% assign any_rows = true %}
