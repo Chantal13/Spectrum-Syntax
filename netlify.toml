@@ -15,6 +15,7 @@ SECRETS_SCAN_OMIT_KEYS = "ADMIN_USER"
   from = "/tumbling/"
   to = "/rockhounding/logs/"
   status = 301
+  force = true
 
 # (Removed redirect to /admin; public checklist now lives at /tumbling/log-checklist/)
 
