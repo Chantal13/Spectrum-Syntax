@@ -8,7 +8,7 @@ gem "jekyll", "~> 4.4"
 
 # Use the modern converter (3.x) and pin deps to stable builds
 gem "jekyll-sass-converter", "~> 3.0"
-gem "sass-embedded", "~> 1.71.1"
+gem "sass-embedded", "~> 1.77.5"
 gem "google-protobuf", "~> 3.25.3"
 gem "bigdecimal", "~> 3.1.8"
 gem "jekyll-last-modified-at", "~> 1.3"
