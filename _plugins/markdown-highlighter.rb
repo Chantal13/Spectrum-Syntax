@@ -14,5 +14,6 @@ Jekyll::Hooks.register [:pages], :pre_render do |doc|
 end
 
 def replace(doc)
-  doc.content.gsub!(/==+([^ ](.*?)?[^ .=])==+/, "<mark>\\1</mark>")
+  # Avoid mutating a frozen string when Jekyll freezes content.
+  doc.content = doc.content.gsub(/==+([^ ](.*?)?[^ .=])==+/, "<mark>\\1</mark>")
 end

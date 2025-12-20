@@ -7,8 +7,8 @@ images:
   scale: ""
 location:
   description: "McLaughlin Wildlife Reserve"
-rocks:[]
-minerals:[]
+rocks: []
+minerals: []
 colour: "Clear and pink"
 lustre: "Silky"
 hardness_mohs: "7 - Quartz"
@@ -16,4 +16,3 @@ streak: "White"
 fracture: "Even"
 gallery: []
 ---
-
