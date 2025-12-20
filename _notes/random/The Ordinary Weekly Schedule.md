@@ -5,17 +5,15 @@ id:
 permalink:
 ---
 
-# The Ordinary Weekly Schedule 🌿✨
-
 This is a step-by-step weekly skincare routine built around The Ordinary products, tailored for combination skin with a focus on fine lines and dullness. It includes clear “don’t mix” safety rules for stronger actives, simple morning and evening templates, and a structured weekly plan that rotates antioxidants, gentle exfoliation (mandelic acid), peptides, and retinol to help support a brighter, smoother-looking complexion while reducing the risk of irritation. You’ll also find an at-a-glance schedule, an abbreviation legend, and practical notes on using the Aztec clay mask safely alongside active ingredients.
 
 
-> [!Warning]
+> **Warning**  
 > Use this information at your own risk. I wrote this for personal use and I am not a dermatologist or medical professional. The routine is based on product guidance from The Ordinary and community advice from [r/SkincareAddiction](https://www.reddit.com/r/SkincareAddiction/), but skincare is highly individual—what works for me may not work for you. Patch test, introduce new products slowly, and stop if you experience irritation. And if you die and turn into a zombie, don’t come to me for help.
 
   
 ## Table of Contents
-- [Product Overview](#product-overview) 
+- [Product Overview](#product-overview)
 - [Tips & Tricks](#tips--tricks)
 - [Legend](#legend)
 - [Daily Templates](#daily-templates)
@@ -101,11 +99,8 @@ A very strong clay mask that absorbs oil and can temporarily reduce the look of 
   
 
 - If you’re doing **retinol + mandelic weekly**, the **apple cider vinegar** is the piece most likely to push your skin into “too much” (tightness, burning, flaking).
-
 - ✅ Consider switching to **water + a little honey** (or *very diluted* ACV).
-
 - ⏱️ Keep contact time to **10 minutes** and don’t let it go rock-hard.
-
 - 🧴 Always follow with **moisturiser**, then **squalane** if needed.
 
   
@@ -117,7 +112,6 @@ A very strong clay mask that absorbs oil and can temporarily reduce the look of 
 #### 🛡️ 1) Rotate your “big actives” instead of stacking them
 
 - 🌙 **Retinol nights** and 🍃 **Mandelic nights** should be on different evenings.
-
 - 🍊 **Vitamin C powder** gets its own morning (no other actives).
 
   
@@ -125,19 +119,12 @@ A very strong clay mask that absorbs oil and can temporarily reduce the look of 
 #### ⚠️ 2) Keep “do-not-mix” combos separated (same routine = no)
 
 - 🌙 **Retinol 1%** + 🍃 **Mandelic** = too much irritation risk
-
 - 🌙 **Retinol 1%** + 🍊 **Vitamin C powder** = higher irritation risk
-
 - 🍃 **Mandelic** + 🧬 **Peptides (Buffet/Matrixyl)** = not a good pairing
-
 - 🍃 **Mandelic** + ✨ **EUK** = avoid in the same routine
-
 - 🍊 **Vitamin C powder** + 🧴 **Niacinamide** = keep separate
-
 - 🍊 **Vitamin C powder** + 🧬 **Peptides** = keep separate
-
 - 🛡️ **Resveratrol/Ferulic** + ✨ **EUK** = pick one or the other
-
 - 🛡️ **Resveratrol/Ferulic** + 🧬 **Peptides** = keep separate
 
   
@@ -145,11 +132,8 @@ A very strong clay mask that absorbs oil and can temporarily reduce the look of 
 #### 🧴 3) Use the “thin to thick” layering rule
 
 - 💧 Water-based serums first (Niac, Buffet, Matrixyl, Mandelic)
-
 - 🛢️ Anhydrous/oily serums next (EUK, Res/Fer, Retinol in squalane)
-
 - 🧴 Moisturiser
-
 - 💧 **Squalane** last (optional)
 
   
@@ -157,7 +141,6 @@ A very strong clay mask that absorbs oil and can temporarily reduce the look of 
 #### 🧪 4) Wait times reduce sting (especially with stronger nights)
 
 - 🌙 On **Retinol** nights: wait **~10 minutes** after cleansing before applying.
-
 - 🍃 On **Mandelic** nights: apply to dry skin, then wait **2–5 minutes** before the next step.
 
   
@@ -165,7 +148,6 @@ A very strong clay mask that absorbs oil and can temporarily reduce the look of 
 #### 🧯 5) If irritation shows up, scale back fast (don’t “push through”)
 
 - 😬 Tightness/peeling: drop Mandelic for a week and cut Retinol to 1×/week.
-
 - 🔥 Burning/stinging: pause actives and do moisturiser + SPF only until calm.
 
   
@@ -173,9 +155,7 @@ A very strong clay mask that absorbs oil and can temporarily reduce the look of 
 #### 🧖 6) Clay mask = occasional support, not a weekly “must”
 
 - 🗓️ Keep Aztec clay to **max 1×/week** (less if you’re dry).
-
 - 🍎 ACV is the harsh part—consider **water + a little honey** instead.
-
 - 🧴 Always moisturise after, and add 💧 squalane if needed.
 
   
@@ -493,27 +473,15 @@ A very strong clay mask that absorbs oil and can temporarily reduce the look of 
 ## 🔗 Sources {#sources}
 
 - [The Ordinary — Retinol 1% in Squalane](https://theordinary.com/en-ca/retinol-1-in-squalane-serum-100441.html "The Ordinary — Retinol 1% in Squalane")
-
 - [The Ordinary — Retinoids guide](https://theordinary.com/en-ca/blog/definitive-guide-using-retinoids.html "The Ordinary — Retinoids guide")
-
 - [The Ordinary — Mandelic Acid 10% + HA](https://theordinary.com/en-ca/mandelic-acid-10-ha-exfoliator-100429.html "The Ordinary — Mandelic Acid 10% + HA")
-
 - [The Ordinary — 100% L-Ascorbic Acid Powder](https://theordinary.com/en-ca/100-l-ascorbic-acid-powder-vitamin-c-100390.html "The Ordinary — 100% L-Ascorbic Acid Powder")
-
 - [The Ordinary — Resveratrol 3% + Ferulic Acid 3%](https://theordinary.com/en-ca/resveratrol-3-ferulic-acid-3-antioxidant-serum-100438.html "The Ordinary — Resveratrol 3% + Ferulic Acid 3%")
-
 - [The Ordinary — Multi-Peptide + HA Serum (“Buffet”)](https://theordinary.com/en-ca/multi-peptide-ha-serum-100613.html "The Ordinary — Multi-Peptide + HA Serum (“Buffet”)")
-
 - [The Ordinary — Matrixyl 10% + HA](https://theordinary.com/en-ca/matrixyl-10-ha-serum-100431.html "The Ordinary — Matrixyl 10% + HA")
-
 - [The Ordinary — Caffeine Solution 5% + EGCG](https://theordinary.com/en-ca/caffeine-solution-5-egcg-eye-serum-100412.html "The Ordinary — Caffeine Solution 5% + EGCG")
-
 - [The Ordinary — Layering guide](https://theordinary.com/en-ca/blog/skincare-layering-guide.html "The Ordinary — Layering guide")
-
 - [r/SkincareAddiction — routine order](https://www.reddit.com/r/SkincareAddiction/wiki/routine_order/ "r/SkincareAddiction — routine order")
-
 - [r/SkincareAddiction — routine order thread example](https://www.reddit.com/r/SkincareAddiction/comments/11czrqc/routine_help_what_order_should_i_use_these/ "r/SkincareAddiction — routine order thread example")
-
 - [r/SkincareAddiction — Aztec clay + ACV irritation example](https://www.reddit.com/r/SkincareAddiction/comments/ij0f98/skin_concern_help_i_used_the_aztec_clay_mask_with/ "r/SkincareAddiction — Aztec clay + ACV irritation example")
-
 - [Youth To The People — clay mask myths (ACV caution)](https://www.youthtothepeople.com/blog/to-the-people--youth-to-the-people/13-clay-mask-myths-to-stop-believing-asap.html "Youth To The People — clay mask myths (ACV caution)")
