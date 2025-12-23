@@ -1,9 +1,9 @@
 ---
 layout: page
 title: Blog
+summary: Blog index with the latest posts and update dates.
 permalink: /blog/
 ---
-
 <h1>Blog</h1>
 
 <ul>

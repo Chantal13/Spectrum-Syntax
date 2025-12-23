@@ -1,9 +1,9 @@
 ---
 layout: page
 title: Resources
+summary: Resource hub with books, websites, articles, and social media links.
 permalink: /rockhounding/resources/
 ---
-
 <h1>Resources</h1>
 
 <ul>

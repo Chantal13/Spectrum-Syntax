@@ -5,7 +5,7 @@
 ## Metadata
 - Author: [[Frank Remiz]]
 - Full Title: Toronto’s Geology
-- Category: #articles
+- Category: #resources/articles
 - Summary: Glaciers and meltwater reshaped southern Ontario and carved the Great Lakes basins.  
 Ancient seas and glaciers left rock, gravel and soil that shape Toronto's land.  
 When the ice retreated, changing lakes and rivers formed High Park's ravines and supported rich forests.

@@ -8,15 +8,24 @@
 {%- assign url = page.url | default: '/' -%}
 {%- assign parts = url | split: '/' -%}
 
+{%- if page.id == 'home' or url == '/' -%}
+  {%- assign hide_breadcrumbs = true -%}
+{%- endif -%}
+
+{%- unless hide_breadcrumbs -%}
 <nav class="breadcrumbs" aria-label="Breadcrumb">
 
-  {%- if page.breadcrumbs and page.breadcrumbs.size > 0 -%}
+{%- if page.breadcrumbs and page.breadcrumbs.size > 0 -%}
     {%- for bc in page.breadcrumbs -%}
       {%- unless forloop.first -%}<span class="crumb-sep">›</span>{%- endunless -%}
       <a class="internal-link" href="{{ bc.url }}">{{ bc.title }}</a>
     {%- endfor -%}
     {%- if page.title -%}<span class="crumb-sep">›</span><span aria-current="page">{{ page.title }}</span>{%- endif -%}
   {%- else -%}
+    {%- if url == '/' -%}
+      <span aria-current="page">Home</span>
+    {%- else -%}
+    <a class="internal-link" href="{{ '/' | relative_url }}">Home</a>
     {%- assign accum = '' -%}
     {%- for seg in parts -%}
       {%- if seg == '' -%}
@@ -28,32 +37,68 @@
       {%- assign is_last = forloop.last -%}
 
       {%- assign match = nil -%}
-      {%- assign pages = site.pages | where: 'url', target -%}
+      {%- assign pages = site.pages | where: 'url', target | where: 'layout', 'page' -%}
       {%- if pages and pages.size > 0 -%}
         {%- assign match = pages[0] -%}
       {%- endif -%}
       {%- if match == nil and site.notes -%}
-        {%- assign notes = site.notes | where: 'url', target -%}
+        {%- assign notes = site.notes | where: 'url', target | where: 'layout', 'page' -%}
         {%- if notes and notes.size > 0 -%}
           {%- assign match = notes[0] -%}
         {%- endif -%}
       {%- endif -%}
+      {%- if match == nil and site.notes -%}
+        {%- assign seg_down = seg | downcase -%}
+        {%- for n in site.notes -%}
+          {%- if n.url contains target and n.layout == 'page' -%}
+            {%- assign n_name = n.basename_without_ext | downcase -%}
+            {%- assign n_title = n.title | downcase -%}
+            {%- if n_name == seg_down or n_title == seg_down -%}
+              {%- assign match = n -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+      {%- if match == nil and site.pages -%}
+        {%- assign seg_down = seg | downcase -%}
+        {%- for p in site.pages -%}
+          {%- if p.url contains target and p.layout == 'page' -%}
+            {%- assign p_name = p.name | split: '.' | first | downcase -%}
+            {%- assign p_title = p.title | downcase -%}
+            {%- if p_name == seg_down or p_title == seg_down -%}
+              {%- assign match = p -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+
+      {%- if match == nil and is_last == false -%}
+        {%- continue -%}
+      {%- endif -%}
+      {%- if match and match.url == page.url and is_last == false -%}
+        {%- continue -%}
+      {%- endif -%}
 
       {%- assign label = nil -%}
-      {%- if match and match.title -%}
+      {%- if is_last and page.title -%}
+        {%- assign label = page.title -%}
+      {%- elsif match and match.title -%}
         {%- assign label = match.title -%}
       {%- else -%}
         {%- assign label = seg | url_decode | title_case -%}
       {%- endif -%}
 
       {%- if is_last -%}
-        {%- unless forloop.first -%}<span class="crumb-sep">›</span>{%- endunless -%}
+        <span class="crumb-sep">›</span>
         <span aria-current="page">{{ label }}</span>
       {%- else -%}
-        {%- unless forloop.first -%}<span class="crumb-sep">›</span>{%- endunless -%}
-        <a class="internal-link" href="{{ target }}">{{ label }}</a>
+        <span class="crumb-sep">›</span>
+        <a class="internal-link" href="{{ match.url | relative_url }}">{{ label }}</a>
       {%- endif -%}
     {%- endfor -%}
+    {%- endif -%}
     {%- comment -%}
       Optional explicit parent crumb via front matter (bidirectional-friendly)
       Example:
@@ -68,3 +113,4 @@
     {%- endif -%}
   {%- endif -%}
 </nav>
+{%- endunless -%}

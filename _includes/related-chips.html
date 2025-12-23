@@ -25,7 +25,7 @@
   {%- assign primary_dir = parent_dir -%}
 
   {%- if is_mineral -%}
-    {%- assign minerals_root = '_notes/rockhounding/rocks/minerals/' -%}
+    {%- assign minerals_root = '_notes/notes/rockhounding/rocks/minerals/' -%}
     {%- assign rel_after_root = doc.path | remove: minerals_root -%}
     {%- if rel_after_root contains '/' -%}
       {%- comment -%} Nested under a mineral family; parent_dir is already the immediate folder {%- endcomment -%}
@@ -36,11 +36,11 @@
       {%- assign primary_dir = minerals_root | append: base_slug | append: '/' -%}
     {%- endif -%}
   {%- elsif is_igneous -%}
-    {%- assign primary_dir = '_notes/rockhounding/rocks/igneous/' -%}
+    {%- assign primary_dir = '_notes/notes/rockhounding/rocks/igneous/' -%}
   {%- elsif is_metamorphic -%}
-    {%- assign primary_dir = '_notes/rockhounding/rocks/metamorphic/' -%}
+    {%- assign primary_dir = '_notes/notes/rockhounding/rocks/metamorphic/' -%}
   {%- elsif is_sedimentary -%}
-    {%- assign primary_dir = '_notes/rockhounding/rocks/sedimentary/' -%}
+    {%- assign primary_dir = '_notes/notes/rockhounding/rocks/sedimentary/' -%}
   {%- endif -%}
 
   {%- assign candidates = site.notes | where_exp: "n", "n.path contains primary_dir" -%}
@@ -60,13 +60,13 @@
   {%- if rel_count == 0 -%}
     {%- comment -%} Fallbacks by broader grouping {%- endcomment -%}
     {%- if is_igneous -%}
-      {%- assign folder = '_notes/rockhounding/rocks/igneous/' -%}
+      {%- assign folder = '_notes/notes/rockhounding/rocks/igneous/' -%}
     {%- elsif is_metamorphic -%}
-      {%- assign folder = '_notes/rockhounding/rocks/metamorphic/' -%}
+      {%- assign folder = '_notes/notes/rockhounding/rocks/metamorphic/' -%}
     {%- elsif is_sedimentary -%}
-      {%- assign folder = '_notes/rockhounding/rocks/sedimentary/' -%}
+      {%- assign folder = '_notes/notes/rockhounding/rocks/sedimentary/' -%}
     {%- elsif is_mineral -%}
-      {%- assign folder = '_notes/rockhounding/rocks/minerals/' -%}
+      {%- assign folder = '_notes/notes/rockhounding/rocks/minerals/' -%}
     {%- endif -%}
     {%- if folder -%}
       {%- assign candidates = site.notes | where_exp: "n", "n.path contains folder" -%}

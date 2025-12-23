@@ -1,9 +1,9 @@
 ---
 layout: page
 title: About
+summary: About the site, its focus on rockhounding and practical notes, and the person behind it.
 permalink: /about
 ---
-
 Hi!
 
 This site is my working notebook—a place to collect what I’m learning and make it useful for the next curious person who stumbles in. Lately that’s mostly rockhounding: Ontario shorelines, glacial deposits, and the Canadian Shield. I write practical notes on where certain rocks show up, how to identify them in the field, and how to handle them responsibly. While the examples lean Ontario, the methods should travel well anywhere.

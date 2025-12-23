@@ -3,9 +3,9 @@ Unified logs table: Tumbling first, then Field notes. Compact columns.
 Columns: Entry (thumb + label + chips), Dates, Type, Status
 {% endcomment %}
 
-{% assign tumbles = site.notes | where_exp: "p", "p.path contains '_notes/rockhounding/tumbling/'" %}
+{% assign tumbles = site.notes | where_exp: "p", "p.path contains '_notes/notes/rockhounding/tumbling/'" %}
 {% assign tumbles = tumbles | sort: "date_started" | reverse %}
-{% assign fields = site.notes | where_exp: "n", "n.path contains '_notes/rockhounding/field-log/'" %}
+{% assign fields = site.notes | where_exp: "n", "n.path contains '_notes/notes/rockhounding/field-log/'" %}
 {% assign fields = fields | sort: "date" | reverse %}
 
 <div class="tumble-index logs-index">
@@ -237,7 +237,7 @@ Columns: Entry (thumb + label + chips), Dates, Type, Status
 
       {% unless any_rows %}
         <tr>
-          <td colspan="4">No logs found. Add markdown files in <code>_notes/rockhounding/tumbling/</code> or <code>_notes/rockhounding/field-log/</code>.</td>
+          <td colspan="4">No logs found. Add markdown files in <code>_notes/notes/rockhounding/tumbling/</code> or <code>_notes/notes/rockhounding/field-log/</code>.</td>
         </tr>
       {% endunless %}
     </tbody>

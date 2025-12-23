@@ -12,13 +12,6 @@ layout: default
   </div>
 
   <div id="notes-entry-container">
-    <div class="content-section">
-      {{ content }}
-
-      <p>     ┬─┬ノ( º _ ºノ)     </p>
-
-    </div>
-
     <aside class="note-aside">
       <h3 class="backlinks-title">Notes mentioning this note</h3>
       {% if page.backlinks.size > 0 %}
@@ -34,6 +27,13 @@ layout: default
       <div class="backlinks-empty">There are no notes linking to this note.</div>
       {% endif %}
     </aside>
+
+    <div class="content-section">
+      {{ content }}
+
+      <p>     ┬─┬ノ( º _ ºノ)     </p>
+
+    </div>
   </div>
 </article>
 
@@ -41,4 +41,4 @@ layout: default
 
 <p>Here are all the notes in this garden, along with their links, visualized as a graph.</p>
 
-{% include notes_graph.html %}
+{% include notes_graph.html title='Graph' height_factor=0.45 compact_tags=true %}

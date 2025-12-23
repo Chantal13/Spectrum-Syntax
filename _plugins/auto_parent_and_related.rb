@@ -2,7 +2,7 @@
 
 Jekyll::Hooks.register [:notes], :pre_render do |doc|
   path = doc.path.to_s
-  next unless path.include?("_notes/rockhounding/rocks/")
+  next unless path.include?("_notes/notes/rockhounding/rocks/")
 
   content = doc.content.to_s
 
@@ -74,14 +74,14 @@ Jekyll::Hooks.register [:notes], :pre_render do |doc|
         if sub && sub.include?('/')
           File.dirname(path) + '/'
         else
-          File.join(doc.site.source, '_notes/rockhounding/rocks/minerals/', File.basename(path, '.*'), '/')
+          File.join(doc.site.source, '_notes/notes/rockhounding/rocks/minerals/', File.basename(path, '.*'), '/')
         end
       elsif path.include?('/rocks/igneous/')
-        File.join(doc.site.source, '_notes/rockhounding/rocks/igneous/')
+        File.join(doc.site.source, '_notes/notes/rockhounding/rocks/igneous/')
       elsif path.include?('/rocks/metamorphic/')
-        File.join(doc.site.source, '_notes/rockhounding/rocks/metamorphic/')
+        File.join(doc.site.source, '_notes/notes/rockhounding/rocks/metamorphic/')
       elsif path.include?('/rocks/sedimentary/')
-        File.join(doc.site.source, '_notes/rockhounding/rocks/sedimentary/')
+        File.join(doc.site.source, '_notes/notes/rockhounding/rocks/sedimentary/')
       else
         File.dirname(path) + '/'
       end

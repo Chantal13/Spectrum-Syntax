@@ -6,10 +6,7 @@
 
 {%- assign url = page.url | default: '/' -%}
 {%- assign is_home = page.id == 'home' or url == '/' -%}
-{%- assign in_rockhounding = url contains '/rockhounding/' -%}
-{%- assign in_games = url contains '/games/' -%}
 {%- assign in_logs = url contains '/logs/' -%}
-{%- assign on_about = url == '/about' or url contains '/about/' -%}
 
 <nav class="site-nav" role="navigation" aria-label="Primary">
   <a class="internal-link nav-home{% if is_home %} nav-link--active{% endif %}"
@@ -18,43 +15,6 @@
   <button class="theme-toggle" id="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
 
   <ul class="nav-links" id="site-menu">
-    <li class="has-dropdown">
-      <a class="internal-link{% if in_rockhounding %} nav-link--active{% endif %}"
-         href="/rockhounding/"{% if in_rockhounding %} aria-current="page"{% endif %}
-         aria-haspopup="true" aria-controls="nav-dropdown-rockhounding"{% if in_rockhounding %} aria-expanded="true"{% else %} aria-expanded="false"{% endif %}>Rockhounding</a>
-      <ul class="dropdown" id="nav-dropdown-rockhounding">
-        <li>
-          <a class="internal-link{% if url == '/rockhounding/' %} nav-link--active{% endif %}"
-             href="/rockhounding/"{% if url == '/rockhounding/' %} aria-current="page"{% endif %}>Overview</a>
-        </li>
-        <li>
-          <a class="internal-link{% if url contains '/rockhounding/rocks/' %} nav-link--active{% endif %}"
-             href="/rockhounding/rocks/"{% if url contains '/rockhounding/rocks/' %} aria-current="page"{% endif %}>Rocks &amp; Minerals</a>
-        </li>
-        <li>
-          <a class="internal-link{% if url contains '/rockhounding/guides/' %} nav-link--active{% endif %}"
-             href="/rockhounding/guides/"{% if url contains '/rockhounding/guides/' %} aria-current="page"{% endif %}>Guides</a>
-        </li>
-        
-        <li>
-          <a class="internal-link{% if url contains '/rockhounding/logs/' %} nav-link--active{% endif %}"
-             href="/rockhounding/logs/"{% if url contains '/rockhounding/logs/' %} aria-current="page"{% endif %}>Logbook</a>
-        </li>
-        <li>
-          <a class="internal-link{% if url contains '/rockhounding/resources/' %} nav-link--active{% endif %}"
-             href="/rockhounding/resources/"{% if url contains '/rockhounding/resources/' %} aria-current="page"{% endif %}>Resources</a>
-        </li>
-      </ul>
-    </li>
-
-    <li>
-      <a class="internal-link{% if in_games %} nav-link--active{% endif %}"
-         href="/games/"{% if in_games %} aria-current="page"{% endif %}>Games</a>
-    </li>
-    <li>
-      <a class="internal-link{% if on_about %} nav-link--active{% endif %}"
-         href="/about"{% if on_about %} aria-current="page"{% endif %}>About</a>
-    </li>
   </ul>
 </nav>
 

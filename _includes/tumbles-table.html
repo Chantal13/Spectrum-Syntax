@@ -1,7 +1,7 @@
 {% if include.items %}
   {% assign items = include.items %}
 {% else %}
-  {% assign items = site.notes | where_exp: "p", "p.path contains '_notes/rockhounding/tumbling/'" %}
+  {% assign items = site.notes | where_exp: "p", "p.path contains '_notes/notes/rockhounding/tumbling/'" %}
   {% assign items = items | sort: "date_started" | reverse %}
 {% endif %}
 
@@ -143,7 +143,7 @@
         {% endfor %}
       {% else %}
         <tr>
-          <td colspan="3">No batches found. Put markdown files in <code>_notes/rockhounding/tumbling/</code> with front matter.</td>
+          <td colspan="3">No batches found. Put markdown files in <code>_notes/notes/rockhounding/tumbling/</code> with front matter.</td>
         </tr>
       {% endif %}
     </tbody>

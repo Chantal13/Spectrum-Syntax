@@ -1,9 +1,9 @@
 ---
 layout: page
 title: Hobbies
+summary: List of personal hobby sections on the site.
 permalink: /hobbies/
 ---
-
 <h1>Hobbies</h1>
 
 <ul>

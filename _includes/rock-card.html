@@ -2,13 +2,13 @@
   {% assign thumb = include.rock.thumbnail | default: include.rock.cover %}
   {%- assign p = include.rock.path | default: '' -%}
   {%- assign placeholder_path = '/assets/rocks/placeholder.jpg' -%}
-  {%- if p contains '_notes/rockhounding/rocks/igneous/' -%}
+  {%- if p contains '_notes/notes/rockhounding/rocks/igneous/' -%}
     {%- assign placeholder_path = '/assets/rocks/placeholder-igneous.jpg' -%}
-  {%- elsif p contains '_notes/rockhounding/rocks/metamorphic/' -%}
+  {%- elsif p contains '_notes/notes/rockhounding/rocks/metamorphic/' -%}
     {%- assign placeholder_path = '/assets/rocks/placeholder-metamorphic.jpg' -%}
-  {%- elsif p contains '_notes/rockhounding/rocks/sedimentary/' -%}
+  {%- elsif p contains '_notes/notes/rockhounding/rocks/sedimentary/' -%}
     {%- assign placeholder_path = '/assets/rocks/placeholder-sedimentary.jpg' -%}
-  {%- elsif p contains '_notes/rockhounding/rocks/minerals/' -%}
+  {%- elsif p contains '_notes/notes/rockhounding/rocks/minerals/' -%}
     {%- assign placeholder_path = '/assets/rocks/placeholder-mineral.jpg' -%}
   {%- endif -%}
   {%- assign placeholder_url = placeholder_path | relative_url -%}
@@ -149,16 +149,16 @@
   {%- assign parent_label = nil -%}
   {%- assign p = include.rock.path | default: '' -%}
   {%- assign u = include.rock.url  | default: '' -%}
-  {%- if p contains '_notes/rockhounding/rocks/igneous/' -%}
+  {%- if p contains '_notes/notes/rockhounding/rocks/igneous/' -%}
     {%- assign parent_url = '/rockhounding/rocks/igneous/' -%}
     {%- assign parent_label = 'Igneous' -%}
-  {%- elsif p contains '_notes/rockhounding/rocks/metamorphic/' -%}
+  {%- elsif p contains '_notes/notes/rockhounding/rocks/metamorphic/' -%}
     {%- assign parent_url = '/rockhounding/rocks/metamorphic/' -%}
     {%- assign parent_label = 'Metamorphic' -%}
-  {%- elsif p contains '_notes/rockhounding/rocks/sedimentary/' -%}
+  {%- elsif p contains '_notes/notes/rockhounding/rocks/sedimentary/' -%}
     {%- assign parent_url = '/rockhounding/rocks/sedimentary/' -%}
     {%- assign parent_label = 'Sedimentary' -%}
-  {%- elsif p contains '_notes/rockhounding/rocks/minerals/' and u contains '/rockhounding/rocks/minerals/' -%}
+  {%- elsif p contains '_notes/notes/rockhounding/rocks/minerals/' and (u contains '/rockhounding/rocks/minerals/' or u contains '/notes/rockhounding/rocks/minerals/') -%}
     {%- assign segs = u | split: '/' -%}
     {%- assign last_nonempty = '' -%}
     {%- assign second_last_nonempty = '' -%}
@@ -199,7 +199,7 @@
     </p>
   {% endif %}
   {%- comment -%} For minerals, show streak under hardness if available {%- endcomment -%}
-  {%- if p contains '_notes/rockhounding/rocks/minerals/' and include.rock.streak -%}
+  {%- if p contains '_notes/notes/rockhounding/rocks/minerals/' and include.rock.streak -%}
     <p class="rock-card-meta">Streak: {{ include.rock.streak }}</p>
   {%- endif -%}
   {%- comment -%}

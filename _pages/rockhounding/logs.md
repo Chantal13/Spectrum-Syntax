@@ -1,12 +1,12 @@
 ---
 layout: page
 title: Logbook
+summary: Rockhounding logbook with field identification entries and tumbling batches.
 permalink: /rockhounding/logs/
 breadcrumbs:
   - title: Rockhounding
     url: /rockhounding/
 ---
-
 <h1>Rockhounding Logbook</h1>
 
 <div class="logs-grid">

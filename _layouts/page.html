@@ -3,5 +3,43 @@ layout: default
 ---
 
 <div class="page-content">
+  {%- assign has_summary_heading = false -%}
+  {%- if page.content contains '## Summary' -%}
+    {%- assign has_summary_heading = true -%}
+  {%- endif -%}
+  {%- assign summary_text = page.summary | default: page.description -%}
+  {%- if has_summary_heading != true and summary_text and summary_text != '' and page.id != 'home' -%}
+    <section class="page-summary">
+      <h2>{{ page.title | default: 'Summary' }}</h2>
+      <p>{{ summary_text }}</p>
+    </section>
+  {%- endif -%}
   {{ content }}
+
+  {%- assign base_url = page.url | default: '' -%}
+  {%- if base_url != '' and base_url != '/' -%}
+    {%- assign notes_in_section = site.notes | where_exp: "n", "n.url != base_url and n.url contains base_url" -%}
+    {%- assign notes_in_section = notes_in_section | sort: 'title' -%}
+    {%- if notes_in_section.size > 0 -%}
+      <section class="page-index">
+        <h2>Notes in this section</h2>
+        <ul class="page-index__list">
+          {%- for n in notes_in_section -%}
+            <li class="page-index__item">
+              <a class="internal-link" href="{{ n.url | relative_url }}">{{ n.title | default: n.basename_without_ext }}</a>
+              {%- if n.summary -%}
+                <p class="page-index__summary">{{ n.summary }}</p>
+              {%- else -%}
+                <p class="page-index__summary">{{ n.excerpt | strip_html | truncatewords: 24 }}</p>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </section>
+    {%- endif -%}
+  {%- endif -%}
 </div>
+
+{% if page.id != 'home' and page.url and page.hide_graph != true %}
+  {% include notes_graph.html title='Graph' %}
+{% endif %}

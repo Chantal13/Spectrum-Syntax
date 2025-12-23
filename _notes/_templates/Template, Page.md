@@ -1,6 +1,8 @@
 ---
 layout: page
+date:
 title:
+summary: Index page.
 id:
-permalink:
----
+permalink:---
+<!-- Graph links: [[Parent]] [[Related]] -->

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-CA">
   {% include head.html %}
-  <body{% if page.id %} class="page-{{ page.id | slugify }}"{% endif %} data-gramm="false" data-gramm_editor="false" data-pw-ignore="true">
+  <body class="theme-site{% if page.id %} page-{{ page.id | slugify }}{% endif %}" data-gramm="false" data-gramm_editor="false" data-pw-ignore="true">
     {% include site_nav.html %}
     <div class="wrapper">
       {% include breadcrumbs.html %}
@@ -32,6 +32,61 @@
           document.addEventListener('DOMContentLoaded', cleanInjectedEditors);
         } else {
           cleanInjectedEditors();
+        }
+      })();
+    </script>
+    <script>
+      // Convert Obsidian-style callouts into styled callout blocks.
+      (function () {
+        function titleCase(str) {
+          return str.replace(/[-_]+/g, ' ').replace(/\b\w/g, function (c) {
+            return c.toUpperCase();
+          });
+        }
+
+        function enhanceCallouts() {
+          document.querySelectorAll('blockquote').forEach(function (bq) {
+            var firstP = bq.querySelector('p');
+            if (!firstP) return;
+            var text = (firstP.textContent || '').trim();
+            var match = text.match(/^\[!([A-Za-z]+)\]/);
+            if (!match) return;
+
+            var type = match[1].toLowerCase();
+            var cleanedHtml = (firstP.innerHTML || '').replace(
+              /^\s*\[![A-Za-z]+\]\s*(<br\s*\/?>\s*)?/i,
+              ''
+            );
+            var callout = document.createElement('div');
+            callout.className = 'callout callout-' + type;
+
+            var header = document.createElement('div');
+            header.className = 'callout-title';
+            header.textContent = titleCase(match[1]);
+            callout.appendChild(header);
+
+            var body = document.createElement('div');
+            body.className = 'callout-body';
+            if (cleanedHtml && cleanedHtml.trim()) {
+              var p = document.createElement('p');
+              p.innerHTML = cleanedHtml;
+              body.appendChild(p);
+            }
+
+            Array.from(bq.childNodes).forEach(function (node) {
+              if (node === firstP) return;
+              body.appendChild(node);
+            });
+
+            callout.appendChild(body);
+            bq.parentNode.replaceChild(callout, bq);
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', enhanceCallouts);
+        } else {
+          enhanceCallouts();
         }
       })();
     </script>

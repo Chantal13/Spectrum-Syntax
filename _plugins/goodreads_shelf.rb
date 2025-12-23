@@ -1,5 +1,8 @@
 require 'open-uri'
 require 'rexml/document'
+require 'digest'
+require 'fileutils'
+require 'pathname'
 
 # Fetches Goodreads shelf RSS feeds at build time and exposes them via site.data
 class GoodreadsShelfGenerator < Jekyll::Generator
@@ -11,6 +14,10 @@ class GoodreadsShelfGenerator < Jekyll::Generator
     shelves = cfg.fetch('shelves', [])
     return if shelves.empty?
 
+    cache_dir = cfg.fetch('cache_dir', '.jekyll-cache/goodreads')
+    cache_ttl = cfg.fetch('cache_ttl', 6 * 60 * 60).to_i
+    cache_ttl = 0 if cache_ttl.negative?
+
     site.data['goodreads'] ||= {}
 
     shelves.each do |shelf|
@@ -19,7 +26,13 @@ class GoodreadsShelfGenerator < Jekyll::Generator
       next unless url && !url.empty?
 
       begin
-        xml = URI.open(url, read_timeout: 15).read
+        cache_path = cache_file_path(site, cache_dir, url)
+        xml = fetch_xml(url, cache_path, cache_ttl)
+        if xml.nil? || xml.strip.empty?
+          Jekyll.logger.warn("Goodreads:", "Empty feed for '#{name}' shelf")
+          site.data['goodreads'][name] ||= []
+          next
+        end
         items = parse_items(xml)
         site.data['goodreads'][name] = items
         Jekyll.logger.info("Goodreads:", "Loaded #{items.length} items for '#{name}' shelf")
@@ -36,29 +49,59 @@ class GoodreadsShelfGenerator < Jekyll::Generator
     el&.text&.to_s&.strip
   end
 
+  def cache_file_path(site, cache_dir, url)
+    dir = if Pathname.new(cache_dir).absolute?
+            cache_dir
+          else
+            File.join(site.source, cache_dir)
+          end
+    File.join(dir, "#{Digest::SHA256.hexdigest(url)}.xml")
+  end
+
+  def read_cache(path, ttl)
+    return nil unless File.exist?(path)
+    return nil if ttl.positive? && (Time.now - File.mtime(path)) > ttl
+
+    File.read(path)
+  end
+
+  def fetch_xml(url, cache_path, ttl)
+    cached = read_cache(cache_path, ttl)
+    return cached if cached
+
+    xml = URI.open(url, read_timeout: 15).read
+    FileUtils.mkdir_p(File.dirname(cache_path))
+    File.write(cache_path, xml)
+    xml
+  rescue StandardError => e
+    return nil unless File.exist?(cache_path)
+
+    Jekyll.logger.warn("Goodreads:", "Fetch failed, using stale cache: #{e.class} #{e.message}")
+    File.read(cache_path)
+  end
+
+  def text_at(item, path)
+    text_of(REXML::XPath.first(item, path))
+  end
+
   def parse_items(xml)
     doc = REXML::Document.new(xml)
     items = []
     REXML::XPath.each(doc, '/rss/channel/item') do |item|
-      def t(item, path)
-        el = REXML::XPath.first(item, path)
-        el&.text&.to_s&.strip
-      end
+      title  = text_at(item, 'title')
+      guid   = text_at(item, 'guid')
+      link   = text_at(item, 'link')
+      author = text_at(item, 'author_name') || text_at(item, 'book_author')
+      book_id = text_at(item, 'book_id')
+      pub_date = text_at(item, 'pubDate')
+      avg = text_at(item, 'average_rating')
+      my  = text_at(item, 'user_rating')
+      shelves = text_at(item, 'user_shelves')
+      desc_html = text_at(item, 'book_description')
 
-      title  = t(item, 'title')
-      guid   = t(item, 'guid')
-      link   = t(item, 'link')
-      author = t(item, 'author_name') || t(item, 'book_author')
-      book_id = t(item, 'book_id')
-      pub_date = t(item, 'pubDate')
-      avg = t(item, 'average_rating')
-      my  = t(item, 'user_rating')
-      shelves = t(item, 'user_shelves')
-      desc_html = t(item, 'book_description')
-
-      img_small = t(item, 'book_small_image_url')
-      img_med   = t(item, 'book_medium_image_url') || t(item, 'book_image_url')
-      img_large = t(item, 'book_large_image_url') || img_med || img_small
+      img_small = text_at(item, 'book_small_image_url')
+      img_med   = text_at(item, 'book_medium_image_url') || text_at(item, 'book_image_url')
+      img_large = text_at(item, 'book_large_image_url') || img_med || img_small
 
       items << {
         'guid' => guid,
@@ -81,4 +124,3 @@ class GoodreadsShelfGenerator < Jekyll::Generator
     items
   end
 end
-

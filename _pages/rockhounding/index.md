@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Rockhounding
+summary: Ontario-first rockhounding hub with quick access to rocks, guides, logbook, and resources.
 permalink: /rockhounding/
 rocks:
   - url: '/rockhounding/rocks/'
@@ -20,7 +21,6 @@ rocks:
     description: 'Curated books, websites, articles, and social accounts; books sync from my Goodreads shelf.'
     thumbnail: '/assets/rockhounding/thumbs/resources.png'
 ---
-
 <h1>Rockhounding</h1>
 
 <p>Practical, Ontario‑first field notes for finding, identifying, and polishing rocks and minerals. New to the hobby? Start with Guides. Trying to ID a find? Jump to Rocks or Minerals. Ready to polish? See Tumbling.</p>
@@ -32,4 +32,3 @@ rocks:
     {% include rock-card.html rock=rock %}
   {% endfor %}
 </div>
-{% include notes_graph.html only_category='rockhounding' title='Rockhounding Notes Graph' %}

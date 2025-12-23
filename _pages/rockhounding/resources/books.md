@@ -1,9 +1,9 @@
 ---
 layout: page
 title: Books
+summary: Book list pulled from the Goodreads geology shelf.
 permalink: /rockhounding/resources/books/
 ---
-
 <h1>Books</h1>
 
 <p>Live list pulled from my Goodreads <em>geology</em> shelf.</p>

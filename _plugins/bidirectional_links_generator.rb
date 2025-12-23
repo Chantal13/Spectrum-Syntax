@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 require "json"
 require "fileutils"
+require "set"
 
 class BidirectionalLinksGenerator < Jekyll::Generator
   def generate(site)
     graph_nodes = []
     graph_edges = []
+    edge_set = Set.new
 
     notes_coll = site.collections ? site.collections["notes"] : nil
     all_notes  = notes_coll&.docs || []
@@ -14,8 +16,19 @@ class BidirectionalLinksGenerator < Jekyll::Generator
 
     link_extension = site.config["use_html_extension"] ? ".html" : ""
 
+    note_ids = {}
+    all_notes.each do |note|
+      nid = note_id_from_note(note)
+      note_ids[note] = nid unless nid.nil?
+    end
+
+    backlinks_by_target = Hash.new { |h, k| h[k] = Set.new }
+
     # Convert [[Wiki-style]] links to <a> with class="internal-link"
     all_docs.each do |current_note|
+      original_content = current_note.content.to_s.dup
+      source_is_note = all_notes.include?(current_note)
+
       all_docs.each do |note_potentially_linked_to|
         # filename (without ext) pattern: allow "_" or "-" to be typed as space too
         base = File.basename(
@@ -44,6 +57,37 @@ class BidirectionalLinksGenerator < Jekyll::Generator
 
         new_href   = "#{site.baseurl}#{note_potentially_linked_to.url}#{link_extension}"
         anchor_tag = "<a class='internal-link' href='#{new_href}'>\\1</a>"
+
+        if source_is_note && all_notes.include?(note_potentially_linked_to) && current_note != note_potentially_linked_to
+          sid = note_ids[current_note]
+          tid = note_ids[note_potentially_linked_to]
+          if sid && tid
+            matched = false
+            matched ||= original_content.match?(/\[\[(?:#{base_rx})(?:\|.+?)?\]\]/i)
+            if !matched && note_title_regexp_pattern
+              matched ||= original_content.match?(/\[\[(?:#{note_title_regexp_pattern})(?:\|.+?)?\]\]/i)
+            end
+            if !matched && !aliases_arr.empty?
+              aliases_arr.each do |al|
+                next if al.to_s.strip.empty?
+                al_rx = Regexp.escape(al.to_s).gsub('\_', '[ _]').gsub('\-', '[ -]')
+                if original_content.match?(/\[\[(?:#{al_rx})(?:\|.+?)?\]\]/i)
+                  matched = true
+                  break
+                end
+              end
+            end
+
+            if matched
+              key = "#{sid}->#{tid}"
+              unless edge_set.include?(key)
+                graph_edges << { source: sid, target: tid }
+                edge_set.add(key)
+              end
+              backlinks_by_target[tid].add(sid)
+            end
+          end
+        end
 
         # [[filename|label]]
         current_note.content.gsub!(
@@ -99,10 +143,6 @@ class BidirectionalLinksGenerator < Jekyll::Generator
 
     # Backlinks + graph
     all_notes.each do |current_note|
-      notes_linking_to_current_note = all_notes.filter do |e|
-        e.url != current_note.url && e.content.include?(current_note.url)
-      end
-
       nid = note_id_from_note(current_note)
 
       unless current_note.path.to_s.include?("_notes/index.html") || nid.nil?
@@ -112,7 +152,7 @@ class BidirectionalLinksGenerator < Jekyll::Generator
         label = current_note.basename_without_ext if label.nil? || label.to_s.strip.empty?
 
         # Derive a simple category from the note path: first folder under _notes/
-        # Example: _notes/rockhounding/rocks/foo.md => "rockhounding"
+        # Example: _notes/notes/rockhounding/rocks/foo.md => "rockhounding"
         category = begin
           path = current_note.path.to_s
           if path.include?("_notes/")
@@ -139,18 +179,37 @@ class BidirectionalLinksGenerator < Jekyll::Generator
           path: "#{site.baseurl}#{current_note.url}#{link_extension}",
           label: label,
           category: category,
-          rock_class: rock_class
+          rock_class: rock_class,
+          layout: current_note.data["layout"],
+          date: current_note.data["date"]&.to_s
         }
+
       end
 
-      current_note.data["backlinks"] = notes_linking_to_current_note
+      source_ids = backlinks_by_target[nid] || Set.new
+      current_note.data["backlinks"] = source_ids.map { |sid| all_notes.find { |n| note_ids[n] == sid } }.compact
+    end
 
-      notes_linking_to_current_note.each do |n|
-        sid = note_id_from_note(n)
-        tid = nid
-        next if sid.nil? || tid.nil?
-        graph_edges << { source: sid, target: tid }
-      end
+    # Auto-link notes to their parent folder index page (if that page exists as a node).
+    # This reduces standalone nodes in the graph.
+    url_to_id = {}
+    graph_nodes.each do |node|
+      next unless node[:path]
+      url_to_id[node[:path]] = node[:id]
+    end
+
+    graph_nodes.each do |node|
+      next unless node[:path]
+      path = node[:path]
+      next if path == "/" || path.count("/") < 2
+      parent = path.sub(%r{[^/]+/?$}, "")
+      parent = "/" if parent.empty?
+      parent_id = url_to_id[parent]
+      next if parent_id.nil?
+      key = "#{node[:id]}->#{parent_id}"
+      next if edge_set.include?(key)
+      graph_edges << { source: node[:id], target: parent_id }
+      edge_set.add(key)
     end
 
     FileUtils.mkdir_p("_includes")

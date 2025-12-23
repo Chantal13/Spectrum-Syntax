@@ -50,7 +50,8 @@ layout: default
     {% endif %}
 
     {%- assign loc = page.location -%}
-    {% if loc and (loc.lat or loc.lng or loc.description) %}
+    {% if loc %}
+    {% if loc.lat or loc.lng or loc.description %}
     <li>
       <strong>Location:</strong>
       {% if loc.description %}{{ loc.description }}{% endif %}
@@ -74,6 +75,7 @@ layout: default
         </div>
       {% endif %}
     </li>
+    {% endif %}
     {% endif %}
 
     {% if page.rocks %}
@@ -126,7 +128,8 @@ layout: default
   </ul>
 </div>
 
-{%- if page.images and (page.images.close_up or page.images.scale) -%}
+{%- if page.images -%}
+{%- if page.images.close_up or page.images.scale -%}
   <section class="field-card">
   <h2>Photos</h2>
   <div class="field-photos">
@@ -146,6 +149,7 @@ layout: default
     {%- endif -%}
   </div>
   </section>
+{%- endif -%}
 {%- endif -%}
 
 <section class="field-card field-notes">

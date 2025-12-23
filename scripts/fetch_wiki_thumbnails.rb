@@ -23,7 +23,7 @@ TITLE_MAP = {
   'Fire Agate' => 'Fire agate',
   'Limestone' => 'Limestone'
 }
-Dir.glob('_notes/rockhounding/rocks/**/*.md') do |file|
+Dir.glob('_notes/notes/rockhounding/rocks/**/*.md') do |file|
   content = File.read(file)
   next unless content.start_with?('---')
   fm, body = content.split(/^---\s*$\n/, 3)[1..2]

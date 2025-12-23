@@ -163,8 +163,8 @@ Use the repository’s helper script to stage, commit, rebase, and push with sen
 ### Content structure notes
 
 - Rocks taxonomy
-  - Rock pages live under `_notes/rockhounding/rocks/{igneous|metamorphic|sedimentary}/...`.
-  - Minerals live under `_notes/rockhounding/rocks/minerals/...`.
+  - Rock pages live under `_notes/notes/rockhounding/rocks/{igneous|metamorphic|sedimentary}/...`.
+  - Minerals live under `_notes/notes/rockhounding/rocks/minerals/...`.
   - Category landing pages are in `_pages/rockhounding/rocks/{igneous|metamorphic|sedimentary}/index.md`.
   - The interactive graph colours rock nodes by class (igneous/sedimentary/metamorphic) based on these paths. Keep new rock notes in the correct folder to get proper colouring.
 
