@@ -47,7 +47,14 @@
     wrapper.dataset.graphInit = "true";
 
     const data = {% include notes_graph.json %};
-    const tagGraphData = { nodes: {{ tag_graph_nodes_json }}, edges: {{ tag_graph_edges_json }} };
+    const graphData = data && Array.isArray(data.nodes)
+      ? data
+      : { nodes: [], edges: [] };
+
+    const tagGraphData = {
+      nodes: {{ tag_graph_nodes_json }} || [],
+      edges: {{ tag_graph_edges_json }} || [],
+    };
 
     const readCssVar = (name, fallback) => {
       const root = getComputedStyle(document.documentElement);
@@ -1022,7 +1029,7 @@
       return node.category || "notes";
     };
 
-    buildGraph(wrapper, canvas, data, {
+    buildGraph(wrapper, canvas, graphData, {
       nodeRadius: 5,
       repulsion: 180,
       spring: 0.12,
