@@ -13,9 +13,6 @@ include:
   - "_pages"
   - "_admin"
 
-exclude:
-  - "_includes/notes_graph.json"
-
 use_html_extension: false
 open_external_links_in_new_tab: false
 embed_tweets: false
