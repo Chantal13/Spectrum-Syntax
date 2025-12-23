@@ -136,6 +136,14 @@
 
     const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
+    const boldFont = options.boldFont || `600 ${options.font}`;
+
+    const weightedFontForNode = (node) => {
+      const baseWeight = 460;
+      const weight = clamp(Math.round(baseWeight + (node.degree || 0) * 55), 460, 820);
+      return `${weight} ${options.font}`;
+    };
+
     const seasonForDate = (dateStr) => {
       if (!dateStr) return null;
       const m = dateStr.toString().trim().match(/(\\d{4})-(\\d{2})-(\\d{2})/);
@@ -246,9 +254,10 @@
 
       const measureNodes = () => {
         ctx.save();
-        ctx.font = options.font;
         nodes.forEach((n) => {
           const label = labelForNode(n);
+          const font = weightedFontForNode(n);
+          ctx.font = font;
           const metrics = ctx.measureText(label);
           const ascent = metrics.actualBoundingBoxAscent || 10;
           const descent = metrics.actualBoundingBoxDescent || 3;
@@ -725,14 +734,6 @@
         ctx.quadraticCurveTo(x, y + h, x, y + h - radius);
         ctx.lineTo(x, y + radius);
         ctx.quadraticCurveTo(x, y, x + radius, y);
-      };
-
-      const boldFont = options.boldFont || `600 ${options.font}`;
-
-      const weightedFontForNode = (node) => {
-        const baseWeight = 460;
-        const weight = clamp(Math.round(baseWeight + (node.degree || 0) * 55), 460, 820);
-        return `${weight} ${options.font}`;
       };
 
       const drawLabel = (text, screenX, screenY, isActive, emphasize) => {
