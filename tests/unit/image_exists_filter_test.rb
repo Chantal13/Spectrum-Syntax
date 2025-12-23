@@ -1,13 +1,13 @@
 require 'minitest/autorun'
 require 'ostruct'
 require 'liquid'
-require_relative '../_plugins/image_exists_filter'
+require_relative '../../_plugins/image_exists_filter'
 
 class ImageExistsFilterTest < Minitest::Test
 
   def setup
     @filter = Object.new.extend(Jekyll::ImageExistsFilter)
-    site = OpenStruct.new(source: File.expand_path('..', __dir__))
+    site = OpenStruct.new(source: File.expand_path('../..', __dir__))
     context = OpenStruct.new(registers: { site: site })
     @filter.instance_variable_set(:@context, context)
   end
