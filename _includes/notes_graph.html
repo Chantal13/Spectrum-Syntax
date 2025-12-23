@@ -883,7 +883,7 @@
       spring: 0.16,
       labelLimit: 140,
       labelMax: 30,
-      font: "12px ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif",
+      font: "11px ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif",
       emphasizeNode: isCategoryNode,
       centerOnCurrent: true,
       defaultScale: 2.0,
@@ -903,11 +903,11 @@
       focusLinkRepulsionFactor: 0.4,
       layout: "force",
       colorForNode,
-      chipPaddingX: 12,
-      chipPaddingY: 7,
+      chipPaddingX: 10,
+      chipPaddingY: 5,
       nodeRadiusFor: (n) => {
-        const base = n.layout === "page" ? 6 : 4;
-        const boost = Math.sqrt(n.degree || 0) * 1.2;
+        const base = n.layout === "page" ? 5 : 3.5;
+        const boost = Math.sqrt(n.degree || 0) * 1.0;
         return base + boost;
       },
     });
@@ -918,7 +918,7 @@
       spring: 0.02,
       labelLimit: 180,
       labelMax: 24,
-      font: "600 12px/1.25 ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif",
+      font: "600 11px/1.25 ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif",
       centerOnCurrent: false,
       defaultScale: 1.4,
       minScale: 0.8,
@@ -931,9 +931,9 @@
       groupKey: (n) => n.type || "tag",
       layout: "force",
       colorForNode: (n) => (n.type === "tag" ? colours.notes : colours.page),
-      chipPaddingX: 12,
-      chipPaddingY: 7,
-      nodeRadiusFor: (n) => (n.type === "tag" ? Math.min(12, 5 + (n.count || 1) * 0.35) : 4),
+      chipPaddingX: 10,
+      chipPaddingY: 5,
+      nodeRadiusFor: (n) => (n.type === "tag" ? Math.min(10, 4.5 + (n.count || 1) * 0.28) : 3.5),
     });
   })();
 </script>
