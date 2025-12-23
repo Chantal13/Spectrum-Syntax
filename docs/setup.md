@@ -46,6 +46,14 @@ rbenv install 3.2.1
 
 ### 3. Set Ruby Version and Install Dependencies
 
+Using Make (recommended):
+```bash
+rbenv local 3.2.1   # or `rbenv shell 3.2.1`
+gem install bundler:2.7.1
+make install
+```
+
+Or manually:
 ```bash
 rbenv local 3.2.1   # or `rbenv shell 3.2.1`
 gem install bundler:2.7.1
@@ -64,17 +72,19 @@ pip3 install Pillow
 
 Build the site to verify everything is set up correctly:
 
+Using Make:
 ```bash
-bundle exec jekyll build
+make build
 ```
 
 Or start the development server:
-
 ```bash
-bundle exec jekyll serve
+make serve
 ```
 
 The site will be available at http://localhost:4000.
+
+**Tip:** Run `make help` to see all available commands.
 
 ## Next Steps
 

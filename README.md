@@ -21,15 +21,15 @@ Based on Maxime Vaillancourt's [digital-garden-jekyll-template](https://github.c
 
 ```bash
 # Install dependencies
-rbenv install 3.2.1
-gem install bundler:2.7.1
-bundle _2.7.1_ install
+make install
 
 # Start development server
-bundle exec jekyll serve
+make serve
 ```
 
 Visit http://localhost:4000
+
+**See all available commands:** `make help`
 
 ## Documentation
 
@@ -42,23 +42,26 @@ Visit http://localhost:4000
 
 ## Common Commands
 
+Use `make` for simplified workflow:
+
 ```bash
-# Development server
+make serve          # Start development server
+make build          # Build site
+make test           # Run tests
+make webp           # Generate WebP images
+make check          # Run all checks
+make clean          # Clean build artifacts
+make help           # Show all commands
+```
+
+Or use the underlying commands directly:
+
+```bash
 bundle exec jekyll serve
-
-# Build site
 bundle exec jekyll build
-
-# Run tests
 bundle exec rake test
-
-# Generate WebP images
 bundle exec rake webp
-
-# Check for missing assets
 ruby scripts/check_assets.rb
-
-# Streamlined git workflow
 python3 scripts/git_push.py -m "Your commit message"
 ```
 

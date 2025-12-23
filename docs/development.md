@@ -2,10 +2,30 @@
 
 This guide covers the day-to-day workflow for local development.
 
+## Quick Reference
+
+Use the Makefile for simplified commands:
+
+```bash
+make serve          # Start development server
+make build          # Build the site
+make test           # Run test suite
+make webp           # Generate WebP images
+make check          # Run all checks
+make clean          # Clean build artifacts
+make help           # Show all available commands
+```
+
+See full command list with `make help`.
+
 ## Starting the Development Server
 
-Run Jekyll's built-in server for live preview:
+Using Make:
+```bash
+make serve
+```
 
+Or directly:
 ```bash
 bundle exec jekyll serve
 ```
@@ -14,8 +34,12 @@ The site will be available at http://localhost:4000 and will auto-reload when yo
 
 ## Building the Site
 
-To generate static files without starting a server:
+Using Make:
+```bash
+make build
+```
 
+Or directly:
 ```bash
 bundle exec jekyll build
 ```
@@ -26,30 +50,43 @@ The output is written to the `_site/` directory.
 
 ### Run Test Suite
 
+Using Make:
+```bash
+make test
+```
+
+Or directly:
 ```bash
 bundle exec rake test
 ```
 
-### Check for Missing Assets
+### Run All Checks
 
-Scans front matter for image paths and fails if any referenced file is missing:
-
+Using Make:
 ```bash
-ruby scripts/check_assets.rb
+make check          # Run all checks
+make check-assets   # Check for missing assets only
+make check-links    # Check for broken links only
+make check-webp     # Check for missing WebP variants
 ```
 
-### Check Built-Site Links
-
-Validates internal links after building the site:
-
+Or run scripts directly:
 ```bash
+ruby scripts/check_assets.rb
 python3 scripts/check_site_links.py
+python3 scripts/check_webp_siblings.py
 ```
 
 ## WebP Image Generation
 
 Generate `.webp` variants for images under `assets/rocks/` and `assets/tumbling/`:
 
+Using Make:
+```bash
+make webp
+```
+
+Or directly:
 ```bash
 bundle exec rake webp
 ```
