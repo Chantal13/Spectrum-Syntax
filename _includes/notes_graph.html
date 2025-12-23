@@ -141,6 +141,27 @@
       return trimmed.endsWith("/") ? trimmed : trimmed + "/";
     };
 
+    const emphasizedCategories = new Set(["autism", "games", "rockhound", "rockhounding", "blog"]);
+
+    const isCategoryNode = (node) => {
+      if (!node) return false;
+      const category = (node.category || "").toLowerCase();
+      const label = (node.label || "").toLowerCase();
+      const normalizedPath = normalizePath(node.path || "").toLowerCase();
+
+      if (emphasizedCategories.has(category) || emphasizedCategories.has(label)) return true;
+
+      return Array.from(emphasizedCategories).some((root) => {
+        if (!root) return false;
+        const rootPath = `/${root}/`;
+        return (
+          normalizedPath === rootPath ||
+          normalizedPath.startsWith(`/notes/${root}/`) ||
+          normalizedPath.startsWith(rootPath)
+        );
+      });
+    };
+
     const isCurrentPath = (notePath) => {
       const current = normalizePath(window.location.pathname);
       const target = normalizePath(notePath);
@@ -596,9 +617,13 @@
         ctx.quadraticCurveTo(x, y, x + radius, y);
       };
 
-      const drawLabel = (text, screenX, screenY, isActive) => {
+      const boldFont = options.boldFont || `600 ${options.font}`;
+
+      const drawLabel = (text, screenX, screenY, isActive, emphasize) => {
         const paddingX = 8;
         const paddingY = 5;
+        const font = emphasize ? boldFont : options.font;
+        ctx.font = font;
         const metrics = ctx.measureText(text);
         const ascent = metrics.actualBoundingBoxAscent || 10;
         const descent = metrics.actualBoundingBoxDescent || 2;
@@ -686,6 +711,22 @@
         ctx.globalAlpha = 1;
 
         ctx.restore();
+
+        if (related || !focusNode) {
+          ctx.font = options.font;
+          nodes.slice(0, options.labelLimit).forEach((n) => {
+            if (activeNode) {
+              if (!related || !related.has(n.id)) return;
+            } else if (n.layout !== "page") {
+              return;
+            }
+            const label = n.label || "";
+            if (!label) return;
+            const text = label.length > options.labelMax ? label.slice(0, options.labelMax - 3) + "..." : label;
+            const screen = toScreen(n.x, n.y);
+            drawLabel(text, screen.x, screen.y, !!activeNode, options.emphasizeNode?.(n));
+          });
+        }
       };
 
       const animateFrame = () => {
@@ -842,7 +883,8 @@
       spring: 0.16,
       labelLimit: 140,
       labelMax: 30,
-      font: "600 12px/1.25 ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif",
+      font: "12px ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif",
+      emphasizeNode: isCategoryNode,
       centerOnCurrent: true,
       defaultScale: 2.0,
       minScale: 0.8,

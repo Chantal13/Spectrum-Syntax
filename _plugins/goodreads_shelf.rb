@@ -17,6 +17,7 @@ class GoodreadsShelfGenerator < Jekyll::Generator
     cache_dir = cfg.fetch('cache_dir', '.jekyll-cache/goodreads')
     cache_ttl = cfg.fetch('cache_ttl', 6 * 60 * 60).to_i
     cache_ttl = 0 if cache_ttl.negative?
+    cache = ResponseCache.new(site, cache_dir, cache_ttl)
 
     site.data['goodreads'] ||= {}
 
@@ -26,8 +27,7 @@ class GoodreadsShelfGenerator < Jekyll::Generator
       next unless url && !url.empty?
 
       begin
-        cache_path = cache_file_path(site, cache_dir, url)
-        xml = fetch_xml(url, cache_path, cache_ttl)
+        xml = cache.fetch(url) { fetch_remote_xml(url) }
         if xml.nil? || xml.strip.empty?
           Jekyll.logger.warn("Goodreads:", "Empty feed for '#{name}' shelf")
           site.data['goodreads'][name] ||= []
@@ -49,35 +49,8 @@ class GoodreadsShelfGenerator < Jekyll::Generator
     el&.text&.to_s&.strip
   end
 
-  def cache_file_path(site, cache_dir, url)
-    dir = if Pathname.new(cache_dir).absolute?
-            cache_dir
-          else
-            File.join(site.source, cache_dir)
-          end
-    File.join(dir, "#{Digest::SHA256.hexdigest(url)}.xml")
-  end
-
-  def read_cache(path, ttl)
-    return nil unless File.exist?(path)
-    return nil if ttl.positive? && (Time.now - File.mtime(path)) > ttl
-
-    File.read(path)
-  end
-
-  def fetch_xml(url, cache_path, ttl)
-    cached = read_cache(cache_path, ttl)
-    return cached if cached
-
-    xml = URI.open(url, read_timeout: 15).read
-    FileUtils.mkdir_p(File.dirname(cache_path))
-    File.write(cache_path, xml)
-    xml
-  rescue StandardError => e
-    return nil unless File.exist?(cache_path)
-
-    Jekyll.logger.warn("Goodreads:", "Fetch failed, using stale cache: #{e.class} #{e.message}")
-    File.read(cache_path)
+  def fetch_remote_xml(url)
+    URI.open(url, open_timeout: 10, read_timeout: 15).read
   end
 
   def text_at(item, path)
@@ -122,5 +95,91 @@ class GoodreadsShelfGenerator < Jekyll::Generator
       }
     end
     items
+  end
+
+  class ResponseCache
+    def initialize(site, cache_dir, ttl)
+      @cache_dir = resolve_cache_dir(site, cache_dir)
+      @ttl = ttl
+      @memory = {}
+    end
+
+    def fetch(url)
+      if (memory = memory_hit(url))
+        return memory
+      end
+
+      cache_path = file_path(url)
+      cached = read_cache(cache_path)
+      return cached if cached
+
+      fresh = yield
+      write_cache(cache_path, fresh)
+      fresh
+    rescue StandardError => e
+      stale = read_cache(cache_path, allow_expired: true)
+      if stale
+        Jekyll.logger.warn("Goodreads:", "Fetch failed, using stale cache: #{e.class} #{e.message}")
+        return stale
+      end
+
+      raise e
+    end
+
+    private
+
+    def resolve_cache_dir(site, cache_dir)
+      dir = if Pathname.new(cache_dir).absolute?
+              cache_dir
+            else
+              File.join(site.source, cache_dir)
+            end
+      FileUtils.mkdir_p(dir)
+      dir
+    end
+
+    def file_path(url)
+      File.join(@cache_dir, "#{Digest::SHA256.hexdigest(url)}.xml")
+    end
+
+    def write_cache(path, body)
+      File.write(path, body)
+      @memory[path] = { body: body, cached_at: Time.now }
+    end
+
+    def read_cache(path, allow_expired: false)
+      if fresh_memory_entry?(path, allow_expired)
+        return @memory[path][:body]
+      end
+
+      return nil unless File.exist?(path)
+      mtime = File.mtime(path)
+      return nil unless allow_expired || fresh?(mtime)
+
+      body = File.read(path)
+      @memory[path] = { body: body, cached_at: mtime }
+      body
+    end
+
+    def memory_hit(url)
+      path = file_path(url)
+      return unless fresh_memory_entry?(path, false)
+
+      @memory[path][:body]
+    end
+
+    def fresh_memory_entry?(path, allow_expired)
+      entry = @memory[path]
+      return false unless entry
+
+      allow_expired || fresh?(entry[:cached_at])
+    end
+
+    def fresh?(timestamp)
+      return true if @ttl.zero?
+      return false if @ttl.negative?
+
+      (Time.now - timestamp) <= @ttl
+    end
   end
 end
