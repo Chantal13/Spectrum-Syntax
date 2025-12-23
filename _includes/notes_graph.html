@@ -111,6 +111,8 @@
       };
     };
 
+    const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
     const seasonForDate = (dateStr) => {
       if (!dateStr) return null;
       const m = dateStr.toString().trim().match(/(\\d{4})-(\\d{2})-(\\d{2})/);
@@ -198,6 +200,15 @@
         x: 0,
         y: 0,
       };
+      const isSphereLayout = options.layout === "sphere";
+      const sphereState = {
+        radius: 0,
+        angleX: -0.18,
+        angleY: 0.24,
+        velocityX: 0.0024,
+        velocityY: -0.002,
+        spinHandle: null,
+      };
 
       const labelForNode = (node) => {
         const label = node.label || "";
@@ -228,6 +239,7 @@
       measureNodes();
 
       const initLayout = () => {
+        if (isSphereLayout) return;
         const width = graphCanvas.width / window.devicePixelRatio;
         const height = graphCanvas.height / window.devicePixelRatio;
         nodes.forEach((n) => {
@@ -318,6 +330,65 @@
         });
       };
 
+      const layoutSphere = () => {
+        const width = graphCanvas.width / window.devicePixelRatio;
+        const height = graphCanvas.height / window.devicePixelRatio;
+        const minDim = Math.min(width, height);
+        sphereState.radius = minDim * (options.sphereRadiusFactor || 0.38);
+        const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+
+        nodes.forEach((n, i) => {
+          const t = (i + 0.5) / Math.max(1, nodes.length);
+          const phi = Math.acos(1 - 2 * t);
+          const theta = goldenAngle * i;
+          const sinPhi = Math.sin(phi);
+          const cosPhi = Math.cos(phi);
+          const baseX = Math.cos(theta) * sinPhi * sphereState.radius;
+          const baseY = Math.sin(theta) * sinPhi * sphereState.radius;
+          const baseZ = cosPhi * sphereState.radius;
+          n.__sphere = { x: baseX, y: baseY, z: baseZ };
+          n.vx = 0;
+          n.vy = 0;
+        });
+      };
+
+      const projectSphere = () => {
+        if (!isSphereLayout) return;
+        const width = graphCanvas.width / window.devicePixelRatio;
+        const height = graphCanvas.height / window.devicePixelRatio;
+        const centerX = width / 2;
+        const centerY = height / 2;
+        const cosX = Math.cos(sphereState.angleX);
+        const sinX = Math.sin(sphereState.angleX);
+        const cosY = Math.cos(sphereState.angleY);
+        const sinY = Math.sin(sphereState.angleY);
+
+        nodes.forEach((n) => {
+          const base = n.__sphere || { x: 0, y: 0, z: 0 };
+          const x1 = base.x * cosY - base.z * sinY;
+          const z1 = base.x * sinY + base.z * cosY;
+          const y1 = base.y * cosX - z1 * sinX;
+          const z2 = base.y * sinX + z1 * cosX;
+          const perspective = 0.6 + (z2 / Math.max(1, sphereState.radius * 2));
+          const depthScale = clamp(perspective, 0.45, 1.25);
+          n.x = centerX + x1 * depthScale;
+          n.y = centerY + y1 * depthScale;
+          n.__depth = depthScale;
+        });
+      };
+
+      const spinSphere = () => {
+        if (!isSphereLayout) return;
+        if (sphereState.spinHandle) cancelAnimationFrame(sphereState.spinHandle);
+        const step = () => {
+          sphereState.angleX += sphereState.velocityX;
+          sphereState.angleY += sphereState.velocityY;
+          draw();
+          sphereState.spinHandle = requestAnimationFrame(step);
+        };
+        sphereState.spinHandle = requestAnimationFrame(step);
+      };
+
       const centerOnNode = (node, withZoom, immediate, scaleOverride) => {
         if (!node) return;
         const width = graphCanvas.width / window.devicePixelRatio;
@@ -397,13 +468,20 @@
           layoutRadial();
           fitToCanvas();
           centerOnCurrent();
+          draw();
+        } else if (isSphereLayout) {
+          layoutSphere();
+          projectSphere();
+          centerOnCurrent();
+          draw();
+          spinSphere();
         } else {
           initLayout();
           tick(60);
           fitToCanvas();
           centerOnCurrent();
+          draw();
         }
-        draw();
       };
 
       const toWorld = (x, y) => {
@@ -650,6 +728,7 @@
       const draw = () => {
         const width = graphCanvas.width / window.devicePixelRatio;
         const height = graphCanvas.height / window.devicePixelRatio;
+        if (isSphereLayout) projectSphere();
         ctx.clearRect(0, 0, width, height);
 
         const activeNode = hoverNode || focusNode;
@@ -678,17 +757,22 @@
         ctx.font = options.font;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        nodes.forEach((n) => {
+        const renderNodes = isSphereLayout
+          ? [...nodes].sort((a, b) => (a.__depth || 0) - (b.__depth || 0))
+          : nodes;
+
+        renderNodes.forEach((n) => {
           const isRelated = !related || related.has(n.id);
           const isFocused = focusNode && focusNode.id === n.id;
           const palette = tintedPalette(options.colorForNode(n));
-          const chipWidth = n.__chipWidth || options.nodeRadiusFor(n) * 3;
-          const chipHeight = n.__chipHeight || options.nodeRadiusFor(n) * 2.2;
-          const radius = n.__chipRadius || chipHeight / 2 + 6;
+          const depthScale = isSphereLayout ? n.__depth || 1 : 1;
+          const chipWidth = (n.__chipWidth || options.nodeRadiusFor(n) * 3) * depthScale;
+          const chipHeight = (n.__chipHeight || options.nodeRadiusFor(n) * 2.2) * depthScale;
+          const radius = (n.__chipRadius || chipHeight / 2 + 6) * depthScale;
           const label = n.__label || labelForNode(n);
 
-          ctx.globalAlpha = isRelated ? 1 : 0.24;
-          ctx.lineWidth = 1.6 / camera.scale;
+          ctx.globalAlpha = isRelated ? Math.min(1, 0.6 + depthScale * 0.6) : 0.18;
+          ctx.lineWidth = (1.6 / camera.scale) * clamp(depthScale, 0.7, 1.6);
           ctx.beginPath();
           drawRoundedRect(n.x - chipWidth / 2, n.y - chipHeight / 2, chipWidth, chipHeight, radius);
           ctx.fillStyle = palette.fill;
@@ -774,6 +858,14 @@
           hoverNode = hit;
           draw();
         }
+        if (isSphereLayout && !isDragging) {
+          const width = graphCanvas.width / window.devicePixelRatio;
+          const height = graphCanvas.height / window.devicePixelRatio;
+          const normX = x / Math.max(1, width);
+          const normY = y / Math.max(1, height);
+          sphereState.velocityY = clamp((normX - 0.5) * 0.06, -0.05, 0.05);
+          sphereState.velocityX = clamp(-(normY - 0.5) * 0.06, -0.05, 0.05);
+        }
       });
 
       graphWrapper.addEventListener("mouseup", () => {
@@ -797,6 +889,10 @@
         hoverNode = null;
         didDrag = false;
         dragClickGuard = false;
+        if (isSphereLayout) {
+          sphereState.velocityX *= 0.4;
+          sphereState.velocityY *= 0.4;
+        }
         draw();
       });
 
@@ -879,34 +975,34 @@
 
     buildGraph(wrapper, canvas, data, {
       nodeRadius: 5,
-      repulsion: 200,
-      spring: 0.16,
+      repulsion: 180,
+      spring: 0.12,
       labelLimit: 140,
       labelMax: 30,
       font: "11px ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif",
       emphasizeNode: isCategoryNode,
       centerOnCurrent: true,
-      defaultScale: 2.0,
-      minScale: 0.8,
-      maxScale: 2.6,
-      enablePan: true,
+      defaultScale: 1.0,
+      minScale: 0.9,
+      maxScale: 1.6,
+      enablePan: false,
       enableZoom: true,
       roundness: 0,
-      sphereRadiusFactor: 1.0,
+      sphereRadiusFactor: 0.46,
       sphereStrength: 0,
       interGroupRepulsion: 0,
       clusterPull: 0,
       groupKey: null,
-      linkStrength: 2.0,
+      linkStrength: 1.8,
       focusLinkDistanceFactor: 0.55,
       focusLinkStrength: 1.8,
       focusLinkRepulsionFactor: 0.4,
-      layout: "force",
+      layout: "sphere",
       colorForNode,
       chipPaddingX: 10,
       chipPaddingY: 5,
       nodeRadiusFor: (n) => {
-        const base = n.layout === "page" ? 5 : 3.5;
+        const base = n.layout === "page" ? 5.5 : 3.8;
         const boost = Math.sqrt(n.degree || 0) * 1.0;
         return base + boost;
       },
@@ -914,22 +1010,23 @@
 
     buildGraph(tagWrapper, tagCanvas, tagGraphData, {
       nodeRadius: 7,
-      repulsion: 220,
+      repulsion: 200,
       spring: 0.02,
       labelLimit: 180,
       labelMax: 24,
       font: "600 11px/1.25 ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif",
       centerOnCurrent: false,
-      defaultScale: 1.4,
-      minScale: 0.8,
-      maxScale: 2.2,
-      enablePan: true,
+      defaultScale: 1.0,
+      minScale: 0.9,
+      maxScale: 1.6,
+      enablePan: false,
       enableZoom: true,
       roundness: 0,
-      interGroupRepulsion: 160,
-      clusterPull: 0.003,
+      interGroupRepulsion: 0,
+      clusterPull: 0,
       groupKey: (n) => n.type || "tag",
-      layout: "force",
+      layout: "sphere",
+      sphereRadiusFactor: 0.52,
       colorForNode: (n) => (n.type === "tag" ? colours.notes : colours.page),
       chipPaddingX: 10,
       chipPaddingY: 5,
