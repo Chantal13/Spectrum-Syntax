@@ -4,29 +4,37 @@ title: Tags
 summary: Tag index that groups notes by topic.
 permalink: /tags/
 ---
-{%- assign tag_list = "" -%}
 {%- assign tagged_docs = site.notes | where_exp: "n", "n.tags != nil" -%}
-{%- for doc in tagged_docs -%}
-  {%- for tag in doc.tags -%}
-    {%- assign tag_list = tag_list | append: tag | append: "," -%}
-  {%- endfor -%}
-{%- endfor -%}
-{%- assign tags = tag_list | split: "," | uniq | sort -%}
+{%- assign tag_graph = tagged_docs | build_note_tag_graph -%}
+{%- assign tag_nodes = tag_graph["tag_nodes"] -%}
 
-<p>Tags across notes.</p>
-
-{% for tag in tags %}
-  {%- assign tag_name = tag | downcase -%}
-  {%- if tag_name != "" -%}
-  <section id="{{ tag_name | slugify }}">
-    <h2>#{{ tag_name }}</h2>
-    <ul>
-      {%- for doc in tagged_docs -%}
-        {%- if doc.tags contains tag -%}
-        <li><a class="internal-link" href="{{ doc.url | relative_url }}">{{ doc.title }}</a></li>
-        {%- endif -%}
-      {%- endfor -%}
-    </ul>
-  </section>
+{%- assign max_count = 0 -%}
+{%- for tag in tag_nodes -%}
+  {%- if tag.count > max_count -%}
+    {%- assign max_count = tag.count -%}
   {%- endif -%}
+{%- endfor -%}
+{%- if max_count == 0 -%}
+  {%- assign max_count = 1 -%}
+{%- endif -%}
+
+{%- assign tag_groups = tag_nodes | group_by: "root" | sort: "name" -%}
+
+<p>Tags across notes, sized by how often they appear (including nested tags).</p>
+
+{% for group in tag_groups %}
+  <section class="tag-group" id="{{ group.name | slugify }}">
+    <h2>{{ group.name }}</h2>
+    <div class="tag-cloud">
+      {%- assign sorted_tags = group.items | sort_natural: "full_label" -%}
+      {%- for tag in sorted_tags -%}
+        {%- assign weight = tag.count | times: 1.0 | divided_by: max_count -%}
+        <a class="tag-chip" id="{{ tag.slug }}" href="{{ tag.path }}" style="--tag-weight: {{ weight | default: 0 }};">
+          {{ tag.full_label }}
+          <span class="tag-chip__count" aria-hidden="true">{{ tag.count }}</span>
+          <span class="sr-only">({{ tag.count }} uses)</span>
+        </a>
+      {%- endfor -%}
+    </div>
+  </section>
 {% endfor %}

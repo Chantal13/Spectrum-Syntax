@@ -56,6 +56,7 @@ GEM
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    logger (1.7.0)
     mercenary (0.4.0)
     mini_portile2 (2.8.9)
     minitest (5.25.5)
@@ -66,6 +67,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.9-arm-linux-musl)
       racc (~> 1.4)
+    ostruct (0.6.3)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
     public_suffix (6.0.1)
@@ -116,8 +118,10 @@ DEPENDENCIES
   jekyll-redirect-from (~> 0.16)
   jekyll-sass-converter (~> 3.0)
   json (>= 2.9.2)
+  logger (~> 1.6)
   minitest (~> 5.20)
   nokogiri
+  ostruct (~> 0.6)
   sass-embedded (~> 1.71.1)
   webrick (~> 1.9)
 
