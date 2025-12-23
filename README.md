@@ -59,7 +59,7 @@ bundle exec rake webp
 ruby scripts/check_assets.rb
 
 # Streamlined git workflow
-python3 git_push.py -m "Your commit message"
+python3 scripts/git_push.py -m "Your commit message"
 ```
 
 ## License

@@ -155,7 +155,7 @@ Host github.com
 
 Force IPv4 in git_push.py:
 ```bash
-python3 git_push.py --force-ipv4 -m "Update"
+python3 scripts/git_push.py --force-ipv4 -m "Update"
 ```
 
 Or configure SSH to prefer IPv4:

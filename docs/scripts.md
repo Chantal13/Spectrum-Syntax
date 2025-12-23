@@ -109,13 +109,13 @@ scripts/changes_summary.sh HEAD~5 HEAD
 
 ## Git Workflow
 
-### `git_push.py`
+### `scripts/git_push.py`
 
 Helper script for staging, committing, rebasing, and pushing.
 
 **Basic usage:**
 ```bash
-python3 git_push.py -m "Commit message"
+python3 scripts/git_push.py -m "Commit message"
 ```
 
 **Options:**
@@ -129,13 +129,13 @@ python3 git_push.py -m "Commit message"
 **Examples:**
 ```bash
 # Standard push
-python3 git_push.py -m "Update documentation"
+python3 scripts/git_push.py -m "Update documentation"
 
 # Rebase with autostash
-python3 git_push.py --rebase-flow --autostash -m "Fix bug"
+python3 scripts/git_push.py --rebase-flow --autostash -m "Fix bug"
 
 # Custom remote/branch
-python3 git_push.py --remote upstream --branch develop -m "Merge changes"
+python3 scripts/git_push.py --remote upstream --branch develop -m "Merge changes"
 ```
 
 **Features:**

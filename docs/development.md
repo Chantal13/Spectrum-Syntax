@@ -100,7 +100,7 @@ Use the repository's helper script for a streamlined push workflow:
 ### Basic Usage
 
 ```bash
-python3 git_push.py -m "Update"
+python3 scripts/git_push.py -m "Update"
 ```
 
 This will:
@@ -114,12 +114,12 @@ This will:
 
 Rebase flow with autostash:
 ```bash
-python3 git_push.py --rebase-flow --autostash -m "Refactor navigation"
+python3 scripts/git_push.py --rebase-flow --autostash -m "Refactor navigation"
 ```
 
 Override remote/branch:
 ```bash
-python3 git_push.py --remote origin --branch main -m "Sync"
+python3 scripts/git_push.py --remote origin --branch main -m "Sync"
 ```
 
 ### Network Configuration
@@ -128,12 +128,12 @@ By default, the script prefers IPv4 for SSH to reduce iCloud Private Relay/IPv6 
 
 Force IPv4 explicitly:
 ```bash
-python3 git_push.py --force-ipv4
+python3 scripts/git_push.py --force-ipv4
 ```
 
 Force IPv6 explicitly:
 ```bash
-python3 git_push.py --force-ipv6
+python3 scripts/git_push.py --force-ipv6
 ```
 
 ### GitHub + iCloud Private Relay
