@@ -16,10 +16,10 @@ module Jekyll
 
         note_id = Jekyll::Utils.slugify(doc.url.to_s)
         note_nodes[note_id] ||= {
-          id: "note-#{note_id}",
-          label: doc.data["title"] || doc.basename_without_ext,
-          path: relative_path(doc.url, site),
-          type: "note"
+          "id" => "note-#{note_id}",
+          "label" => doc.data["title"] || doc.basename_without_ext,
+          "path" => relative_path(doc.url, site),
+          "type" => "note"
         }
 
         Array(doc.data["tags"]).compact.each do |tag|
@@ -34,16 +34,16 @@ module Jekyll
             slug = Jekyll::Utils.slugify(current)
 
             node = tag_nodes[slug] ||= {
-              slug: slug,
-              id: "tag-#{slug}",
-              label: "##{part}",
-              full_label: current,
-              root: tag_root,
-              count: 0,
-              path: "#{tags_root}##{slug}",
-              type: "tag"
+              "slug" => slug,
+              "id" => "tag-#{slug}",
+              "label" => "##{part}",
+              "full_label" => current,
+              "root" => tag_root,
+              "count" => 0,
+              "path" => "#{tags_root}##{slug}",
+              "type" => "tag"
             }
-            node[:count] += 1
+            node["count"] += 1
 
             if parent
               parent_slug = Jekyll::Utils.slugify(parent)
@@ -61,10 +61,10 @@ module Jekyll
       max_tag_count = max_tags.to_i
       max_tag_count = nil if max_tag_count <= 0
 
-      sorted_tags = tag_nodes.values.sort_by { |node| [-node[:count], node[:label].downcase] }
+      sorted_tags = tag_nodes.values.sort_by { |node| [-node["count"], node["label"].downcase] }
       sorted_tags = sorted_tags.first(max_tag_count) if max_tag_count
 
-      allowed_slugs = sorted_tags.map { |node| node[:slug] }.to_set
+      allowed_slugs = sorted_tags.map { |node| node["slug"] }.to_set
 
       filtered_tag_edges = tag_edges
                            .select { |parent, child| allowed_slugs.include?(parent) && allowed_slugs.include?(child) }

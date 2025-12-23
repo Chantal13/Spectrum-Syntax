@@ -28,7 +28,7 @@ permalink: /tags/
     <div class="tag-cloud">
       {%- assign sorted_tags = group.items | sort_natural: "full_label" -%}
       {%- for tag in sorted_tags -%}
-        {%- assign weight = (tag.count | times: 1.0) | divided_by: max_count -%}
+        {%- assign weight = tag.count | times: 1.0 | divided_by: max_count -%}
         <a class="tag-chip" id="{{ tag.slug }}" href="{{ tag.path }}" style="--tag-weight: {{ weight | default: 0 }};">
           {{ tag.full_label }}
           <span class="tag-chip__count" aria-hidden="true">{{ tag.count }}</span>
