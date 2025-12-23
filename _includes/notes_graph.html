@@ -205,8 +205,12 @@
         radius: 0,
         angleX: -0.18,
         angleY: 0.24,
-        velocityX: 0.0024,
-        velocityY: -0.002,
+        velocityX: 0.0009,
+        velocityY: -0.00078,
+        targetVX: 0.0009,
+        targetVY: -0.00078,
+        wobbleAmp: 0.00018,
+        hovering: false,
         spinHandle: null,
       };
 
@@ -381,8 +385,13 @@
         if (!isSphereLayout) return;
         if (sphereState.spinHandle) cancelAnimationFrame(sphereState.spinHandle);
         const step = () => {
-          sphereState.angleX += sphereState.velocityX;
-          sphereState.angleY += sphereState.velocityY;
+          const now = performance.now();
+          sphereState.velocityX += (sphereState.targetVX - sphereState.velocityX) * 0.12;
+          sphereState.velocityY += (sphereState.targetVY - sphereState.velocityY) * 0.12;
+          const wobbleX = sphereState.hovering ? Math.sin(now * 0.0012) * sphereState.wobbleAmp : 0;
+          const wobbleY = sphereState.hovering ? Math.cos(now * 0.001) * sphereState.wobbleAmp : 0;
+          sphereState.angleX += sphereState.velocityX + wobbleX;
+          sphereState.angleY += sphereState.velocityY + wobbleY;
           draw();
           sphereState.spinHandle = requestAnimationFrame(step);
         };
@@ -863,8 +872,9 @@
           const height = graphCanvas.height / window.devicePixelRatio;
           const normX = x / Math.max(1, width);
           const normY = y / Math.max(1, height);
-          sphereState.velocityY = clamp((normX - 0.5) * 0.06, -0.05, 0.05);
-          sphereState.velocityX = clamp(-(normY - 0.5) * 0.06, -0.05, 0.05);
+          const targetScale = sphereState.hovering ? 0.003 : 0.009;
+          sphereState.targetVY = clamp((normX - 0.5) * targetScale, -targetScale, targetScale);
+          sphereState.targetVX = clamp(-(normY - 0.5) * targetScale, -targetScale, targetScale);
         }
       });
 
@@ -890,10 +900,19 @@
         didDrag = false;
         dragClickGuard = false;
         if (isSphereLayout) {
-          sphereState.velocityX *= 0.4;
-          sphereState.velocityY *= 0.4;
+          sphereState.hovering = false;
+          sphereState.targetVX = 0.0009;
+          sphereState.targetVY = -0.00078;
         }
         draw();
+      });
+
+      graphWrapper.addEventListener("mouseenter", () => {
+        if (isSphereLayout) {
+          sphereState.hovering = true;
+          sphereState.targetVX = 0.00012;
+          sphereState.targetVY = -0.0001;
+        }
       });
 
       graphWrapper.addEventListener("click", (event) => {
@@ -982,13 +1001,13 @@
       font: "11px ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif",
       emphasizeNode: isCategoryNode,
       centerOnCurrent: true,
-      defaultScale: 1.0,
-      minScale: 0.9,
-      maxScale: 1.6,
+      defaultScale: 1.18,
+      minScale: 1.0,
+      maxScale: 1.8,
       enablePan: false,
       enableZoom: true,
       roundness: 0,
-      sphereRadiusFactor: 0.46,
+      sphereRadiusFactor: 0.54,
       sphereStrength: 0,
       interGroupRepulsion: 0,
       clusterPull: 0,
@@ -1016,9 +1035,9 @@
       labelMax: 24,
       font: "600 11px/1.25 ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif",
       centerOnCurrent: false,
-      defaultScale: 1.0,
-      minScale: 0.9,
-      maxScale: 1.6,
+      defaultScale: 1.16,
+      minScale: 1.0,
+      maxScale: 1.8,
       enablePan: false,
       enableZoom: true,
       roundness: 0,
@@ -1026,7 +1045,7 @@
       clusterPull: 0,
       groupKey: (n) => n.type || "tag",
       layout: "sphere",
-      sphereRadiusFactor: 0.52,
+      sphereRadiusFactor: 0.58,
       colorForNode: (n) => (n.type === "tag" ? colours.notes : colours.page),
       chipPaddingX: 10,
       chipPaddingY: 5,
