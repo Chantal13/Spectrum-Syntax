@@ -75,6 +75,8 @@
       text: readCssVar("--graph-text", "#353b3c"),
       textMuted: readCssVar("--graph-text-muted", "rgba(53, 59, 60, 0.6)"),
       highlight: readCssVar("--graph-highlight", "#ffffff"),
+      labelBg: readCssVar("--graph-label-bg", "rgba(8, 9, 14, 0.72)"),
+      labelBorder: readCssVar("--graph-label-border", "rgba(255, 255, 255, 0.14)"),
     };
 
     const seasonForDate = (dateStr) => {
@@ -465,13 +467,57 @@
       const getRelatedSet = (node) => {
         if (!node) return null;
         const related = new Set([node.id]);
-        links.forEach((l) => {
-          const source = l.source;
-          const target = l.target;
-          if (source === node.id) related.add(target);
-          if (target === node.id) related.add(source);
-        });
-        return related;
+      links.forEach((l) => {
+        const source = l.source;
+        const target = l.target;
+        if (source === node.id) related.add(target);
+        if (target === node.id) related.add(source);
+      });
+      return related;
+    };
+
+      const drawRoundedRect = (x, y, w, h, r) => {
+        ctx.beginPath();
+        if (ctx.roundRect) {
+          ctx.roundRect(x, y, w, h, r);
+          return;
+        }
+        const radius = Math.max(0, Math.min(r, Math.min(w, h) / 2));
+        ctx.moveTo(x + radius, y);
+        ctx.lineTo(x + w - radius, y);
+        ctx.quadraticCurveTo(x + w, y, x + w, y + radius);
+        ctx.lineTo(x + w, y + h - radius);
+        ctx.quadraticCurveTo(x + w, y + h, x + w - radius, y + h);
+        ctx.lineTo(x + radius, y + h);
+        ctx.quadraticCurveTo(x, y + h, x, y + h - radius);
+        ctx.lineTo(x, y + radius);
+        ctx.quadraticCurveTo(x, y, x + radius, y);
+      };
+
+      const drawLabel = (text, screenX, screenY, isActive) => {
+        const paddingX = 8;
+        const paddingY = 5;
+        const metrics = ctx.measureText(text);
+        const ascent = metrics.actualBoundingBoxAscent || 10;
+        const descent = metrics.actualBoundingBoxDescent || 2;
+        const textHeight = ascent + descent;
+        const boxWidth = metrics.width + paddingX * 2;
+        const boxHeight = textHeight + paddingY * 2;
+        const labelX = screenX + 10;
+        const labelY = Math.max(8, screenY - boxHeight - 6);
+
+        ctx.save();
+        ctx.textBaseline = "top";
+        ctx.globalAlpha = isActive ? 0.98 : 0.82;
+        ctx.fillStyle = colours.labelBg;
+        ctx.strokeStyle = colours.labelBorder;
+        ctx.lineWidth = 1;
+        drawRoundedRect(labelX, labelY, boxWidth, boxHeight, 8);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = colours.textMuted;
+        ctx.fillText(text, labelX + paddingX, labelY + paddingY);
+        ctx.restore();
       };
 
       const draw = () => {
@@ -529,7 +575,6 @@
 
         if (related || !focusNode) {
           ctx.font = options.font;
-          ctx.fillStyle = colours.textMuted;
           nodes.slice(0, options.labelLimit).forEach((n) => {
             if (activeNode) {
               if (!related || !related.has(n.id)) return;
@@ -540,9 +585,7 @@
             if (!label) return;
             const text = label.length > options.labelMax ? label.slice(0, options.labelMax - 3) + "..." : label;
             const screen = toScreen(n.x, n.y);
-            const screenX = screen.x;
-            const screenY = screen.y;
-            ctx.fillText(text, screenX + 8, screenY - 8);
+            drawLabel(text, screen.x, screen.y, !!activeNode);
           });
         }
       };
