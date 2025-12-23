@@ -79,6 +79,38 @@
       labelBorder: readCssVar("--graph-label-border", "rgba(255, 255, 255, 0.14)"),
     };
 
+    const hexToRgb = (hex) => {
+      if (!hex) return null;
+      const normalized = hex.trim().replace("#", "");
+      const chunk = normalized.length === 3
+        ? normalized.split("").map((c) => c + c).join("")
+        : normalized;
+      if (chunk.length !== 6) return null;
+      const intVal = parseInt(chunk, 16);
+      if (Number.isNaN(intVal)) return null;
+      return {
+        r: (intVal >> 16) & 255,
+        g: (intVal >> 8) & 255,
+        b: intVal & 255,
+      };
+    };
+
+    const tintedPalette = (hex, opacity = 0.16) => {
+      const rgb = hexToRgb(hex);
+      if (!rgb) {
+        return {
+          fill: "rgba(0, 0, 0, 0.05)",
+          stroke: colours.link,
+          text: colours.text,
+        };
+      }
+      return {
+        fill: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`,
+        stroke: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.55)`,
+        text: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.9)`,
+      };
+    };
+
     const seasonForDate = (dateStr) => {
       if (!dateStr) return null;
       const m = dateStr.toString().trim().match(/(\\d{4})-(\\d{2})-(\\d{2})/);
@@ -134,6 +166,7 @@
       let focusNode = null;
       let isDragging = false;
       let didDrag = false;
+      let dragClickGuard = false;
       let lastDrag = null;
       let isAnimating = false;
       let animStart = 0;
@@ -143,6 +176,34 @@
         scale: options.defaultScale,
         x: 0,
         y: 0,
+      };
+
+      measureNodes();
+
+      const labelForNode = (node) => {
+        const label = node.label || "";
+        if (!label) return "";
+        const max = options.labelMax || 32;
+        return label.length > max ? `${label.slice(0, max - 3)}...` : label;
+      };
+
+      const measureNodes = () => {
+        ctx.save();
+        ctx.font = options.font;
+        nodes.forEach((n) => {
+          const label = labelForNode(n);
+          const metrics = ctx.measureText(label);
+          const ascent = metrics.actualBoundingBoxAscent || 10;
+          const descent = metrics.actualBoundingBoxDescent || 3;
+          const textHeight = ascent + descent;
+          const paddingX = options.chipPaddingX || 10;
+          const paddingY = options.chipPaddingY || 6;
+          n.__label = label;
+          n.__chipWidth = metrics.width + paddingX * 2;
+          n.__chipHeight = textHeight + paddingY * 2;
+          n.__chipRadius = Math.max(10, n.__chipHeight / 2 + 6);
+        });
+        ctx.restore();
       };
 
       const initLayout = () => {
@@ -340,12 +401,14 @@
 
       const hitTest = (x, y) => {
         const point = toWorld(x, y);
-        const radius = options.nodeRadius + 3;
+        const fallbackRadius = options.nodeRadius + 3;
         for (let i = nodes.length - 1; i >= 0; i -= 1) {
           const n = nodes[i];
           const dx = point.x - n.x;
           const dy = point.y - n.y;
-          if (dx * dx + dy * dy <= radius * radius) return n;
+          const halfW = (n.__chipWidth || fallbackRadius * 2) / 2;
+          const halfH = (n.__chipHeight || fallbackRadius * 2) / 2;
+          if (Math.abs(dx) <= halfW && Math.abs(dy) <= halfH) return n;
         }
         return null;
       };
@@ -587,46 +650,42 @@
           });
         }
 
+        ctx.font = options.font;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
         nodes.forEach((n) => {
           const isRelated = !related || related.has(n.id);
           const isFocused = focusNode && focusNode.id === n.id;
-          ctx.globalAlpha = isRelated ? 1 : 0.25;
+          const palette = tintedPalette(options.colorForNode(n));
+          const chipWidth = n.__chipWidth || options.nodeRadiusFor(n) * 3;
+          const chipHeight = n.__chipHeight || options.nodeRadiusFor(n) * 2.2;
+          const radius = n.__chipRadius || chipHeight / 2 + 6;
+          const label = n.__label || labelForNode(n);
+
+          ctx.globalAlpha = isRelated ? 1 : 0.24;
+          ctx.lineWidth = 1.6 / camera.scale;
           ctx.beginPath();
-          ctx.fillStyle = options.colorForNode(n);
-          if (isFocused) {
-            ctx.shadowColor = colours.highlight;
-            ctx.shadowBlur = 8 / camera.scale;
-          } else {
-            ctx.shadowBlur = 0;
-          }
-          ctx.arc(n.x, n.y, options.nodeRadiusFor(n) / camera.scale, 0, Math.PI * 2);
+          drawRoundedRect(n.x - chipWidth / 2, n.y - chipHeight / 2, chipWidth, chipHeight, radius);
+          ctx.fillStyle = palette.fill;
+          ctx.strokeStyle = palette.stroke;
           ctx.fill();
-          ctx.shadowBlur = 0;
-          if (hoverNode && hoverNode.id === n.id) {
+          ctx.stroke();
+
+          if (isFocused || (hoverNode && hoverNode.id === n.id)) {
             ctx.strokeStyle = colours.highlight;
-            ctx.lineWidth = 2 / camera.scale;
+            ctx.lineWidth = (isFocused ? 2.2 : 1.8) / camera.scale;
             ctx.stroke();
           }
+
+          ctx.fillStyle = palette.text;
+          ctx.shadowColor = isFocused ? colours.highlight : "transparent";
+          ctx.shadowBlur = isFocused ? 10 / camera.scale : 0;
+          ctx.fillText(label, n.x, n.y);
+          ctx.shadowBlur = 0;
         });
         ctx.globalAlpha = 1;
 
         ctx.restore();
-
-        if (related || !focusNode) {
-          ctx.font = options.font;
-          nodes.slice(0, options.labelLimit).forEach((n) => {
-            if (activeNode) {
-              if (!related || !related.has(n.id)) return;
-            } else if (n.layout !== "page") {
-              return;
-            }
-            const label = n.label || "";
-            if (!label) return;
-            const text = label.length > options.labelMax ? label.slice(0, options.labelMax - 3) + "..." : label;
-            const screen = toScreen(n.x, n.y);
-            drawLabel(text, screen.x, screen.y, !!activeNode);
-          });
-        }
       };
 
       const animateFrame = () => {
@@ -651,6 +710,7 @@
         isDragging = true;
         didDrag = false;
         lastDrag = { x: event.clientX, y: event.clientY };
+        dragClickGuard = false;
       });
 
       graphWrapper.addEventListener("mousemove", (event) => {
@@ -664,6 +724,7 @@
           camera.y += dy;
           lastDrag = { x: event.clientX, y: event.clientY };
           didDrag = true;
+          dragClickGuard = true;
           draw();
           return;
         }
@@ -685,6 +746,7 @@
             requestAnimationFrame(animateFrame);
           }
         }
+        dragClickGuard = didDrag;
         didDrag = false;
       });
 
@@ -693,15 +755,23 @@
         lastDrag = null;
         hoverNode = null;
         didDrag = false;
+        dragClickGuard = false;
         draw();
       });
 
       graphWrapper.addEventListener("click", (event) => {
         const rect = graphCanvas.getBoundingClientRect();
+        const skipClick = dragClickGuard;
+        dragClickGuard = false;
+        if (skipClick) return;
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         const hit = hitTest(x, y);
         if (hit) {
+          if (!didDrag && hit.path) {
+            window.location.href = hit.path;
+            return;
+          }
           focusNode = hit;
           centerOnNode(hit, true, false);
           requestAnimationFrame(animateFrame);
@@ -772,7 +842,7 @@
       spring: 0.16,
       labelLimit: 140,
       labelMax: 30,
-      font: "12px ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif",
+      font: "600 12px/1.25 ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif",
       centerOnCurrent: true,
       defaultScale: 2.0,
       minScale: 0.8,
@@ -791,6 +861,8 @@
       focusLinkRepulsionFactor: 0.4,
       layout: "force",
       colorForNode,
+      chipPaddingX: 12,
+      chipPaddingY: 7,
       nodeRadiusFor: (n) => {
         const base = n.layout === "page" ? 6 : 4;
         const boost = Math.sqrt(n.degree || 0) * 1.2;
@@ -804,7 +876,7 @@
       spring: 0.02,
       labelLimit: 180,
       labelMax: 24,
-      font: "12px ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif",
+      font: "600 12px/1.25 ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif",
       centerOnCurrent: false,
       defaultScale: 1.4,
       minScale: 0.8,
@@ -817,6 +889,8 @@
       groupKey: (n) => n.type || "tag",
       layout: "force",
       colorForNode: (n) => (n.type === "tag" ? colours.notes : colours.page),
+      chipPaddingX: 12,
+      chipPaddingY: 7,
       nodeRadiusFor: (n) => (n.type === "tag" ? Math.min(12, 5 + (n.count || 1) * 0.35) : 4),
     });
   })();
