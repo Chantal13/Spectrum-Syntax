@@ -28,6 +28,8 @@ Generates `.webp` variants for images under `assets/rocks/` and `assets/tumbling
 python3 scripts/make_webp.py
 # OR via Rake:
 bundle exec rake webp
+# OR via Make:
+make webp
 ```
 
 **Requirements:**
@@ -35,9 +37,17 @@ bundle exec rake webp
 - Pillow (`pip3 install Pillow`)
 
 **Features:**
+- **Intelligent caching** - Tracks processed files in `.webp-cache.json`
+- **Blazing fast** - < 5 seconds on repeat runs with no changes
+- **Smart detection** - Uses modification time + file size to detect changes
+- **Progress indicator** - Shows conversion progress for large batches
 - Safe to run repeatedly
-- Only converts new or changed files
-- Maintains original image quality
+- Maintains original image quality (quality=78, method=6)
+
+**Performance:**
+- First run: Processes all images
+- Subsequent runs with no changes: < 5 seconds (cache hit)
+- Only new/changed images are converted
 
 ---
 

@@ -40,6 +40,8 @@ To host the site elsewhere:
 
 Run before building:
 ```bash
+make webp
+# OR
 bundle exec rake webp
 ```
 
@@ -51,7 +53,13 @@ This generates `.webp` variants for images under:
 - Python 3
 - Pillow (`pip3 install Pillow`)
 
-**Note:** Safe to run repeatedly; only converts new/changed files.
+**Intelligent Caching:**
+- Uses `.webp-cache.json` to track processed files
+- Only converts new or changed images (based on modification time + file size)
+- First run: Processes all images (~same time as before)
+- Subsequent runs: < 5 seconds when no changes
+- Progress indicator shows conversion status
+- Cache file automatically managed (in `.gitignore`)
 
 ### Netlify Build
 

@@ -63,6 +63,8 @@ python3 scripts/check_webp_siblings.py
 python3 scripts/make_webp.py
 # OR via Rake:
 bundle exec rake webp
+# OR via Make:
+make webp
 ```
 
 **Requirements:**
@@ -70,9 +72,22 @@ bundle exec rake webp
 - Pillow library (`pip3 install Pillow`)
 
 **Features:**
+- **Intelligent caching** - Uses `.webp-cache.json` to track processed files
+- **Blazing fast** - < 5 seconds on subsequent runs when no changes
+- **Smart detection** - Compares modification time + file size
+- **Progress indicator** - Shows real-time conversion progress
 - Idempotent - safe to run repeatedly
-- Skips unchanged images
 - Non-fatal if Pillow unavailable
+
+**Performance:**
+- First run: Processes all images (~same time as before)
+- Subsequent runs with no changes: < 5 seconds (cache hit)
+- Only converts new or modified images
+
+**Cache management:**
+- Cache stored in `.webp-cache.json` (in `.gitignore`)
+- Automatically created and updated
+- Safe to delete - will rebuild on next run
 
 **When to use:**
 - After adding new images

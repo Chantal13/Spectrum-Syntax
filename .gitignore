@@ -36,3 +36,6 @@ preview/
 __pycache__/
 *.py[cod]
 .pytest_cache/
+
+# WebP generation cache
+.webp-cache.json
