@@ -700,14 +700,14 @@
       const getRelatedSet = (node) => {
         if (!node) return null;
         const related = new Set([node.id]);
-      links.forEach((l) => {
-        const source = l.source;
-        const target = l.target;
-        if (source === node.id) related.add(target);
-        if (target === node.id) related.add(source);
-      });
-      return related;
-    };
+        links.forEach((l) => {
+          const source = l.source;
+          const target = l.target;
+          if (source === node.id) related.add(target);
+          if (target === node.id) related.add(source);
+        });
+        return related;
+      };
 
       const drawRoundedRect = (x, y, w, h, r) => {
         ctx.beginPath();
@@ -792,14 +792,14 @@
           });
         }
 
-          ctx.font = weightedFontForNode(n);
-          ctx.textAlign = "center";
-          ctx.textBaseline = "middle";
         const renderNodes = isSphereLayout
           ? [...nodes].sort((a, b) => (a.__depth || 0) - (b.__depth || 0))
           : nodes;
 
         renderNodes.forEach((n) => {
+          ctx.font = weightedFontForNode(n);
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
           const isRelated = !related || related.has(n.id);
           const isFocused = focusNode && focusNode.id === n.id;
           const palette = tintedPalette(options.colorForNode(n));
