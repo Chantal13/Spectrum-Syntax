@@ -4,7 +4,7 @@ require 'tmpdir'
 require 'fileutils'
 require 'ostruct'
 require 'jekyll'
-require_relative '../_plugins/bidirectional_links_generator'
+require_relative '../../_plugins/bidirectional_links_generator'
 
 class BidirectionalLinksGeneratorTest < Minitest::Test
   class FakeDoc

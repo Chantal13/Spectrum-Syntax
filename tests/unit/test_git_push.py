@@ -4,7 +4,9 @@ import sys
 
 import pytest
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+# Add scripts directory to path to import git_push
+scripts_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'scripts')
+sys.path.insert(0, scripts_dir)
 
 import git_push
 
