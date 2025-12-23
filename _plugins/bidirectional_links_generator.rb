@@ -163,8 +163,12 @@ class BidirectionalLinksGenerator < Jekyll::Generator
       edge_set.add(key)
     end
 
-    FileUtils.mkdir_p("_includes")
-    File.write("_includes/notes_graph.json", JSON.dump({ edges: graph_edges, nodes: graph_nodes }))
+    graph_path = site.config["notes_graph_path"] || "_includes/notes_graph.json"
+    source_root = site.respond_to?(:source) && site.source ? site.source : Dir.pwd
+    graph_abs = graph_path.start_with?("/") ? graph_path : File.expand_path(graph_path, source_root)
+
+    FileUtils.mkdir_p(File.dirname(graph_abs))
+    File.write(graph_abs, JSON.dump({ edges: graph_edges, nodes: graph_nodes }))
   end
 
   def note_id_from_note(note)
