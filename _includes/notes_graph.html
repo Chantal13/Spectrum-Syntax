@@ -199,8 +199,6 @@
         y: 0,
       };
 
-      measureNodes();
-
       const labelForNode = (node) => {
         const label = node.label || "";
         if (!label) return "";
@@ -226,6 +224,8 @@
         });
         ctx.restore();
       };
+
+      measureNodes();
 
       const initLayout = () => {
         const width = graphCanvas.width / window.devicePixelRatio;
