@@ -1,83 +1,15 @@
-{%- assign tag_list = "" -%}
 {%- assign tagged_docs = site.notes | where_exp: "n", "n.tags != nil" -%}
-{%- for doc in tagged_docs -%}
-  {%- for tag in doc.tags -%}
-    {%- assign tag_list = tag_list | append: tag | append: "," -%}
-  {%- endfor -%}
-{%- endfor -%}
-{%- assign all_tags = tag_list | split: "," -%}
-{%- assign tags = all_tags | uniq | sort -%}
-{%- assign tag_pairs = "" -%}
-{%- for tag in tags -%}
-  {%- assign count = 0 -%}
-  {%- for t in all_tags -%}
-    {%- if t == tag -%}
-      {%- assign count = count | plus: 1 -%}
-    {%- endif -%}
-  {%- endfor -%}
-  {%- if tag != "" -%}
-    {%- assign tag_pairs = tag_pairs | append: count | append: "::" | append: tag | append: "," -%}
-  {%- endif -%}
-{%- endfor -%}
-{%- assign tag_pairs = tag_pairs | split: "," | sort | reverse -%}
 {%- assign graph_id = include.graph_id | default: page.url | append: include.title | slugify -%}
-{%- assign tag_nodes_json = "" -%}
-{%- assign tag_links_json = "" -%}
-{%- assign note_nodes_json = "" -%}
-{%- assign note_links_json = "" -%}
-{%- assign seen_tags = "" -%}
-{%- assign seen_notes = "" -%}
-{%- assign seen_edges = "" -%}
-{%- assign max_tag_nodes = include.max_tags | default: 24 -%}
-
-{%- for doc in tagged_docs -%}
-  {%- assign note_id = doc.url | slugify -%}
-  {%- assign note_key = "|" | append: note_id | append: "|" -%}
-  {%- unless seen_notes contains note_key -%}
-    {%- assign seen_notes = seen_notes | append: note_key -%}
-    {%- if note_nodes_json != "" -%}{%- assign note_nodes_json = note_nodes_json | append: "," -%}{%- endif -%}
-    {%- capture note_nodes_json -%}{{ note_nodes_json }}{"id":"note-{{ note_id }}","label":{{ doc.title | default: doc.basename_without_ext | jsonify }},"path":"{{ doc.url | relative_url }}","type":"note"}{%- endcapture -%}
-  {%- endunless -%}
-  {%- if doc.tags -%}
-    {%- for tag in doc.tags -%}
-      {%- assign tag_name = tag | downcase -%}
-      {%- assign tag_parts = tag_name | split: '/' -%}
-      {%- assign parent = "" -%}
-      {%- for part in tag_parts -%}
-        {%- assign current = part -%}
-        {%- if parent != "" -%}
-          {%- assign current = parent | append: "/" | append: part -%}
-        {%- endif -%}
-        {%- assign current_slug = current | slugify -%}
-        {%- assign tag_key = "|" | append: current_slug | append: "|" -%}
-        {%- unless seen_tags contains tag_key -%}
-          {%- assign seen_tags = seen_tags | append: tag_key -%}
-          {%- if tag_nodes_json != "" -%}{%- assign tag_nodes_json = tag_nodes_json | append: "," -%}{%- endif -%}
-          {%- capture tag_nodes_json -%}{{ tag_nodes_json }}{"id":"tag-{{ current_slug }}","label":{{ part | prepend: "#" | jsonify }},"count":1,"path":"{{ '/tags/' | relative_url }}#{{ current_slug }}","type":"tag"}{%- endcapture -%}
-        {%- endunless -%}
-        {%- if parent != "" -%}
-          {%- assign parent_slug = parent | slugify -%}
-          {%- assign edge_key = parent_slug | append: "->" | append: current_slug -%}
-          {%- assign edge_token = "|" | append: edge_key | append: "|" -%}
-          {%- unless seen_edges contains edge_token -%}
-            {%- assign seen_edges = seen_edges | append: edge_token -%}
-            {%- if tag_links_json != "" -%}{%- assign tag_links_json = tag_links_json | append: "," -%}{%- endif -%}
-            {%- capture tag_links_json -%}{{ tag_links_json }}{"source":"tag-{{ parent_slug }}","target":"tag-{{ current_slug }}"}{%- endcapture -%}
-          {%- endunless -%}
-        {%- endif -%}
-        {%- assign parent = current -%}
-      {%- endfor -%}
-      {%- assign tag_slug = tag_name | slugify -%}
-      {%- assign edge_key = tag_slug | append: "->note-" | append: note_id -%}
-      {%- assign edge_token = "|" | append: edge_key | append: "|" -%}
-      {%- unless seen_edges contains edge_token -%}
-        {%- assign seen_edges = seen_edges | append: edge_token -%}
-        {%- if note_links_json != "" -%}{%- assign note_links_json = note_links_json | append: "," -%}{%- endif -%}
-        {%- capture note_links_json -%}{{ note_links_json }}{"source":"tag-{{ tag_slug }}","target":"note-{{ note_id }}"}{%- endcapture -%}
-      {%- endunless -%}
-    {%- endfor -%}
-  {%- endif -%}
-{%- endfor -%}
+{%- assign max_tag_nodes = include.max_tags | default: 0 -%}
+{%- assign tag_graph = tagged_docs | build_note_tag_graph: max_tag_nodes -%}
+{%- assign tag_nodes = tag_graph["tag_nodes"] | default: [] -%}
+{%- assign note_nodes = tag_graph["note_nodes"] | default: [] -%}
+{%- assign tag_edges = tag_graph["tag_edges"] | default: [] -%}
+{%- assign note_edges = tag_graph["note_edges"] | default: [] -%}
+{%- assign tag_graph_nodes = tag_nodes | concat: note_nodes -%}
+{%- assign tag_graph_edges = tag_edges | concat: note_edges -%}
+{%- assign tag_graph_nodes_json = tag_graph_nodes | jsonify -%}
+{%- assign tag_graph_edges_json = tag_graph_edges | jsonify -%}
 
 <div class="graph-layout graph-layout--split">
   <div class="graph-card graph-card--square graph-card--graph">
@@ -115,19 +47,7 @@
     wrapper.dataset.graphInit = "true";
 
     const data = {% include notes_graph.json %};
-    const maxTags = {{ include.max_tags | default: 24 }};
-    const tagGraphData = {
-      nodes: [
-        {%- if tag_nodes_json != "" -%}{{ tag_nodes_json }}{%- endif -%}
-        {%- if tag_nodes_json != "" and note_nodes_json != "" -%},{%- endif -%}
-        {%- if note_nodes_json != "" -%}{{ note_nodes_json }}{%- endif -%}
-      ],
-      edges: [
-        {%- if tag_links_json != "" -%}{{ tag_links_json }}{%- endif -%}
-        {%- if tag_links_json != "" and note_links_json != "" -%},{%- endif -%}
-        {%- if note_links_json != "" -%}{{ note_links_json }}{%- endif -%}
-      ],
-    };
+    const tagGraphData = { nodes: {{ tag_graph_nodes_json }}, edges: {{ tag_graph_edges_json }} };
 
     const readCssVar = (name, fallback) => {
       const root = getComputedStyle(document.documentElement);
