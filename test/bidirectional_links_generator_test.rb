@@ -1,5 +1,7 @@
 require 'minitest/autorun'
 require 'json'
+require 'tmpdir'
+require 'fileutils'
 require 'ostruct'
 require 'jekyll'
 require_relative '../_plugins/bidirectional_links_generator'
@@ -21,6 +23,12 @@ class BidirectionalLinksGeneratorTest < Minitest::Test
 
   def setup
     @generator = BidirectionalLinksGenerator.new
+    @tmpdir = Dir.mktmpdir('notes-graph')
+    @graph_path = File.join(@tmpdir, 'graph.json')
+  end
+
+  def teardown
+    FileUtils.remove_entry(@tmpdir) if @tmpdir && Dir.exist?(@tmpdir)
   end
 
   def test_replaces_links_and_generates_backlinks_for_aliases_and_titles
@@ -47,7 +55,8 @@ class BidirectionalLinksGeneratorTest < Minitest::Test
 
     site = OpenStruct.new(
       baseurl: '',
-      config: {},
+      config: { 'notes_graph_path' => @graph_path },
+      source: @tmpdir,
       pages: [],
       collections: { 'notes' => OpenStruct.new(docs: [alpha, beta, gamma]) }
     )
@@ -61,13 +70,42 @@ class BidirectionalLinksGeneratorTest < Minitest::Test
     assert_equal [alpha], beta.data['backlinks']
     assert_equal [alpha], gamma.data['backlinks']
 
-    graph = JSON.parse(File.read('_includes/notes_graph.json'))
+    graph = JSON.parse(File.read(@graph_path))
     alpha_id = @generator.note_id_from_note(alpha)
     beta_id = @generator.note_id_from_note(beta)
     gamma_id = @generator.note_id_from_note(gamma)
 
     assert_includes graph['edges'], { 'source' => alpha_id, 'target' => beta_id }
     assert_includes graph['edges'], { 'source' => alpha_id, 'target' => gamma_id }
+  end
+
+  def test_default_graph_path_is_under_source
+    alpha = build_doc(
+      basename: 'alpha.md',
+      url: '/alpha',
+      content: '[[Beta]]',
+      data: { 'title' => 'Alpha' }
+    )
+
+    beta = build_doc(
+      basename: 'beta.md',
+      url: '/beta',
+      content: '',
+      data: { 'title' => 'Beta' }
+    )
+
+    site = OpenStruct.new(
+      baseurl: '',
+      config: {},
+      source: @tmpdir,
+      pages: [],
+      collections: { 'notes' => OpenStruct.new(docs: [alpha, beta]) }
+    )
+
+    @generator.generate(site)
+
+    default_path = File.join(@tmpdir, '_includes', 'notes_graph.json')
+    assert File.exist?(default_path), 'expected generator to write notes_graph.json under site source'
   end
 
   private
