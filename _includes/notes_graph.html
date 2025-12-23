@@ -143,14 +143,6 @@
 
     const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
-    const boldFont = options.boldFont || `600 ${options.font}`;
-
-    const weightedFontForNode = (node) => {
-      const baseWeight = 460;
-      const weight = clamp(Math.round(baseWeight + (node.degree || 0) * 55), 460, 820);
-      return `${weight} ${options.font}`;
-    };
-
     const seasonForDate = (dateStr) => {
       if (!dateStr) return null;
       const m = dateStr.toString().trim().match(/(\\d{4})-(\\d{2})-(\\d{2})/);
@@ -237,6 +229,12 @@
         scale: options.defaultScale,
         x: 0,
         y: 0,
+      };
+      const boldFont = options.boldFont || `600 ${options.font}`;
+      const weightedFontForNode = (node) => {
+        const baseWeight = 460;
+        const weight = clamp(Math.round(baseWeight + (node.degree || 0) * 55), 460, 820);
+        return `${weight} ${options.font}`;
       };
       const isSphereLayout = options.layout === "sphere";
       const sphereState = {
@@ -457,16 +455,16 @@
         isAnimating = true;
       };
 
-      const centerOnCurrent = () => {
+      const centerOnCurrent = (scaleOverride = null) => {
         if (!options.centerOnCurrent) return;
         if (focusNode) return;
         const current = nodes.find((n) => isCurrentPath(n.path));
         focusNode = current || null;
         hoverNode = current || null;
-        centerOnNode(current, false, true);
+        centerOnNode(current, false, true, scaleOverride || undefined);
       };
 
-      const fitToCanvas = () => {
+      const computeFit = () => {
         const width = graphCanvas.width / window.devicePixelRatio;
         const height = graphCanvas.height / window.devicePixelRatio;
         if (!nodes.length || width === 0 || height === 0) return;
@@ -496,9 +494,20 @@
         const centerX = (minX + maxX) / 2;
         const centerY = (minY + maxY) / 2;
 
-        camera.scale = targetScale;
-        camera.x = width / 2 - centerX * targetScale;
-        camera.y = height / 2 - centerY * targetScale;
+        return {
+          scale: targetScale,
+          x: width / 2 - centerX * targetScale,
+          y: height / 2 - centerY * targetScale,
+        };
+      };
+
+      const fitToCanvas = () => {
+        const fit = computeFit();
+        if (!fit) return null;
+        camera.scale = fit.scale;
+        camera.x = fit.x;
+        camera.y = fit.y;
+        return fit;
       };
 
       const resize = () => {
@@ -514,20 +523,26 @@
         camera.scale = options.defaultScale;
         if (options.layout === "radial") {
           layoutRadial();
-          fitToCanvas();
-          centerOnCurrent();
+          const fit = fitToCanvas();
+          centerOnCurrent(fit?.scale);
           draw();
         } else if (isSphereLayout) {
           layoutSphere();
           projectSphere();
-          centerOnCurrent();
+          const adjustedFit = fitToCanvas() || computeFit();
+          if (adjustedFit) {
+            camera.scale = adjustedFit.scale;
+            camera.x = adjustedFit.x;
+            camera.y = adjustedFit.y;
+          }
+          centerOnCurrent(adjustedFit?.scale);
           draw();
           spinSphere();
         } else {
           initLayout();
           tick(60);
-          fitToCanvas();
-          centerOnCurrent();
+          const fit = fitToCanvas();
+          centerOnCurrent(fit?.scale);
           draw();
         }
       };
