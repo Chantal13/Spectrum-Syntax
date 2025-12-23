@@ -108,6 +108,10 @@ $color-box-background: mix($tiffany-blue, white, 92%); /* soft panel bg */
   --graph-text: #f6f2ea;
   --graph-text-muted: rgba(246, 242, 234, 0.7);
   --graph-highlight: #ffffff;
+  --graph-canvas-border: rgba(246, 242, 234, 0.18);
+  --graph-canvas-glow: rgba(249, 199, 79, 0.12);
+  --graph-label-bg: rgba(8, 9, 14, 0.72);
+  --graph-label-border: rgba(255, 255, 255, 0.14);
 }
 
 /* =========================
@@ -164,6 +168,10 @@ html[data-theme='dark'] {
   --graph-igneous: #dc322f;
   --graph-sedimentary: #b58900;
   --graph-metamorphic: #268bd2;
+  --graph-canvas-border: rgba(253, 246, 227, 0.22);
+  --graph-canvas-glow: rgba(38, 139, 210, 0.14);
+  --graph-label-bg: rgba(3, 9, 15, 0.72);
+  --graph-label-border: rgba(253, 246, 227, 0.18);
 }
 $border-radius: 4px;
 $font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif,
@@ -867,6 +875,19 @@ html[data-theme='dark'] .site-footer a.internal-link {
   min-height: 320px;
   height: 100%;
   overflow: hidden;
+  isolation: isolate;
+}
+
+.graph-canvas-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.08), transparent 32%),
+    radial-gradient(circle at 82% 12%, rgba(255, 255, 255, 0.06), transparent 26%),
+    radial-gradient(circle at 46% 82%, rgba(0, 0, 0, 0.22), transparent 45%);
+  mix-blend-mode: screen;
+  z-index: 1;
 }
 
 .graph-canvas {
@@ -877,6 +898,8 @@ html[data-theme='dark'] .site-footer a.internal-link {
   background-image: var(--graph-canvas-stars), var(--graph-canvas-gradient);
   background-blend-mode: soft-light;
   border-radius: 12px;
+  border: 1px solid var(--graph-canvas-border);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.06), 0 0 28px var(--graph-canvas-glow);
 }
 
 .welcome-card {
@@ -1566,6 +1589,8 @@ html[data-theme='dark'] .chip {
   position: relative;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(6px) saturate(110%);
 }
 .graph-card::after {
   content: "";
@@ -1593,6 +1618,8 @@ html[data-theme='dark'] .chip {
   margin: 0 0 0.5rem;
   padding-bottom: 0.25rem;
   border-bottom: 1px solid var(--panel-border);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.05), transparent);
+  padding-inline: 0.25rem;
 }
 .graph-title { margin: 0; font-size: .9em; font-weight: 600; color: var(--color-text); }
 .graph-card__caption {
