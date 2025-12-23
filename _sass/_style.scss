@@ -1648,6 +1648,15 @@ html[data-theme='dark'] .chip {
   gap: 0.4rem;
 }
 
+.tag-group {
+  margin: 1rem 0 1.5rem;
+}
+
+.tag-group h2 {
+  font-size: 1.15rem;
+  margin: 0 0 0.4rem;
+}
+
 .tag-cloud--compact .tag-chip {
   padding: 0.15rem 0.45rem;
 }
@@ -1655,12 +1664,17 @@ html[data-theme='dark'] .chip {
 .tag-chip {
   display: inline-flex;
   align-items: center;
+  gap: 0.25rem;
   padding: 0.2rem 0.55rem;
   border-radius: 999px;
   background: rgba(198, 199, 196, 0.45);
   border: 1px solid rgba(53, 59, 60, 0.2);
   color: var(--color-text);
   text-decoration: none;
+  --tag-weight: 0.45;
+  font-size: calc(0.95rem + 0.45rem * var(--tag-weight));
+  font-weight: calc(520 + 320 * var(--tag-weight));
+  line-height: 1.1;
 }
 html[data-theme='dark'] .tag-chip {
   background: #073642;
@@ -1674,6 +1688,11 @@ html[data-theme='dark'] .tag-chip {
 .tag-chip:hover {
   background: rgba(162, 153, 158, 0.35);
   color: var(--color-text) !important;
+}
+
+.tag-chip__count {
+  font-size: 0.82em;
+  opacity: 0.75;
 }
 
 #graph-wrapper {
