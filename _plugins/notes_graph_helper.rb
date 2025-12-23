@@ -26,7 +26,10 @@ module Jekyll
           tag_name = tag.to_s.downcase
           parent = nil
 
-          tag_name.split("/").each do |part|
+          parts = tag_name.split("/")
+          tag_root = parts.first
+
+          parts.each do |part|
             current = parent ? "#{parent}/#{part}" : part
             slug = Jekyll::Utils.slugify(current)
 
@@ -34,6 +37,8 @@ module Jekyll
               slug: slug,
               id: "tag-#{slug}",
               label: "##{part}",
+              full_label: current,
+              root: tag_root,
               count: 0,
               path: "#{tags_root}##{slug}",
               type: "tag"
@@ -70,7 +75,7 @@ module Jekyll
                             .map { |tag, note_id| { source: "tag-#{tag}", target: "note-#{note_id}" } }
 
       {
-        "tag_nodes" => sorted_tags.map { |node| node.reject { |key, _| key == :slug } },
+        "tag_nodes" => sorted_tags,
         "note_nodes" => note_nodes.values,
         "tag_edges" => filtered_tag_edges,
         "note_edges" => filtered_note_edges
