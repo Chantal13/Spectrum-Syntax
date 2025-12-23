@@ -79,6 +79,29 @@
       labelBorder: readCssVar("--graph-label-border", "rgba(255, 255, 255, 0.14)"),
     };
 
+    const tagPalette = [
+      "#f6bd60",
+      "#8ecae6",
+      "#c3f584",
+      "#fbaed2",
+      "#c4c5fa",
+      "#ffc857",
+      "#a6c0ff",
+      "#9ad5c0",
+      "#f4a261",
+      "#e0aaff",
+    ];
+
+    const colorFromPalette = (label) => {
+      const key = (label || "").toString();
+      let hash = 0;
+      for (let i = 0; i < key.length; i += 1) {
+        hash = (hash * 31 + key.charCodeAt(i)) >>> 0;
+      }
+      const index = hash % tagPalette.length;
+      return tagPalette[index];
+    };
+
     const hexToRgb = (hex) => {
       if (!hex) return null;
       const normalized = hex.trim().replace("#", "");
@@ -706,6 +729,12 @@
 
       const boldFont = options.boldFont || `600 ${options.font}`;
 
+      const weightedFontForNode = (node) => {
+        const baseWeight = 460;
+        const weight = clamp(Math.round(baseWeight + (node.degree || 0) * 55), 460, 820);
+        return `${weight} ${options.font}`;
+      };
+
       const drawLabel = (text, screenX, screenY, isActive, emphasize) => {
         const paddingX = 8;
         const paddingY = 5;
@@ -763,9 +792,9 @@
           });
         }
 
-        ctx.font = options.font;
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
+          ctx.font = weightedFontForNode(n);
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
         const renderNodes = isSphereLayout
           ? [...nodes].sort((a, b) => (a.__depth || 0) - (b.__depth || 0))
           : nodes;
@@ -781,7 +810,7 @@
           const label = n.__label || labelForNode(n);
 
           ctx.globalAlpha = isRelated ? Math.min(1, 0.6 + depthScale * 0.6) : 0.18;
-          ctx.lineWidth = (1.6 / camera.scale) * clamp(depthScale, 0.7, 1.6);
+          ctx.lineWidth = (1.6 / camera.scale) * clamp(depthScale + (n.degree || 0) * 0.02, 0.7, 2.2);
           ctx.beginPath();
           drawRoundedRect(n.x - chipWidth / 2, n.y - chipHeight / 2, chipWidth, chipHeight, radius);
           ctx.fillStyle = palette.fill;
@@ -1001,13 +1030,13 @@
       font: "11px ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif",
       emphasizeNode: isCategoryNode,
       centerOnCurrent: true,
-      defaultScale: 1.18,
+      defaultScale: 1.32,
       minScale: 1.0,
-      maxScale: 1.8,
+      maxScale: 2.05,
       enablePan: false,
       enableZoom: true,
       roundness: 0,
-      sphereRadiusFactor: 0.54,
+      sphereRadiusFactor: 0.62,
       sphereStrength: 0,
       interGroupRepulsion: 0,
       clusterPull: 0,
@@ -1018,11 +1047,11 @@
       focusLinkRepulsionFactor: 0.4,
       layout: "sphere",
       colorForNode,
-      chipPaddingX: 10,
-      chipPaddingY: 5,
+      chipPaddingX: 12,
+      chipPaddingY: 7,
       nodeRadiusFor: (n) => {
-        const base = n.layout === "page" ? 5.5 : 3.8;
-        const boost = Math.sqrt(n.degree || 0) * 1.0;
+        const base = n.layout === "page" ? 5.9 : 4.2;
+        const boost = Math.sqrt(n.degree || 0) * 1.25;
         return base + boost;
       },
     });
@@ -1035,9 +1064,9 @@
       labelMax: 24,
       font: "600 11px/1.25 ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif",
       centerOnCurrent: false,
-      defaultScale: 1.16,
+      defaultScale: 1.28,
       minScale: 1.0,
-      maxScale: 1.8,
+      maxScale: 2.05,
       enablePan: false,
       enableZoom: true,
       roundness: 0,
@@ -1045,11 +1074,15 @@
       clusterPull: 0,
       groupKey: (n) => n.type || "tag",
       layout: "sphere",
-      sphereRadiusFactor: 0.58,
-      colorForNode: (n) => (n.type === "tag" ? colours.notes : colours.page),
-      chipPaddingX: 10,
-      chipPaddingY: 5,
-      nodeRadiusFor: (n) => (n.type === "tag" ? Math.min(10, 4.5 + (n.count || 1) * 0.28) : 3.5),
+      sphereRadiusFactor: 0.68,
+      colorForNode: (n) => (n.type === "tag" ? colorFromPalette(n.label || n.id || "") : colours.page),
+      chipPaddingX: 12,
+      chipPaddingY: 7,
+      nodeRadiusFor: (n) => {
+        if (n.type !== "tag") return 4.2;
+        const weight = Math.sqrt(Math.max(1, n.count || n.degree || 1));
+        return Math.min(16, 6 + weight * 2.2);
+      },
     });
   })();
 </script>
