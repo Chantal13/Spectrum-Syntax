@@ -894,22 +894,6 @@
         ctx.globalAlpha = 1;
 
         ctx.restore();
-
-        if (related || !focusNode) {
-          ctx.font = options.font;
-          nodes.slice(0, options.labelLimit).forEach((n) => {
-            if (activeNode) {
-              if (!related || !related.has(n.id)) return;
-            } else if (n.layout !== "page") {
-              return;
-            }
-            const label = n.label || "";
-            if (!label) return;
-            const text = label.length > options.labelMax ? label.slice(0, options.labelMax - 3) + "..." : label;
-            const screen = toScreen(n.x, n.y);
-            drawLabel(text, screen.x, screen.y, !!activeNode, options.emphasizeNode?.(n));
-          });
-        }
       };
 
       const animateFrame = () => {
