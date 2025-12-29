@@ -1,0 +1,712 @@
+---
+layout: default
+title: PPL Training Tracker
+permalink: /admin/ppl-training-schedule/
+---
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    .ppl-container {
+        margin: 0 auto;
+        max-width: 100%;
+    }
+
+    .ppl-subtitle {
+        text-align: center;
+        color: var(--muted);
+        margin-bottom: 2rem;
+        font-size: 1.1em;
+    }
+
+    .ppl-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .ppl-stat {
+        background: linear-gradient(135deg, #0066cc, #0088ff);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+    }
+
+    .ppl-stat-num {
+        font-size: 2em;
+        font-weight: bold;
+        display: block;
+    }
+
+    .ppl-stat-label {
+        font-size: 0.9em;
+        opacity: 0.95;
+        margin-top: 0.25rem;
+    }
+
+    .ppl-progress-bar {
+        background: var(--card-a);
+        height: 35px;
+        border-radius: 18px;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+        border: 1px solid var(--panel-border);
+    }
+
+    .ppl-progress-fill {
+        background: linear-gradient(90deg, #0066cc, #0088ff);
+        height: 100%;
+        width: 0%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        transition: width 0.5s ease;
+    }
+
+    .ppl-controls {
+        display: flex;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .ppl-btn {
+        padding: 0.75rem 1.25rem;
+        border: 1px solid var(--panel-border);
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s;
+        font-size: 0.95rem;
+    }
+
+    .ppl-btn-primary {
+        background: #0066cc;
+        color: white;
+        border-color: #0066cc;
+    }
+
+    .ppl-btn-primary:hover {
+        background: #0055aa;
+        transform: translateY(-2px);
+    }
+
+    .ppl-btn-secondary {
+        background: var(--card-b);
+        color: var(--color-text);
+    }
+
+    .ppl-btn-secondary:hover {
+        background: var(--home-silver);
+    }
+
+    .ppl-module {
+        background: var(--card-a);
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        border: 1px solid var(--panel-border);
+        box-shadow: 0 2px 8px rgba(53, 59, 60, 0.08);
+    }
+
+    .ppl-module-header {
+        padding: 1.25rem;
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.2s;
+    }
+
+    .ppl-module-header:hover {
+        background: var(--card-b);
+    }
+
+    .ppl-module-title {
+        font-size: 1.3em;
+        font-weight: 700;
+        color: #0066cc;
+    }
+
+    .ppl-module-progress {
+        font-weight: 600;
+        color: var(--muted);
+    }
+
+    .ppl-topics {
+        padding: 0 1.25rem 1.25rem 1.25rem;
+        display: none;
+    }
+
+    .ppl-module.expanded .ppl-topics {
+        display: block;
+    }
+
+    .ppl-topic {
+        background: white;
+        padding: 0.85rem;
+        margin: 0.6rem 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        transition: all 0.3s;
+        border: 1px solid transparent;
+    }
+
+    .ppl-topic:hover {
+        transform: translateX(5px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-color: var(--panel-border);
+    }
+
+    .ppl-topic.completed {
+        background: #e8f5e9;
+        border-color: #4caf50;
+    }
+
+    .ppl-topic input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        flex-shrink: 0;
+    }
+
+    .ppl-topic-name {
+        flex-grow: 1;
+        font-weight: 600;
+    }
+
+    .ppl-topic-badge {
+        padding: 0.35rem 0.75rem;
+        border-radius: 6px;
+        font-size: 0.8em;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .ppl-badge-video { background: #e3f2fd; color: #1976d2; }
+    .ppl-badge-notes { background: #f3e5f5; color: #7b1fa2; }
+    .ppl-badge-quiz { background: #fff3e0; color: #f57c00; }
+
+    .ppl-topic-time {
+        color: var(--muted);
+        font-size: 0.85em;
+        white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
+        .ppl-topic {
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .ppl-topic-name {
+            flex-basis: 100%;
+        }
+    }
+</style>
+
+<meta name="robots" content="noindex, nofollow">
+
+<div class="ppl-container">
+    <div class="ppl-subtitle">PPAER & PSTAR Prep • Target: March 2026</div>
+
+    <div class="ppl-stats">
+        <div class="ppl-stat">
+            <span class="ppl-stat-num" id="completed">0</span>
+            <span class="ppl-stat-label">Completed</span>
+        </div>
+        <div class="ppl-stat">
+            <span class="ppl-stat-num" id="total">0</span>
+            <span class="ppl-stat-label">Total Tasks</span>
+        </div>
+        <div class="ppl-stat">
+            <span class="ppl-stat-num" id="hours">0h</span>
+            <span class="ppl-stat-label">Studied</span>
+        </div>
+        <div class="ppl-stat">
+            <span class="ppl-stat-num" id="percent">0%</span>
+            <span class="ppl-stat-label">Progress</span>
+        </div>
+    </div>
+
+    <div class="ppl-progress-bar">
+        <div class="ppl-progress-fill" id="progressBar">0%</div>
+    </div>
+
+    <div class="ppl-controls">
+        <button class="ppl-btn ppl-btn-primary" onclick="expandAll()">Expand All</button>
+        <button class="ppl-btn ppl-btn-secondary" onclick="collapseAll()">Collapse All</button>
+        <button class="ppl-btn ppl-btn-secondary" onclick="resetAll()">Reset Progress</button>
+    </div>
+
+    <div id="modules"></div>
+</div>
+
+<script>
+    const data = [
+        {name: "Introduction", items: [
+            ["Navigating PPL Course", "video", 15, true],
+            ["Note Taking", "video", 20, true],
+            ["Course Success", "video", 15, true],
+            ["PPAER Exam", "video", 25],
+            ["Exam Tips", "video", 20],
+            ["Intro Quiz", "quiz", 10],
+            ["PPAER Overview Quiz", "quiz", 10],
+            ["Exam Tips Quiz", "quiz", 10]
+        ]},
+        {name: "Theory of Flight", items: [
+            ["Forces on Airplane", "video", 40],
+            ["Forces Notes", "notes", 30],
+            ["Forces Quiz", "quiz", 10],
+            ["Angle of Attack", "video", 35],
+            ["AoA Notes", "notes", 25],
+            ["AoA Quiz", "quiz", 10],
+            ["Airfoil & Wing Theory", "video", 45],
+            ["Airfoil Notes", "notes", 30],
+            ["Airfoil Quiz", "quiz", 10],
+            ["Flight Controls", "video", 40],
+            ["Controls Notes", "notes", 30],
+            ["Controls Quiz", "quiz", 10],
+            ["Stability", "video", 35],
+            ["Stability Notes", "notes", 25],
+            ["Stability Quiz", "quiz", 10],
+            ["Practical Application", "video", 40],
+            ["Practical Notes", "notes", 30],
+            ["Practical Quiz", "quiz", 10],
+            ["Theory Final Quiz", "quiz", 15]
+        ]},
+        {name: "Flight Instruments", items: [
+            ["Overview", "video", 30],
+            ["Overview Notes", "notes", 20],
+            ["Overview Quiz", "quiz", 10],
+            ["Compass", "video", 35],
+            ["Compass Notes", "notes", 25],
+            ["Compass Quiz", "quiz", 10],
+            ["Gyroscopes", "video", 40],
+            ["Gyro Notes", "notes", 30],
+            ["Gyro Quiz", "quiz", 10],
+            ["Airspeed", "video", 40],
+            ["Airspeed Notes", "notes", 30],
+            ["Airspeed Quiz", "quiz", 10],
+            ["Attitude", "video", 35],
+            ["Attitude Notes", "notes", 25],
+            ["Attitude Quiz", "quiz", 10],
+            ["Altimeter", "video", 40],
+            ["Altimeter Notes", "notes", 30],
+            ["Altimeter Quiz", "quiz", 10],
+            ["Turn Coordinator", "video", 35],
+            ["Turn Coord Notes", "notes", 25],
+            ["Turn Coord Quiz", "quiz", 10],
+            ["Heading Indicator", "video", 35],
+            ["Heading Notes", "notes", 25],
+            ["Heading Quiz", "quiz", 10],
+            ["VSI", "video", 30],
+            ["VSI Notes", "notes", 20],
+            ["VSI Quiz", "quiz", 10],
+            ["EFIS", "video", 40],
+            ["EFIS Notes", "notes", 30],
+            ["EFIS Quiz", "quiz", 10],
+            ["Instruments Final Quiz", "quiz", 15]
+        ]},
+        {name: "Airframes & Engines", items: [
+            ["Airframes", "video", 40],
+            ["Airframes Notes", "notes", 30],
+            ["Airframes Quiz", "quiz", 10],
+            ["Landing Gear & Brakes", "video", 35],
+            ["Landing Gear Notes", "notes", 25],
+            ["Landing Gear Quiz", "quiz", 10],
+            ["Piston Engines", "video", 45],
+            ["Engines Notes", "notes", 30],
+            ["Engines Quiz", "quiz", 10],
+            ["Engine Instruments", "video", 30],
+            ["Engine Inst Notes", "notes", 20],
+            ["Propellers", "video", 40],
+            ["Propellers Notes", "notes", 30],
+            ["Propellers Quiz", "quiz", 10],
+            ["Variable Pitch Prop", "video", 35],
+            ["Variable Pitch Notes", "notes", 25],
+            ["Carburetor", "video", 40],
+            ["Carburetor Notes", "notes", 30],
+            ["Carburetor Quiz", "quiz", 10],
+            ["Manifold Pressure", "video", 30],
+            ["Manifold Notes", "notes", 20],
+            ["Manifold Quiz", "quiz", 10],
+            ["Electrical Systems", "video", 40],
+            ["Electrical Notes", "notes", 30],
+            ["Electrical Quiz", "quiz", 10],
+            ["Oil", "video", 35],
+            ["Oil Notes", "notes", 25],
+            ["Oil Quiz", "quiz", 10],
+            ["Fuel", "video", 40],
+            ["Fuel Notes", "notes", 30],
+            ["Fuel Quiz", "quiz", 10],
+            ["Fuel Injection", "video", 30],
+            ["Fuel Inj Notes", "notes", 20],
+            ["Electric/Diesel Engines", "video", 35],
+            ["Electric Notes", "notes", 25],
+            ["Airframes Final Quiz", "quiz", 15]
+        ]},
+        {name: "Air Law (PPL)", items: [
+            ["CARs Overview", "video", 40],
+            ["CARs Notes", "notes", 30],
+            ["PPL Licensing", "video", 35],
+            ["Licensing Notes", "notes", 25],
+            ["Licensing Quiz", "quiz", 10],
+            ["General", "video", 45],
+            ["General Notes", "notes", 30],
+            ["General Quiz", "quiz", 10],
+            ["Airspace", "video", 50],
+            ["Airspace Notes", "notes", 35],
+            ["Airspace Quiz", "quiz", 10],
+            ["Airports", "video", 40],
+            ["Airports Notes", "notes", 30],
+            ["Airports Quiz", "quiz", 10],
+            ["Emergency Equipment", "video", 35],
+            ["Emerg Equip Notes", "notes", 25],
+            ["Emerg Equip Quiz", "quiz", 10],
+            ["TSB", "video", 30],
+            ["TSB Notes", "notes", 20],
+            ["Air Law General Quiz", "quiz", 15]
+        ]},
+        {name: "Air Law - Aircraft", items: [
+            ["Aircraft Equipment", "video", 45],
+            ["Equipment Notes", "notes", 30],
+            ["Equipment Quiz", "quiz", 10],
+            ["Documents Required", "video", 35],
+            ["Documents Notes", "notes", 25],
+            ["Documents Quiz", "quiz", 10],
+            ["Tech Logs", "video", 40],
+            ["Tech Logs Notes", "notes", 30],
+            ["Tech Logs Quiz", "quiz", 10],
+            ["Aircraft Law Quiz", "quiz", 15]
+        ]},
+        {name: "Air Law - VFR", items: [
+            ["VFR Rules", "video", 45],
+            ["VFR Notes", "notes", 30],
+            ["VFR Quiz", "quiz", 10],
+            ["Radio Communications", "video", 40],
+            ["Radio Comm Notes", "notes", 30],
+            ["Radio Comm Quiz", "quiz", 10],
+            ["SFOC", "video", 30],
+            ["SFOC Notes", "notes", 20],
+            ["SFOC Quiz", "quiz", 10],
+            ["Emergency Comms", "video", 35],
+            ["Emerg Comms Notes", "notes", 25],
+            ["Emerg Comms Quiz", "quiz", 10],
+            ["VFR Law Quiz", "quiz", 15]
+        ]},
+        {name: "Meteorology 1", items: [
+            ["Met Resources", "video", 25],
+            ["Resources Notes", "notes", 15],
+            ["Summary", "video", 35],
+            ["Summary Notes", "notes", 25],
+            ["Summary Quiz", "quiz", 10],
+            ["Moisture", "video", 40],
+            ["Moisture Notes", "notes", 30],
+            ["Moisture Quiz", "quiz", 10],
+            ["Atmosphere", "video", 35],
+            ["Atmosphere Notes", "notes", 25],
+            ["Atmosphere Quiz", "quiz", 10],
+            ["Temperature", "video", 40],
+            ["Temperature Notes", "notes", 30],
+            ["Temperature Quiz", "quiz", 10],
+            ["Atmospheric Stability", "video", 45],
+            ["Stability Notes", "notes", 30],
+            ["Stability Quiz", "quiz", 10],
+            ["Atmospheric Pressure", "video", 40],
+            ["Pressure Notes", "notes", 30],
+            ["Pressure Quiz", "quiz", 10],
+            ["Met 1 Final Quiz", "quiz", 15]
+        ]},
+        {name: "Meteorology 2", items: [
+            ["Air Masses", "video", 40],
+            ["Air Masses Notes", "notes", 30],
+            ["Air Masses Quiz", "quiz", 10],
+            ["Fronts", "video", 45],
+            ["Fronts Notes", "notes", 30],
+            ["Fronts Quiz", "quiz", 10],
+            ["Clouds", "video", 40],
+            ["Clouds Notes", "notes", 30],
+            ["Clouds Quiz", "quiz", 10],
+            ["Wind", "video", 40],
+            ["Wind Notes", "notes", 30],
+            ["Wind Quiz", "quiz", 10],
+            ["Low Level Vis", "video", 35],
+            ["Vis Notes", "notes", 25],
+            ["Vis Quiz", "quiz", 10],
+            ["Thunderstorms", "video", 40],
+            ["TS Notes", "notes", 30],
+            ["TS Quiz", "quiz", 10],
+            ["Turbulence", "video", 35],
+            ["Turbulence Notes", "notes", 25],
+            ["Turbulence Quiz", "quiz", 10],
+            ["Met 2 Final Quiz", "quiz", 15]
+        ]},
+        {name: "Meteorology 3", items: [
+            ["Sources of WX Info", "video", 30],
+            ["Sources Notes", "notes", 20],
+            ["Sources Quiz", "quiz", 10],
+            ["Reports", "video", 40],
+            ["Reports Notes", "notes", 30],
+            ["Reports Quiz", "quiz", 10],
+            ["Forecasts - TAF", "video", 40],
+            ["TAF Notes", "notes", 30],
+            ["TAF Quiz", "quiz", 10],
+            ["Upper Winds", "video", 30],
+            ["Upper Winds Notes", "notes", 20],
+            ["GFA", "video", 40],
+            ["GFA Notes", "notes", 30],
+            ["GFA Quiz", "quiz", 10],
+            ["Weather Maps", "video", 35],
+            ["WX Maps Notes", "notes", 25],
+            ["WX Maps Quiz", "quiz", 10],
+            ["Met 3 Final Quiz", "quiz", 15]
+        ]},
+        {name: "Flight Operations", items: [
+            ["Air Traffic Services", "video", 40],
+            ["ATS Notes", "notes", 30],
+            ["ATS Quiz", "quiz", 10],
+            ["ATS Communication", "video", 35],
+            ["ATS Comm Notes", "notes", 25],
+            ["ATS Comm Quiz", "quiz", 10],
+            ["VFR Ops Near Airport", "video", 40],
+            ["VFR Airport Notes", "notes", 30],
+            ["VFR Airport Quiz", "quiz", 10],
+            ["Controlled Airport Ops", "video", 40],
+            ["Controlled Notes", "notes", 30],
+            ["General Flight Ops", "video", 45],
+            ["Gen Ops Notes", "notes", 30],
+            ["Gen Ops Quiz", "quiz", 10],
+            ["Wake Turbulence", "video", 30],
+            ["Wake Turb Notes", "notes", 20],
+            ["Wake Turb Quiz", "quiz", 10],
+            ["Search & Rescue", "video", 35],
+            ["SAR Notes", "notes", 25],
+            ["SAR Quiz", "quiz", 10],
+            ["Cold Weather Ops", "video", 30],
+            ["Cold WX Notes", "notes", 20],
+            ["Cold WX Quiz", "quiz", 10],
+            ["Flight Ops Quiz", "quiz", 15]
+        ]},
+        {name: "Performance", items: [
+            ["Terms", "video", 30],
+            ["Terms Notes", "notes", 20],
+            ["Terms Quiz", "quiz", 10],
+            ["Weight & Balance", "video", 45],
+            ["W&B Notes", "notes", 30],
+            ["W&B Quiz", "quiz", 10],
+            ["Performance Overview", "video", 40],
+            ["Perf Overview Notes", "notes", 30],
+            ["Perf Overview Quiz", "quiz", 10],
+            ["Practical Charts", "video", 40],
+            ["Charts Notes", "notes", 30],
+            ["Charts Quiz", "quiz", 10],
+            ["Practical Graphs", "video", 35],
+            ["Graphs Notes", "notes", 25],
+            ["Performance Quiz", "quiz", 15]
+        ]},
+        {name: "PDM & Human Factors", items: [
+            ["Physiology", "video", 40],
+            ["Physiology Notes", "notes", 30],
+            ["Physiology Quiz", "quiz", 10],
+            ["Pilot Decision Making", "video", 35],
+            ["PDM Notes", "notes", 25],
+            ["PDM Quiz", "quiz", 10],
+            ["Pilot Wellness", "video", 30],
+            ["Wellness Notes", "notes", 20],
+            ["Wellness Quiz", "quiz", 10],
+            ["Fatigue & Stress", "video", 35],
+            ["Fatigue Notes", "notes", 25],
+            ["Fatigue Quiz", "quiz", 10],
+            ["Visual Illusions", "video", 30],
+            ["Illusions Notes", "notes", 20],
+            ["Illusions Quiz", "quiz", 10],
+            ["Human Factors Quiz", "quiz", 15]
+        ]},
+        {name: "Navigation 1", items: [
+            ["Introduction", "video", 30],
+            ["Intro Notes", "notes", 20],
+            ["Nav Intro Quiz", "quiz", 10],
+            ["Charts & Maps", "video", 40],
+            ["Charts Notes", "notes", 30],
+            ["Charts Quiz", "quiz", 10],
+            ["Chart Legends", "video", 30],
+            ["Legends Notes", "notes", 20],
+            ["Legends Quiz", "quiz", 10],
+            ["Time", "video", 25],
+            ["Time Notes", "notes", 15],
+            ["Time Quiz", "quiz", 10],
+            ["CFS", "video", 35],
+            ["CFS Notes", "notes", 25],
+            ["CFS Quiz", "quiz", 10],
+            ["ICAO Flight Plan", "video", 40],
+            ["Flight Plan Notes", "notes", 30],
+            ["Flight Plan Quiz", "quiz", 10],
+            ["NOTAM-AIP-AIC", "video", 30],
+            ["NOTAM Notes", "notes", 20],
+            ["NOTAM Quiz", "quiz", 10],
+            ["Nav 1 Final Quiz", "quiz", 15]
+        ]},
+        {name: "Navigation 2", items: [
+            ["Navigation Resources", "video", 20],
+            ["Resources Notes", "notes", 15],
+            ["Triangle of Velocities", "video", 40],
+            ["Triangle Notes", "notes", 30],
+            ["Triangle Quiz", "quiz", 10],
+            ["Flight Computers", "video", 45],
+            ["Computers Notes", "notes", 30],
+            ["Computers Quiz", "quiz", 10],
+            ["Flight Preparation", "video", 35],
+            ["Flight Prep Notes", "notes", 25],
+            ["Flight Prep Quiz", "quiz", 10],
+            ["Navigational Basics", "video", 40],
+            ["Nav Basics Notes", "notes", 30],
+            ["Nav Basics Quiz", "quiz", 10],
+            ["Navigation Log", "video", 35],
+            ["Nav Log Notes", "notes", 25],
+            ["Nav Log Quiz", "quiz", 10],
+            ["Nav 2 Final Quiz", "quiz", 15]
+        ]},
+        {name: "Radio Navigation", items: [
+            ["Theory of Nav Aids", "video", 35],
+            ["Nav Aids Notes", "notes", 25],
+            ["Nav Aids Quiz", "quiz", 10],
+            ["Surveillance", "video", 30],
+            ["Surveillance Notes", "notes", 20],
+            ["Surveillance Quiz", "quiz", 10],
+            ["VOR", "video", 40],
+            ["VOR Notes", "notes", 30],
+            ["VOR Quiz", "quiz", 10],
+            ["VOR Practical", "video", 35],
+            ["VOR Pract Notes", "notes", 25],
+            ["VOR Pract Quiz", "quiz", 10],
+            ["ADF", "video", 35],
+            ["ADF Notes", "notes", 25],
+            ["ADF Quiz", "quiz", 10],
+            ["GPS", "video", 40],
+            ["GPS Notes", "notes", 30],
+            ["GPS Quiz", "quiz", 10],
+            ["Additional Equipment", "video", 25],
+            ["Add Equip Notes", "notes", 15],
+            ["Add Equip Quiz", "quiz", 10],
+            ["Radio Nav Quiz", "quiz", 15]
+        ]},
+        {name: "PPAER Prep & Exams", items: [
+            ["PPAER Exam Prep", "video", 45],
+            ["Exam Prep Notes", "notes", 30],
+            ["PPAER Understanding Quiz", "quiz", 10],
+            ["PPAER Practice Exam 1", "quiz", 180],
+            ["PPAER Practice Exam 2", "quiz", 180],
+            ["PPAER Practice Exam 3", "quiz", 180],
+            ["PPAER Practice Exam 4", "quiz", 180],
+            ["PPAER Practice Exam 5", "quiz", 180],
+            ["PPAER Practice Exam 6", "quiz", 180],
+            ["PPAER Practice Exam 7", "quiz", 180]
+        ]}
+    ];
+
+    function init() {
+        const container = document.getElementById('modules');
+        data.forEach((module, midx) => {
+            const div = document.createElement('div');
+            div.className = 'ppl-module';
+            div.innerHTML = `
+                <div class="ppl-module-header" onclick="toggleModule(${midx})">
+                    <div class="ppl-module-title">${module.name}</div>
+                    <div class="ppl-module-progress" id="mp${midx}">0/${module.items.length}</div>
+                </div>
+                <div class="ppl-topics" id="topics${midx}"></div>
+            `;
+            container.appendChild(div);
+
+            const topics = document.getElementById(`topics${midx}`);
+            module.items.forEach((item, idx) => {
+                const [name, type, time, done] = item;
+                const badge = type === 'video' ? 'ppl-badge-video' : type === 'notes' ? 'ppl-badge-notes' : 'ppl-badge-quiz';
+                const icon = type === 'video' ? '📺' : type === 'notes' ? '📝' : '✅';
+
+                const tdiv = document.createElement('div');
+                tdiv.className = 'ppl-topic' + (done ? ' completed' : '');
+                tdiv.innerHTML = `
+                    <input type="checkbox" ${done ? 'checked' : ''} onchange="toggleTopic(${midx},${idx})">
+                    <div class="ppl-topic-name">${name}</div>
+                    <span class="ppl-topic-badge ${badge}">${icon} ${type.toUpperCase()}</span>
+                    <span class="ppl-topic-time">${time}m</span>
+                `;
+                topics.appendChild(tdiv);
+            });
+        });
+        updateStats();
+    }
+
+    function toggleModule(idx) {
+        document.querySelectorAll('.ppl-module')[idx].classList.toggle('expanded');
+    }
+
+    function toggleTopic(midx, tidx) {
+        data[midx].items[tidx][3] = !data[midx].items[tidx][3];
+        const topics = document.getElementById(`topics${midx}`).children;
+        topics[tidx].classList.toggle('completed');
+        updateStats();
+        localStorage.setItem('pplData', JSON.stringify(data));
+    }
+
+    function updateStats() {
+        let total = 0, completed = 0, hours = 0;
+        data.forEach((m, midx) => {
+            let mc = 0;
+            m.items.forEach(item => {
+                total++;
+                if (item[3]) {
+                    completed++;
+                    mc++;
+                    hours += item[2];
+                }
+            });
+            document.getElementById(`mp${midx}`).textContent = `${mc}/${m.items.length}`;
+        });
+
+        document.getElementById('completed').textContent = completed;
+        document.getElementById('total').textContent = total;
+        document.getElementById('hours').textContent = Math.round(hours/60) + 'h';
+        const pct = Math.round(completed/total*100);
+        document.getElementById('percent').textContent = pct + '%';
+        document.getElementById('progressBar').style.width = pct + '%';
+        document.getElementById('progressBar').textContent = pct + '%';
+    }
+
+    function expandAll() {
+        document.querySelectorAll('.ppl-module').forEach(m => m.classList.add('expanded'));
+    }
+
+    function collapseAll() {
+        document.querySelectorAll('.ppl-module').forEach(m => m.classList.remove('expanded'));
+    }
+
+    function resetAll() {
+        if (confirm('Reset all progress?')) {
+            data.forEach(m => m.items.forEach(i => i[3] = false));
+            localStorage.removeItem('pplData');
+            location.reload();
+        }
+    }
+
+    const saved = localStorage.getItem('pplData');
+    if (saved) {
+        const savedData = JSON.parse(saved);
+        savedData.forEach((sm, mi) => {
+            sm.items.forEach((si, ii) => {
+                if (data[mi] && data[mi].items[ii]) {
+                    data[mi].items[ii][3] = si[3];
+                }
+            });
+        });
+    }
+
+    init();
+</script>
