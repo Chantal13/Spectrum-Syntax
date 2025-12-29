@@ -136,8 +136,8 @@
       }
       return {
         fill: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`,
-        stroke: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.55)`,
-        text: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.9)`,
+        stroke: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.65)`,
+        text: `rgb(${Math.max(0, rgb.r - 60)}, ${Math.max(0, rgb.g - 60)}, ${Math.max(0, rgb.b - 60)})`,
       };
     };
 
@@ -248,6 +248,7 @@
         wobbleAmp: 0.00018,
         hovering: false,
         spinHandle: null,
+        initialized: false,
       };
 
       const labelForNode = (node) => {
@@ -378,6 +379,11 @@
         sphereState.radius = minDim * (options.sphereRadiusFactor || 0.38);
         const goldenAngle = Math.PI * (3 - Math.sqrt(5));
 
+        let currentNodeIndex = -1;
+        if (options.centerOnCurrent && !sphereState.initialized) {
+          currentNodeIndex = nodes.findIndex((n) => isCurrentPath(n.path));
+        }
+
         nodes.forEach((n, i) => {
           const t = (i + 0.5) / Math.max(1, nodes.length);
           const phi = Math.acos(1 - 2 * t);
@@ -391,6 +397,20 @@
           n.vx = 0;
           n.vy = 0;
         });
+
+        if (currentNodeIndex >= 0 && !sphereState.initialized) {
+          const currentNode = nodes[currentNodeIndex];
+          const targetX = currentNode.__sphere.x;
+          const targetY = currentNode.__sphere.y;
+          const targetZ = currentNode.__sphere.z;
+          const distance = Math.sqrt(targetX * targetX + targetY * targetY + targetZ * targetZ);
+
+          if (distance > 0.1) {
+            sphereState.angleY = Math.atan2(targetX, targetZ);
+            sphereState.angleX = -Math.asin(targetY / distance);
+          }
+          sphereState.initialized = true;
+        }
       };
 
       const projectSphere = () => {
@@ -418,21 +438,29 @@
         });
       };
 
+      let animationHandle = null;
+
+      const startAnimation = () => {
+        if (animationHandle) cancelAnimationFrame(animationHandle);
+        const step = () => {
+          if (isSphereLayout) {
+            const now = performance.now();
+            sphereState.velocityX += (sphereState.targetVX - sphereState.velocityX) * 0.12;
+            sphereState.velocityY += (sphereState.targetVY - sphereState.velocityY) * 0.12;
+            const wobbleX = sphereState.hovering ? Math.sin(now * 0.0012) * sphereState.wobbleAmp : 0;
+            const wobbleY = sphereState.hovering ? Math.cos(now * 0.001) * sphereState.wobbleAmp : 0;
+            sphereState.angleX += sphereState.velocityX + wobbleX;
+            sphereState.angleY += sphereState.velocityY + wobbleY;
+          }
+          draw();
+          animationHandle = requestAnimationFrame(step);
+        };
+        animationHandle = requestAnimationFrame(step);
+      };
+
       const spinSphere = () => {
         if (!isSphereLayout) return;
-        if (sphereState.spinHandle) cancelAnimationFrame(sphereState.spinHandle);
-        const step = () => {
-          const now = performance.now();
-          sphereState.velocityX += (sphereState.targetVX - sphereState.velocityX) * 0.12;
-          sphereState.velocityY += (sphereState.targetVY - sphereState.velocityY) * 0.12;
-          const wobbleX = sphereState.hovering ? Math.sin(now * 0.0012) * sphereState.wobbleAmp : 0;
-          const wobbleY = sphereState.hovering ? Math.cos(now * 0.001) * sphereState.wobbleAmp : 0;
-          sphereState.angleX += sphereState.velocityX + wobbleX;
-          sphereState.angleY += sphereState.velocityY + wobbleY;
-          draw();
-          sphereState.spinHandle = requestAnimationFrame(step);
-        };
-        sphereState.spinHandle = requestAnimationFrame(step);
+        startAnimation();
       };
 
       const centerOnNode = (node, withZoom, immediate, scaleOverride) => {
@@ -543,7 +571,7 @@
           tick(60);
           const fit = fitToCanvas();
           centerOnCurrent(fit?.scale);
-          draw();
+          startAnimation();
         }
       };
 
@@ -794,6 +822,7 @@
 
         const activeNode = hoverNode || focusNode;
         const related = getRelatedSet(activeNode);
+        const now = performance.now();
 
         ctx.save();
         ctx.translate(camera.x, camera.y);
@@ -819,23 +848,29 @@
           ? [...nodes].sort((a, b) => (a.__depth || 0) - (b.__depth || 0))
           : nodes;
 
-        renderNodes.forEach((n) => {
+        renderNodes.forEach((n, idx) => {
           ctx.font = weightedFontForNode(n);
           ctx.textAlign = "center";
           ctx.textBaseline = "middle";
           const isRelated = !related || related.has(n.id);
           const isFocused = focusNode && focusNode.id === n.id;
-          const palette = tintedPalette(options.colorForNode(n));
+          const baseColor = options.colorForNode(n);
+          const palette = tintedPalette(baseColor, isRelated ? 0.35 : 0.16);
           const depthScale = isSphereLayout ? n.__depth || 1 : 1;
           const chipWidth = (n.__chipWidth || options.nodeRadiusFor(n) * 3) * depthScale;
           const chipHeight = (n.__chipHeight || options.nodeRadiusFor(n) * 2.2) * depthScale;
           const radius = (n.__chipRadius || chipHeight / 2 + 6) * depthScale;
           const label = n.__label || labelForNode(n);
 
-          ctx.globalAlpha = isRelated ? Math.min(1, 0.6 + depthScale * 0.6) : 0.18;
+          const wobbleX = Math.sin(now * 0.0008 + idx * 0.5) * 0.6;
+          const wobbleY = Math.cos(now * 0.0006 + idx * 0.7) * 0.5;
+          const nodeX = n.x + wobbleX;
+          const nodeY = n.y + wobbleY;
+
+          ctx.globalAlpha = isRelated ? Math.min(1, 0.85 + depthScale * 0.15) : 0.18;
           ctx.lineWidth = (1.6 / camera.scale) * clamp(depthScale + (n.degree || 0) * 0.02, 0.7, 2.2);
           ctx.beginPath();
-          drawRoundedRect(n.x - chipWidth / 2, n.y - chipHeight / 2, chipWidth, chipHeight, radius);
+          drawRoundedRect(nodeX - chipWidth / 2, nodeY - chipHeight / 2, chipWidth, chipHeight, radius);
           ctx.fillStyle = palette.fill;
           ctx.strokeStyle = palette.stroke;
           ctx.fill();
@@ -850,8 +885,11 @@
           ctx.fillStyle = palette.text;
           ctx.shadowColor = isFocused ? colours.highlight : "transparent";
           ctx.shadowBlur = isFocused ? 10 / camera.scale : 0;
-          ctx.fillText(label, n.x, n.y);
+          ctx.fillText(label, nodeX, nodeY);
           ctx.shadowBlur = 0;
+
+          n.__renderX = nodeX;
+          n.__renderY = nodeY;
         });
         ctx.globalAlpha = 1;
 

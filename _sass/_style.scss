@@ -85,9 +85,9 @@ $color-box-background: mix($tiffany-blue, white, 92%); /* soft panel bg */
   --graph-bg-opacity: 0.08;
   --graph-bg-brightness: 0.9;
   --graph-bg-blur: 0px;
-  --graph-canvas-bg: color-mix(in srgb, var(--card-b) 82%, white);
-  --graph-canvas-gradient: radial-gradient(120% 120% at 18% 22%, rgba(212, 163, 115, 0.16), transparent 55%),
-    radial-gradient(120% 120% at 82% 8%, rgba(67, 170, 139, 0.12), transparent 52%);
+  --graph-canvas-bg: var(--card-b);
+  --graph-canvas-gradient: radial-gradient(120% 120% at 18% 22%, rgba(212, 163, 115, 0.12), transparent 55%),
+    radial-gradient(120% 120% at 82% 8%, rgba(67, 170, 139, 0.09), transparent 52%);
   --graph-canvas-stars: none;
   --graph-page: #f9c74f;
   --graph-games: #846a6a;
@@ -147,9 +147,9 @@ html[data-theme='dark'] {
   --graph-bg-opacity: 0.08;
   --graph-bg-brightness: 0.78;
   --graph-link-stroke: #fdf6e3; /* base3 */
-  --graph-canvas-bg: #0d1b22;
-  --graph-canvas-gradient: radial-gradient(120% 120% at 18% 28%, rgba(108, 113, 196, 0.16), transparent 55%),
-    radial-gradient(120% 120% at 80% 8%, rgba(42, 161, 152, 0.16), transparent 52%);
+  --graph-canvas-bg: var(--card-b);
+  --graph-canvas-gradient: radial-gradient(120% 120% at 18% 28%, rgba(108, 113, 196, 0.12), transparent 55%),
+    radial-gradient(120% 120% at 80% 8%, rgba(42, 161, 152, 0.12), transparent 52%);
   --graph-link: rgba(253, 246, 227, 0.22);
   --graph-text: #fdf6e3;
   --graph-text-muted: rgba(253, 246, 227, 0.78);
