@@ -6,12 +6,9 @@ permalink:
 aliases:
   - eye contact
 tags:
-  - autism
-  - neurodiversity
-  - disability
-  - communication
-  - masking
+  - neurodiversity/autism
 ---
+<!-- Graph links: [[Autistic Burnout|burnout]] [[Autism Accommodations|accommodations]] -->
 # What Autism Is: A Neurodivergent Way of Experiencing the World 
 
 Autism is a **lifelong neurodevelopmental difference** that shapes how a person’s brain develops, processes information, and experiences the world[^1]. It is not a disease, a personality flaw, or a behavioural problem. Autism affects sensory processing, communication, attention, learning, movement, and social interaction across the lifespan.
@@ -112,7 +109,7 @@ Late diagnosis is common, not exceptional[^2].
 Late-diagnosed autistic adults often:
 - Internalize struggles as personal failure
 - Overcompensate through overwork
-- Develop [[internalized ableism]]
+- Develop [[Internalized Ableism]]
 - Reach diagnosis after illness, burnout, or crisis
 
 Late diagnosis does not indicate “less autism.” It often indicates **more [[Masking]] and fewer supports**[^2].
@@ -183,7 +180,6 @@ They need to be **understood, supported, and believed**.
 
 ---
 
-Related: Until internalized ableism is addressed, people often recreate the same conditions that led to [[Autistic Burnout|burnout]]—even after changing jobs or receiving [[Autism Accommodations|accommodations]].
 
 ---
 

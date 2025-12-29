@@ -7,12 +7,10 @@ aliases:
   - internalized ableism
   - ableism
 tags:
-  - autism
-  - neurodiversity
-  - disability
-  - ableism
-  - burnout
+  - neurodiversity/autism
+  - disability/ableism
 ---
+<!-- Graph links: [[Autistic Burnout|burnout]] [[Autism Accommodations|accommodations]] -->
 # Internalized Ableism: How It Develops, How It Shows Up, and Why It Matters
 
 Internalized ableism is one of the least visible—and most damaging—forces affecting disabled and neurodivergent people. It operates quietly, shaping self-expectations, behaviour, and decision-making long before anyone names it. Many people do not realize it is present until burnout, illness, or collapse forces a reckoning.
@@ -177,7 +175,6 @@ It is about living longer, healthier, and with integrity in a world that too oft
 
 ---
 
-Related: Until internalized ableism is addressed, people often recreate the same conditions that led to [[Autistic Burnout|burnout]]—even after changing jobs or receiving [[Autism Accommodations|accommodations]].
 
 ---
 
