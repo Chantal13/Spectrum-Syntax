@@ -830,13 +830,13 @@
 
         if (links.length) {
           ctx.strokeStyle = colours.link;
-          ctx.lineWidth = 1 / camera.scale;
           links.forEach((l) => {
             const source = byId.get(l.source);
             const target = byId.get(l.target);
             if (!source || !target) return;
             const isRelated = !related || (related.has(source.id) && related.has(target.id));
             ctx.globalAlpha = isRelated ? 0.9 : 0.15;
+            ctx.lineWidth = isRelated ? 2.5 / camera.scale : 1 / camera.scale;
             ctx.beginPath();
             ctx.moveTo(source.x, source.y);
             ctx.lineTo(target.x, target.y);
@@ -849,11 +849,11 @@
           : nodes;
 
         renderNodes.forEach((n, idx) => {
-          ctx.font = weightedFontForNode(n);
           ctx.textAlign = "center";
           ctx.textBaseline = "middle";
           const isRelated = !related || related.has(n.id);
-          const isFocused = focusNode && focusNode.id === n.id;
+          const isCurrent = isCurrentPath(n.path);
+          const isFocused = (focusNode && focusNode.id === n.id) || isCurrent;
           const baseColor = options.colorForNode(n);
           const palette = tintedPalette(baseColor, isRelated ? 0.35 : 0.16);
           const depthScale = isSphereLayout ? n.__depth || 1 : 1;
@@ -867,10 +867,14 @@
           const nodeX = n.x + wobbleX;
           const nodeY = n.y + wobbleY;
 
-          ctx.globalAlpha = isRelated ? Math.min(1, 0.9 + depthScale * 0.1) : 0.3;
+          let fontSize = isFocused ? 16 : (isRelated ? 14 : 11);
+          let fontWeight = isFocused ? 700 : (isRelated ? 600 : 500);
+          ctx.font = `${fontWeight} ${fontSize}px ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif`;
+
+          ctx.globalAlpha = isRelated ? Math.min(1, 0.95 + depthScale * 0.05) : 0.25;
           ctx.fillStyle = baseColor;
           ctx.shadowColor = isFocused || (hoverNode && hoverNode.id === n.id) ? colours.highlight : "transparent";
-          ctx.shadowBlur = (isFocused || (hoverNode && hoverNode.id === n.id)) ? 8 / camera.scale : 0;
+          ctx.shadowBlur = (isFocused || (hoverNode && hoverNode.id === n.id)) ? 10 / camera.scale : 0;
           ctx.fillText(label, nodeX, nodeY);
           ctx.shadowBlur = 0;
 
