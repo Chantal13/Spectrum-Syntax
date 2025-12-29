@@ -867,24 +867,10 @@
           const nodeX = n.x + wobbleX;
           const nodeY = n.y + wobbleY;
 
-          ctx.globalAlpha = isRelated ? Math.min(1, 0.85 + depthScale * 0.15) : 0.18;
-          ctx.lineWidth = (1.6 / camera.scale) * clamp(depthScale + (n.degree || 0) * 0.02, 0.7, 2.2);
-          ctx.beginPath();
-          drawRoundedRect(nodeX - chipWidth / 2, nodeY - chipHeight / 2, chipWidth, chipHeight, radius);
-          ctx.fillStyle = palette.fill;
-          ctx.strokeStyle = palette.stroke;
-          ctx.fill();
-          ctx.stroke();
-
-          if (isFocused || (hoverNode && hoverNode.id === n.id)) {
-            ctx.strokeStyle = colours.highlight;
-            ctx.lineWidth = (isFocused ? 2.2 : 1.8) / camera.scale;
-            ctx.stroke();
-          }
-
-          ctx.fillStyle = palette.text;
-          ctx.shadowColor = isFocused ? colours.highlight : "transparent";
-          ctx.shadowBlur = isFocused ? 10 / camera.scale : 0;
+          ctx.globalAlpha = isRelated ? Math.min(1, 0.9 + depthScale * 0.1) : 0.3;
+          ctx.fillStyle = baseColor;
+          ctx.shadowColor = isFocused || (hoverNode && hoverNode.id === n.id) ? colours.highlight : "transparent";
+          ctx.shadowBlur = (isFocused || (hoverNode && hoverNode.id === n.id)) ? 8 / camera.scale : 0;
           ctx.fillText(label, nodeX, nodeY);
           ctx.shadowBlur = 0;
 
