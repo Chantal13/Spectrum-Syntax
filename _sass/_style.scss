@@ -103,7 +103,7 @@ $color-box-background: mix($tiffany-blue, white, 92%); /* soft panel bg */
   --graph-link: rgba(53, 59, 60, 0.2);
   --graph-text: var(--color-text);
   --graph-text-muted: rgba(53, 59, 60, 0.72);
-  --graph-highlight: #FB8B24;
+  --graph-highlight: #ffffff;
   --graph-canvas-border: rgba(53, 59, 60, 0.18);
   --graph-canvas-glow: rgba(212, 163, 115, 0.16);
   --graph-label-bg: rgba(250, 237, 205, 0.95);
@@ -153,7 +153,7 @@ html[data-theme='dark'] {
   --graph-link: rgba(253, 246, 227, 0.22);
   --graph-text: #fdf6e3;
   --graph-text-muted: rgba(253, 246, 227, 0.78);
-  --graph-highlight: #FB8B24;
+  --graph-highlight: #ffffff;
   --graph-page: #fdf6e3;
   --graph-games: #268bd2;
   --graph-notes: #2aa198;
@@ -765,6 +765,14 @@ html[data-theme='dark'] .theme-site .welcome-card {
   background: rgba(7, 54, 66, 0.8);
 }
 
+html[data-theme='dark'] .welcome-card--link:hover {
+  background: rgba(251, 139, 36, 0.2);
+}
+
+html[data-theme='dark'] .welcome-card--link:active {
+  background: rgba(251, 139, 36, 0.3);
+}
+
 html[data-theme='dark'] .theme-site .welcome-stat {
   background: rgba(7, 54, 66, 0.7);
 }
@@ -914,6 +922,16 @@ html[data-theme='dark'] .site-footer a.internal-link {
 
 .welcome-card--link {
   cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.welcome-card--link:hover {
+  background: rgba(251, 139, 36, 0.15);
+}
+
+.welcome-card--link:active {
+  background: rgba(251, 139, 36, 0.25);
+  transform: scale(0.98);
 }
 
 .welcome-card--link:focus-visible {
