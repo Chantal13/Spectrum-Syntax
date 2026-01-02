@@ -1558,8 +1558,9 @@ html[data-theme='dark'] .chip {
 }
 
 /* =========================
-   Link Previews (tooltip)
+   Link Previews (tooltip) - DISABLED
    ========================= */
+/* Tooltips disabled per user request
 #tooltip-wrapper {
   background: white;
   padding: 1em;
@@ -1592,6 +1593,7 @@ html[data-theme='dark'] .chip {
   height: 0;
   width: 0;
 }
+*/
 
 /* =========================
    Notes Graph

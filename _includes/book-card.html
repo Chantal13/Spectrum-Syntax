@@ -44,10 +44,10 @@
     {% endif %}
     <div class="book-card__meta">
       {% if include.book.my_rating %}
-        <span class="rating" title="My rating">⭐ {{ include.book.my_rating }}/5</span>
+        <span class="rating">⭐ {{ include.book.my_rating }}/5</span>
       {% endif %}
       {% if include.book.average_rating %}
-        <span class="rating avg" title="Average rating">★ {{ include.book.average_rating | round: 2 }}/5</span>
+        <span class="rating avg">★ {{ include.book.average_rating | round: 2 }}/5</span>
       {% endif %}
     </div>
     {% assign desc = include.book.description_html | strip_html | replace: "&nbsp;", " " | replace: "&#39;", "'" %}
