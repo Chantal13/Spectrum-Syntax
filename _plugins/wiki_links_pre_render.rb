@@ -26,24 +26,24 @@ Jekyll::Hooks.register [:notes, :pages], :pre_render do |doc|
     anchor = "<a class='internal-link' href='#{href}'>\\1</a>"
 
     # [[filename|label]]
-    doc.content.gsub!(/\[\[(?:#{base_rx})\|(.+?)(?=\])\]\]/i, anchor)
+    doc.content = doc.content.gsub(/\[\[(?:#{base_rx})\|(.+?)(?=\])\]\]/i, anchor)
     # [[title|label]]
     if title_rx
-      doc.content.gsub!(/\[\[(?:#{title_rx})\|(.+?)(?=\])\]\]/i, anchor)
+      doc.content = doc.content.gsub(/\[\[(?:#{title_rx})\|(.+?)(?=\])\]\]/i, anchor)
     end
     # [[title]]
     if title_rx
-      doc.content.gsub!(/\[\[(#{title_rx})\]\]/i, anchor)
+      doc.content = doc.content.gsub(/\[\[(#{title_rx})\]\]/i, anchor)
     end
     # [[alias|label]] and [[alias]]
     aliases.each do |al|
       next if al.to_s.strip.empty?
       al_rx = Regexp.escape(al.to_s).gsub('\_', '[ _]').gsub('\-', '[ -]')
-      doc.content.gsub!(/\[\[(?:#{al_rx})\|(.+?)(?=\])\]\]/i, anchor)
-      doc.content.gsub!(/\[\[(#{al_rx})\]\]/i, anchor)
+      doc.content = doc.content.gsub(/\[\[(?:#{al_rx})\|(.+?)(?=\])\]\]/i, anchor)
+      doc.content = doc.content.gsub(/\[\[(#{al_rx})\]\]/i, anchor)
     end
     # [[filename]]
-    doc.content.gsub!(/\[\[(#{base_rx})\]\]/i, anchor)
+    doc.content = doc.content.gsub(/\[\[(#{base_rx})\]\]/i, anchor)
   end
 
   # Any leftover unknown wikilinks -> invalid span (prevents raw markup leaking)
