@@ -3,10 +3,13 @@ title: Onyx
 tags:
   - rockhound
 layout: note
+redirect_from:
+  - /notes/rockhounding/rocks/minerals/quartz/chalcedony/onyx/
 thumbnail: https://upload.wikimedia.org/wikipedia/commons/b/b3/Agate-Quartz-49959.jpg
 hardness: 6.5–7
 streak: White
 luster:
+parent: "[[chalcedony]]"
 ---
 {% include rock-card.html rock=page %}
 

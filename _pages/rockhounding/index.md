@@ -18,7 +18,7 @@ rocks:
     thumbnail: '/assets/rockhounding/thumbs/logs.png'
   - url: '/rockhounding/resources/'
     title: 'Resources'
-    description: 'Curated books, websites, articles, and social accounts; books sync from my Goodreads shelf.'
+    description: 'Curated book recommendations synced from my Goodreads rockhounding shelf.'
     thumbnail: '/assets/rockhounding/thumbs/resources.png'
 ---
 <h1>Rockhounding</h1>

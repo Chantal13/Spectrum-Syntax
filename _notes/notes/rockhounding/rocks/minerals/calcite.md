@@ -10,6 +10,7 @@ thumbnail: ""
 hardness: "3"
 luster: Vitreous
 streak: White
+parent: "[[Minerals]]"
 ---
 {% include rock-card.html rock=page %}
 

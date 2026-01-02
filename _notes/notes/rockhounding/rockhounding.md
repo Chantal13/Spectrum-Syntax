@@ -6,31 +6,21 @@ summary: Rockhounding is the hobby of searching for, identifying, and collecting
 ---
 
 # My Notes
-- [[Collection Log]] - coming soon
-- [[Field Trip Notes]] - coming soon
 - [[Tumbling|Tumbling Batches]] 
-- [[Ontario Locations]] - coming soon
 # Rockhounding Basics
-- [[Ethics & Laws in Rockhounding]] - coming soon
-- [[Field Identification]] - coming soon
 - [[Mohs Hardness Scale]]
 - [[Rock Tumbling]]
 - [[Rockhounding 101]]
-- [[Tools & Safety]] - coming soon
 
 # Rocks & Minerals
 [[Rocks and Minerals]] Index
 
 ## Minerals
-- [[agate]]
-- [[calcite]]
-- [[epidote]]
-- [[feldspar]]
-- [[fluorite]]
-- [[garnet]]
-- [[jasper]]
-- [[pyrite]]
-- [[quartz]]
+```dataview
+LIST
+FROM "notes/rockhounding/rocks/minerals"
+SORT file.folder ASC
+```
 
 ## Rocks
 - [[igneous|Igneous Rocks]]

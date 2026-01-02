@@ -1,23 +1,15 @@
 ---
-title: Quartz
-draft: false
+title: Quartz Varieties
 tags:
   - rockhound
   - rockhound/minerals
-aliases:
-  - quartzes
-  - Quartzes
-  - Quartz
-thumbnail: https://upload.wikimedia.org/wikipedia/commons/c/ce/Quartz_Br%C3%A9sil.jpg
-hardness: 7
-luster:
-streak: White
-parent: "[[Minerals]]"
+layout: note
+parent: "[[Quartz]]"
 ---
-
 {% include rock-card.html rock=page %}
 
-<h2>Quartz Varieties</h2>
+Collection of quartz varieties including crystalline forms (amethyst, rose quartz) and microcrystalline forms (chert, chalcedony).
+
 <div class="rock-card-grid">
   {%- assign varieties = site.notes | where_exp: "n", "n.path contains '_notes/notes/rockhounding/rocks/minerals/quartz-varieties/'" -%}
   {%- assign varieties = varieties | sort: 'title' -%}
@@ -28,5 +20,3 @@ parent: "[[Minerals]]"
     {%- endunless -%}
   {%- endfor -%}
 </div>
-
-Quartz (SiO₂) is a hard, abundant mineral found in igneous, metamorphic, and sedimentary rocks; it forms hexagonal crystals and occurs in many well‑known varieties.

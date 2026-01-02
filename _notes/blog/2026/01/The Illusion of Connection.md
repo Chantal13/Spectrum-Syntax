@@ -6,6 +6,7 @@ tags:
 summary:
 id:
 permalink:
+parent: "[[Inside My Mind]]"
 ---
 Last week, I did something that felt both liberating and unsettling: I removed 150 people from my Facebook friends list. These weren't enemies or acquaintances who'd wronged me. They were just people I didn't actually know anymore—if I ever really knew them at all. When I finished, my friend count sat at 297. Still a number that would have seemed impossibly large to someone living in the pre-internet age. But here's the thing that haunts me: of those 297 "friends," I could count on one hand the number of people I'd actually call if something important happened.
 

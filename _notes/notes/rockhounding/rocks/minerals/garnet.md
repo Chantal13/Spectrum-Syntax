@@ -12,6 +12,7 @@ thumbnail: https://upload.wikimedia.org/wikipedia/commons/c/cb/Almandine_garnet_
 hardness: 6.5–7.5
 luster:
 streak: White
+parent: "[[Minerals]]"
 ---
 {% include rock-card.html rock=page %}
 

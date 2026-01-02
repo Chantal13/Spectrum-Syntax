@@ -3,10 +3,13 @@ title: Lake Superior Agate
 tags:
   - rockhound
 layout: note
+redirect_from:
+  - /notes/rockhounding/rocks/minerals/quartz/chalcedony/agate/lake-superior-agate/
 thumbnail: https://upload.wikimedia.org/wikipedia/commons/d/d0/Agat_Lake_Superior_-_Duluth%2C_Minnesota%2C_USA..jpg
 hardness: 6.5–7
 streak: White
 luster:
+parent: "[[chalcedony]]"
 ---
 {% include rock-card.html rock=page %}
 

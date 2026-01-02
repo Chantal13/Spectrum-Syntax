@@ -36,7 +36,7 @@ The Mohs hardness scale ranks minerals by their resistance to scratching, from *
 ## Hardness 6.5 – 7 (Hard Stones – Excellent for [[Rock Tumbling|Tumbling]])
 - **[[quartz]]** → Mohs 7 (clear, white, smoky varieties common)  
 - **[[agate]]** → Mohs 7 (banded microcrystalline [[quartz]], polishes to a glass-like shine)  
-- **[[jasper]]** → Mohs 6.5–7 (opaque [[quartz]], excellent for [[Rock Tumbling|tumbling]])  
+- **[[notes/rockhounding/rocks/minerals/jasper]]** → Mohs 6.5–7 (opaque [[quartz]], excellent for [[Rock Tumbling|tumbling]])  
 - **Chert / Flint** → Mohs 7 (cryptocrystalline [[quartz]], tough and glossy when polished)  
 - **Petrified Wood** → Mohs 6.5–7 (silica replacement, takes a strong polish)  
 - **Basalt** → Mohs 6 (fine-grained volcanic rock, often smooth but not shiny)  
@@ -54,7 +54,7 @@ The Mohs hardness scale ranks minerals by their resistance to scratching, from *
 | **5–6** | Conglomerate, [[breccia]] |
 | **6** | Feldspar, [[unakite]], Epidote |
 | **6–7** | [[granite]], [[gneiss]], Basalt |
-| **6.5–7** | [[jasper]], Petrified Wood |
+| **6.5–7** | [[notes/rockhounding/rocks/minerals/jasper]], Petrified Wood |
 | **7** | [[quartz]], [[agate]], Chert/Flint |
 
 ---
@@ -62,4 +62,4 @@ The Mohs hardness scale ranks minerals by their resistance to scratching, from *
 ## Notes
 - Hardness is approximate — many of these rocks are composites of several minerals.  
 - For best results, **tumble rocks of similar hardness together**. Mixing soft and hard stones will damage the softer ones.  
-- [[quartz]]-rich stones ([[agate]], [[jasper]], chert) are the best [[Rock Tumbling|tumbling]] candidates in this region.
+- [[quartz]]-rich stones ([[agate]], [[notes/rockhounding/rocks/minerals/jasper]], chert) are the best [[Rock Tumbling|tumbling]] candidates in this region.

@@ -34,7 +34,7 @@ If you are interested in my rock tumbling batches, check them out here: [[Tumbli
 
 ### Microcrystalline [[quartz]] Varieties
 - [[agate]] → Banded, translucent [[quartz]]. Rare but possible along Lake Ontario. Excellent polish.  
-- [[jasper]] → Opaque red, brown, or yellow [[quartz]]. Durable and great for tumbling.  
+- [[notes/rockhounding/rocks/minerals/jasper]] → Opaque red, brown, or yellow [[quartz]]. Durable and great for tumbling.  
 - [[Chert / Flint]] → Hard, smooth cryptocrystalline [[quartz]], often grey or brown. Takes a glossy finish.  
 
 ---
@@ -53,4 +53,4 @@ If you are interested in my rock tumbling batches, check them out here: [[Tumbli
 1. **Sort by Hardness** → Don’t tumble soft marble with hard [[quartz]]. Keep similar hardnesses together.  
 2. **Use Stages Properly** → Each grit stage (coarse, medium, fine, polish) should run for at least a week.  
 3. **Check Frequently** → Remove cracked or undercut stones before advancing stages.  
-4. **Finish Strong** → [[quartz]], [[jasper]], and [[agate]] will take a glass-like polish. [[feldspar]]-rich rocks (like [[granite]]) may have a softer sheen.
+4. **Finish Strong** → [[quartz]], [[notes/rockhounding/rocks/minerals/jasper]], and [[agate]] will take a glass-like polish. [[feldspar]]-rich rocks (like [[granite]]) may have a softer sheen.

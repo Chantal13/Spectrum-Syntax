@@ -158,6 +158,15 @@
   {%- elsif p contains '_notes/notes/rockhounding/rocks/sedimentary/' -%}
     {%- assign parent_url = '/rockhounding/rocks/sedimentary/' -%}
     {%- assign parent_label = 'Sedimentary' -%}
+  {%- elsif p contains 'minerals/quartz-varieties/' -%}
+    {%- assign parent_url = '/notes/rockhounding/rocks/minerals/quartz/' -%}
+    {%- assign parent_label = 'Quartz' -%}
+  {%- elsif p contains 'minerals/chalcedony-varieties/' -%}
+    {%- assign parent_url = '/notes/rockhounding/rocks/minerals/chalcedony/' -%}
+    {%- assign parent_label = 'Chalcedony' -%}
+  {%- elsif p contains 'minerals/jasper-varieties/' -%}
+    {%- assign parent_url = '/notes/rockhounding/rocks/minerals/jasper/' -%}
+    {%- assign parent_label = 'Jasper' -%}
   {%- elsif p contains '_notes/notes/rockhounding/rocks/minerals/' and (u contains '/rockhounding/rocks/minerals/' or u contains '/notes/rockhounding/rocks/minerals/') -%}
     {%- assign segs = u | split: '/' -%}
     {%- assign last_nonempty = '' -%}

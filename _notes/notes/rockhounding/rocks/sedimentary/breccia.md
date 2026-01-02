@@ -8,6 +8,7 @@ thumbnail: https://upload.wikimedia.org/wikipedia/commons/9/96/Breccia_in_Marble
 hardness: ≈2–7
 aliases:
   - Breccia
+  - parent: "[[sedimentary]]"
 ---
 {% include rock-card.html rock=page %}
 

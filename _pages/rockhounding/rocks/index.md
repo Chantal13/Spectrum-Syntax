@@ -18,11 +18,12 @@ permalink: /rockhounding/rocks/
 
 {%- comment -%} Curated quick links to top minerals {%- endcomment -%}
 <div class="chips">
-  <a class="chip" href="{{ '/notes/rockhounding/rocks/minerals/quartz/'    | relative_url }}">Quartz</a>
-  <a class="chip" href="{{ '/notes/rockhounding/rocks/minerals/feldspar/'  | relative_url }}">Feldspar</a>
-  <a class="chip" href="{{ '/notes/rockhounding/rocks/minerals/garnet/'    | relative_url }}">Garnet</a>
-  <a class="chip" href="{{ '/notes/rockhounding/rocks/minerals/jasper/'    | relative_url }}">Jasper</a>
- </div>
+  <a class="chip" href="{{ '/notes/rockhounding/rocks/minerals/quartz/' | relative_url }}">Quartz</a>
+  <a class="chip" href="{{ '/notes/rockhounding/rocks/minerals/chalcedony/' | relative_url }}">Chalcedony</a>
+  <a class="chip" href="{{ '/notes/rockhounding/rocks/minerals/feldspar/' | relative_url }}">Feldspar</a>
+  <a class="chip" href="{{ '/notes/rockhounding/rocks/minerals/garnet/' | relative_url }}">Garnet</a>
+  <a class="chip" href="{{ '/notes/rockhounding/rocks/minerals/jasper/' | relative_url }}">Jasper</a>
+</div>
 
 <h2 id="igneous">Igneous</h2>
 <div class="rock-card-grid">

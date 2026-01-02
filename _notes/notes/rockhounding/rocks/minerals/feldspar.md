@@ -10,6 +10,7 @@ aliases:
 hardness: 6–6.5
 luster:
 streak: White
+parent: "[[Minerals]]"
 ---
 {% include rock-card.html rock=page %}
 

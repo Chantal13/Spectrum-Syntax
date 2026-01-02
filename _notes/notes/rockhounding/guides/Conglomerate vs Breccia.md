@@ -21,5 +21,5 @@ For Ontario [[rockhounding]], rounded-pebble conglomerates are common along Grea
 | **Appearance**                 | Looks like a “stone fruitcake” or [[conglomerate|puddingstone]]                                | Looks like a “jigsaw puzzle” of broken rock                                            |
 | **Formation**                  | Fragments transported by water (river/shoreline) and rounded before cementing | Fragments broken in place by faulting, landslides, or eruptions, then quickly cemented |
 | **Durability**                 | Usually well-cemented, but varies                                             | Varies widely; some crumble if cement is soft                                          |
-| **Rock Tumbling**              | Can polish well if silica-cemented, but often uneven due to mixed hardness    | Polishes into colourful speckled stones (good with [[jasper]] or [[quartz]] clasts)    |
+| **Rock Tumbling**              | Can polish well if silica-cemented, but often uneven due to mixed hardness    | Polishes into colourful speckled stones (good with [[notes/rockhounding/rocks/minerals/jasper]] or [[quartz]] clasts)    |
 | **Where Found (Lake Ontario)** | Glacial gravels, pebble beaches, puddingstone erratics                        | Less common; occasional erratics in mixed gravels                                      |

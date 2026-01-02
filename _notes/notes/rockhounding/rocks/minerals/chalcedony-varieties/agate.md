@@ -12,6 +12,7 @@ thumbnail: https://upload.wikimedia.org/wikipedia/commons/a/ae/Mexican_Crazy_Lac
 hardness: 6.5–7
 luster:
 streak: White
+parent: "[[chalcedony]]"
 ---
 <!-- Graph links: [[Chalcedony]] [[Jasper]] -->
 {% include rock-card.html rock=page %}

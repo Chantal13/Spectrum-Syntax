@@ -6,6 +6,7 @@ tags:
 layout: note
 thumbnail: https://upload.wikimedia.org/wikipedia/commons/a/af/USDA_Mineral_Sandstone_93c3955.jpg
 hardness: ≈6–7
+parent: "[[sedimentary]]"
 ---
 {% include rock-card.html rock=page %}
 

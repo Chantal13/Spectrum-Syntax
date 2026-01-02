@@ -8,10 +8,6 @@ aliases:
 ---
 <h1>Sedimentary Rocks</h1>
 
-<div class="chips">
-  <a class="chip" href="{{ '/notes/rockhounding/rocks/igneous/obsidian/' | relative_url }}">Obsidian</a>
-  
-</div>
 
 <div class="rock-card-grid">
   {%- assign notes = site.notes | where_exp: "n", "n.path contains '_notes/notes/rockhounding/rocks/sedimentary/'" -%}

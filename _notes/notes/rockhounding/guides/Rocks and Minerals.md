@@ -30,7 +30,7 @@ layout: note
 - [[gneiss]]
 
 ## J
-- [[jasper]]
+- [[notes/rockhounding/rocks/minerals/jasper]]
 
 ## L
 - [[limestone]]

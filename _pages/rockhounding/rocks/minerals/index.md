@@ -14,6 +14,7 @@ breadcrumbs:
 <div class="chips">
   <a class="chip internal-link" href="{{ '/rockhounding/rocks/' | relative_url }}#minerals">Back to Rocks &amp; Minerals</a>
   <a class="chip internal-link" href="{{ '/notes/rockhounding/rocks/minerals/quartz/' | relative_url }}">Quartz</a>
+  <a class="chip internal-link" href="{{ '/notes/rockhounding/rocks/minerals/chalcedony/' | relative_url }}">Chalcedony</a>
   <a class="chip internal-link" href="{{ '/notes/rockhounding/rocks/minerals/feldspar/' | relative_url }}">Feldspar</a>
   <a class="chip internal-link" href="{{ '/notes/rockhounding/rocks/minerals/garnet/' | relative_url }}">Garnet</a>
   <a class="chip internal-link" href="{{ '/notes/rockhounding/rocks/minerals/mica/' | relative_url }}">Mica</a>

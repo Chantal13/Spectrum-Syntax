@@ -12,6 +12,7 @@ thumbnail: https://upload.wikimedia.org/wikipedia/commons/b/b8/%D0%AD%D0%BF%D0%B
 hardness: 6–7
 luster:
 streak: Greyish white
+parent: "[[Minerals]]"
 ---
 <!-- Graph links: [[Unakite]] [[Gneiss]] [[Granite]] -->
 {% include rock-card.html rock=page %}
